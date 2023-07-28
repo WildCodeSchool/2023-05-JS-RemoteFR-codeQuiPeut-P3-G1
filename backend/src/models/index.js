@@ -30,9 +30,13 @@ pool.getConnection().catch(() => {
 const models = {}
 
 const UsersManager = require("./UsersManager")
+const TestimonialsManager = require("./TestimonialsManager")
 
 models.users = new UsersManager()
 models.users.setDatabase(pool)
+
+models.testimonials = new TestimonialsManager()
+models.testimonials.setDatabase(pool)
 
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
