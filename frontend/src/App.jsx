@@ -1,12 +1,14 @@
-import Home from "./pages/Home"
-
 import "./App.scss"
+
+// import Home from "./pages/Home"
+import NavBar from "./components/NavBar/Navbar"
 
 function App() {
   return (
     <>
       <div className="App">
-        <Home />
+        <NavBar />
+        {/* <Home /> */}
       </div>
     </>
   )
