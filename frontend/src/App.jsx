@@ -2,7 +2,7 @@ import { useState } from "react"
 import Home from "./pages/Home"
 import axios from "axios"
 
-import "./App.css"
+import "./App.scss"
 
 function App() {
   const [usernameDb, setUsernameDb] = useState("")
