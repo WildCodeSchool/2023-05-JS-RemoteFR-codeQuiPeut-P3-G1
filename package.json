@@ -30,5 +30,8 @@
     "cross-env": "^7.0.3",
     "eslint-config-standard": "^17.1.0",
     "husky": "^8.0.3"
+  },
+  "dependencies": {
+    "sass": "^1.64.1"
   }
 }
