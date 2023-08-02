@@ -30,9 +30,61 @@ pool.getConnection().catch(() => {
 const models = {}
 
 const UsersManager = require("./UsersManager")
+const TestimonialsManager = require("./TestimonialsManager")
+const GamesManager = require("./GamesManager")
+const GameRegistrationsManager = require("./GameRegistrationsManager")
+const PostsManager = require("./PostsManager")
+const TopicsManager = require("./TopicsManager")
+const TopicsSubscriptionManager = require("./TopicsSubscriptionManager")
+const CategoriesManager = require("./CategoriesManager")
+const FriendRequestManager = require("./FriendRequestManager")
+const FiltersManager = require("./FiltersManager")
+const GmProfilManager = require("./GmProfilManager")
+const UsersFiltersManager = require("./UsersFiltersManager")
+const PrivateMessagesManager = require("./PrivateMessagesManager")
+const RolePlayingGamesManager = require("./RolePlayingGamesManager")
 
 models.users = new UsersManager()
 models.users.setDatabase(pool)
+
+models.testimonials = new TestimonialsManager()
+models.testimonials.setDatabase(pool)
+
+models.games = new GamesManager()
+models.games.setDatabase(pool)
+
+models.gameRegistrationsManager = new GameRegistrationsManager()
+models.gameRegistrationsManager.setDatabase(pool)
+
+models.posts = new PostsManager()
+models.posts.setDatabase(pool)
+
+models.FriendRequest = new FriendRequestManager()
+models.FriendRequest.setDatabase(pool)
+
+models.topics = new TopicsManager()
+models.topics.setDatabase(pool)
+
+models.topics_subscription = new TopicsSubscriptionManager()
+models.topics_subscription.setDatabase(pool)
+
+models.categories = new CategoriesManager()
+models.categories.setDatabase(pool)
+
+models.filter = new FiltersManager()
+models.filter.setDatabase(pool)
+
+models.gmProfiles = new GmProfilManager()
+models.gmProfiles.setDatabase(pool)
+
+models.usersFilters = new UsersFiltersManager()
+models.usersFilters.setDatabase(pool)
+
+models.private_messages = new PrivateMessagesManager()
+models.private_messages.setDatabase(pool)
+
+models.role_playing_games = new RolePlayingGamesManager()
+models.role_playing_games.setDatabase(pool)
 
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
