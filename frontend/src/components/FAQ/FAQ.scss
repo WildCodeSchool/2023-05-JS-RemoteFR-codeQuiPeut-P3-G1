@@ -1,0 +1,80 @@
+@import "../../Variable.scss";
+
+.container-FAQ {
+    width: 100vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    .title-FAQ {
+        h1 {
+        text-align: center;
+        color: $third-font-color;
+        font-family: $title-font;
+        font-size: 49px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin: 0;
+        }
+    }
+    .line-FAQ {
+        border-top: 1px solid $third-font-color;
+        width: 90%; 
+      }
+    .card-Container {
+        margin-top: 50px;
+        .card-FAQ {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 80vw;
+            border-radius: 20px;
+            background: rgba(217, 217, 217, 0.10);
+            margin-bottom: 10px;
+            
+            h2 {
+                font-size: 35px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                color: $third-font-color;
+                text-align: center;
+                font-family: $content-font;
+            }
+            .card-header {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                .h2-card-header {
+                    width: 90%;
+                    h2 {
+                        margin-left: 15%;
+                    }
+
+                }
+                .svg-card-header {
+                    display: flex;
+                    justify-content: center;
+                    width: 10%;
+
+                }
+            }
+            .card-content {
+                font-size: 30px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                color: $third-font-color;
+                text-align: center;
+                font-family: $content-font;
+                padding-left: 200px;
+                padding-right: 200px;
+            }                                                                                                                                                                                                                                                                                                                                                                
+        }
+    }
+    
+}

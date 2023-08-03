@@ -4,6 +4,7 @@ body {
     background: $background-gradient-landing-page;
 }
 .bg-wave-landingPage {
+    position: absolute;
     width: 100vw;
     height: 625.5px;
     svg {
