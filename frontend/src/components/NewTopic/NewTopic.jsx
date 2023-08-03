@@ -20,7 +20,7 @@ export default function NewTopic() {
     axios
       .post("http://localhost:4242/topics", nouveauSujet)
       .then((res) => {
-        console.log("Nouveau sujet ajouté :", res.data)
+        console.info("Nouveau sujet ajouté :", res.data)
 
         setNouveauSujet({
           Nom: "",
@@ -34,14 +34,14 @@ export default function NewTopic() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>Nom :</label>
+      {/* <label>Nom :</label> */}
       <input
         type="text"
         name="Nom"
         value={nouveauSujet.Nom}
         onChange={handleInputChange}
       />
-      <label>Catégorie :</label>
+      {/* <label>Catégorie :</label> */}
       <input
         type="text"
         name="categorie"

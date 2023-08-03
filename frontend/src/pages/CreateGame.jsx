@@ -1,6 +1,6 @@
 import "./CreateGame.scss"
 import axios from "axios"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 export default function CreateGame() {
   const [rpgs, setRpgs] = useState([])
@@ -13,13 +13,13 @@ export default function CreateGame() {
   const handleCreateUser = () => {
     axios
       .post("http://localhost:4242/games", {
-        role_playing_game_id: usernameDb,
-        gm_profiles_id: passwordDb,
-        schedule: passwordDb,
-        location: passwordDb,
-        max_players_capacity: passwordDb,
-        description: passwordDb,
-        filters_id: passwordDb,
+        // role_playing_game_id: usernameDb,
+        // gm_profiles_id: passwordDb,
+        // schedule: passwordDb,
+        // location: passwordDb,
+        // max_players_capacity: passwordDb,
+        // description: passwordDb,
+        // filters_id: passwordDb,
       })
       .then((res) => {
         if (res.status === 200) {
@@ -35,12 +35,12 @@ export default function CreateGame() {
   //   const [rpgID, setRpgID] = useState("")
   //   const [gm, setPasswordDb] = useState("")
 
-  const handleUser = (e) => {
-    setUsernameDb(e.target.value)
-  }
-  const handlePass = (e) => {
-    setPasswordDb(e.target.value)
-  }
+  //   const handleUser = (e) => {
+  //     setUsernameDb(e.target.value)
+  //   }
+  //   const handlePass = (e) => {
+  //     setPasswordDb(e.target.value)
+  //   }
   return (
     <>
       <p>je suis dans la page creategame</p>
