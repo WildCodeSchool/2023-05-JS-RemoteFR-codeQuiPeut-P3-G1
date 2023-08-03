@@ -13,13 +13,13 @@ export default function CreateGame() {
   const handleCreateUser = () => {
     axios
       .post("http://localhost:4242/games", {
-        // role_playing_game_id: usernameDb,
-        // gm_profiles_id: passwordDb,
-        // schedule: passwordDb,
-        // location: passwordDb,
-        // max_players_capacity: passwordDb,
-        // description: passwordDb,
-        // filters_id: passwordDb,
+        role_playing_game_id: rpgID,
+        gm_profiles_id: gm,
+        schedule: date,
+        location: place,
+        max_players_capacity: playersCapacity,
+        description: desc,
+        filters_id: filterID,
       })
       .then((res) => {
         if (res.status === 200) {
@@ -29,30 +29,59 @@ export default function CreateGame() {
       .catch((error) => {
         console.error("Erreur lors de la création de la partie :", error)
       })
-    // console.info(usernameDb + passwordDb)
   }
 
-  //   const [rpgID, setRpgID] = useState("")
-  //   const [gm, setPasswordDb] = useState("")
+  const [rpgID, setRpgID] = useState("")
+  const [gm, setGm] = useState("")
+  const [date, setDate] = useState("")
+  const [place, setPlace] = useState("")
+  const [playersCapacity, setPlayersCapacity] = useState("")
+  const [desc, setDesc] = useState("")
+  const [filterID, setFilterID] = useState("")
 
-  //   const handleUser = (e) => {
-  //     setUsernameDb(e.target.value)
-  //   }
-  //   const handlePass = (e) => {
-  //     setPasswordDb(e.target.value)
-  //   }
   return (
     <>
-      <p>je suis dans la page creategame</p>
+      <p style={{ color: "white" }}>je suis dans la page creategame</p>
       {rpgs.map((rpg) => (
         <select key={rpg.id}>
-          <li>{rpg.name}</li>
+          <option>{rpg.name}</option>
         </select>
       ))}
       <header className="App-header">
-        <input type="text" placeholder="username" />
-        <input type="text" placeholder="pass" />
-        <button onClick={handleCreateUser}>Créer ma partie</button>
+        <input
+          type="text"
+          placeholder="id du RPG"
+          onChange={(e) => setRpgID(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="id du GM"
+          onChange={(e) => setGm(e.target.value)}
+        />
+        <input type="date" onChange={(e) => setDate(e.target.value)}></input>
+        <input
+          type="text"
+          placeholder="ville"
+          onChange={(e) => setPlace(e.target.value)}
+        ></input>
+        <input
+          type="text"
+          placeholder="Capacité max"
+          onChange={(e) => setPlayersCapacity(e.target.value)}
+        ></input>
+        <input
+          type="text"
+          placeholder="description"
+          onChange={(e) => setDesc(e.target.value)}
+        ></input>
+        <input
+          type="text"
+          placeholder="id du filter"
+          onChange={(e) => setFilterID(e.target.value)}
+        ></input>
+        <button type="reset" onClick={handleCreateUser}>
+          Créer ma partie
+        </button>
       </header>
     </>
   )
