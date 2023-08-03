@@ -1,9 +1,11 @@
 import "./LandingPage.scss"
 import FAQ from "../components/FAQ/FAQ"
+import GuildPhone from "../components/3DGuildPhone/GuildPhone"
 
 function LandingPage() {
   return (
     <>
+      <GuildPhone />
       <div className="bg-wave-lan">
         <svg
           xmlns="http://www.w3.org/2000/svg"

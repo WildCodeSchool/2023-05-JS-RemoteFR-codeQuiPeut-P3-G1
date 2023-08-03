@@ -1,0 +1,64 @@
+@import "../../Variable.scss";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.Global-GuildPhone {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+
+  .CreateGuildText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 30vw;
+    height: 100vh;
+
+    .letscreate {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-family: $title-font;
+      color: $third-font-color;
+      font-size: 1.8rem;
+      align-items: center;
+      margin: 2rem;
+
+      h2 {
+        text-align: center;
+        color: $third-font-color;
+        font-family: $title-font;
+        font-size: 2.8rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+      hr {
+        border: 1px solid $third-font-color;
+        width: 100%;
+        margin: 2rem;
+      }
+    }
+
+    .createParagraph {
+      color: $third-font-color;
+      font-size: 1.3rem;
+      margin: 0rem 2rem;
+      font-family: $content-font;
+      height: 100vh;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+  }
+
+  .GuildPhone {
+    width: 60vw;
+    height: 100vh;
+  }
+}

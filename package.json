@@ -32,6 +32,7 @@
     "husky": "^8.0.3"
   },
   "dependencies": {
+    "esbuild": "^0.16.17",
     "sass": "^1.64.1"
   }
 }
