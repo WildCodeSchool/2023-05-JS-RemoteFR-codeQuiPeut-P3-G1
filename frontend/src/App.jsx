@@ -3,6 +3,7 @@ import React from "react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Home from "./pages/Home"
 import CreateGame from "./pages/CreateGame"
+import PrivateMessages from "./components/PrivateMessages/PrivateMessages"
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create-game" element={<CreateGame />} />
+          <Route path="/privatemessages" element={<PrivateMessages />} />
         </Routes>
       </Router>
     </div>

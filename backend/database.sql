@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS `guilden`.`filters` (
   `type` ENUM('role_playing_game', 'GM', 'player', 'schedule', 'location') NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -57,6 +58,7 @@ CREATE TABLE IF NOT EXISTS `guilden`.`users` (
   `description` TEXT NULL DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -114,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `guilden`.`gm_profiles` (
   `users_id` INT NOT NULL,
   `description` TEXT NULL DEFAULT NULL,
   `availability_schedule` TEXT NULL DEFAULT NULL,
-  `users_filters_id` INT NULL,
+  `users_filters_id` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `ID_user` (`users_id` ASC) VISIBLE,
   INDEX `fk_gm_profiles_users_filters1_idx` (`users_filters_id` ASC) VISIBLE,
@@ -125,6 +127,7 @@ CREATE TABLE IF NOT EXISTS `guilden`.`gm_profiles` (
     FOREIGN KEY (`users_id`)
     REFERENCES `guilden`.`users` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -143,6 +146,7 @@ CREATE TABLE IF NOT EXISTS `guilden`.`role_playing_games` (
     FOREIGN KEY (`gm_profiles_id`)
     REFERENCES `guilden`.`gm_profiles` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -173,7 +177,7 @@ CREATE TABLE IF NOT EXISTS `guilden`.`games` (
     FOREIGN KEY (`gm_profiles_id`)
     REFERENCES `guilden`.`gm_profiles` (`id`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 

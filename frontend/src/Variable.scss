@@ -1,11 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Koh+Santepheap:wght@100;300;400;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Koh+Santepheap:wght@100;300;400;700;900&display=swap");
 
-$primary-font: 'Koh Santepheap';
+$primary-font: "Koh Santepheap";
 $primary-font-color: #d9d9d9;
 $secondary-font-color: #ffffff;
-$third-font-color: #E2D07C;
-$background-gradient: linear-gradient(180deg, #160C21 0%, #401A44 47.92%, #160C21 100%);
-$button-blue: linear-gradient(180deg, #398D8F 0%, #187577 100%);
-$button-gold: #E2D07C;
-$navbar-color: #180B23;
-
+$third-font-color: #e2d07c;
+$background-gradient: linear-gradient(
+  180deg,
+  #160c21 0%,
+  #401a44 47.92%,
+  #160c21 100%
+);
+$button-blue: linear-gradient(180deg, #398d8f 0%, #187577 100%);
+$button-gold: #e2d07c;
+$navbar-color: #180b23;
