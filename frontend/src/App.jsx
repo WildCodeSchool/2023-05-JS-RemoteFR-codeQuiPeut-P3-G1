@@ -1,18 +1,19 @@
 import "./App.scss"
-
-// import Home from "./pages/Home"
-import NavBar from "./components/NavBar/Navbar"
-import OnlineStatus from "./components/UserProfil/OnlineStatus"
+import React from "react"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Home from "./pages/Home"
+import CreateGame from "./pages/CreateGame"
 
 function App() {
   return (
-    <>
-      <div className="App">
-        <OnlineStatus />
-        <NavBar />
-        {/* <Home /> */}
-      </div>
-    </>
+    <div className="App">
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/create-game" element={<CreateGame />} />
+        </Routes>
+      </Router>
+    </div>
   )
 }
 
