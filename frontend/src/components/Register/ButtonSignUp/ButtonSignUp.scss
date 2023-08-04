@@ -1,0 +1,36 @@
+@import "../../../Variable.scss";
+.LogIn-Container2 {
+    width: 100%;
+    height: auto;
+    .button-LogIn2 {
+        button {
+            width: 124px;
+            height: 38px;
+            border-radius: 5px;
+            border: 1px solid #F6F6E9;
+            background: rgba(246, 246, 233, 0.00);
+            color: #F6F6E9;
+            text-align: center;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+            font-family: $title-font;
+            cursor: pointer;
+        }
+    }
+    .card-LogIn-container2 {
+        width: 100%;
+        height: fit-content;
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        .card-LogIn2 {
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
+
