@@ -1,20 +1,20 @@
 import "./App.scss"
-
+import React from "react"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 // import Home from "./pages/Home"
-// import NavBar from "./components/NavBar/Navbar"
-// import OnlineStatus from "./components/UserProfil/OnlineStatus"
+import CreateGame from "./pages/CreateGame"
 import LandingPage from "./pages/LandingPage"
 
 function App() {
   return (
-    <>
-      <div className="App">
-        {/* <OnlineStatus />
-        <NavBar /> */}
-        <LandingPage />
-        {/* <Home /> */}
-      </div>
-    </>
+    <div className="App">
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/create-game" element={<CreateGame />} />
+        </Routes>
+      </Router>
+    </div>
   )
 }
 
