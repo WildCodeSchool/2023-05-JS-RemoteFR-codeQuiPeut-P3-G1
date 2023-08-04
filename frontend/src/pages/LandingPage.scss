@@ -1,0 +1,29 @@
+@import "../Variable.scss";
+
+body {
+    background: $background-gradient-landing-page;
+}
+.button-register-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    height: 100%;
+    position: sticky;
+    top: 55px;
+    .Button-Register-LandingPage {
+        display: flex;
+        margin-right: 28px;
+        gap: 30px;
+    }
+}
+.bg-wave-landingPage {
+    position: absolute;
+    width: 100vw;
+    height: 625.5px;
+    svg {
+        width: 100%;
+        height: 100%;
+        flex-shrink: 0;
+        fill: linear-gradient(180deg, #4D194D 0%, rgba(77, 25, 77, 0.00) 100%);
+    }
+}

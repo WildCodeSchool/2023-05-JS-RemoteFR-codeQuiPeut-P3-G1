@@ -10,8 +10,7 @@
   height: 100vh;
   background-color: $navbar-color; // Utilisation de la variable $navbar-color pour définir la couleur de fond
   border-right: 1px solid rgba(255, 255, 255, 0.22); // Bordure droite avec couleur semi-transparente
-  font: $primary-font; // Utilisation de la variable $primary-font pour définir la police
-
+  // font: $primary-font; // Utilisation de la variable $primary-font pour définir la police
   // Styles pour le logo de la barre de navigation
   .logoNavBar {
     margin-left: 8px;
