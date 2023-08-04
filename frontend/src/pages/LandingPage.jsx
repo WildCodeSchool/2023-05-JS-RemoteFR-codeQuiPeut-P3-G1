@@ -1,10 +1,19 @@
 import "./LandingPage.scss"
+
 import FAQ from "../components/FAQ/FAQ"
 import Footer from "../components/Footer/Footer"
+import ButtonSignIn from "../components/Register/ButtonSignIn/ButtonSignIn"
+import ButtonSignUp from "../components/Register/ButtonSignUp/ButtonSignUp"
 
 function LandingPage() {
   return (
     <>
+      <div className="button-register-container">
+        <div className="Button-Register-LandingPage">
+          <ButtonSignIn />
+          <ButtonSignUp />
+        </div>
+      </div>
       <div className="bg-wave-lan">
         <svg
           xmlns="http://www.w3.org/2000/svg"
