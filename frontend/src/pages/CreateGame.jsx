@@ -1,6 +1,7 @@
 import "./CreateGame.scss"
 import axios from "axios"
 import React, { useEffect, useState } from "react"
+import NavBar from "../components/NavBar/Navbar"
 
 export default function CreateGame() {
   const [rpgs, setRpgs] = useState([])
@@ -41,6 +42,7 @@ export default function CreateGame() {
 
   return (
     <>
+      <NavBar />
       <p style={{ color: "white" }}>je suis dans la page creategame</p>
       {rpgs.map((rpg) => (
         <select key={rpg.id}>
