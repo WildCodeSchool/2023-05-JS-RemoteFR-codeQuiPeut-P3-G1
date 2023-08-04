@@ -3,7 +3,6 @@ import Carousel from "./components/Carousel/Carousel"
 import NavBar from "./components/NavBar/Navbar"
 import OnlineStatus from "./components/UserProfil/OnlineStatus"
 
-
 function App() {
   return (
     <>
