@@ -1,384 +1,523 @@
--- MySQL Workbench Forward Engineering
+-- MySQL dump 10.13  Distrib 8.0.33, for macos13 (arm64)
+--
+-- Host: 127.0.0.1    Database: guilden
+-- ------------------------------------------------------
+-- Server version	8.0.33
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
--- -----------------------------------------------------
--- Schema guilden
--- -----------------------------------------------------
+--
+-- Table structure for table `categories`
+--
 
--- -----------------------------------------------------
--- Schema guilden
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `guilden` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
-USE `guilden` ;
+DROP TABLE IF EXISTS `categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `categories` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- -----------------------------------------------------
--- Table `guilden`.`categories`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `guilden`.`categories` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+--
+-- Dumping data for table `categories`
+--
 
+LOCK TABLES `categories` WRITE;
+/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+UNLOCK TABLES;
 
--- -----------------------------------------------------
--- Table `guilden`.`filters`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `guilden`.`filters` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NOT NULL,
-  `description` TEXT NULL DEFAULT NULL,
-  `type` ENUM('role_playing_game', 'GM', 'player', 'schedule', 'location') NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+--
+-- Table structure for table `filters`
+--
 
+DROP TABLE IF EXISTS `filters`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `filters` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` text,
+  `type` enum('role_playing_game','GM','player','schedule','location') NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- -----------------------------------------------------
--- Table `guilden`.`users`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `guilden`.`users` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(255) NOT NULL,
-  `email_adress` VARCHAR(255) NOT NULL,
-  `password` VARCHAR(255) NOT NULL,
-  `other_information` TEXT NULL DEFAULT NULL,
-  `is_gamemaster` TINYINT NOT NULL DEFAULT '0',
-  `availability_schedule` TEXT NULL DEFAULT NULL,
-  `description` TEXT NULL DEFAULT NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+--
+-- Dumping data for table `filters`
+--
 
+LOCK TABLES `filters` WRITE;
+/*!40000 ALTER TABLE `filters` DISABLE KEYS */;
+/*!40000 ALTER TABLE `filters` ENABLE KEYS */;
+UNLOCK TABLES;
 
--- -----------------------------------------------------
--- Table `guilden`.`friend_requests`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `guilden`.`friend_requests` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `users_id_requester` INT NOT NULL,
-  `users_id_recipient` INT NOT NULL,
-  `status` ENUM('pending', 'accepted', 'rejected') NOT NULL,
-  `date` DATETIME NOT NULL,
+--
+-- Table structure for table `friend_requests`
+--
+
+DROP TABLE IF EXISTS `friend_requests`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `friend_requests` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `users_id_requester` int NOT NULL,
+  `users_id_recipient` int NOT NULL,
+  `status` enum('pending','accepted','rejected') NOT NULL,
+  `date` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `ID_requester` (`users_id_requester` ASC) VISIBLE,
-  INDEX `ID_recipient` (`users_id_recipient` ASC) VISIBLE,
-  CONSTRAINT `friend_requests_ibfk_1`
-    FOREIGN KEY (`users_id_requester`)
-    REFERENCES `guilden`.`users` (`id`),
-  CONSTRAINT `friend_requests_ibfk_2`
-    FOREIGN KEY (`users_id_recipient`)
-    REFERENCES `guilden`.`users` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+  KEY `ID_requester` (`users_id_requester`),
+  KEY `ID_recipient` (`users_id_recipient`),
+  CONSTRAINT `friend_requests_ibfk_1` FOREIGN KEY (`users_id_requester`) REFERENCES `users` (`id`),
+  CONSTRAINT `friend_requests_ibfk_2` FOREIGN KEY (`users_id_recipient`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `friend_requests`
+--
 
--- -----------------------------------------------------
--- Table `guilden`.`users_filters`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `guilden`.`users_filters` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `users_id` INT NOT NULL,
-  `filters_id` INT NOT NULL,
-  `value` TEXT NOT NULL,
+LOCK TABLES `friend_requests` WRITE;
+/*!40000 ALTER TABLE `friend_requests` DISABLE KEYS */;
+/*!40000 ALTER TABLE `friend_requests` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `game_registrations`
+--
+
+DROP TABLE IF EXISTS `game_registrations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `game_registrations` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `games_id` int NOT NULL,
+  `status` varchar(50) NOT NULL,
+  `users_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_users_filters_users1_idx` (`users_id` ASC) VISIBLE,
-  INDEX `fk_users_filters_filters1_idx` (`filters_id` ASC) VISIBLE,
-  CONSTRAINT `fk_users_filters_filters1`
-    FOREIGN KEY (`filters_id`)
-    REFERENCES `guilden`.`filters` (`id`),
-  CONSTRAINT `fk_users_filters_users1`
-    FOREIGN KEY (`users_id`)
-    REFERENCES `guilden`.`users` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+  KEY `ID_party` (`games_id`),
+  KEY `fk_party_registrations_users1_idx` (`users_id`),
+  CONSTRAINT `fk_party_registrations_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `party_registrations_ibfk_1` FOREIGN KEY (`games_id`) REFERENCES `games` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `game_registrations`
+--
 
--- -----------------------------------------------------
--- Table `guilden`.`gm_profiles`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `guilden`.`gm_profiles` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `users_id` INT NOT NULL,
-  `description` TEXT NULL DEFAULT NULL,
-  `availability_schedule` TEXT NULL DEFAULT NULL,
-  `users_filters_id` INT NULL,
+LOCK TABLES `game_registrations` WRITE;
+/*!40000 ALTER TABLE `game_registrations` DISABLE KEYS */;
+/*!40000 ALTER TABLE `game_registrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `games`
+--
+
+DROP TABLE IF EXISTS `games`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `games` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `role_playing_game_id` int NOT NULL,
+  `gm_profiles_id` int NOT NULL,
+  `schedule` datetime NOT NULL,
+  `location` varchar(255) DEFAULT NULL,
+  `max_players_capacity` int DEFAULT NULL,
+  `description` text,
+  `filters_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `ID_user` (`users_id` ASC) VISIBLE,
-  INDEX `fk_gm_profiles_users_filters1_idx` (`users_filters_id` ASC) VISIBLE,
-  CONSTRAINT `fk_gm_profiles_users_filters1`
-    FOREIGN KEY (`users_filters_id`)
-    REFERENCES `guilden`.`users_filters` (`id`),
-  CONSTRAINT `gm_profiles_ibfk_1`
-    FOREIGN KEY (`users_id`)
-    REFERENCES `guilden`.`users` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+  KEY `ID_role_playing_game` (`role_playing_game_id`),
+  KEY `ID_GM` (`gm_profiles_id`),
+  KEY `fk_parties_filters1_idx` (`filters_id`),
+  CONSTRAINT `fk_parties_filters1` FOREIGN KEY (`filters_id`) REFERENCES `filters` (`id`),
+  CONSTRAINT `parties_ibfk_1` FOREIGN KEY (`role_playing_game_id`) REFERENCES `role_playing_games` (`id`),
+  CONSTRAINT `parties_ibfk_2` FOREIGN KEY (`gm_profiles_id`) REFERENCES `gm_profiles` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `games`
+--
 
--- -----------------------------------------------------
--- Table `guilden`.`role_playing_games`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `guilden`.`role_playing_games` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NOT NULL,
-  `description` TEXT NULL DEFAULT NULL,
-  `gm_profiles_id` INT NULL DEFAULT NULL,
+LOCK TABLES `games` WRITE;
+/*!40000 ALTER TABLE `games` DISABLE KEYS */;
+/*!40000 ALTER TABLE `games` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `games_has_users`
+--
+
+DROP TABLE IF EXISTS `games_has_users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `games_has_users` (
+  `games_id` int NOT NULL,
+  `users_id` int NOT NULL,
+  PRIMARY KEY (`games_id`,`users_id`),
+  KEY `fk_games_has_users_users1_idx` (`users_id`),
+  KEY `fk_games_has_users_games1_idx` (`games_id`),
+  CONSTRAINT `fk_games_has_users_games1` FOREIGN KEY (`games_id`) REFERENCES `games` (`id`),
+  CONSTRAINT `fk_games_has_users_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `games_has_users`
+--
+
+LOCK TABLES `games_has_users` WRITE;
+/*!40000 ALTER TABLE `games_has_users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `games_has_users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `gm_profiles`
+--
+
+DROP TABLE IF EXISTS `gm_profiles`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `gm_profiles` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `users_id` int NOT NULL,
+  `description` text,
+  `availability_schedule` text,
+  `users_filters_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `Current_GM` (`gm_profiles_id` ASC) VISIBLE,
-  CONSTRAINT `role_playing_games_ibfk_1`
-    FOREIGN KEY (`gm_profiles_id`)
-    REFERENCES `guilden`.`gm_profiles` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+  KEY `ID_user` (`users_id`),
+  KEY `fk_gm_profiles_users_filters1_idx` (`users_filters_id`),
+  CONSTRAINT `fk_gm_profiles_users_filters1` FOREIGN KEY (`users_filters_id`) REFERENCES `users_filters` (`id`),
+  CONSTRAINT `gm_profiles_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `gm_profiles`
+--
 
--- -----------------------------------------------------
--- Table `guilden`.`games`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `guilden`.`games` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `role_playing_game_id` INT NOT NULL,
-  `gm_profiles_id` INT NOT NULL,
-  `schedule` DATETIME NOT NULL,
-  `location` VARCHAR(255) NULL DEFAULT NULL,
-  `max_players_capacity` INT NULL DEFAULT NULL,
-  `description` TEXT NULL DEFAULT NULL,
-  `filters_id` INT NOT NULL,
+LOCK TABLES `gm_profiles` WRITE;
+/*!40000 ALTER TABLE `gm_profiles` DISABLE KEYS */;
+/*!40000 ALTER TABLE `gm_profiles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `gm_ratings`
+--
+
+DROP TABLE IF EXISTS `gm_ratings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `gm_ratings` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `gm_profiles_id` int NOT NULL,
+  `rating` int NOT NULL,
+  `comment` text,
+  `rating_date` datetime NOT NULL,
+  `users_id` int NOT NULL,
+  PRIMARY KEY (`id`,`users_id`),
+  KEY `ID_GM` (`gm_profiles_id`),
+  KEY `fk_gm_ratings_users1_idx` (`users_id`),
+  CONSTRAINT `fk_gm_ratings_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `gm_ratings_ibfk_1` FOREIGN KEY (`gm_profiles_id`) REFERENCES `gm_profiles` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `gm_ratings`
+--
+
+LOCK TABLES `gm_ratings` WRITE;
+/*!40000 ALTER TABLE `gm_ratings` DISABLE KEYS */;
+/*!40000 ALTER TABLE `gm_ratings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `player_ratings`
+--
+
+DROP TABLE IF EXISTS `player_ratings`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `player_ratings` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `gm_profiles_id` int NOT NULL,
+  `rating` int NOT NULL,
+  `comment` text,
+  `rating_date` datetime NOT NULL,
+  `users_id` int NOT NULL,
+  PRIMARY KEY (`id`,`users_id`),
+  KEY `ID_GM` (`gm_profiles_id`),
+  KEY `fk_player_ratings_users1_idx` (`users_id`),
+  CONSTRAINT `fk_player_ratings_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `player_ratings_ibfk_2` FOREIGN KEY (`gm_profiles_id`) REFERENCES `gm_profiles` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `player_ratings`
+--
+
+LOCK TABLES `player_ratings` WRITE;
+/*!40000 ALTER TABLE `player_ratings` DISABLE KEYS */;
+/*!40000 ALTER TABLE `player_ratings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `posts`
+--
+
+DROP TABLE IF EXISTS `posts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `posts` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `topics_id` int NOT NULL,
+  `users_id` int NOT NULL,
+  `content` text,
+  `date` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `ID_role_playing_game` (`role_playing_game_id` ASC) VISIBLE,
-  INDEX `ID_GM` (`gm_profiles_id` ASC) VISIBLE,
-  INDEX `fk_parties_filters1_idx` (`filters_id` ASC) VISIBLE,
-  CONSTRAINT `fk_parties_filters1`
-    FOREIGN KEY (`filters_id`)
-    REFERENCES `guilden`.`filters` (`id`),
-  CONSTRAINT `parties_ibfk_1`
-    FOREIGN KEY (`role_playing_game_id`)
-    REFERENCES `guilden`.`role_playing_games` (`id`),
-  CONSTRAINT `parties_ibfk_2`
-    FOREIGN KEY (`gm_profiles_id`)
-    REFERENCES `guilden`.`gm_profiles` (`id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 2
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+  KEY `fk_forum_topics_posts_forum_topics1_idx` (`topics_id`),
+  KEY `fk_forum_topics_posts_users1_idx` (`users_id`),
+  CONSTRAINT `fk_forum_topics_posts_forum_topics1` FOREIGN KEY (`topics_id`) REFERENCES `topics` (`id`),
+  CONSTRAINT `fk_forum_topics_posts_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `posts`
+--
 
--- -----------------------------------------------------
--- Table `guilden`.`game_registrations`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `guilden`.`game_registrations` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `games_id` INT NOT NULL,
-  `status` VARCHAR(50) NOT NULL,
-  `users_id` INT NOT NULL,
+LOCK TABLES `posts` WRITE;
+/*!40000 ALTER TABLE `posts` DISABLE KEYS */;
+/*!40000 ALTER TABLE `posts` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `private_messages`
+--
+
+DROP TABLE IF EXISTS `private_messages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `private_messages` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `users_id_sender` int NOT NULL,
+  `users_id_recipient` int NOT NULL,
+  `content` text NOT NULL,
+  `date` datetime NOT NULL,
+  `seen` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  INDEX `ID_party` (`games_id` ASC) VISIBLE,
-  INDEX `fk_party_registrations_users1_idx` (`users_id` ASC) VISIBLE,
-  CONSTRAINT `fk_party_registrations_users1`
-    FOREIGN KEY (`users_id`)
-    REFERENCES `guilden`.`users` (`id`),
-  CONSTRAINT `party_registrations_ibfk_1`
-    FOREIGN KEY (`games_id`)
-    REFERENCES `guilden`.`games` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+  KEY `ID_sender` (`users_id_sender`),
+  KEY `ID_recipient` (`users_id_recipient`),
+  CONSTRAINT `private_messages_ibfk_1` FOREIGN KEY (`users_id_sender`) REFERENCES `users` (`id`),
+  CONSTRAINT `private_messages_ibfk_2` FOREIGN KEY (`users_id_recipient`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `private_messages`
+--
 
--- -----------------------------------------------------
--- Table `guilden`.`games_has_users`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `guilden`.`games_has_users` (
-  `games_id` INT NOT NULL,
-  `users_id` INT NOT NULL,
-  PRIMARY KEY (`games_id`, `users_id`),
-  INDEX `fk_games_has_users_users1_idx` (`users_id` ASC) VISIBLE,
-  INDEX `fk_games_has_users_games1_idx` (`games_id` ASC) VISIBLE,
-  CONSTRAINT `fk_games_has_users_games1`
-    FOREIGN KEY (`games_id`)
-    REFERENCES `guilden`.`games` (`id`),
-  CONSTRAINT `fk_games_has_users_users1`
-    FOREIGN KEY (`users_id`)
-    REFERENCES `guilden`.`users` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+LOCK TABLES `private_messages` WRITE;
+/*!40000 ALTER TABLE `private_messages` DISABLE KEYS */;
+INSERT INTO `private_messages` VALUES (1,1,2,'coprs message','2023-08-04 12:45:00',0);
+/*!40000 ALTER TABLE `private_messages` ENABLE KEYS */;
+UNLOCK TABLES;
 
+--
+-- Table structure for table `role_playing_games`
+--
 
--- -----------------------------------------------------
--- Table `guilden`.`gm_ratings`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `guilden`.`gm_ratings` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `gm_profiles_id` INT NOT NULL,
-  `rating` INT NOT NULL,
-  `comment` TEXT NULL DEFAULT NULL,
-  `rating_date` DATETIME NOT NULL,
-  `users_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `users_id`),
-  INDEX `ID_GM` (`gm_profiles_id` ASC) VISIBLE,
-  INDEX `fk_gm_ratings_users1_idx` (`users_id` ASC) VISIBLE,
-  CONSTRAINT `fk_gm_ratings_users1`
-    FOREIGN KEY (`users_id`)
-    REFERENCES `guilden`.`users` (`id`),
-  CONSTRAINT `gm_ratings_ibfk_1`
-    FOREIGN KEY (`gm_profiles_id`)
-    REFERENCES `guilden`.`gm_profiles` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `guilden`.`player_ratings`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `guilden`.`player_ratings` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `gm_profiles_id` INT NOT NULL,
-  `rating` INT NOT NULL,
-  `comment` TEXT NULL DEFAULT NULL,
-  `rating_date` DATETIME NOT NULL,
-  `users_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `users_id`),
-  INDEX `ID_GM` (`gm_profiles_id` ASC) VISIBLE,
-  INDEX `fk_player_ratings_users1_idx` (`users_id` ASC) VISIBLE,
-  CONSTRAINT `fk_player_ratings_users1`
-    FOREIGN KEY (`users_id`)
-    REFERENCES `guilden`.`users` (`id`),
-  CONSTRAINT `player_ratings_ibfk_2`
-    FOREIGN KEY (`gm_profiles_id`)
-    REFERENCES `guilden`.`gm_profiles` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `guilden`.`topics`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `guilden`.`topics` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `title` TEXT NOT NULL,
-  `categories_id` INT NOT NULL,
-  `users_id` INT NOT NULL,
-  `creation_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `subscription_count` INT NULL DEFAULT '0',
+DROP TABLE IF EXISTS `role_playing_games`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `role_playing_games` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `description` text,
+  `gm_profiles_id` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_forum_topics_forums1_idx` (`categories_id` ASC) VISIBLE,
-  INDEX `fk_forum_topics_users1_idx` (`users_id` ASC) VISIBLE,
-  CONSTRAINT `fk_forum_topics_forums1`
-    FOREIGN KEY (`categories_id`)
-    REFERENCES `guilden`.`categories` (`id`),
-  CONSTRAINT `fk_forum_topics_users1`
-    FOREIGN KEY (`users_id`)
-    REFERENCES `guilden`.`users` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+  KEY `Current_GM` (`gm_profiles_id`),
+  CONSTRAINT `role_playing_games_ibfk_1` FOREIGN KEY (`gm_profiles_id`) REFERENCES `gm_profiles` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `role_playing_games`
+--
 
--- -----------------------------------------------------
--- Table `guilden`.`posts`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `guilden`.`posts` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `topics_id` INT NOT NULL,
-  `users_id` INT NOT NULL,
-  `content` TEXT NULL DEFAULT NULL,
-  `date` TIMESTAMP NULL DEFAULT NULL,
+LOCK TABLES `role_playing_games` WRITE;
+/*!40000 ALTER TABLE `role_playing_games` DISABLE KEYS */;
+/*!40000 ALTER TABLE `role_playing_games` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `testimonials`
+--
+
+DROP TABLE IF EXISTS `testimonials`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `testimonials` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `users_id` int NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `content` text NOT NULL,
+  `date` datetime NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_forum_topics_posts_forum_topics1_idx` (`topics_id` ASC) VISIBLE,
-  INDEX `fk_forum_topics_posts_users1_idx` (`users_id` ASC) VISIBLE,
-  CONSTRAINT `fk_forum_topics_posts_forum_topics1`
-    FOREIGN KEY (`topics_id`)
-    REFERENCES `guilden`.`topics` (`id`),
-  CONSTRAINT `fk_forum_topics_posts_users1`
-    FOREIGN KEY (`users_id`)
-    REFERENCES `guilden`.`users` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+  KEY `ID_user` (`users_id`),
+  CONSTRAINT `testimonials_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `testimonials`
+--
 
--- -----------------------------------------------------
--- Table `guilden`.`private_messages`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `guilden`.`private_messages` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `users_id_sender` INT NOT NULL,
-  `users_id_recipient` INT NOT NULL,
-  `content` TEXT NOT NULL,
-  `date` DATETIME NOT NULL,
-  `read` TINYINT(1) NOT NULL DEFAULT '0',
+LOCK TABLES `testimonials` WRITE;
+/*!40000 ALTER TABLE `testimonials` DISABLE KEYS */;
+/*!40000 ALTER TABLE `testimonials` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `topics`
+--
+
+DROP TABLE IF EXISTS `topics`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `topics` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `title` text NOT NULL,
+  `categories_id` int NOT NULL,
+  `users_id` int NOT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `subscription_count` int DEFAULT '0',
   PRIMARY KEY (`id`),
-  INDEX `ID_sender` (`users_id_sender` ASC) VISIBLE,
-  INDEX `ID_recipient` (`users_id_recipient` ASC) VISIBLE,
-  CONSTRAINT `private_messages_ibfk_1`
-    FOREIGN KEY (`users_id_sender`)
-    REFERENCES `guilden`.`users` (`id`),
-  CONSTRAINT `private_messages_ibfk_2`
-    FOREIGN KEY (`users_id_recipient`)
-    REFERENCES `guilden`.`users` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+  KEY `fk_forum_topics_forums1_idx` (`categories_id`),
+  KEY `fk_forum_topics_users1_idx` (`users_id`),
+  CONSTRAINT `fk_forum_topics_forums1` FOREIGN KEY (`categories_id`) REFERENCES `categories` (`id`),
+  CONSTRAINT `fk_forum_topics_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `topics`
+--
 
--- -----------------------------------------------------
--- Table `guilden`.`testimonials`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `guilden`.`testimonials` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `users_id` INT NOT NULL,
-  `title` VARCHAR(255) NOT NULL,
-  `content` TEXT NOT NULL,
-  `date` DATETIME NOT NULL,
+LOCK TABLES `topics` WRITE;
+/*!40000 ALTER TABLE `topics` DISABLE KEYS */;
+/*!40000 ALTER TABLE `topics` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `topics_subscription`
+--
+
+DROP TABLE IF EXISTS `topics_subscription`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `topics_subscription` (
+  `id` int NOT NULL,
+  `users_id` int NOT NULL,
+  `topics_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `ID_user` (`users_id` ASC) VISIBLE,
-  CONSTRAINT `testimonials_ibfk_1`
-    FOREIGN KEY (`users_id`)
-    REFERENCES `guilden`.`users` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+  KEY `fk_topics_subscription_users1_idx` (`users_id`),
+  KEY `fk_topics_subscription_topics1_idx` (`topics_id`),
+  CONSTRAINT `fk_topics_subscription_topics1` FOREIGN KEY (`topics_id`) REFERENCES `topics` (`id`),
+  CONSTRAINT `fk_topics_subscription_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `topics_subscription`
+--
 
--- -----------------------------------------------------
--- Table `guilden`.`topics_subscription`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `guilden`.`topics_subscription` (
-  `id` INT NOT NULL,
-  `users_id` INT NOT NULL,
-  `topics_id` INT NOT NULL,
+LOCK TABLES `topics_subscription` WRITE;
+/*!40000 ALTER TABLE `topics_subscription` DISABLE KEYS */;
+/*!40000 ALTER TABLE `topics_subscription` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(255) NOT NULL,
+  `email_adress` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `other_information` text,
+  `is_gamemaster` tinyint NOT NULL DEFAULT '0',
+  `availability_schedule` text,
+  `description` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'Romehdy','zizi@gmail.com','zizi','fdfddsdfsd',0,'tout le temps','rouge'),(2,'Frhugo','caca@gmail.com','caca','sgfsdggf',1,'fssdfg',NULL);
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `users_filters`
+--
+
+DROP TABLE IF EXISTS `users_filters`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users_filters` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `users_id` int NOT NULL,
+  `filters_id` int NOT NULL,
+  `value` text NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_topics_subscription_users1_idx` (`users_id` ASC) VISIBLE,
-  INDEX `fk_topics_subscription_topics1_idx` (`topics_id` ASC) VISIBLE,
-  CONSTRAINT `fk_topics_subscription_topics1`
-    FOREIGN KEY (`topics_id`)
-    REFERENCES `guilden`.`topics` (`id`),
-  CONSTRAINT `fk_topics_subscription_users1`
-    FOREIGN KEY (`users_id`)
-    REFERENCES `guilden`.`users` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+  KEY `fk_users_filters_users1_idx` (`users_id`),
+  KEY `fk_users_filters_filters1_idx` (`filters_id`),
+  CONSTRAINT `fk_users_filters_filters1` FOREIGN KEY (`filters_id`) REFERENCES `filters` (`id`),
+  CONSTRAINT `fk_users_filters_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
+--
+-- Dumping data for table `users_filters`
+--
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+LOCK TABLES `users_filters` WRITE;
+/*!40000 ALTER TABLE `users_filters` DISABLE KEYS */;
+/*!40000 ALTER TABLE `users_filters` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-08-04 14:21:43
