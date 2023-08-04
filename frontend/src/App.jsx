@@ -1,8 +1,8 @@
 import "./App.scss"
-
-// import Home from "./pages/Home"
+import Carousel from "./components/Carousel/Carousel"
 import NavBar from "./components/NavBar/Navbar"
 import OnlineStatus from "./components/UserProfil/OnlineStatus"
+
 
 function App() {
   return (
@@ -10,6 +10,7 @@ function App() {
       <div className="App">
         <OnlineStatus />
         <NavBar />
+        <Carousel />
         {/* <Home /> */}
       </div>
     </>
