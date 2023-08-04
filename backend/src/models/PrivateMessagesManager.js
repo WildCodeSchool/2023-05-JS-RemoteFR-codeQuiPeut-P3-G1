@@ -7,7 +7,7 @@ class PrivateMessagesManager extends AbstractManager {
 
   insert(privateMessages) {
     return this.database.query(
-      `insert into ${this.table} (users_id_sender, users_id_recipient, content, date, read) values ("?", "?", "?", NOW(), "?")`,
+      `INSERT INTO ${this.table} (users_id_sender, users_id_recipient, content, date, seen) VALUES (?, ?, ?, NOW(), 0)`,
       [
         privateMessages.users_id_sender,
         privateMessages.users_id_recipient,

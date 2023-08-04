@@ -5,6 +5,7 @@ import Home from "./pages/Home"
 import CreateGame from "./pages/CreateGame"
 import LandingPage from "./pages/LandingPage"
 import Dashboard from "./pages/Dashboard"
+import PrivateMessages from "./components/PrivateMessages/PrivateMessages"
 import Topics from "./pages/Topics"
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Route path="/home" element={<Dashboard />} />
           <Route path="/topics" element={<Topics />} />
           <Route path="/test" element={<Home />} />
+          <Route path="/privatemessages" element={<PrivateMessages />} />
         </Routes>
       </Router>
     </div>
