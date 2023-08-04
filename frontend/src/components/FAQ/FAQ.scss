@@ -2,18 +2,18 @@
 
 .container-FAQ {
     width: 100vw;
-    height: 50vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 30px;
     .title-FAQ {
-        h1 {
+        span {
         text-align: center;
         color: $third-font-color;
         font-family: $title-font;
-        font-size: 49px;
+        font-size: 3.063em;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -35,9 +35,8 @@
             border-radius: 20px;
             background: rgba(217, 217, 217, 0.10);
             margin-bottom: 10px;
-            
             h2 {
-                font-size: 35px;
+                font-size: 2.188em;
                 font-style: normal;
                 font-weight: 400;
                 line-height: normal;
@@ -52,19 +51,18 @@
                 .h2-card-header {
                     width: 90%;
                     h2 {
-                        margin-left: 15%;
+                        margin-left: 12%;
                     }
-
                 }
                 .svg-card-header {
                     display: flex;
                     justify-content: center;
                     width: 10%;
-
                 }
             }
             .card-content {
-                font-size: 30px;
+                p {
+                font-size: 1.875em;
                 font-style: normal;
                 font-weight: 400;
                 line-height: normal;
@@ -73,6 +71,7 @@
                 font-family: $content-font;
                 padding-left: 200px;
                 padding-right: 200px;
+                }
             }                                                                                                                                                                                                                                                                                                                                                                
         }
     }
