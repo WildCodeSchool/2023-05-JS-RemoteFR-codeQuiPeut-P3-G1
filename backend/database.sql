@@ -18,13 +18,11 @@ CREATE SCHEMA IF NOT EXISTS `guilden` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8
 USE `guilden` ;
 
 -- -----------------------------------------------------
--- Table `guilden`.`filters`
+-- Table `guilden`.`categories`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `guilden`.`filters` (
+CREATE TABLE IF NOT EXISTS `guilden`.`categories` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
-  `description` TEXT NULL DEFAULT NULL,
-  `type` ENUM('role_playing_game', 'GM', 'player', 'schedule', 'location') NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
@@ -32,11 +30,13 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `guilden`.`categories`
+-- Table `guilden`.`filters`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `guilden`.`categories` (
+CREATE TABLE IF NOT EXISTS `guilden`.`filters` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NOT NULL,
+  `description` TEXT NULL DEFAULT NULL,
+  `type` ENUM('role_playing_game', 'GM', 'player', 'schedule', 'location') NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
@@ -114,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `guilden`.`gm_profiles` (
   `users_id` INT NOT NULL,
   `description` TEXT NULL DEFAULT NULL,
   `availability_schedule` TEXT NULL DEFAULT NULL,
-  `users_filters_id` INT NOT NULL,
+  `users_filters_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `ID_user` (`users_id` ASC) VISIBLE,
   INDEX `fk_gm_profiles_users_filters1_idx` (`users_filters_id` ASC) VISIBLE,
@@ -124,30 +124,6 @@ CREATE TABLE IF NOT EXISTS `guilden`.`gm_profiles` (
   CONSTRAINT `gm_profiles_ibfk_1`
     FOREIGN KEY (`users_id`)
     REFERENCES `guilden`.`users` (`id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `guilden`.`gm_ratings`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `guilden`.`gm_ratings` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `gm_profiles_id` INT NOT NULL,
-  `rating` INT NOT NULL,
-  `comment` TEXT NULL DEFAULT NULL,
-  `rating_date` DATETIME NOT NULL,
-  `users_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `users_id`),
-  INDEX `ID_GM` (`gm_profiles_id` ASC) VISIBLE,
-  INDEX `fk_gm_ratings_users1_idx` (`users_id` ASC) VISIBLE,
-  CONSTRAINT `fk_gm_ratings_users1`
-    FOREIGN KEY (`users_id`)
-    REFERENCES `guilden`.`users` (`id`),
-  CONSTRAINT `gm_ratings_ibfk_1`
-    FOREIGN KEY (`gm_profiles_id`)
-    REFERENCES `guilden`.`gm_profiles` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -197,6 +173,7 @@ CREATE TABLE IF NOT EXISTS `guilden`.`games` (
     FOREIGN KEY (`gm_profiles_id`)
     REFERENCES `guilden`.`gm_profiles` (`id`))
 ENGINE = InnoDB
+AUTO_INCREMENT = 2
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
@@ -224,6 +201,50 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
+-- Table `guilden`.`games_has_users`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `guilden`.`games_has_users` (
+  `games_id` INT NOT NULL,
+  `users_id` INT NOT NULL,
+  PRIMARY KEY (`games_id`, `users_id`),
+  INDEX `fk_games_has_users_users1_idx` (`users_id` ASC) VISIBLE,
+  INDEX `fk_games_has_users_games1_idx` (`games_id` ASC) VISIBLE,
+  CONSTRAINT `fk_games_has_users_games1`
+    FOREIGN KEY (`games_id`)
+    REFERENCES `guilden`.`games` (`id`),
+  CONSTRAINT `fk_games_has_users_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES `guilden`.`users` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `guilden`.`gm_ratings`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `guilden`.`gm_ratings` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `gm_profiles_id` INT NOT NULL,
+  `rating` INT NOT NULL,
+  `comment` TEXT NULL DEFAULT NULL,
+  `rating_date` DATETIME NOT NULL,
+  `users_id` INT NOT NULL,
+  PRIMARY KEY (`id`, `users_id`),
+  INDEX `ID_GM` (`gm_profiles_id` ASC) VISIBLE,
+  INDEX `fk_gm_ratings_users1_idx` (`users_id` ASC) VISIBLE,
+  CONSTRAINT `fk_gm_ratings_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES `guilden`.`users` (`id`),
+  CONSTRAINT `gm_ratings_ibfk_1`
+    FOREIGN KEY (`gm_profiles_id`)
+    REFERENCES `guilden`.`gm_profiles` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
 -- Table `guilden`.`player_ratings`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `guilden`.`player_ratings` (
@@ -242,6 +263,53 @@ CREATE TABLE IF NOT EXISTS `guilden`.`player_ratings` (
   CONSTRAINT `player_ratings_ibfk_2`
     FOREIGN KEY (`gm_profiles_id`)
     REFERENCES `guilden`.`gm_profiles` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `guilden`.`topics`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `guilden`.`topics` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` TEXT NOT NULL,
+  `categories_id` INT NOT NULL,
+  `users_id` INT NOT NULL,
+  `creation_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `subscription_count` INT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  INDEX `fk_forum_topics_forums1_idx` (`categories_id` ASC) VISIBLE,
+  INDEX `fk_forum_topics_users1_idx` (`users_id` ASC) VISIBLE,
+  CONSTRAINT `fk_forum_topics_forums1`
+    FOREIGN KEY (`categories_id`)
+    REFERENCES `guilden`.`categories` (`id`),
+  CONSTRAINT `fk_forum_topics_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES `guilden`.`users` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `guilden`.`posts`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `guilden`.`posts` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `topics_id` INT NOT NULL,
+  `users_id` INT NOT NULL,
+  `content` TEXT NULL DEFAULT NULL,
+  `date` TIMESTAMP NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_forum_topics_posts_forum_topics1_idx` (`topics_id` ASC) VISIBLE,
+  INDEX `fk_forum_topics_posts_users1_idx` (`users_id` ASC) VISIBLE,
+  CONSTRAINT `fk_forum_topics_posts_forum_topics1`
+    FOREIGN KEY (`topics_id`)
+    REFERENCES `guilden`.`topics` (`id`),
+  CONSTRAINT `fk_forum_topics_posts_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES `guilden`.`users` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
@@ -291,81 +359,6 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `guilden`.`topics`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `guilden`.`topics` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `title` TEXT NOT NULL,
-  `categories_id` INT NOT NULL,
-  `users_id` INT NOT NULL,
-  `creation_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `subscription_count` INT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  INDEX `fk_forum_topics_forums1_idx` (`categories_id` ASC) VISIBLE,
-  INDEX `fk_forum_topics_users1_idx` (`users_id` ASC) VISIBLE,
-  CONSTRAINT `fk_forum_topics_forums1`
-    FOREIGN KEY (`categories_id`)
-    REFERENCES `guilden`.`categories` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_forum_topics_users1`
-    FOREIGN KEY (`users_id`)
-    REFERENCES `guilden`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `guilden`.`games_has_users`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `guilden`.`games_has_users` (
-  `games_id` INT NOT NULL,
-  `users_id` INT NOT NULL,
-  PRIMARY KEY (`games_id`, `users_id`),
-  INDEX `fk_games_has_users_users1_idx` (`users_id` ASC) VISIBLE,
-  INDEX `fk_games_has_users_games1_idx` (`games_id` ASC) VISIBLE,
-  CONSTRAINT `fk_games_has_users_games1`
-    FOREIGN KEY (`games_id`)
-    REFERENCES `guilden`.`games` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_games_has_users_users1`
-    FOREIGN KEY (`users_id`)
-    REFERENCES `guilden`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `guilden`.`posts`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `guilden`.`posts` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `topics_id` INT NOT NULL,
-  `users_id` INT NOT NULL,
-  `content` TEXT NULL,
-  `date` TIMESTAMP NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_forum_topics_posts_forum_topics1_idx` (`topics_id` ASC) VISIBLE,
-  INDEX `fk_forum_topics_posts_users1_idx` (`users_id` ASC) VISIBLE,
-  CONSTRAINT `fk_forum_topics_posts_forum_topics1`
-    FOREIGN KEY (`topics_id`)
-    REFERENCES `guilden`.`topics` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_forum_topics_posts_users1`
-    FOREIGN KEY (`users_id`)
-    REFERENCES `guilden`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `guilden`.`topics_subscription`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `guilden`.`topics_subscription` (
@@ -375,17 +368,15 @@ CREATE TABLE IF NOT EXISTS `guilden`.`topics_subscription` (
   PRIMARY KEY (`id`),
   INDEX `fk_topics_subscription_users1_idx` (`users_id` ASC) VISIBLE,
   INDEX `fk_topics_subscription_topics1_idx` (`topics_id` ASC) VISIBLE,
-  CONSTRAINT `fk_topics_subscription_users1`
-    FOREIGN KEY (`users_id`)
-    REFERENCES `guilden`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_topics_subscription_topics1`
     FOREIGN KEY (`topics_id`)
-    REFERENCES `guilden`.`topics` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `guilden`.`topics` (`id`),
+  CONSTRAINT `fk_topics_subscription_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES `guilden`.`users` (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

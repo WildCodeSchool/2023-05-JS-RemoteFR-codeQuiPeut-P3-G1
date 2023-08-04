@@ -7,10 +7,14 @@ $content-font: 'Petrona', serif;
 $ponctual-font: 'Karma', serif;
 $primary-font-color: #d9d9d9;
 $secondary-font-color: #ffffff;
-$third-font-color: #E2D07C;
+$third-font-color: #e2d07c;
+$background-gradient: linear-gradient(
+  180deg,
+  #160c21 0%,
+  #401a44 47.92%,
+  #160c21 100%
+);
 $background-gradient-landing-page: linear-gradient(180deg, #180B23 0%, #4D194D 48.44%, #180B23 94.27%);
-$background-gradient-home-page: linear-gradient(180deg, #180B23 0%, #4D194D 100%);
-$button-blue: linear-gradient(180deg, #398D8F 0%, #187577 100%);
-$button-gold: #E2D07C;
-$navbar-color: #180B23;
-
+$button-blue: linear-gradient(180deg, #398d8f 0%, #187577 100%);
+$button-gold: #e2d07c;
+$navbar-color: #180b23;
