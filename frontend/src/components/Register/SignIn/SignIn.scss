@@ -1,150 +1,203 @@
+// Importation du fichier de variables de styles
 @import "../../../Variable.scss";
 
-.cardLogIn-container {
+// Sélecteur de classe "cardLogIn-container"
+.cardLogIncontainer {
+    // Mise en page en colonne, centrage vertical et horizontal
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 512px;
-    height: 665px;
+    width: 100%;
+    height: auto;
     margin: auto;
+    top: 100px;
+    left: 0;
+    padding: 10%;
     position: relative;
-    padding: 30% 2em;
     box-sizing: border-box;
+    
+    // Définition des variables pour les bordures et la couleur
     $border: 5px;
     color: black;
     background: #FFF;
-    background-clip: padding-box; /* !importanté */
-    border: solid $border transparent; /* !importanté */
-    border-radius: 1em;
+    background-clip: padding-box; /* Fond de l'élément affiché dans la boîte de débordement */
+    border: solid $border transparent; /* Bordure avec un décalage de $border pour garder le fond visible */
+    border-radius: 1em; // Coins arrondis
+
+    // Arrière-plan avec un dégradé linéaire
     &:before {
         content: '';
         position: absolute;
-        top: 0; right: 0; bottom: 0; left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
         z-index: -1;
-        margin: -$border; /* !importanté */
-        border-radius: inherit; /* !importanté */
-        background: linear-gradient(to bottom, #E2D07C, #A4945E);
-      }
+        margin: -$border; // Marge négative pour que le dégradé couvre également la bordure
+        border-radius: inherit; // Utilise le même rayon de bordure que l'élément parent
+        background: linear-gradient(to bottom, #E2D07C, #A4945E); // Dégradé de couleur
+    }
+
+    // Style pour les balises <span>
     span {
-        color: #4D194D;
-        text-align: center;
-        font-family: $ponctual-font;
-        font-size: 35px;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
+        color: #4D194D; // Couleur du texte
+        text-align: center; // Centrage horizontal du texte
+        font-family: $ponctual-font; // Utilisation d'une variable pour la police de caractères
+        font-size: 2.18em; // Taille de police
+        font-style: normal; // Style normal
+        font-weight: 700; // Gras
+        line-height: normal; // Hauteur de ligne normale
     }
-    #title-card-logIn {
-        margin-bottom: 25px;
+
+    // Style pour l'élément avec l'id "title-card-logIn"
+    #titlecardlogIn {
+        margin-bottom: 25px; // Marge inférieure de 25 pixels
     }
-    .cardLogIn-Input {
-        display: flex;
-        align-items: flex-start;
-        flex-direction: column;
-        width: 100%;
+
+    // Style pour l'élément avec la classe "cardLogIn-Input"
+    .cardLogInInput {
+        display: flex; // Affichage en ligne (flex)
+        align-items: center; // Alignement vertical en haut
+        flex-direction: column; // Disposition en colonne
+        width: 100%; // Largeur de 100%
+
+        // Style pour les balises <span> à l'intérieur de ".cardLogIn-Input"
         span {
-            text-align: justify;
-            font-family: $content-font;
-            font-size: 24px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-            text-transform: capitalize;
-            margin-bottom: 18px;
-        }
-        input {
-            width: 361px;
-            height: 42px;
-            border-radius: 5px;
-            border: 1px solid #180B23;
-            background: rgba(246, 246, 233, 0.00);
-            margin-bottom: 25px;
-        }
-        #input-password-LogIn {
-            margin-bottom: 8px;
-        }
-        .forgot-Input {
-            display: flex;
-            justify-content: flex-end;
             width: 100%;
-            margin-bottom: 8px;
+            text-align: left; // Justification du texte
+            font-family: $content-font; // Utilisation d'une variable pour la police de caractères
+            font-size: 1.5em; // Taille de police
+            font-style: normal; // Style normal
+            font-weight: 400; // Poids normal
+            line-height: normal; // Hauteur de ligne normale
+            text-transform: capitalize; // Conversion de la première lettre en majuscule
+            margin-bottom: 18px; // Marge inférieure de 18 pixels
         }
-    }
-    .button-SignIn-Container {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        margin-bottom: 54px;
-        .button-SignIn {
-            width: 161px;
-            height: 49px;
-            display: flex;
-            justify-content: center;
-            background: linear-gradient(180deg, #752B75 0%, #180B23 100%);
-            border-radius: 5px;
-            button {
-                width: 161px;
-                height: 49px;
-                text-align: center;
-                font-family: $content-font;
-                font-size: 24px;
-                font-style: normal;
-                font-weight: 400;
-                line-height: normal;
-                border-radius: 5px;
-                border: none;
-                background: -webkit-linear-gradient(#A4945E, #E2D07C);
-                background-clip: text;
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                cursor: pointer;
+
+        // Style pour les balises <input> à l'intérieur de ".cardLogIn-Input"
+        input {
+            width: 100%; // Largeur de l'input
+            height: 2.62em; // Hauteur de l'input
+            border-radius: 5px; // Coins arrondis
+            border: 1px solid #180B23; // Bordure d'1 pixel solide avec une couleur spécifiée
+            background: rgba(246, 246, 233, 0.00); // Fond transparent
+            margin-bottom: 25px; // Marge inférieure de 25 pixels
+        }
+
+        // Style spécifique pour l'input avec l'id "input-password-LogIn"
+        #inputpasswordLogIn {
+            margin-bottom: 8px; // Marge inférieure de 8 pixels
+        }
+
+        // Style pour l'élément avec la classe "forgot-Input"
+        .forgotInput {
+            display: flex; // Affichage en ligne (flex)
+            justify-content: flex-end; // Alignement du contenu à droite
+            width: 100%; // Largeur de 100%
+            margin-bottom: 8px; // Marge inférieure de 8 pixels
+
+            span {
+                width: 100%;
+                text-align: right; // Justification du texte
+                font-family: $content-font; // Utilisation d'une variable pour la police de caractères
+                font-size: 1.25em; // Taille de police
+                font-style: normal; // Style normal
+                font-weight: 400; // Poids normal
+                line-height: normal; // Hauteur de ligne normale
+                margin-bottom: 18px; // Marge inférieure de 18 pixels
             }
         }
     }
-    #social-account-logIn {
-        text-align: center;
-        font-family: $content-font;
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-    .line-hr-LogIn {
-        display: flex;
-        gap: 150px;
-        hr {
-            width: 100px;
-            height: 1px;
-            border: none;
-            background: linear-gradient(0deg, #180B23 0%, #180B23 100%), #180B23;
+
+    // Style pour l'élément avec la classe "button-SignIn-Container"
+    .buttonSignInContainer {
+        display: flex; // Affichage en ligne (flex)
+        justify-content: center; // Alignement du contenu au centre
+        width: 100%; // Largeur de 100%
+        margin-bottom: 54px; // Marge inférieure de 54 pixels
+
+        // Style pour l'élément avec la classe "button-SignIn"
+        .buttonSignIn {
+            width: 161px; // Largeur de 161 pixels
+            height: 49px; // Hauteur de 49 pixels
+            display: flex; // Affichage en ligne (flex)
+            justify-content: center; // Alignement du contenu au centre
+            background: linear-gradient(180deg, #752B75 0%, #180B23 100%); // Dégradé linéaire pour l'arrière-plan
+            border-radius: 5px; // Coins arrondis
+
+            // Style pour le bouton à l'intérieur de ".button-SignIn"
+            button {
+                width: 161px; // Largeur de 161 pixels
+                height: 49px; // Hauteur de 49 pixels
+                text-align: center; // Centrage horizontal du texte
+                font-family: $content-font; // Utilisation d'une variable pour la police de caractères
+                font-size: 24px; // Taille de police
+                font-style: normal; // Style normal
+                font-weight: 400; // Poids normal
+                line-height: normal; // Hauteur de ligne normale
+                border-radius: 5px; // Coins arrondis
+                border: none; // Pas de bordure
+                background: -webkit-linear-gradient(#A4945E, #E2D07C); // Dégradé linéaire pour l'arrière-plan du texte
+                background-clip: text; // Application du dégradé linéaire au texte
+                -webkit-background-clip: text; // Application du dégradé linéaire au texte pour les anciennes versions de navigateurs webkit
+                -webkit-text-fill-color: transparent; // Rendre le texte transparent pour afficher le dégradé linéaire
+                cursor: pointer; // Curseur en main (main-pointeur) pour indiquer que le bouton est cliquable
+            }
         }
     }
-    .logo-socialAccountLogIn {
-        display: flex;
-        gap: 40px;
-        margin-bottom: 19px;
-        cursor: pointer;
+
+    // Style pour l'élément avec l'id "social-account-logIn"
+    #socialaccountlogIn {
+        text-align: center; // Centrage horizontal du texte
+        font-family: $content-font; // Utilisation d'une variable pour la police de caractères
+        font-size: 18px; // Taille de police
+        font-style: normal; // Style normal
+        font-weight: 400; // Poids normal
+        line-height: normal; // Hauteur de ligne normale
     }
-    .signUpButton-LogInForm {
+
+    // Style pour l'élément avec la classe "line-hr-LogIn"
+    .linehrLogIn {
+        display: flex; // Affichage en ligne (flex)
+        gap: 150px; // Espacement entre les éléments fils de .line-hr-LogIn
+        width: 100%;
+        hr {
+            width: 100%; // Largeur de la ligne horizontale
+            height: 1px; // Hauteur de la ligne horizontale
+            border: none; // Pas de bordure
+            background: linear-gradient(0deg, #180B23 0%, #180B23 100%), #180B23; // Dégradé linéaire pour l'arrière-plan de la ligne
+        }
+    }
+
+    // Style pour l'élément avec la classe "logo-socialAccountLogIn"
+    .logosocialAccountLogIn {
+        display: flex; // Affichage en ligne (flex)
+        gap: 40px; // Espacement entre les éléments fils de .logo-socialAccountLogIn
+        margin-bottom: 19px; // Marge inférieure de 19 pixels
+        cursor: pointer; // Curseur en main (main-pointeur) pour indiquer que les icônes sont cliquables
+    }
+
+    // Style pour l'élément avec la classe "signUpButton-LogInForm"
+    .signUpButtonLogInForm {
         span {
-            text-align: center;
-            font-family: $content-font;
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
+            text-align: center; // Centrage horizontal du texte
+            font-family: $content-font; // Utilisation d'une variable pour la police de caractères
+            font-size: 16px; // Taille de police
+            font-style: normal; // Style normal
+            font-weight: 400; // Poids normal
+            line-height: normal; // Hauteur de ligne normale
         }
         button {
-            background: none;
-            border: none;
-            font-family: $content-font;
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 600;
-            line-height: normal;
-            text-decoration-line: underline;
-            cursor: pointer;
+            background: none; // Pas d'arrière-plan (transparent)
+            border: none; // Pas de bordure
+            font-family: $content-font; // Utilisation d'une variable pour la police de caractères
+            font-size: 16px; // Taille de police
+            font-style: normal; // Style normal
+            font-weight: 600; // Gras
+            line-height: normal; // Hauteur de ligne normale
+            text-decoration-line: underline; // Soulignement du texte
+            cursor: pointer; // Curseur en main (main-pointeur) pour indiquer que le lien est cliquable
         }
     }
 }

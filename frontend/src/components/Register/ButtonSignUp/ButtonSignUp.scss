@@ -1,8 +1,8 @@
 @import "../../../Variable.scss";
-.LogIn-Container2 {
+.LogUp-Container2 {
     width: 100%;
     height: auto;
-    .button-LogIn2 {
+    .button-LogUp2 {
         button {
             width: 124px;
             height: 38px;
@@ -19,7 +19,7 @@
             cursor: pointer;
         }
     }
-    .card-LogIn-container2 {
+    .card-LogUp-container2 {
         width: 100%;
         height: fit-content;
         position: absolute;
@@ -27,9 +27,11 @@
         left: 0;
         display: flex;
         justify-content: center;
-        .card-LogIn2 {
+        .card-LogUp2 {
             display: flex;
             justify-content: center;
+            width: 50%;
+            height: 100%;
         }
     }
 }

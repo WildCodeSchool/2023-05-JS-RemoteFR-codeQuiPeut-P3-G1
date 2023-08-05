@@ -2,33 +2,31 @@ import "./Signup.scss"
 
 function SignUp() {
   return (
-    <div className="cardLogIn-container2">
-      <span id="title-card-logIn2">SIGN UP</span>
-      <div>
-        <div className="cardLogIn-Input2">
-          <span>Username</span>
-          <input type="text" />
-          <span>Email</span>
-          <input type="text" />
-          <span>City</span>
-          <input type="text" />
-          <span>Password</span>
-          <input type="password" />
-          <span>Validate Password</span>
-          <input id="input-password-LogIn2" type="password" />
-        </div>
-        <div className="button-SignIn-Container2">
-          <div className="button-SignIn2">
-            <button type="button">VALIDATE</button>
-          </div>
+    <div className="cardLogUpcontainer2">
+      <span id="titlecardlogUp2">SIGN UP</span>
+      <div className="cardLogUpInput2">
+        <span>Username</span>
+        <input type="text" />
+        <span>Email</span>
+        <input type="text" />
+        <span>City</span>
+        <input type="text" />
+        <span>Password</span>
+        <input type="password" />
+        <span>Validate Password</span>
+        <input id="inputpasswordLogUp2" type="password" />
+      </div>
+      <div className="buttonSignUpContainer2">
+        <div className="buttonSignUp2">
+          <button type="button">VALIDATE</button>
         </div>
       </div>
-      <span id="social-account-logIn2">Login With Social Accounts</span>
-      <div className="line-hr-LogIn2">
+      <span id="socialaccountlogUp2">Login With Social Accounts</span>
+      <div className="linehrLogUp2">
         <hr />
         <hr />
       </div>
-      <div className="logo-socialAccountLogIn2">
+      <div className="logosocialAccountLogUp2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="25"

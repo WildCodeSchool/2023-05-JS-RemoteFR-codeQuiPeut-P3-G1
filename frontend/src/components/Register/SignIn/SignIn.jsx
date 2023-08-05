@@ -2,30 +2,35 @@ import "./SignIn.scss"
 
 function SignIn() {
   return (
-    <div className="cardLogIn-container">
-      <span id="title-card-logIn">LOGIN</span>
-      <div>
-        <div className="cardLogIn-Input">
-          <span>Username</span>
-          <input type="text" />
-          <span>Password</span>
-          <input id="input-password-LogIn" type="password" />
-          <div className="forgot-Input">
-            <span>Forgot Password ?</span>
-          </div>
-        </div>
-        <div className="button-SignIn-Container">
-          <div className="button-SignIn">
-            <button type="button">Sign In</button>
-          </div>
+    // Structure principale du formulaire avec la classe "cardLogIn-container"
+    <div className="cardLogIncontainer">
+      {/* Titre "LOGIN" */}
+      <span id="titlecardlogIn">LOGIN</span>
+      {/* Champs de saisie */}
+      <div className="cardLogInInput">
+        <span>Username</span>
+        <input type="text" />
+        <span>Password</span>
+        <input id="inputpasswordLogIn" type="password" />
+        {/* Lien "Forgot Password ?" */}
+        <div className="forgotInput">
+          <span>Forgot Password ?</span>
         </div>
       </div>
-      <span id="social-account-logIn">Login With Social Accounts</span>
-      <div className="line-hr-LogIn">
+      {/* Bouton "Sign In" */}
+      <div className="buttonSignInContainer">
+        <div className="buttonSignIn">
+          <button type="button">Sign In</button>
+        </div>
+      </div>
+      {/* Section "Login With Social Accounts" */}
+      <span id="socialaccountlogIn">Login With Social Accounts</span>
+      <div className="linehrLogIn">
         <hr />
         <hr />
       </div>
-      <div className="logo-socialAccountLogIn">
+      <div className="logosocialAccountLogIn">
+        {/* Icône SVG pour les comptes sociaux (Facebook, Twitter, etc.) */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="25"
@@ -104,7 +109,7 @@ function SignIn() {
           </defs>
         </svg>
       </div>
-      <div className="signUpButton-LogInForm">
+      <div className="signUpButtonLogInForm">
         <span>Don't have an account ?</span>
         <button type="button">Sign Up</button>
       </div>

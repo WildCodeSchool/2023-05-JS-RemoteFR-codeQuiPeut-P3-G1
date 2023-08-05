@@ -31,15 +31,15 @@ function ButtonSignUp() {
 
   return (
     <>
-      <div className="LogIn-Container2">
-        <div className="button-LogIn2">
+      <div className="LogUp-Container2">
+        <div className="button-LogUp2">
           <button type="button" onClick={handleButtonClick}>
             SIGN UP
           </button>
         </div>
         {showSignIn ? (
-          <div className="card-LogIn-container2">
-            <div className="card-LogIn2" ref={signInRef}>
+          <div className="card-LogUp-container2">
+            <div className="card-LogUp2" ref={signInRef}>
               <SignUp />
             </div>
           </div>
