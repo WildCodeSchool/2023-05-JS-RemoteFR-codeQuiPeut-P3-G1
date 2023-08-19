@@ -1,5 +1,6 @@
 import React from "react"
 import "./GuildPhone.scss"
+import Spline from "@splinetool/react-spline"
 
 const GuildPhone = () => {
   return (
@@ -18,7 +19,10 @@ const GuildPhone = () => {
             table.
           </p>
         </div>
-        <div className="GuildPhone">3D Scene</div>
+        <div className="GuildPhone">
+          {/* <Spline scene="https://prod.spline.design/KGm3zLCbHu38cGRd/scene.splinecode" /> */}
+          <Spline scene="https://prod.spline.design/KGm3zLCbHu38cGRd/scene.splinecode" />
+        </div>
       </div>
     </div>
   )

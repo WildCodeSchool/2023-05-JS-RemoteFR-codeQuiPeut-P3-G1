@@ -16,8 +16,10 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin: 3rem 0;
     width: 30vw;
     height: 100vh;
+    // border: 3px solid blue;
 
     .letscreate {
       display: flex;
@@ -48,7 +50,7 @@
     .createParagraph {
       color: $third-font-color;
       font-size: 1.3rem;
-      margin: 0rem 2rem;
+      margin: 0 3rem;
       font-family: $content-font;
       height: 100vh;
       font-style: normal;
@@ -58,7 +60,7 @@
   }
 
   .GuildPhone {
-    width: 60vw;
+    width: 70vw;
     height: 100vh;
   }
 }
