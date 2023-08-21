@@ -11,14 +11,6 @@ export default function PrivateMessages() {
 
   const privateMessagesDiv = document.getElementById("messageBulleDiv")
 
-  const scrollMessages = () => {
-    // privateMessagesDiv.scrollTop = privateMessagesDiv.scrollHeight
-    privateMessagesDiv.scrollTo({
-      Bottom: 0,
-      behavior: "smooth",
-    })
-  }
-
   // Gestion messages API PrivateMessages
 
   const handleClickSubmit = (event) => {
@@ -34,7 +26,7 @@ export default function PrivateMessages() {
       .post("http://localhost:4242/PrivateMessages", messageData)
       .then((response) => {
         console.info(response)
-        scrollMessages()
+        scrollPrivateMessages()
       })
       .catch((err) => {
         console.error(err)
@@ -44,6 +36,14 @@ export default function PrivateMessages() {
     setRecipient("")
     setContent("")
   }
+
+  const scrollMessages = () => {
+    privateMessagesDiv.scrollTop = privateMessagesDiv.scrollHeight
+  }
+
+  useEffect(() => {
+    scrollMessages()
+  }, [importMessages])
 
   useEffect(() => {
     axios
@@ -55,10 +55,6 @@ export default function PrivateMessages() {
         console.error("Erreur lors du chagement des messages :", error)
       })
   }, [handleClickSubmit])
-
-  // useEffect(() => {
-  //   scrollMessages()
-  // }, [])
 
   const handleSender = (e) => {
     setSender(e.target.value)

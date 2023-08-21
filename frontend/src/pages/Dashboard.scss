@@ -37,7 +37,7 @@
       display: flex;
       flex-direction: row;
       justify-content: center;
-      gap:100px;
+      gap: 100px;
       h2 {
         font-family: $title-font;
         color: $third-font-color;
@@ -144,7 +144,7 @@
           border-radius: 8px;
           border: 4px solid #4d194d;
           background: rgba(217, 217, 217, 0.22);
-          gap:30px;
+          gap: 30px;
           .editProfile {
             display: flex;
             width: 100%;
@@ -173,14 +173,14 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                margin:0;
-                padding:0;
+                margin: 0;
+                padding: 0;
                 p {
                   color: #fff;
                   font-family: $content-font;
                   font-size: 27px;
                   font-weight: 400;
-                  margin:0;
+                  margin: 0;
                 }
                 h2 {
                   color: #e2d07c;
@@ -220,24 +220,24 @@
             }
           }
           .middleProfile {
-            width:80%;
-            height:200px;
-            background-color:#FFF;
+            width: 80%;
+            height: 200px;
+            background-color: #fff;
             border-radius: 8px;
             p {
-                color: #000;
-                padding:30px;
-                font-family: $content-font;
-                font-size: 15px;
-                font-weight: 400;
+              color: #000;
+              padding: 30px;
+              font-family: $content-font;
+              font-size: 15px;
+              font-weight: 400;
             }
           }
           .bottomProfile {
-            color: #FFF;
+            color: #fff;
             font-family: $content-font;
             font-size: 15px;
             font-weight: 400;
-            border-bottom:1px solid #a4945e;
+            border-bottom: 1px solid #a4945e;
           }
         }
       }
