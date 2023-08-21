@@ -23,7 +23,7 @@ export default function PrivateMessages() {
     const messageData = {
       users_id_sender: sender,
       users_id_recipient: recipient,
-      content: content,
+      content,
       seen: 0,
     }
 
