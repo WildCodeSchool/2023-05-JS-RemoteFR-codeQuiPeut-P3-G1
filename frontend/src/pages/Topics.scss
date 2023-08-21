@@ -1,3 +1,22 @@
+.globalDivTopics {
+  display: flex;
+}
+
+.BoxTopicsAndNewTopics {
+  display: flex;
+  flex-direction: column;
+}
+
+.glaobalTopicsBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.boxNewTopics {
+  display: flex;
+  flex-direction: column;
+}
+
 .topicbox {
   margin: 20px;
   width: 100%;
@@ -5,6 +24,8 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-image: url("../assets/box/Rectangle\ 84.svg");
+  display: flex;
+  flex-direction: column;
 }
 
 .topicbox li {
