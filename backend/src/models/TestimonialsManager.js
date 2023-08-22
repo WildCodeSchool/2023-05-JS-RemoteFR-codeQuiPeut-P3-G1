@@ -7,7 +7,7 @@ class TestimonialsManager extends AbstractManager {
 
   insert(testimonials) {
     return this.database.query(
-      `insert into ${this.table} (title, content, date, users_id) values ("?", "?", NOW(), "?")`,
+      `insert into ${this.table} (title, content, date, users_id) values (?, ?, NOW(), ?)`,
       [testimonials.title, testimonials.content, testimonials.users_id]
     )
   }
