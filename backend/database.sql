@@ -146,7 +146,7 @@ CREATE TABLE `games` (
   KEY `ID_GM` (`gm_profiles_id`),
   CONSTRAINT `parties_ibfk_1` FOREIGN KEY (`role_playing_game_id`) REFERENCES `role_playing_games` (`id`),
   CONSTRAINT `parties_ibfk_2` FOREIGN KEY (`gm_profiles_id`) REFERENCES `gm_profiles` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155,7 +155,7 @@ CREATE TABLE `games` (
 
 LOCK TABLES `games` WRITE;
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
-INSERT INTO `games` VALUES (3,1,1,'2023-08-14 09:00:00','paris',8,'super table'),(56,2,1,'2023-08-26 16:00:00','tours',8,'c\'est la game 2');
+INSERT INTO `games` VALUES (3,1,1,'2023-08-14 09:00:00','paris',8,'super table'),(56,2,1,'2023-08-26 16:00:00','tours',8,'c\'est la game 2'),(57,2,1,'2023-05-12 10:00:00','paris',8,'bonjour');
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -325,14 +325,14 @@ CREATE TABLE `private_messages` (
   `users_id_sender` int NOT NULL,
   `users_id_recipient` int NOT NULL,
   `content` text NOT NULL,
-  `date` timestamp NOT NULL,
-  `read` tinyint(1) NOT NULL DEFAULT '0',
+  `date` datetime NOT NULL,
+  `seen` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `ID_sender` (`users_id_sender`),
   KEY `ID_recipient` (`users_id_recipient`),
   CONSTRAINT `private_messages_ibfk_1` FOREIGN KEY (`users_id_sender`) REFERENCES `users` (`id`),
   CONSTRAINT `private_messages_ibfk_2` FOREIGN KEY (`users_id_recipient`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -341,7 +341,7 @@ CREATE TABLE `private_messages` (
 
 LOCK TABLES `private_messages` WRITE;
 /*!40000 ALTER TABLE `private_messages` DISABLE KEYS */;
-INSERT INTO `private_messages` VALUES (1,1,2,'coucou ça va','2023-08-16 10:00:00',1),(2,2,1,'ça va et toi ?','2023-08-16 10:01:00',1);
+INSERT INTO `private_messages` VALUES (1,1,2,'coucou ça va','2023-08-16 12:00:00',1),(2,2,1,'ça va et toi ?','2023-08-16 12:01:00',1),(3,1,2,'très bien merci','2023-08-22 11:06:09',0);
 /*!40000 ALTER TABLE `private_messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -560,3 +560,5 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-08-22 11:07:14
