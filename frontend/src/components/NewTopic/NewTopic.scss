@@ -1,0 +1,34 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(185, 178, 178, 0.315); /* Fond semi-transparent */
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Centre verticalement */
+}
+
+.modal-content {
+  background-color: white;
+  height: 200px;
+  width: 300px;
+  padding: 20px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  border: solid rgba(164, 148, 94);
+  box-shadow: 0 2px 4px rgba(235, 230, 230, 0.416);
+}
+
+.buttonCreateTopic {
+  background: linear-gradient(to bottom, #180b23, #752b75);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
