@@ -145,10 +145,14 @@
   position: absolute;
   bottom: 90px;
   border: 2px solid orange;
-  height: fit-content;
+  height: 40px;
   opacity: 0.5;
-  .sender {
-    width: 50px;
+  display: flex;
+  width: fit-content;
+  flex-direction: row;
+  div {
+    width: 150px;
+    color: #fff;
   }
   .recipient {
     width: 50px;

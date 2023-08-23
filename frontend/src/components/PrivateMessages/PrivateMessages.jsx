@@ -57,10 +57,6 @@ export default function PrivateMessages() {
       })
   }, [handleClickSubmit])
 
-  const handleSender = (e) => {
-    setSender(e.target.value)
-  }
-
   const handleRecipient = (e) => {
     setRecipient(e.target.value)
   }
@@ -96,8 +92,8 @@ export default function PrivateMessages() {
           src="https://this-person-does-not-exist.com/img/avatar-gen11178be98f2b2c21b16328dba21251b1.jpg"
         />
         <div className="messageReceiverName">
-          <h2>{user.username}</h2>
-          <h3>GAMEMASTER</h3>
+          <h2>[Name receiver]</h2>
+          <h3>[Gamemaster]</h3>
         </div>
       </div>
       <div className="messageBulle" id="messageBulleDiv">
@@ -125,13 +121,10 @@ export default function PrivateMessages() {
       </div>
       <div className="inputMessages">
         <div className="toDelete">
-          <input
-            className="sender"
-            type="text"
-            value={sender}
-            placeholder="Sender"
-            onChange={handleSender}
-          />
+          <div>
+            <p>Sender :</p>
+            {user.username}
+          </div>
           <input
             className="recipient"
             type="text"
