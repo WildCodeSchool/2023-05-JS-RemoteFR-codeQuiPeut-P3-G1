@@ -9,6 +9,7 @@ import LandingPage from "./pages/LandingPage"
 import Dashboard from "./pages/Dashboard"
 import PrivateMessages from "./components/PrivateMessages/PrivateMessages"
 import Topics from "./pages/Topics"
+import UpcomingTable from "./pages/UpcomingTable"
 
 function App() {
   const [users, setUsers] = useState([])
@@ -36,6 +37,7 @@ function App() {
             <Route path="/topics" element={<Topics />} />
             <Route path="/test" element={<Home />} />
             <Route path="/privatemessages" element={<PrivateMessages />} />
+            <Route path="/upcoming-table" element={<UpcomingTable />} />
           </Routes>
         </Router>
       </AuthContext.Provider>

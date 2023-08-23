@@ -1,0 +1,32 @@
+.globalcontainerUT {
+  display: flex;
+
+  .containerFilterAndCards {
+    display: flex;
+    border: solid white;
+
+    &.filterGameLeft {
+      flex-direction: row;
+      transition: all 1s ease;
+    }
+
+    &.filterGameRight {
+      flex-direction: row-reverse;
+      transition: all 1s ease;
+      animation-duration: 1s;
+    }
+
+    .filterContainer {
+      border: solid white;
+      color: white;
+      button {
+        transition: all 1s ease;
+        animation-duration: 1s;
+      }
+    }
+
+    .gamecard {
+      color: white;
+    }
+  }
+}
