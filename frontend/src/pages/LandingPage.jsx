@@ -1,5 +1,6 @@
 import "./LandingPage.scss"
 import FAQ from "../components/FAQ/FAQ"
+import MockUpInstructions from "../components/MockupInstructions/MockUpInstructions"
 
 function LandingPage() {
   return (
@@ -31,6 +32,7 @@ function LandingPage() {
           </defs>
         </svg>
       </div>
+      <MockUpInstructions />
       <FAQ />
     </>
   )

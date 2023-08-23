@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.globalInstructions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  //   border: 3px solid yellow;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  .Instruction-Scene-Text {
+    display: flex;
+    justify-content: space-evenly;
+    flex-shrink: 0;
+    width: 95%;
+    height: 80%;
+    // border: 3px solid red;
+    margin: 3rem;
+
+    .instruction3D {
+      width: 60%;
+      height: 100%;
+    }
+
+    .InstructionText {
+      display: flex;
+      flex-direction: column;
+      //   border: 3px solid green;
+      width: 30%;
+      height: 100%;
+
+      .Companions-Title {
+        display: flex;
+        color: #e2d07c;
+        justify-content: center;
+        font-family: Lekton;
+        font-size: 43px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+        margin-top: 5rem;
+      }
+      .Companions-Text {
+        display: flex;
+        color: #e2d07c;
+        text-align: justify;
+        font-family: Petrona;
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+    }
+  }
+  .Instructions-Title {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-shrink: 0;
+    color: #e2d07c;
+    text-align: center;
+    font-family: Lekton;
+    font-size: 59px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+    // border: 3px solid blue;
+    border-bottom: 1px solid #e2d07c;
+    margin: 5rem 3rem 0 3rem;
+    padding: 2.5rem 0;
+  }
+}
