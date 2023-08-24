@@ -1,6 +1,7 @@
 import "./LandingPage.scss"
 
 import FAQ from "../components/FAQ/FAQ"
+import PhoneTexts from "../components/PhoneTexts/PhoneTexts"
 import MockUpInstructions from "../components/MockupInstructions/MockUpInstructions"
 import Footer from "../components/Footer/Footer"
 import ButtonSignIn from "../components/Register/ButtonSignIn/ButtonSignIn"
@@ -72,6 +73,7 @@ function LandingPage() {
         </svg>
       </div>
       <TestCarrousel />
+      <PhoneTexts />
       <FAQ />
       <Footer />
     </>
