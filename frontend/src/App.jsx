@@ -16,7 +16,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4242/users")
+      .get(`http://localhost:4242/users`)
       .then((res) => {
         setUsers(res.data)
       })
@@ -28,12 +28,6 @@ function App() {
   return (
     <>
       <div className="App">
-        {/* <OnlineStatus />
-        <NavBar /> */}
-        <LandingPage />
-
-        {/* <Home /> */}
-
         <AuthContext.Provider value={{ user, setUser, users }}>
           <Router>
             <Routes>
