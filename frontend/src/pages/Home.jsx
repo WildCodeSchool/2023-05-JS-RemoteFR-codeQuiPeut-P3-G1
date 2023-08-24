@@ -31,21 +31,23 @@ export default function Home() {
     setPasswordDb(e.target.value)
   }
   return (
-    <header className="App-header">
-      <p>coucou</p>
-      <input
-        type="text"
-        value={usernameDb}
-        onChange={handleUser}
-        placeholder="username"
-      />
-      <input
-        type="text"
-        value={passwordDb}
-        onChange={handlePass}
-        placeholder="pass"
-      />
-      <button onClick={handleCreateUser}>Créer un utilisateur</button>
-    </header>
+    <>
+      <header className="App-header">
+        <p>coucou</p>
+        <input
+          type="text"
+          value={usernameDb}
+          onChange={handleUser}
+          placeholder="username"
+        />
+        <input
+          type="text"
+          value={passwordDb}
+          onChange={handlePass}
+          placeholder="pass"
+        />
+        <button onClick={handleCreateUser}>Créer un utilisateur</button>
+      </header>
+    </>
   )
 }

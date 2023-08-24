@@ -1,0 +1,75 @@
+@import "../../Variable.scss";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.PhoneText-Global {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  // border: 3px solid orange;
+  padding: 4rem 0 4rem 4rem;
+
+  .scene-PhoneTexts {
+    width: 70%;
+    // border: 3px solid blue;
+  }
+
+  .PhoneTexts {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    // border: 3px solid yellow;
+    width: 50%;
+    .title-p-PhoneTexts {
+      display: flex;
+      flex-direction: column;
+    }
+    .h1-phoneTexts {
+      color: $third-font-color;
+      text-align: justify;
+      font-family: $title-font;
+      font-size: 43px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      text-transform: uppercase;
+      margin: 2rem;
+    }
+
+    .p-phoneTexts {
+      color: $third-font-color;
+      text-align: justify;
+      font-family: $content-font;
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      margin: 2rem;
+    }
+    .Btn-container-phone {
+      display: flex;
+      justify-content: center;
+      .Btn-PhoneText {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        border-radius: 5px;
+        background: #f6f6e9;
+        border: none;
+        color: #4d194d;
+        text-align: center;
+        font-family: Karma;
+        font-size: 1.5rem;
+        padding: 10px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        font-family: $title-font;
+      }
+    }
+  }
+}

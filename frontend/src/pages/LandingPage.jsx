@@ -1,5 +1,6 @@
 import "./LandingPage.scss"
 import FAQ from "../components/FAQ/FAQ"
+import PhoneTexts from "../components/PhoneTexts/PhoneTexts"
 
 function LandingPage() {
   return (
@@ -32,6 +33,8 @@ function LandingPage() {
         </svg>
       </div>
       <FAQ />
+
+      <PhoneTexts />
     </>
   )
 }

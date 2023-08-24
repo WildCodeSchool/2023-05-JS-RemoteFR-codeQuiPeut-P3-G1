@@ -12,6 +12,7 @@ function App() {
         {/* <OnlineStatus />
         <NavBar /> */}
         <LandingPage />
+
         {/* <Home /> */}
       </div>
     </>
