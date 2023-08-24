@@ -1,0 +1,153 @@
+@import "../../../Variable.scss";
+
+.cardLogIn-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 512px;
+  height: 665px;
+  margin: auto;
+  position: relative;
+  padding: 30% 2em;
+  box-sizing: border-box;
+  $border: 5px;
+  color: black;
+  background: #fff;
+  background-clip: padding-box; /* !importanté */
+  border: solid $border transparent; /* !importanté */
+  border-radius: 1em;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    margin: -$border; /* !importanté */
+    border-radius: inherit; /* !importanté */
+    background: linear-gradient(to bottom, #e2d07c, #a4945e);
+  }
+  span {
+    color: #4d194d;
+    text-align: center;
+    font-family: $ponctual-font;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  #title-card-logIn {
+    margin-bottom: 25px;
+  }
+  .cardLogIn-Input {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 100%;
+    span {
+      text-align: justify;
+      font-family: $content-font;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      text-transform: capitalize;
+      margin-bottom: 18px;
+    }
+    input {
+      width: 361px;
+      height: 42px;
+      border-radius: 5px;
+      border: 1px solid #180b23;
+      background: rgba(246, 246, 233, 0);
+      margin-bottom: 25px;
+    }
+    #input-password-LogIn {
+      margin-bottom: 8px;
+    }
+    .forgot-Input {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      margin-bottom: 8px;
+    }
+  }
+  .button-SignIn-Container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 54px;
+    .button-SignIn {
+      width: 161px;
+      height: 49px;
+      display: flex;
+      justify-content: center;
+      background: linear-gradient(180deg, #752b75 0%, #180b23 100%);
+      border-radius: 5px;
+      button {
+        width: 161px;
+        height: 49px;
+        text-align: center;
+        font-family: $content-font;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        border-radius: 5px;
+        border: none;
+        background: -webkit-linear-gradient(#a4945e, #e2d07c);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        cursor: pointer;
+      }
+    }
+  }
+  #social-account-logIn {
+    text-align: center;
+    font-family: $content-font;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .line-hr-LogIn {
+    display: flex;
+    gap: 150px;
+    hr {
+      width: 100px;
+      height: 1px;
+      border: none;
+      background: linear-gradient(0deg, #180b23 0%, #180b23 100%), #180b23;
+    }
+  }
+  .logo-socialAccountLogIn {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 19px;
+    cursor: pointer;
+  }
+  .signUpButton-LogInForm {
+    span {
+      text-align: center;
+      font-family: $content-font;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+    button {
+      background: none;
+      border: none;
+      font-family: $content-font;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      text-decoration-line: underline;
+      cursor: pointer;
+    }
+  }
+}

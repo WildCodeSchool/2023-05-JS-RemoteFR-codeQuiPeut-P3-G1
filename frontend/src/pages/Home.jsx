@@ -1,5 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
+import NavBar from "../components/NavBar/Navbar"
 
 export default function Home() {
   const [usernameDb, setUsernameDb] = useState("")
@@ -32,6 +33,7 @@ export default function Home() {
   }
   return (
     <>
+      <NavBar />
       <header className="App-header">
         <p>coucou</p>
         <input

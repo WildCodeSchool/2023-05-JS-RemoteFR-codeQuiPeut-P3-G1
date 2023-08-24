@@ -18,6 +18,13 @@ class UsersManager extends AbstractManager {
       [users.username, users.id]
     )
   }
+
+  // get(users) {
+  //   return this.database.query(
+  //   `select * from ${this.table} where username = ?`
+  //   [users.username]
+  //   )
+  // }
 }
 
 module.exports = UsersManager
