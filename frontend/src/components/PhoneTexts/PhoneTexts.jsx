@@ -1,13 +1,13 @@
 // import React, { useState } from "react"
 import Spline from "@splinetool/react-spline"
+// import SignIn from "./SignIn"
 import "./PhoneTexts.scss"
 
 const PhoneTexts = () => {
-  // const [showModal, setShowModal] = useState(false) // State to control the visibility of the modal
+  // const [showModal, setShowModal] = useState(false)
 
-  // // Function to handle the "JOIN ADVENTURE" button click
   // const handleJoinAdventure = () => {
-  //   setShowModal(true) // Show the modal when the button is clicked
+  //   setShowModal(true)
   // }
 
   return (
@@ -39,6 +39,12 @@ const PhoneTexts = () => {
               JOIN ADVENTURE
             </button>
           </div>
+          {/* {showModal && (
+            <div className="modal">
+              <SignIn />
+              <button onClick={() => setShowModal(false)}>Close</button>
+            </div>
+          )} */}
         </div>
         <div className="scene-PhoneTexts">
           <Spline scene="https://prod.spline.design/Hm-EQFsFWBdKeM48/scene.splinecode" />
