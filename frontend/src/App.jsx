@@ -28,12 +28,6 @@ function App() {
   return (
     <>
       <div className="App">
-        {/* <OnlineStatus />
-        <NavBar /> */}
-        <LandingPage />
-
-        {/* <Home /> */}
-
         <AuthContext.Provider value={{ user, setUser, users }}>
           <Router>
             <Routes>
