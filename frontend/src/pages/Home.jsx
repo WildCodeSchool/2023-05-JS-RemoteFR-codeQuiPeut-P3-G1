@@ -1,5 +1,6 @@
 import { useState } from "react"
 import axios from "axios"
+import NavBar from "../components/NavBar/Navbar"
 
 export default function Home() {
   const [usernameDb, setUsernameDb] = useState("")
@@ -31,21 +32,24 @@ export default function Home() {
     setPasswordDb(e.target.value)
   }
   return (
-    <header className="App-header">
-      <p>coucou</p>
-      <input
-        type="text"
-        value={usernameDb}
-        onChange={handleUser}
-        placeholder="username"
-      />
-      <input
-        type="text"
-        value={passwordDb}
-        onChange={handlePass}
-        placeholder="pass"
-      />
-      <button onClick={handleCreateUser}>Créer un utilisateur</button>
-    </header>
+    <>
+      <NavBar />
+      <header className="App-header">
+        <p>coucou</p>
+        <input
+          type="text"
+          value={usernameDb}
+          onChange={handleUser}
+          placeholder="username"
+        />
+        <input
+          type="text"
+          value={passwordDb}
+          onChange={handlePass}
+          placeholder="pass"
+        />
+        <button onClick={handleCreateUser}>Créer un utilisateur</button>
+      </header>
+    </>
   )
 }

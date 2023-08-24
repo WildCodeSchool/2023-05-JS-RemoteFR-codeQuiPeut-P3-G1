@@ -20,7 +20,7 @@ function FAQ() {
       content: (
         <p>
           YES ! Every registered member can create a table with his own rules,
-          share the link to his friends and play with them as GM or Player.{" "}
+          share the link to his friends and play with them as GM or Player.
         </p>
       ),
     },
@@ -35,7 +35,7 @@ function FAQ() {
   return (
     <div className="container-FAQ">
       <div className="title-FAQ">
-        <h1>FAQ</h1>
+        <span>FAQ</span>
       </div>
       <div className="line-FAQ"></div>
       <div className="card-Container">

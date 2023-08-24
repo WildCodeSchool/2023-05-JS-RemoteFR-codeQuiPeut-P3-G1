@@ -7,7 +7,7 @@ class TopicsManager extends AbstractManager {
 
   insert(topics) {
     return this.database.query(
-      `insert into ${this.table} (title, categories_id, users_id, creation_date, subscription_count ) values ("?", "?", "?", NOW(), "?")`,
+      `insert into ${this.table} (title, categories_id, users_id, creation_date, subscription_count ) values (?, ?, ?, NOW(), ?)`,
       [
         topics.title,
         topics.categories_id,

@@ -15,6 +15,7 @@ const FiltersControllers = require("./controllers/FiltersControllers")
 const FriendRequestControllers = require("./controllers/FriendRequestControllers")
 const UsersFiltersControllers = require("./controllers/UsersFiltersControllers")
 const RolePlayingGamesControllers = require("./controllers/RolePlayingGamesController")
+const PrivateMessagesControllers = require("./controllers/PrivateMessagesControllers")
 
 router.get("/users", UsersControllers.browse)
 router.get("/users/:id", UsersControllers.read)
@@ -93,5 +94,11 @@ router.get("/role-playing-games/:id", RolePlayingGamesControllers.read)
 router.put("/role-playing-games/:id", RolePlayingGamesControllers.edit)
 router.post("/role-playing-games", RolePlayingGamesControllers.add)
 router.delete("/role-playing-games/:id", RolePlayingGamesControllers.destroy)
+
+router.get("/PrivateMessages", PrivateMessagesControllers.browse)
+router.get("/PrivateMessages/:id", PrivateMessagesControllers.read)
+router.put("/PrivateMessages/:id", PrivateMessagesControllers.edit)
+router.post("/PrivateMessages", PrivateMessagesControllers.add)
+router.delete("/PrivateMessages/:id", PrivateMessagesControllers.destroy)
 
 module.exports = router

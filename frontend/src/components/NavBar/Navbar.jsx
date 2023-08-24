@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { Link } from "react-router-dom"
 
 import "./NavBar.scss"
 
@@ -97,18 +98,20 @@ function NavBar() {
           <img id="logoNavBar" src={Logo} alt="logo of website in the navbar" />
         </div>
         <div className="mainButtonsNavBar">
-          <div
-            className="homeNavBar"
-            onMouseEnter={handleMouseEnter1}
-            onMouseLeave={handleMouseLeave1}
-          >
-            <img src={Home} alt="logo of home in the navbar" />
-            {isHovering1 && (
-              <div className="hiddenHomeNavBar">
-                <span>HOME</span>
-              </div>
-            )}
-          </div>
+          <Link to="/home">
+            <div
+              className="homeNavBar"
+              onMouseEnter={handleMouseEnter1}
+              onMouseLeave={handleMouseLeave1}
+            >
+              <img src={Home} alt="logo of home in the navbar" />
+              {isHovering1 && (
+                <div className="hiddenHomeNavBar">
+                  <span>HOME</span>
+                </div>
+              )}
+            </div>
+          </Link>
           <div
             className="partyNavBar"
             onMouseEnter={handleMouseEnter2}
@@ -133,18 +136,20 @@ function NavBar() {
               </div>
             )}
           </div>
-          <div
-            className="createGameNavBar"
-            onMouseEnter={handleMouseEnter4}
-            onMouseLeave={handleMouseLeave4}
-          >
-            <img src={CreateGame} alt="logo of Create Game in the navbar" />
-            {isHovering4 && (
-              <div className="hiddenCreateGameNavBar">
-                <span>CREATE GAME</span>
-              </div>
-            )}
-          </div>
+          <Link to="/create-game">
+            <div
+              className="createGameNavBar"
+              onMouseEnter={handleMouseEnter4}
+              onMouseLeave={handleMouseLeave4}
+            >
+              <img src={CreateGame} alt="logo of Create Game in the navbar" />
+              {isHovering4 && (
+                <div className="hiddenCreateGameNavBar">
+                  <span>CREATE GAME</span>
+                </div>
+              )}
+            </div>
+          </Link>
           <div
             className="messageNavBar"
             onMouseEnter={handleMouseEnter5}
