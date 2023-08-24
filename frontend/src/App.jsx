@@ -16,7 +16,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4242/users")
+      .get(`http://localhost:4242/users`)
       .then((res) => {
         setUsers(res.data)
       })

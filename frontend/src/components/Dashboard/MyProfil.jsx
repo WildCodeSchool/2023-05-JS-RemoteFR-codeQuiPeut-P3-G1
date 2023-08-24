@@ -1,28 +1,48 @@
 import "./MyProfil.scss"
-// import axios from "axios"
-import React, { useState } from "react"
-// import { Link } from "react-router-dom"
+import axios from "axios"
+import React, { useState, useContext, useEffect } from "react"
 import iconProfile from "../../assets/icon-dashboard/iconProfile.png"
 import Add2 from "../../assets/icon-dashboard/Add2.png"
 import Edit from "../../assets/icon-dashboard/Edit.png"
 import Location from "../../assets/icon-dashboard/Location.png"
+import AuthContext from "../AuthContext/AuthContext"
 
 const MyProfil = () => {
-  // const [games, setGames] = useState([])
-  // useEffect(() => {
-  //   axios.get("http://localhost:4242/games")
-  //   .then((res) => setGames(res.data))
-  //   console.info(games)
-  // }, [])
+  const { user } = useContext(AuthContext)
 
-  const [userPicture, setUserPicture] = useState(null)
-  const [imageUrl, setImageUrl] = useState(null)
+  // const [userPicture, setUserPicture] = useState(null);
+  const [imageUrl, setImageUrl] = useState(
+    user.profil_picture !== null ? user.profil_picture : null
+  )
+
+  const longDate = user.registration_date
+  const shortDate = longDate.substring(0, 10)
 
   const handlePictureChange = (e) => {
     const picture = e.target.files[0]
-    setUserPicture(picture)
     setImageUrl(URL.createObjectURL(picture))
+
+    // updateProfilPictureOnServer(user.id, URL.createObjectURL(picture));
   }
+
+  const updateProfilPictureOnServer = async (userId, newProfilPicture) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:4242/users/${userId}/updateProfilPicture`,
+        newProfilPicture
+      )
+      return response.data
+    } catch (error) {
+      console.error(
+        "Erreur lors de la mise à jour de la photo de profil :",
+        error
+      )
+      throw error
+    }
+  }
+  useEffect(() => {
+    console.info(imageUrl)
+  }, [imageUrl])
 
   return (
     <div className="myProfil">
@@ -40,24 +60,32 @@ const MyProfil = () => {
         <div className="topProfile">
           <div className="logoAdd2">
             <label htmlFor="buttonPicture">
-              {userPicture ? (
-                <img src={imageUrl} alt="userPicture" id="logoAdd2" />
+              {imageUrl ? (
+                <img
+                  src={imageUrl}
+                  alt="userPicture"
+                  className="userPicture"
+                  id="profilPictureForm"
+                />
               ) : (
-                <img id="logoAdd2" src={Add2} alt="logo of a cross" />
+                <img className="userPicture" src={Add2} alt="logo of a cross" />
               )}
             </label>
             <input
               type="file"
               id="buttonPicture"
               accept="image/*"
-              onChange={handlePictureChange}
+              onChange={(e) => {
+                handlePictureChange(e)
+                updateProfilPictureOnServer(user.id, imageUrl)
+              }}
               style={{ display: "none" }}
             />
           </div>
           <div className="centralDiv">
             <div className="userInfoProfile">
-              <p>DogsLord</p>
-              <h2>registered since 07/07/2010</h2>
+              <p>{user.username}</p>
+              <h2>{shortDate}</h2>
             </div>
             <div className="locationProfile">
               <img
@@ -65,17 +93,18 @@ const MyProfil = () => {
                 src={Location}
                 alt="logo of a map pointer"
               />
-              <p>Not Defined</p>
+              <p>{user.location}</p>
             </div>
           </div>
           <div className="profileButton">
-            <p> NOT DEFINED</p>
+            <p>{user.is_gamemaster === 0 ? "PLAYER" : "GAMEMASTER"}</p>
           </div>
         </div>
         <div className="middleProfile">
           <p>
-            Warning: No bio founded on this profile. Dear user, please consider
-            adding a bio to let others know more about you!
+            {user.description === "null"
+              ? "Warning: No bio founded on this profile. Dear user, please consider adding a bio to let others know more about you !"
+              : user.description}
           </p>
         </div>
         <div className="bottomProfile">
@@ -85,4 +114,5 @@ const MyProfil = () => {
     </div>
   )
 }
+
 export default MyProfil

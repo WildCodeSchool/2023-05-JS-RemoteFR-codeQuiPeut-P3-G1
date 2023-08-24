@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `guilden` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `guilden`;
 -- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: guilden
@@ -480,6 +482,8 @@ CREATE TABLE `users` (
   `availability_schedule` text,
   `description` text,
   `registration_date` timestamp NOT NULL,
+  `location` varchar(255) DEFAULT NULL,
+  `profil_picture` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -490,7 +494,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'fredgreg','fred@greg.com','azerty','i\'m cool',1,'2023-08-14 09:00:00','je suis là','2022-08-16 10:00:00'),(2,'romainniort','romain@niort.com','aqwxsz','coucou les gens',1,'2023-08-14 09:00:00','i\'m here','2022-08-14 09:00:00');
+INSERT INTO `users` VALUES (1,'fredgreg','fred@greg.com','azerty','i\'m cool',1,'2023-08-14 09:00:00','je suis là','2022-08-16 10:00:00','Paris','https://static.vecteezy.com/ti/vecteur-libre/p1/5544770-profil-icone-design-vecteur-gratuit-vectoriel.jpg'),(2,'romainniort','romain@niort.com','aqwxsz','coucou les gens',1,'2023-08-14 09:00:00','i\'m here','2022-08-14 09:00:00','Nantes',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -561,4 +565,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-22 11:07:14
+-- Dump completed on 2023-08-24 16:09:09

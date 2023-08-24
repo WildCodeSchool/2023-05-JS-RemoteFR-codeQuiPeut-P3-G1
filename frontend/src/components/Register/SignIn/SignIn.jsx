@@ -14,7 +14,7 @@ function SignIn() {
 
     const utilisateur = users.find((u) => u.username === username)
     if (!utilisateur) {
-      alert("Mauvais pseudo ou mdp")
+      alert("Mauvais pseudo")
       setUsername("")
       setPassword("")
     } else if (utilisateur.password !== password) {
@@ -57,6 +57,9 @@ function SignIn() {
           </div>
           <Link to="/privatemessages">
             <button type="button">Messages</button>
+          </Link>
+          <Link to="/home">
+            <button type="home">home</button>
           </Link>
         </div>
         <div className="button-SignIn-Container">

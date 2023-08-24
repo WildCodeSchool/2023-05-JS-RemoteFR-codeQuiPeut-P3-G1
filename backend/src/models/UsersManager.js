@@ -19,6 +19,13 @@ class UsersManager extends AbstractManager {
     )
   }
 
+  updateProfilPicture(users) {
+    return this.database.query(
+      `update ${this.table} set profil_picture = ? where id = ?`,
+      [users.profil_picture, users.id]
+    )
+  }
+
   // get(users) {
   //   return this.database.query(
   //   `select * from ${this.table} where username = ?`
