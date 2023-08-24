@@ -1,6 +1,7 @@
 import "./LandingPage.scss"
 
 import FAQ from "../components/FAQ/FAQ"
+import GuildPhone from "../components/3DGuildPhone/GuildPhone"
 import PhoneTexts from "../components/PhoneTexts/PhoneTexts"
 import MockUpInstructions from "../components/MockupInstructions/MockUpInstructions"
 import Footer from "../components/Footer/Footer"
@@ -11,6 +12,8 @@ import TestCarrousel from "../components/TestCarrousel/TestCarrousel"
 function LandingPage() {
   return (
     <>
+      <GuildPhone />
+
       <div className="button-register-container">
         <div className="Button-Register-LandingPage">
           <ButtonSignIn />

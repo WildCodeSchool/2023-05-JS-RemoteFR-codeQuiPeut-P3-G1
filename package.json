@@ -32,7 +32,9 @@
     "husky": "^8.0.3"
   },
   "dependencies": {
+    "@splinetool/react-spline": "^2.2.6",
     "esbuild": "^0.16.17",
+    
     "react-router-dom": "^6.15.0",
     "mysql2": "^3.5.2",
     "sass": "^1.64.1"
