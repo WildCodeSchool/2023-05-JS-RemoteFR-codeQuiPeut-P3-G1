@@ -1,6 +1,7 @@
 import "./LandingPage.scss"
 
 import FAQ from "../components/FAQ/FAQ"
+import MockUpInstructions from "../components/MockupInstructions/MockUpInstructions"
 import Footer from "../components/Footer/Footer"
 import ButtonSignIn from "../components/Register/ButtonSignIn/ButtonSignIn"
 import ButtonSignUp from "../components/Register/ButtonSignUp/ButtonSignUp"
@@ -42,6 +43,7 @@ function LandingPage() {
           </defs>
         </svg>
       </div>
+      <MockUpInstructions />
       <div className="polygonSVG">
         <svg
           xmlns="http://www.w3.org/2000/svg"
