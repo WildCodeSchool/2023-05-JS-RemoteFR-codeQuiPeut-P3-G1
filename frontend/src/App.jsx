@@ -26,20 +26,28 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
-      <AuthContext.Provider value={{ user, setUser, users }}>
-        <Router>
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/create-game" element={<CreateGame />} />
-            <Route path="/home" element={<Dashboard />} />
-            <Route path="/topics" element={<Topics />} />
-            <Route path="/test" element={<Home />} />
-            <Route path="/privatemessages" element={<PrivateMessages />} />
-          </Routes>
-        </Router>
-      </AuthContext.Provider>
-    </div>
+    <>
+      <div className="App">
+        {/* <OnlineStatus />
+        <NavBar /> */}
+        <LandingPage />
+
+        {/* <Home /> */}
+
+        <AuthContext.Provider value={{ user, setUser, users }}>
+          <Router>
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/create-game" element={<CreateGame />} />
+              <Route path="/home" element={<Dashboard />} />
+              <Route path="/topics" element={<Topics />} />
+              <Route path="/test" element={<Home />} />
+              <Route path="/privatemessages" element={<PrivateMessages />} />
+            </Routes>
+          </Router>
+        </AuthContext.Provider>
+      </div>
+    </>
   )
 }
 

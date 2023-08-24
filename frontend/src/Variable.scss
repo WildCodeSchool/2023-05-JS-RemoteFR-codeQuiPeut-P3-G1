@@ -20,6 +20,11 @@ $background-gradient-landing-page: linear-gradient(
   #4d194d 48.44%,
   #180b23 94.27%
 );
+$background-gradient-home-page: linear-gradient(
+  180deg,
+  #180b23 0%,
+  #4d194d 100%
+);
 $button-blue: linear-gradient(180deg, #398d8f 0%, #187577 100%);
 $button-gold: #e2d07c;
 $navbar-color: #180b23;

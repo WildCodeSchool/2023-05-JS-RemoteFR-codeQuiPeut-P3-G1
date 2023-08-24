@@ -1,6 +1,9 @@
 import "./LandingPage.scss"
 
 import FAQ from "../components/FAQ/FAQ"
+import GuildPhone from "../components/3DGuildPhone/GuildPhone"
+import PhoneTexts from "../components/PhoneTexts/PhoneTexts"
+import MockUpInstructions from "../components/MockupInstructions/MockUpInstructions"
 import Footer from "../components/Footer/Footer"
 import ButtonSignIn from "../components/Register/ButtonSignIn/ButtonSignIn"
 import ButtonSignUp from "../components/Register/ButtonSignUp/ButtonSignUp"
@@ -9,6 +12,8 @@ import TestCarrousel from "../components/TestCarrousel/TestCarrousel"
 function LandingPage() {
   return (
     <>
+      <GuildPhone />
+
       <div className="button-register-container">
         <div className="Button-Register-LandingPage">
           <ButtonSignIn />
@@ -42,6 +47,7 @@ function LandingPage() {
           </defs>
         </svg>
       </div>
+      <MockUpInstructions />
       <div className="polygonSVG">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -70,6 +76,7 @@ function LandingPage() {
         </svg>
       </div>
       <TestCarrousel />
+      <PhoneTexts />
       <FAQ />
       <Footer />
     </>
