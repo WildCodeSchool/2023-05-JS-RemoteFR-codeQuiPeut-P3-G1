@@ -36,8 +36,17 @@ function UpcomingTable() {
             </button>
           </div>
           <div className="gamecard">
-            {games.map((game) => (
-              <Game key={game.id} location={game.location} />
+            <div className="containerMenuGame">
+              <p>Guil</p>
+              <p>Game Master</p>
+              <p>Game Date</p>
+              <p>Place</p>
+              <p>RPG</p>
+              <p>Type</p>
+              <p>Player</p>
+            </div>
+            {games.map((games) => (
+              <Game key={games.id} games={games} />
             ))}
           </div>
         </div>

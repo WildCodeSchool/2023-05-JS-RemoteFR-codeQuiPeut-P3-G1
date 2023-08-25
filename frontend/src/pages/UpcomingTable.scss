@@ -4,6 +4,7 @@
   .containerFilterAndCards {
     display: flex;
     border: solid white;
+    width: 100%;
 
     &.filterGameLeft {
       flex-direction: row;
@@ -17,8 +18,9 @@
     }
 
     .filterContainer {
-      border: solid white;
+      border: solid rgb(5, 5, 180);
       color: white;
+      width: 30%;
       button {
         transition: all 1s ease;
         animation-duration: 1s;
@@ -26,7 +28,16 @@
     }
 
     .gamecard {
+      border: solid rgb(3, 125, 44);
       color: white;
+      width: 100%;
+      margin: 20px;
+
+      .containerMenuGame {
+        display: flex;
+        justify-content: space-around;
+        border: 3px solid rgb(88.6, 81.6, 48.6);
+      }
     }
   }
 }
