@@ -17,7 +17,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4242/users")
+      .get(`http://localhost:4242/users`)
       .then((res) => {
         setUsers(res.data)
       })
@@ -27,21 +27,22 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
-      <AuthContext.Provider value={{ user, setUser, users }}>
-        <Router>
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/create-game" element={<CreateGame />} />
-            <Route path="/home" element={<Dashboard />} />
-            <Route path="/topics" element={<Topics />} />
-            <Route path="/test" element={<Home />} />
-            <Route path="/privatemessages" element={<PrivateMessages />} />
-            <Route path="/upcoming-table" element={<UpcomingTable />} />
-          </Routes>
-        </Router>
-      </AuthContext.Provider>
-    </div>
+    <>
+      <div className="App">
+        <AuthContext.Provider value={{ user, setUser, users }}>
+          <Router>
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/create-game" element={<CreateGame />} />
+              <Route path="/home" element={<Dashboard />} />
+              <Route path="/topics" element={<Topics />} />
+              <Route path="/test" element={<Home />} />
+              <Route path="/privatemessages" element={<PrivateMessages />} />
+            </Routes>
+          </Router>
+        </AuthContext.Provider>
+      </div>
+    </>
   )
 }
 
