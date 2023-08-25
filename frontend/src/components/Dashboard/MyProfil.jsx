@@ -1,4 +1,3 @@
-import "./MyProfil.scss"
 import axios from "axios"
 import React, { useState, useContext, useEffect } from "react"
 import iconProfile from "../../assets/icon-dashboard/iconProfile.png"

@@ -1,5 +1,3 @@
-import React from "react"
-import "./GuildPhone.scss"
 import Spline from "@splinetool/react-spline"
 
 const GuildPhone = () => {

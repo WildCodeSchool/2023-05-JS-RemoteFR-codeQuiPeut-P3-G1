@@ -1,5 +1,3 @@
-import "./Signup.scss"
-
 function SignUp() {
   return (
     <div className="cardLogIn-container2">
