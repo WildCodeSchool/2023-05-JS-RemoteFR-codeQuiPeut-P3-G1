@@ -1,0 +1,59 @@
+@import "../../Variable.scss";
+
+.PlayerCards_Main_Container {
+  width: 573px;
+  height: 720px;
+  border-radius: 9px;
+  background: #fff;
+
+  .PlayerCards_Inside_FirstElement {
+    display: flex;
+    justify-content: center;
+    gap: 70%;
+    margin-top: 29px;
+    max-width: 100%;
+
+    .PlayerCards_BackButton {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background-color: #180b23;
+      border-radius: 50%;
+      padding: 10px;
+      width: 54px;
+      height: 54px;
+    }
+    .PlayerCards_CloseButton {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background-color: #180b23;
+      border-radius: 50%;
+      padding: 10px;
+      width: 54px;
+      height: 54px;
+    }
+  }
+
+  .PlayerCards_Inside_SecondElement_Container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 11px;
+    .PlayerCards_Inside_SecondElement_LineSeparator {
+      width: 100%;
+      border-bottom: 2px solid #180b23;
+    }
+    .PlayerCards_Inside_SecondElement_TextContent {
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+    }
+    .PlayerCards_Inside_SecondElement_ButtonMessage_StatusPlayer {
+        display: flex;
+        justify-content: space-around;
+    }
+  }
+}
