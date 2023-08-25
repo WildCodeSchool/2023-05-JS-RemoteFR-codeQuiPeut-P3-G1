@@ -38,6 +38,7 @@ function App() {
               <Route path="/topics" element={<Topics />} />
               <Route path="/test" element={<Home />} />
               <Route path="/privatemessages" element={<PrivateMessages />} />
+              <Route path="/upcoming-table" element={<UpcomingTable />} />
             </Routes>
           </Router>
         </AuthContext.Provider>
