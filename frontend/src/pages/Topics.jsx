@@ -3,8 +3,6 @@ import axios from "axios"
 import NewTopic from "../components/NewTopic/NewTopic"
 import NavBar from "../components/NavBar/Navbar"
 
-import "./Topics.scss" // Assure-toi d'importer les styles CSS ici
-
 export default function Topics() {
   const [topics, setTopics] = useState([])
   const [isNewTopicOpen, setIsNewTopicOpen] = useState(false) // État pour gérer l'ouverture de la fenêtre modale

@@ -1,5 +1,3 @@
-import "./LandingPage.scss"
-
 import FAQ from "../components/FAQ/FAQ"
 import GuildPhone from "../components/3DGuildPhone/GuildPhone"
 import PhoneTexts from "../components/PhoneTexts/PhoneTexts"
