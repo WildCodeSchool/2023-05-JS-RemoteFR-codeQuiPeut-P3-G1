@@ -14,14 +14,14 @@
 
   .scene-PhoneTexts {
     width: 70%;
-    // border: 3px solid blue;
+    border: 3px solid blue;
   }
 
   .PhoneTexts {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    // border: 3px solid yellow;
+    border: 3px solid yellow;
     width: 50%;
     .title-p-PhoneTexts {
       display: flex;

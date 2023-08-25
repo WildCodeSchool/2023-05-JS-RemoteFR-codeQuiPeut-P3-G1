@@ -1,15 +1,10 @@
-import React, { useState } from "react"
 import Spline from "@splinetool/react-spline"
-import SignIn from "../Register/SignIn/SignIn"
+
 import "./PhoneTexts.scss"
 
+import BtnJoin from "../BtnJoin/BtnJoin"
+
 const PhoneTexts = () => {
-  const [showModal, setShowModal] = useState(false)
-
-  const handleJoinAdventure = () => {
-    setShowModal(true)
-  }
-
   return (
     <>
       <div className="PhoneText-Global">
@@ -31,20 +26,8 @@ const PhoneTexts = () => {
             <p className="p-phoneTexts"></p>
           </div>
           <div className="Btn-container-phone">
-            <button
-              className="Btn-PhoneText"
-              type="button"
-              onClick={handleJoinAdventure}
-            >
-              JOIN ADVENTURE
-            </button>
+            <BtnJoin />
           </div>
-          {showModal && (
-            <div className="modal">
-              <SignIn />
-              <button onClick={() => setShowModal(false)}>Close</button>
-            </div>
-          )}
         </div>
         <div className="scene-PhoneTexts">
           <Spline scene="https://prod.spline.design/Hm-EQFsFWBdKeM48/scene.splinecode" />
