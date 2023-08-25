@@ -20,9 +20,7 @@ export default function Game({ games, gm }) {
       <div className="globalContainerCard">
         <p> XXX </p>
         <div className="gameLocationUpcoming">
-          {gameMaster
-            ? `${gameMaster.first_name} ${gameMaster.last_name}`
-            : "N/A"}
+          {gameMaster ? `${gameMaster.username}` : "N/A"}
         </div>
         <div className="gameLocationUpcoming">{formattedDate}</div>
         <div className="gameLocationUpcoming">{games.location}</div>
