@@ -1,5 +1,4 @@
 import React from "react"
-import "./MockUpInstructions.scss"
 import Spline from "@splinetool/react-spline"
 
 const MockUpInstructions = () => {

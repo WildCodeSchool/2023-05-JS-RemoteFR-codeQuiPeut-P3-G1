@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import Spline from "@splinetool/react-spline"
 import SignIn from "../Register/SignIn/SignIn"
-import "./PhoneTexts.scss"
 
 const PhoneTexts = () => {
   const [showModal, setShowModal] = useState(false)

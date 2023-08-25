@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react"
-import "./OnlineStatus.scss"
 
 const OnlineStatus = () => {
   const [isOnline, setIsOnline] = useState(navigator.onLine)

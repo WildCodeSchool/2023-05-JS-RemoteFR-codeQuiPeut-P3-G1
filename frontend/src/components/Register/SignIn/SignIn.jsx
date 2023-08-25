@@ -1,4 +1,3 @@
-import "./SignIn.scss"
 import { useState, useContext, useEffect } from "react"
 import AuthContext from "../../AuthContext/AuthContext"
 import { Link } from "react-router-dom"

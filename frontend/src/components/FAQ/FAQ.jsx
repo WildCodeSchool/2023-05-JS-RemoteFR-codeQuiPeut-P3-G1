@@ -1,5 +1,4 @@
 import { useState } from "react"
-import "./FAQ.scss"
 
 function FAQ() {
   const faqs = [
