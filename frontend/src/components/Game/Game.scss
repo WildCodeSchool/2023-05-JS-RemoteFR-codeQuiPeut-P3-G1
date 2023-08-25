@@ -1,14 +1,14 @@
 .gameLocationUpcoming {
   color: white;
-  // border:solid white;
   height: 50px;
   width: 100;
   border: 1px solid red;
   display: flex;
-  gap: 30px;
+  align-items: center;
 }
+
 .globalContainerCard {
-  border: 3px solid rgb(88.6, 81.6, 48.6);
+  border: 3px solid rgb(194 177 108);
   display: flex;
   width: 100%;
   justify-content: center;

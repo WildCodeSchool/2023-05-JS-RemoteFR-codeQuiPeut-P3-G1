@@ -36,7 +36,21 @@
       .containerMenuGame {
         display: flex;
         justify-content: space-around;
-        border: 3px solid rgb(88.6, 81.6, 48.6);
+        border: 3px solid rgb(194 177 108);
+        height: 50px;
+        border-radius: 10px 10px 0px 0px;
+
+        .containerTitleUP {
+          color: rgb(194 177 108);
+          display: flex;
+          align-items: center;
+
+          .iconUpcomingTable {
+            height: 20px;
+            width: 20px;
+            margin-right: 10px;
+          }
+        }
       }
     }
   }
