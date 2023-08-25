@@ -3,15 +3,19 @@
   padding: 0;
   box-sizing: border-box;
 }
+// html {
+//   background-color: #180C23;
+// }
+
 
 body {
   margin: 0;
   padding: 0;
   width: 100vw;
   height: 100vh;
-  box-sizing: border-box;
+  overflow: scroll;
+  overscroll-behavior: contain;
   background: $background-gradient;
   background-repeat: no-repeat;
   background-size: cover;
-  box-sizing: border-box;
 }
