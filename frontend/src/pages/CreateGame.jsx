@@ -7,12 +7,28 @@ import createGameDice from "../assets/icon-create-game/dice.png"
 
 export default function CreateGame() {
   const [rpgs, setRpgs] = useState([])
+  // const [gameCategories, setGameCategories] = usestate(gameCategoriesTest)
   const [rpgID, setRpgID] = useState("")
   const [gm, setGm] = useState("")
   const [date, setDate] = useState("")
   const [place, setPlace] = useState("")
   const [playersCapacity, setPlayersCapacity] = useState("")
   const [desc, setDesc] = useState("")
+
+  const gameCategoriesTest = [
+    {
+      id: 1,
+      name: "horror",
+    },
+    {
+      id: 2,
+      name: "adventure",
+    },
+    {
+      id: 3,
+      name: "sci-fi",
+    },
+  ]
 
   useEffect(() => {
     axios
@@ -49,53 +65,105 @@ export default function CreateGame() {
       <div id="contentCreateGame">
         <div id="createGameTitle">
           <img src={createGameDice} />
-          <h1>DASHBOARD</h1>
+          <h1>CREATE GAME</h1>
         </div>
+        <label htmlFor="idGm">
+          <p style={{ color: "white" }}>ID du GM</p>
+          <input
+            type="text"
+            name="idGm"
+            onChange={(e) => setGm(e.target.value)}
+          />
+        </label>
         <form id="createGameForm" onSubmit={handleCreateUser}>
-          <select
-            type="select"
-            onChange={(event) => setRpgID(event.target.value)}
-            id="createGameSelecter"
-          >
-            <option value="">Sélectionnez le jeu de votre choix</option>
-            {rpgs.map((rpg) => (
-              <option key={rpg.id} value={rpg.id}>
-                {rpg.name}
-              </option>
-            ))}
-          </select>
-          <div id="createGameInputs">
-            {/* <input
+          <div id="createGameFirstGroup">
+            <label htmlFor="guildName">
+              <p>Guild's Name</p>
+              <input
+                type="text"
+                // onChange={(e) => setPlace(e.target.value)}
+                name="guildName"
+              />
+            </label>
+            <label htmlFor="gameTypeSelecter">
+              <p>Game Type</p>
+              <div className="createGameSelect">
+                <select
+                  // onChange={(event) => nomduSeter(event.target.value)}
+                  name="format"
+                  id="gameTypeSelecter"
+                >
+                  <option selected disabled>
+                    Select your categorie
+                  </option>
+                  <option value=""></option>
+                  {gameCategoriesTest.map((gameCategorie) => (
+                    <option key={gameCategorie.id} value={gameCategorie.id}>
+                      {gameCategorie.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </label>
+            <label htmlFor="rpgNameSelecter">
+              <p>Based on RPG</p>
+              <div className="createGameSelect">
+                <select
+                  onChange={(event) => setRpgID(event.target.value)}
+                  id="rpgNameSelecter"
+                >
+                  <option selected disabled>
+                    Select your game
+                  </option>
+                  <option value=""></option>
+                  {rpgs.map((rpg) => (
+                    <option key={rpg.id} value={rpg.id}>
+                      {rpg.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </label>
+            <div id="createGameSwitchGlobal">
+              <p>One Shot</p>
+              <label id="createGameSwitch">
+                <input type="checkbox" />
+                <span className="slider round"></span>
+              </label>
+              <p>Campaign</p>
+            </div>
+            <div id="createGameInputs">
+              {/* <input
               type="text"
               placeholder="id du RPG"
               onChange={(e) => setRpgID(e.target.value)}
             /> */}
-            <input
-              type="text"
-              placeholder="id du GM"
-              onChange={(e) => setGm(e.target.value)}
-            />
-            <input
-              type="datetime-local"
-              onChange={(e) => setDate(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="ville"
-              onChange={(e) => setPlace(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="Capacité max"
-              onChange={(e) => setPlayersCapacity(e.target.value)}
-            />
-            <input
-              type="text"
-              placeholder="description"
-              onChange={(e) => setDesc(e.target.value)}
-            />
-            <button type="submit">Créer ma partie</button>
+              <label htmlFor="date">
+                <p>Date</p>
+                <input
+                  type="datetime-local"
+                  onChange={(e) => setDate(e.target.value)}
+                  name="date"
+                />
+              </label>
+              <input
+                type="text"
+                placeholder="ville"
+                onChange={(e) => setPlace(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="Capacité max"
+                onChange={(e) => setPlayersCapacity(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="description"
+                onChange={(e) => setDesc(e.target.value)}
+              />
+            </div>
           </div>
+          <button type="submit">VALIDATE</button>
         </form>
       </div>
     </main>

@@ -1,5 +1,8 @@
 #createGameGlobal {
   display: flex;
+  #gameTypeSelecter::after {
+    color: red;
+  }
   #contentCreateGame {
     display: flex;
     flex-direction: column;
@@ -10,6 +13,7 @@
     display: flex;
     align-items: center;
     border-bottom: 2px solid #a4945e;
+    margin: 0 0 47px 0;
     // width: 25%;
     img {
       margin: 0 20px 0 0;
@@ -26,8 +30,146 @@
       font-variant: small-caps;
     }
   }
+  #createGameForm {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    padding: 73px 32px 93px 64px;
+    border: 1px solid #a4945e;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    input {
+      height: 36px;
+      border: none;
+      border-radius: 6px;
+      &:focus {
+        outline: 2px solid #a4945e;
+      }
+    }
+    p {
+      font-family: $content-font;
+      color: $third-font-color;
+    }
+  }
+  #createGameFirstGroup {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    label {
+      display: flex;
+      flex-direction: column;
+      p {
+        margin: 0 0 10px 0;
+      }
+    }
+    #createGameSwitchGlobal {
+      display: flex;
+      gap: 10px;
+      border: 1px solid #a4945e;
+      border-radius: 6px;
+      height: 66px;
+      justify-content: center;
+      align-items: center;
+      /* The switch - the box around the slider */
+      #createGameSwitch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 20px;
+      }
+
+      /* Hide default HTML checkbox */
+      #createGameSwitch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+
+      /* The slider */
+      .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: 1px solid #a4945e;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+      }
+
+      .slider:before {
+        position: absolute;
+        content: "";
+        height: 18px;
+        width: 18px;
+        // left: 4px;
+        // bottom: 4px;
+        background: linear-gradient(#a4945e, #e2d07c);
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+      }
+
+      input:checked + .slider:before {
+        -webkit-transform: translateX(30px);
+        -ms-transform: translateX(30px);
+        transform: translateX(30px);
+      }
+
+      /* Rounded sliders */
+      .slider.round {
+        border-radius: 20px;
+      }
+
+      .slider.round:before {
+        border-radius: 50%;
+      }
+      /* End of the switch - the box around the slider */
+    }
+  }
 }
 
 select {
-  height: 30px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  box-shadow: none;
+  background-image: none;
+  flex: 1;
+  padding: 0 0.5em;
+  color: black;
+  cursor: pointer;
+  height: 36px;
+  font-family: $content-font;
+  border-radius: 6px;
+  border: none;
+}
+select::-ms-expand {
+  display: none;
+}
+.createGameSelect {
+  position: relative;
+  display: flex;
+  line-height: 3;
+  // background: #5c6664;
+  overflow: hidden;
+  border-radius: 6px;
+}
+.createGameSelect::after {
+  content: url("../src/assets/icon-create-game/arrow-select.svg");
+  text-align: center;
+  position: absolute;
+  // top: 0;
+  right: 0;
+  background: $navbar-color;
+  cursor: pointer;
+  pointer-events: none;
+  transition: 0.25s all ease;
+  width: 15%;
+  height: 36px;
 }
