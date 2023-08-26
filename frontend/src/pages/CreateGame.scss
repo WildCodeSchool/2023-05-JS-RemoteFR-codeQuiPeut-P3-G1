@@ -1,5 +1,31 @@
 #createGameGlobal {
   display: flex;
+  #contentCreateGame {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+  }
+  #createGameTitle {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #a4945e;
+    // width: 25%;
+    img {
+      margin: 0 20px 0 0;
+      height: 61px;
+      width: 61px;
+    }
+    h1 {
+      color: $third-font-color;
+      font-family: $title-font;
+      font-family: Lekton;
+      font-size: 64px;
+      font-weight: 400;
+      line-height: normal;
+      font-variant: small-caps;
+    }
+  }
 }
 
 select {

@@ -1,13 +1,14 @@
-import "./PrivateMessages.scss"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useContext } from "react"
 import axios from "axios"
 import FlecheRetour from "../../assets/logo/Arrow 4.svg"
+import AuthContext from "../AuthContext/AuthContext"
 
 export default function PrivateMessages() {
   const [importMessages, setImportMessages] = useState([])
   const [sender, setSender] = useState("")
   const [recipient, setRecipient] = useState("")
   const [content, setContent] = useState("")
+  const { user } = useContext(AuthContext)
 
   const privateMessagesDiv = document.getElementById("messageBulleDiv")
 
@@ -18,7 +19,6 @@ export default function PrivateMessages() {
       behavior: "smooth",
     })
   }
-
   // Gestion messages API PrivateMessages
 
   const handleClickSubmit = (event) => {
@@ -56,10 +56,6 @@ export default function PrivateMessages() {
       })
   }, [handleClickSubmit])
 
-  // useEffect(() => {
-  //   scrollMessages()
-  // }, [])
-
   const handleSender = (e) => {
     setSender(e.target.value)
   }
@@ -71,6 +67,10 @@ export default function PrivateMessages() {
   const handleContent = (e) => {
     setContent(e.target.value)
   }
+
+  useEffect(() => {
+    console.info(user)
+  }, [user])
 
   // ID du recipient du message
 
@@ -95,7 +95,7 @@ export default function PrivateMessages() {
           src="https://this-person-does-not-exist.com/img/avatar-gen11178be98f2b2c21b16328dba21251b1.jpg"
         />
         <div className="messageReceiverName">
-          <h2>Gerard</h2>
+          <h2>{user.username}</h2>
           <h3>GAMEMASTER</h3>
         </div>
       </div>
