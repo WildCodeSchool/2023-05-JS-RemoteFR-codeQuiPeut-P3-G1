@@ -1,30 +1,11 @@
-import React, { useState, useEffect, useRef } from "react" // Added the missing curly braces for importing useState and useEffect
+import React, { useState } from "react" // Added the missing curly braces for importing useState and useEffect
 import gmProfilePic from "../../assets/GmCards-assets/GMProfilePic.png"
 import closeModal from "../../assets/GmCards-assets/closeModal.png"
 import gameLogo from "../../assets/GmCards-assets/gameLogo.png"
+import PlayerCards from "./PlayerCards"
 
 const GmCards = () => {
-  const [showPlayer, setShowPlayer] = useState(false)
-  const PlayerRef = useRef(null)
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (PlayerRef.current && !PlayerRef.current.contains(event.target)) {
-        setShowPlayer(false)
-      }
-    }
-
-    document.addEventListener("click", handleClickOutside)
-
-    return () => {
-      document.removeEventListener("click", handleClickOutside)
-    }
-  }, [])
-
-  const handleButtonClick = (event) => {
-    event.stopPropagation()
-    setShowPlayer(true)
-  }
+  const [PlayerCardsVisible, setPlayerCardsVisible] = useState(true)
 
   return (
     <div className="global-GmCards">
@@ -193,18 +174,10 @@ const GmCards = () => {
             <img className="profile-picture" src={gmProfilePic} alt="" />
             <img className="profile-picture" src={gmProfilePic} alt="" />
           </div>
-          <div className="Players-Container">
-            <div className="button-Player">
-              <button type="button" onClick={handleButtonClick}>
-                SHOW PLAYER
-              </button>
-            </div>
-            {showPlayer && ( // Render PlayerCard when showPlayer is true
-              <div className="player-card" ref={PlayerRef}>
-                {/* <PlayerCard /> */}
-              </div>
-            )}
-          </div>
+          {PlayerCardsVisible && <PlayerCards />}
+          <button onClick={() => setPlayerCardsVisible(!PlayerCardsVisible)}>
+            {PlayerCardsVisible ? "Fermer PlayerCards" : "Afficher PlayerCards"}
+          </button>
         </div>
       </div>
     </div>
