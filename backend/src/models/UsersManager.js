@@ -7,8 +7,20 @@ class UsersManager extends AbstractManager {
 
   insert(users) {
     return this.database.query(
-      `insert into ${this.table} (username, email_adress, password) values ("?", "?", "?")`,
-      [users.username, users.email_adress, users.password]
+      `insert into ${this.table} (username, email_adress, hashedPassword, other_information, is_gamemaster, availability_schedule, description_as_player, registration_date, location, profil_picture, description_as_gm) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        users.username,
+        users.email_adress,
+        users.hashedPassword,
+        users.other_information,
+        users.is_gamemaster,
+        users.availability_schedule,
+        users.descriptions_as_player,
+        users.registration_date,
+        users.location,
+        users.profil_picture,
+        users.description_as_gm,
+      ]
     )
   }
 
@@ -26,12 +38,12 @@ class UsersManager extends AbstractManager {
     )
   }
 
-  // get(users) {
-  //   return this.database.query(
-  //   `select * from ${this.table} where username = ?`
-  //   [users.username]
-  //   )
-  // }
+  getUserByUsernameWithPassword(username) {
+    return this.database.query(
+      `select username, hashedPassword from ${this.table} where username = ?`,
+      [username]
+    )
+  }
 }
 
 module.exports = UsersManager

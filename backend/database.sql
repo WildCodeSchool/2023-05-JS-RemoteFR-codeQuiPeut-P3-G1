@@ -481,7 +481,7 @@ CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
   `email_adress` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `hashedPassword` varchar(255) NOT NULL,
   `other_information` text,
   `is_gamemaster` enum('playerOnly','gmOnly','both') NOT NULL DEFAULT 'playerOnly',
   `availability_schedule` text,
@@ -500,7 +500,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'fredgreg','fred@greg.com','azerty','i\'m cool','playerOnly','2023-08-14 09:00:00','je suis là','2022-08-16 10:00:00','Paris','https://static.vecteezy.com/ti/vecteur-libre/p1/5544770-profil-icone-design-vecteur-gratuit-vectoriel.jpg','je suis gm'),(2,'romainniort','romain@niort.com','aqwxsz','coucou les gens','both','2023-08-14 09:00:00','i\'m here','2022-08-14 09:00:00','Nantes',NULL,'je suis plus gm que l\'autre');
+INSERT INTO `users` VALUES (1,'romainniort','romain@niort.com','aqwxsz','coucou les gens','both','2023-08-14 09:00:00','i\'m here','2022-08-14 09:00:00','Nantes',NULL,'je suis plus gm que l\'autre');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 

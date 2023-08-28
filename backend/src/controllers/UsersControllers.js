@@ -82,6 +82,23 @@ const destroy = (req, res) => {
     })
 }
 
+const verifyUser = (req, res, next) => {
+  models.users
+    .getUserByUsernameWithPassword(req.body.username)
+    .then(([users]) => {
+      if (users[0] != null) {
+        req.user = users[0]
+        next()
+      } else {
+        res.sendStatus(401)
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.status(500).send("Error retrieving data from the database")
+    })
+}
+
 const updateProfilPicture = async (req, res) => {
   const users = req.body
 
@@ -111,4 +128,5 @@ module.exports = {
   add,
   destroy,
   updateProfilPicture,
+  verifyUser,
 }
