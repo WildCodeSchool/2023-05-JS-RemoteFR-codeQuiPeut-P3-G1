@@ -140,6 +140,7 @@ CREATE TABLE `games` (
   `role_playing_game_id` int NOT NULL,
   `gm_profiles_id` int NOT NULL,
   `schedule` datetime NOT NULL,
+  `location` varchar(255) DEFAULT NULL,
   `max_players_capacity` tinyint DEFAULT NULL,
   `description` text,
   `type` varchar(255) DEFAULT NULL,
@@ -161,7 +162,7 @@ CREATE TABLE `games` (
 
 LOCK TABLES `games` WRITE;
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
-INSERT INTO `games` VALUES (3,1,1,'2023-08-14 09:00:00',8,'super table','horror','game1','Paris',1,0),(56,2,1,'2023-08-26 16:00:00',8,'c\'est la game 2','investigation','game2','Marseille',0,1),(57,2,1,'2023-05-12 10:00:00',8,'bonjour','adventure','game3','Lyon',0,0);
+INSERT INTO `games` VALUES (3,1,1,'2023-08-14 09:00:00','paris',8,'super table','horror','game1','Paris',1,0),(56,2,1,'2023-08-26 16:00:00','tours',8,'c\'est la game 2','investigation','game2','Marseille',0,1),(57,2,1,'2023-05-12 10:00:00','paris',8,'bonjour','adventure','game3','Lyon',0,0);
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -571,4 +572,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-28 10:49:51
+-- Dump completed on 2023-08-28 10:21:48
