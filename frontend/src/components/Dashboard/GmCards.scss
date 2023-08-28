@@ -30,6 +30,10 @@
       justify-content: flex-end;
       align-items: center;
       width: 100%;
+
+      .close-modale {
+        height: 50px;
+      }
     }
 
     .GmCards-header {
@@ -80,11 +84,11 @@
     }
     .GM-calendar-location {
       display: flex;
-      border: 1px solid purple;
+      width: 70%;
+      border: 3px solid purple;
       .game-logo-container {
         display: flex;
-        width: 100%;
-        border: 1px solid red;
+
         .date-to,
         .city {
           display: flex;
@@ -109,6 +113,23 @@
     .location-container {
       display: flex;
       flex-direction: column;
+    }
+
+    .Participants {
+      display: flex;
+      flex-direction: column;
+      border: 3px solid blue;
+      width: 70%;
+      .participant-nb-container {
+        display: flex;
+        justify-content: center;
+        border: 3px solid green;
+      }
+      .participants-pictures {
+        display: flex;
+        justify-content: center;
+        border: 3px solid purple;
+      }
     }
   }
 }
