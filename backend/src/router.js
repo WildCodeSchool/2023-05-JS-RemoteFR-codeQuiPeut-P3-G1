@@ -1,4 +1,7 @@
 const express = require("express")
+const multer = require("multer")
+
+const upload = multer({ dest: "public/assets/tmp" })
 
 const router = express.Router()
 
@@ -16,16 +19,14 @@ const FriendRequestControllers = require("./controllers/FriendRequestControllers
 const UsersFiltersControllers = require("./controllers/UsersFiltersControllers")
 const RolePlayingGamesControllers = require("./controllers/RolePlayingGamesController")
 const PrivateMessagesControllers = require("./controllers/PrivateMessagesControllers")
+const UploadController = require("./controllers/UploadController")
 
 router.get("/users", UsersControllers.browse)
 router.get("/users/:id", UsersControllers.read)
 router.put("/users/:id", UsersControllers.edit)
 router.post("/users", UsersControllers.add)
 router.delete("/users/:id", UsersControllers.destroy)
-router.put(
-  "/users/:id/updateProfilePicture",
-  UsersControllers.updateProfilPicture
-)
+router.post("/upload", upload.single("myFile"), UploadController.upload)
 
 router.get("/games", GamesControllers.browse)
 router.get("/games/:id", GamesControllers.read)

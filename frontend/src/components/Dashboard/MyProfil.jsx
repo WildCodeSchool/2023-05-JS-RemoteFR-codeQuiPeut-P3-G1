@@ -64,6 +64,7 @@ const MyProfil = () => {
                 <img
                   src={imageUrl}
                   alt="userPicture"
+                  name="userPicture"
                   className="userPicture"
                   id="profilPictureForm"
                 />

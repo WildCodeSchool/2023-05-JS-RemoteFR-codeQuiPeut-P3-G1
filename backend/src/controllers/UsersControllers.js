@@ -82,27 +82,10 @@ const destroy = (req, res) => {
     })
 }
 
-const updateProfilPicture = async (req, res) => {
-  const users = req.body
-
-  // TODO validations (length, format...)
-
-  users.id = parseInt(req.params.id, 10)
-
-  models.users
-    .update(users)
-    .then(([result]) => {
-      if (result.affectedRows === 0) {
-        res.sendStatus(404)
-      } else {
-        res.sendStatus(204)
-      }
-    })
-    .catch((err) => {
-      console.error(err)
-      res.sendStatus(500)
-    })
-}
+// const updateProfilPicture = (req, res) => {
+//  console.log(res.file)
+//  res.send("Upload in progress")
+// }
 
 module.exports = {
   browse,
@@ -110,5 +93,5 @@ module.exports = {
   edit,
   add,
   destroy,
-  updateProfilPicture,
+  // updateProfilPicture,
 }
