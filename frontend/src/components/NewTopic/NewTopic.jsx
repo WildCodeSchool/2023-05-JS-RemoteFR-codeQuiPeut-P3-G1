@@ -51,8 +51,6 @@
 import React, { useState } from "react"
 import axios from "axios"
 
-import "./NewTopic.scss" // Assure-toi d'importer les styles CSS ici
-
 export default function NewTopic({ onClose }) {
   const handleCreateTopic = () => {
     axios

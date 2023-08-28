@@ -1,7 +1,9 @@
-import "./CreateGame.scss"
 import axios from "axios"
 import React, { useEffect, useState } from "react"
+
 import NavBar from "../components/NavBar/Navbar"
+
+import createGameDice from "../assets/icon-create-game/dice.png"
 
 export default function CreateGame() {
   const [rpgs, setRpgs] = useState([])
@@ -44,53 +46,58 @@ export default function CreateGame() {
   return (
     <main id="createGameGlobal">
       <NavBar />
-      <p style={{ color: "white" }}>je suis dans la page creategame</p>
-      <form id="createGameForm" onSubmit={handleCreateUser}>
-        <select
-          type="select"
-          onChange={(event) => setRpgID(event.target.value)}
-          id="createGameSelecter"
-        >
-          <option value="">Sélectionnez le jeu de votre choix</option>
-          {rpgs.map((rpg) => (
-            <option key={rpg.id} value={rpg.id}>
-              {rpg.name}
-            </option>
-          ))}
-        </select>
-        <div id="createGameInputs">
-          {/* <input
+      <div id="contentCreateGame">
+        <div id="createGameTitle">
+          <img src={createGameDice} />
+          <h1>DASHBOARD</h1>
+        </div>
+        <form id="createGameForm" onSubmit={handleCreateUser}>
+          <select
+            type="select"
+            onChange={(event) => setRpgID(event.target.value)}
+            id="createGameSelecter"
+          >
+            <option value="">Sélectionnez le jeu de votre choix</option>
+            {rpgs.map((rpg) => (
+              <option key={rpg.id} value={rpg.id}>
+                {rpg.name}
+              </option>
+            ))}
+          </select>
+          <div id="createGameInputs">
+            {/* <input
               type="text"
               placeholder="id du RPG"
               onChange={(e) => setRpgID(e.target.value)}
             /> */}
-          <input
-            type="text"
-            placeholder="id du GM"
-            onChange={(e) => setGm(e.target.value)}
-          />
-          <input
-            type="datetime-local"
-            onChange={(e) => setDate(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="ville"
-            onChange={(e) => setPlace(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="Capacité max"
-            onChange={(e) => setPlayersCapacity(e.target.value)}
-          />
-          <input
-            type="text"
-            placeholder="description"
-            onChange={(e) => setDesc(e.target.value)}
-          />
-          <button type="submit">Créer ma partie</button>
-        </div>
-      </form>
+            <input
+              type="text"
+              placeholder="id du GM"
+              onChange={(e) => setGm(e.target.value)}
+            />
+            <input
+              type="datetime-local"
+              onChange={(e) => setDate(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="ville"
+              onChange={(e) => setPlace(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Capacité max"
+              onChange={(e) => setPlayersCapacity(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="description"
+              onChange={(e) => setDesc(e.target.value)}
+            />
+            <button type="submit">Créer ma partie</button>
+          </div>
+        </form>
+      </div>
     </main>
   )
 }

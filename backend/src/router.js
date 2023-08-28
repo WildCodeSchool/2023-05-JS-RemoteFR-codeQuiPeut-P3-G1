@@ -22,6 +22,10 @@ router.get("/users/:id", UsersControllers.read)
 router.put("/users/:id", UsersControllers.edit)
 router.post("/users", UsersControllers.add)
 router.delete("/users/:id", UsersControllers.destroy)
+router.put(
+  "/users/:id/updateProfilePicture",
+  UsersControllers.updateProfilPicture
+)
 
 router.get("/games", GamesControllers.browse)
 router.get("/games/:id", GamesControllers.read)

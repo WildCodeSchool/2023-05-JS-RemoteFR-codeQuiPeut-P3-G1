@@ -1,22 +1,74 @@
-import "./SignIn.scss"
+import { useState, useContext, useEffect } from "react"
+import AuthContext from "../../AuthContext/AuthContext"
+import { Link } from "react-router-dom"
 
 function SignIn() {
+  const { users, setUser, user } = useContext(AuthContext)
+
+  const [username, setUsername] = useState("")
+  const [password, setPassword] = useState("")
+
+  const handleConnect = (event) => {
+    event.preventDefault()
+
+    const utilisateur = users.find((u) => u.username === username)
+    if (!utilisateur) {
+      alert("Mauvais pseudo")
+      setUsername("")
+      setPassword("")
+    } else if (utilisateur.password !== password) {
+      alert("Mauvais mot de passe")
+      setPassword("")
+    } else {
+      setUser(utilisateur)
+    }
+  }
+
+  const handleDisconnect = () => {
+    setUser(null)
+  }
+
+  // Affiche le user quand il change
+  useEffect(() => {
+    console.info(user)
+  }, [user])
+
   return (
     <div className="cardLogIn-container">
       <span id="title-card-logIn">LOGIN</span>
       <div>
         <div className="cardLogIn-Input">
           <span>Username</span>
-          <input type="text" />
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
           <span>Password</span>
-          <input id="input-password-LogIn" type="password" />
+          <input
+            id="input-password-LogIn"
+            value={password}
+            type="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <div className="forgot-Input">
             <span>Forgot Password ?</span>
           </div>
+          <Link to="/privatemessages">
+            <button type="button">Messages</button>
+          </Link>
+          <Link to="/home">
+            <button type="home">home</button>
+          </Link>
         </div>
         <div className="button-SignIn-Container">
           <div className="button-SignIn">
-            <button type="button">Sign In</button>
+            <button type="button" onClick={handleConnect}>
+              Sign In
+            </button>
+            <button className="buttonLogout" onClick={handleDisconnect}>
+              Logout
+            </button>
           </div>
         </div>
       </div>

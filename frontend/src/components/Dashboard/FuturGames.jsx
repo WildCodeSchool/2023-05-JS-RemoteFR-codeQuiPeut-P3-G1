@@ -1,7 +1,6 @@
-import "./FuturGames.scss"
 // import axios from "axios"
 // import React, { useEffect, useState } from "react"
-
+import { Link } from "react-router-dom"
 import Search from "../../assets/icon-dashboard/Search.png"
 import Dice from "../../assets/icon-dashboard/Dice.png"
 import Add from "../../assets/icon-dashboard/Add.png"
@@ -9,7 +8,8 @@ import Add from "../../assets/icon-dashboard/Add.png"
 export default function futurGames() {
   // const [games, setGames] = useState([])
   // useEffect(() => {
-  //   axios.get("http://localhost:4242/games").then((res) => setGames(res.data))
+  //   axios.get("http://localhost:4242/games")
+  //   .then((res) => setGames(res.data))
   //   console.info(games)
   // }, [])
 
@@ -21,17 +21,27 @@ export default function futurGames() {
         <div className="contentWindow">
           <div className="divButtonsss">
             <div className="logoContentFG">
-              <img id="logoAdd" src={Add} alt="logo of a cross" />
-              <img id="logoSearch" src={Search} alt="logo of a magnifier" />
+              <Link to="/create-game">
+                <button type="button" className="sideButton">
+                  <img id="logoAdd" src={Add} alt="logo of a cross" />
+                </button>
+              </Link>
+              <Link to="/UpcomingTable">
+                <button type="button" className="sideButton">
+                  <img id="logoSearch" src={Search} alt="logo of a magnifier" />
+                </button>
+              </Link>
             </div>
           </div>
           <p>
             You are not registered for any games yet Check the list of upcoming
             games or click on bouton find your party
           </p>
-          <button id="partyFinder" type="button">
-            FIND YOUR PARTY
-          </button>
+          <Link to="/UpcomingTable">
+            <button id="partyFinder" type="button">
+              FIND YOUR PARTY
+            </button>
+          </Link>
         </div>
       </div>
     </div>

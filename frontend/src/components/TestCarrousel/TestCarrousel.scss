@@ -1,5 +1,3 @@
-@import "../../Variable.scss";
-
 .carrousel-container {
   width: 100%;
   height: 100%;
@@ -12,12 +10,13 @@
   background: #180b23;
   position: relative;
   z-index: 2;
+  margin-bottom: 76px;
 
   .title-carrousel {
     width: 90%;
     color: #fff;
     font-family: $content-font;
-    font-size: 76px;
+    font-size: 5vw;
     font-style: italic;
     font-weight: 400;
     line-height: normal;
@@ -36,8 +35,9 @@
   .carrousel-item {
     display: flex;
     position: relative;
-    width: 345.269px;
-    height: 221px;
+    width: 15%;
+    // width: 345.269px;
+    // height: 221px;
     padding: 20px;
     box-sizing: border-box;
     text-align: center;
@@ -84,7 +84,7 @@
         height: auto;
         span {
           color: #a4945e;
-          font-size: 29px;
+          font-size: 1.91vw;
           font-style: normal;
           font-weight: 700;
           line-height: normal;
@@ -103,7 +103,7 @@
     p {
       color: #fff;
       text-align: justify;
-      font-size: 15px;
+      font-size: 1vw;
       font-style: normal;
       font-family: $ponctual-font;
       font-weight: 400;
