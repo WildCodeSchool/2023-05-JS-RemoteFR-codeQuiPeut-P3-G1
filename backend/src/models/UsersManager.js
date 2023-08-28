@@ -19,10 +19,10 @@ class UsersManager extends AbstractManager {
     )
   }
 
-  updateProfilPicture(users) {
+  updateProfilPicture(users, profilpicturePath) {
     return this.database.query(
-      `update ${this.table} set profil_picture = ? where id = ?`,
-      [users.profil_picture, users.id]
+      `UPDATE ${this.table} SET profil_picture = ? WHERE id = ?`,
+      [profilpicturePath, users.id]
     )
   }
 

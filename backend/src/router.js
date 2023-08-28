@@ -19,14 +19,18 @@ const FriendRequestControllers = require("./controllers/FriendRequestControllers
 const UsersFiltersControllers = require("./controllers/UsersFiltersControllers")
 const RolePlayingGamesControllers = require("./controllers/RolePlayingGamesController")
 const PrivateMessagesControllers = require("./controllers/PrivateMessagesControllers")
-const UploadController = require("./controllers/UploadController")
 
 router.get("/users", UsersControllers.browse)
 router.get("/users/:id", UsersControllers.read)
 router.put("/users/:id", UsersControllers.edit)
 router.post("/users", UsersControllers.add)
 router.delete("/users/:id", UsersControllers.destroy)
-router.post("/upload", upload.single("myFile"), UploadController.upload)
+
+router.put(
+  "/users/:id/upload",
+  upload.single("myFile"),
+  UsersControllers.uploadProfilPicture
+)
 
 router.get("/games", GamesControllers.browse)
 router.get("/games/:id", GamesControllers.read)
