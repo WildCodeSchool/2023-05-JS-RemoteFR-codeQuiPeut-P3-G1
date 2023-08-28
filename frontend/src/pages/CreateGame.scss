@@ -54,81 +54,93 @@
       color: $third-font-color;
     }
   }
-  #createGameFirstGroup {
-    width: 25%;
+  #createGameColumns {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-    label {
+    gap: 12%;
+    #createGameFirstGroup,
+    #createGameSecondGroup,
+    #createGameThirdGroup {
+      width: 25%;
       display: flex;
       flex-direction: column;
-      p {
-        margin: 0 0 10px 0;
+      gap: 20px;
+      label {
+        display: flex;
+        flex-direction: column;
+        p {
+          margin: 0 0 10px 0;
+        }
       }
-    }
-    #createGameSwitchGlobal {
-      display: flex;
-      gap: 10px;
-      border: 1px solid #a4945e;
-      border-radius: 6px;
-      height: 66px;
-      justify-content: center;
-      align-items: center;
-      /* The switch - the box around the slider */
-      #createGameSwitch {
-        position: relative;
-        display: inline-block;
-        width: 50px;
-        height: 20px;
+      textarea {
+        width: 100%;
+        min-width: 100%;
+        max-width: 100%;
+        height: 264px;
       }
-
-      /* Hide default HTML checkbox */
-      #createGameSwitch input {
-        opacity: 0;
-        width: 0;
-        height: 0;
-      }
-
-      /* The slider */
-      .slider {
-        position: absolute;
-        cursor: pointer;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+      #createGameSwitchGlobal {
+        display: flex;
+        gap: 10px;
         border: 1px solid #a4945e;
-        -webkit-transition: 0.4s;
-        transition: 0.4s;
-      }
+        border-radius: 6px;
+        height: 66px;
+        justify-content: center;
+        align-items: center;
+        /* The switch - the box around the slider */
+        #createGameSwitch {
+          position: relative;
+          display: inline-block;
+          width: 50px;
+          height: 20px;
+        }
 
-      .slider:before {
-        position: absolute;
-        content: "";
-        height: 18px;
-        width: 18px;
-        // left: 4px;
-        // bottom: 4px;
-        background: linear-gradient(#a4945e, #e2d07c);
-        -webkit-transition: 0.4s;
-        transition: 0.4s;
-      }
+        /* Hide default HTML checkbox */
+        #createGameSwitch input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+        }
 
-      input:checked + .slider:before {
-        -webkit-transform: translateX(30px);
-        -ms-transform: translateX(30px);
-        transform: translateX(30px);
-      }
+        /* The slider */
+        .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border: 1px solid #a4945e;
+          -webkit-transition: 0.4s;
+          transition: 0.4s;
+        }
 
-      /* Rounded sliders */
-      .slider.round {
-        border-radius: 20px;
-      }
+        .slider:before {
+          position: absolute;
+          content: "";
+          height: 18px;
+          width: 18px;
+          // left: 4px;
+          // bottom: 4px;
+          background: linear-gradient(#a4945e, #e2d07c);
+          -webkit-transition: 0.4s;
+          transition: 0.4s;
+        }
 
-      .slider.round:before {
-        border-radius: 50%;
+        input:checked + .slider:before {
+          -webkit-transform: translateX(30px);
+          -ms-transform: translateX(30px);
+          transform: translateX(30px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+          border-radius: 20px;
+        }
+
+        .slider.round:before {
+          border-radius: 50%;
+        }
+        /* End of the switch - the box around the slider */
       }
-      /* End of the switch - the box around the slider */
     }
   }
 }
