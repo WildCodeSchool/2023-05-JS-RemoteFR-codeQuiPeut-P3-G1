@@ -141,14 +141,19 @@ CREATE TABLE `games` (
   `gm_profiles_id` int NOT NULL,
   `schedule` datetime NOT NULL,
   `location` varchar(255) DEFAULT NULL,
-  `max_players_capacity` int DEFAULT NULL,
+  `max_players_capacity` tinyint DEFAULT NULL,
   `description` text,
+  `type` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `is_remote` tinyint NOT NULL DEFAULT '0',
+  `is_campaign` tinyint NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `ID_role_playing_game` (`role_playing_game_id`),
   KEY `ID_GM` (`gm_profiles_id`),
   CONSTRAINT `parties_ibfk_1` FOREIGN KEY (`role_playing_game_id`) REFERENCES `role_playing_games` (`id`),
   CONSTRAINT `parties_ibfk_2` FOREIGN KEY (`gm_profiles_id`) REFERENCES `gm_profiles` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,7 +162,7 @@ CREATE TABLE `games` (
 
 LOCK TABLES `games` WRITE;
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
-INSERT INTO `games` VALUES (3,1,1,'2023-08-14 09:00:00','paris',8,'super table'),(56,2,1,'2023-08-26 16:00:00','tours',8,'c\'est la game 2');
+INSERT INTO `games` VALUES (3,1,1,'2023-08-14 09:00:00','paris',8,'super table','horror','game1','Paris',1,0),(56,2,1,'2023-08-26 16:00:00','tours',8,'c\'est la game 2','investigation','game2','Marseille',0,1),(57,2,1,'2023-05-12 10:00:00','paris',8,'bonjour','adventure','game3','Lyon',0,0);
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -327,14 +332,14 @@ CREATE TABLE `private_messages` (
   `users_id_sender` int NOT NULL,
   `users_id_recipient` int NOT NULL,
   `content` text NOT NULL,
-  `date` timestamp NOT NULL,
-  `read` tinyint(1) NOT NULL DEFAULT '0',
+  `date` datetime NOT NULL,
+  `seen` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `ID_sender` (`users_id_sender`),
   KEY `ID_recipient` (`users_id_recipient`),
   CONSTRAINT `private_messages_ibfk_1` FOREIGN KEY (`users_id_sender`) REFERENCES `users` (`id`),
   CONSTRAINT `private_messages_ibfk_2` FOREIGN KEY (`users_id_recipient`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -343,7 +348,7 @@ CREATE TABLE `private_messages` (
 
 LOCK TABLES `private_messages` WRITE;
 /*!40000 ALTER TABLE `private_messages` DISABLE KEYS */;
-INSERT INTO `private_messages` VALUES (1,1,2,'coucou ça va','2023-08-16 10:00:00',1),(2,2,1,'ça va et toi ?','2023-08-16 10:01:00',1);
+INSERT INTO `private_messages` VALUES (1,1,2,'coucou ça va','2023-08-16 12:00:00',1),(2,2,1,'ça va et toi ?','2023-08-16 12:01:00',1),(3,1,2,'très bien merci','2023-08-22 11:06:09',0);
 /*!40000 ALTER TABLE `private_messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -359,6 +364,7 @@ CREATE TABLE `role_playing_games` (
   `name` varchar(255) NOT NULL,
   `description` text,
   `gm_profiles_id` int DEFAULT NULL,
+  `rpg_icon` varchar(255) NOT NULL DEFAULT 'url_icon',
   PRIMARY KEY (`id`),
   KEY `Current_GM` (`gm_profiles_id`),
   CONSTRAINT `role_playing_games_ibfk_1` FOREIGN KEY (`gm_profiles_id`) REFERENCES `gm_profiles` (`id`)
@@ -371,7 +377,7 @@ CREATE TABLE `role_playing_games` (
 
 LOCK TABLES `role_playing_games` WRITE;
 /*!40000 ALTER TABLE `role_playing_games` DISABLE KEYS */;
-INSERT INTO `role_playing_games` VALUES (1,'dungeons & dragons','best game',1),(2,'call of cthulhu','2nd game',1);
+INSERT INTO `role_playing_games` VALUES (1,'dungeons & dragons','best game',1,'url_icon'),(2,'call of cthulhu','2nd game',1,'url_icon');
 /*!40000 ALTER TABLE `role_playing_games` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -400,7 +406,7 @@ CREATE TABLE `testimonials` (
 
 LOCK TABLES `testimonials` WRITE;
 /*!40000 ALTER TABLE `testimonials` DISABLE KEYS */;
-INSERT INTO `testimonials` VALUES (1,1,'Julien','Je mange un chien','2023-08-16 10:00:00'),(2,2,'Hector','Je vous salue','2023-08-16 10:05:00'),(3,2,'Micheline','Dieu vous aimes','2023-08-17 10:05:00');
+INSERT INTO `testimonials` VALUES (1,1,'je vous aime','je vous aime vraiment','2023-08-16 10:00:00'),(2,2,'coucou les enfants','je vous salue','2023-08-16 10:05:00');
 /*!40000 ALTER TABLE `testimonials` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -478,10 +484,13 @@ CREATE TABLE `users` (
   `email_adress` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `other_information` text,
-  `is_gamemaster` tinyint NOT NULL DEFAULT '0',
+  `is_gamemaster` enum('playerOnly','gmOnly','both') NOT NULL DEFAULT 'playerOnly',
   `availability_schedule` text,
-  `description` text,
+  `description_as_player` text,
   `registration_date` timestamp NOT NULL,
+  `location` varchar(255) DEFAULT NULL,
+  `profil_picture` varchar(255) DEFAULT NULL,
+  `description_as_gm` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -492,7 +501,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'fredgreg','fred@greg.com','azerty','i\'m cool',1,'2023-08-14 09:00:00','je suis là','2022-08-16 10:00:00'),(2,'romainniort','romain@niort.com','aqwxsz','coucou les gens',1,'2023-08-14 09:00:00','i\'m here','2022-08-14 09:00:00');
+INSERT INTO `users` VALUES (1,'fredgreg','fred@greg.com','azerty','i\'m cool','playerOnly','2023-08-14 09:00:00','je suis là','2022-08-16 10:00:00','Paris','https://static.vecteezy.com/ti/vecteur-libre/p1/5544770-profil-icone-design-vecteur-gratuit-vectoriel.jpg','je suis gm'),(2,'romainniort','romain@niort.com','aqwxsz','coucou les gens','both','2023-08-14 09:00:00','i\'m here','2022-08-14 09:00:00','Nantes',NULL,'je suis plus gm que l\'autre');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -563,5 +572,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-21 17:25:46
-
+-- Dump completed on 2023-08-28 10:21:48
