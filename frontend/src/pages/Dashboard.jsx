@@ -6,6 +6,7 @@ import Notepad from "../assets/icon-dashboard/Notepad.png"
 
 import MyProfil from "../components/Dashboard/MyProfil"
 import FuturGames from "../components/Dashboard/FuturGames"
+import GmCards from "../components/Dashboard/GmCards"
 
 const Dashboard = () => {
   return (
@@ -26,6 +27,7 @@ const Dashboard = () => {
           <div className="dashboardComponents">
             <FuturGames />
             <MyProfil />
+            <GmCards />
           </div>
         </div>
         <NavBar />
