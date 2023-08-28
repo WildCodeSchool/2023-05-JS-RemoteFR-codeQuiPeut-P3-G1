@@ -1,11 +1,31 @@
-import React from "react"
+import React, { useState, useEffect, useRef } from "react" // Added the missing curly braces for importing useState and useEffect
 import gmProfilePic from "../../assets/GmCards-assets/GMProfilePic.png"
 import closeModal from "../../assets/GmCards-assets/closeModal.png"
 import gameLogo from "../../assets/GmCards-assets/gameLogo.png"
-import "./GMcards.scss"
-// import LocationMap from "./LocationMap"
 
 const GmCards = () => {
+  const [showPlayer, setShowPlayer] = useState(false)
+  const PlayerRef = useRef(null)
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (PlayerRef.current && !PlayerRef.current.contains(event.target)) {
+        setShowPlayer(false)
+      }
+    }
+
+    document.addEventListener("click", handleClickOutside)
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside)
+    }
+  }, [])
+
+  const handleButtonClick = (event) => {
+    event.stopPropagation()
+    setShowPlayer(true)
+  }
+
   return (
     <div className="global-GmCards">
       <div className="GmCards-container">
@@ -15,7 +35,7 @@ const GmCards = () => {
         <div className="GmCards-header">
           <img className="profile-picture" src={gmProfilePic} alt="" />
           <div className="GmName-Btn-container">
-            <h1 className="GM-Name"></h1>
+            <h1 className="GM-Name">Abdou - AS GM</h1>
             <button className="Btn-send">SEND A MESSAGE</button>
           </div>
         </div>
@@ -161,14 +181,29 @@ const GmCards = () => {
               alt={name.role_playing_games}
             />
           </div>
+        </div>
 
-          <div className="Participants">
+        <div className="Participants">
+          <div className="participant-nb-container">
             <img className="participant-logo-gold" src="" alt="" />
-            <div className="participant-nb-container">
-              <h3 className="Participants-nb">3/6 participants</h3>
-              <div className="participants-pictures"></div>
-              <div className="Map">{/* <LocationMap /> */}</div>
+            <h3 className="Participants-nb">3/6 participants</h3>
+          </div>
+          <div className="participants-pictures">
+            <img className="profile-picture" src={gmProfilePic} alt="" />
+            <img className="profile-picture" src={gmProfilePic} alt="" />
+            <img className="profile-picture" src={gmProfilePic} alt="" />
+          </div>
+          <div className="Players-Container">
+            <div className="button-Player">
+              <button type="button" onClick={handleButtonClick}>
+                SHOW PLAYER
+              </button>
             </div>
+            {showPlayer && ( // Render PlayerCard when showPlayer is true
+              <div className="player-card" ref={PlayerRef}>
+                {/* <PlayerCard /> */}
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -7,6 +7,7 @@ import Location from "../../assets/icon-dashboard/Location.png"
 import AuthContext from "../AuthContext/AuthContext"
 
 const MyProfil = () => {
+  const [handleGM, setHandleGM] = useState([])
   const { user } = useContext(AuthContext)
 
   // const [userPicture, setUserPicture] = useState(null);
@@ -109,6 +110,7 @@ const MyProfil = () => {
         <div className="bottomProfile">
           <h1>MY GAMES / SEARCH TO PLAY ON</h1>
         </div>
+        <button onClick={handleGM}>SHOW GM</button>
       </div>
     </div>
   )
