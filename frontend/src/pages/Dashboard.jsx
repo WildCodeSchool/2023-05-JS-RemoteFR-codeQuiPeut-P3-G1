@@ -5,6 +5,7 @@ import Notepad from "../assets/icon-dashboard/Notepad.png"
 
 import MyProfil from "../components/Dashboard/MyProfil"
 import FuturGames from "../components/Dashboard/FuturGames"
+import PlayerCards from "../components/Dashboard/PlayerCards"
 import GmCards from "../components/Dashboard/GmCards"
 
 const Dashboard = () => {
@@ -26,6 +27,7 @@ const Dashboard = () => {
           <div className="dashboardComponents">
             <FuturGames />
             <MyProfil />
+            <PlayerCards />
             <GmCards />
           </div>
         </div>
