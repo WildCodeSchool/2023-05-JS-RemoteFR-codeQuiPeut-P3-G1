@@ -8,9 +8,11 @@
   },
   "dependencies": {
     "@splinetool/react-spline": "^2.2.6",
+    "@splinetool/runtime": "^0.9.429",
     "@vitejs/plugin-react": "^3.0.1",
     "axios": "^1.4.0",
     "eslint-config-standard": "^17.1.0",
+    "gsap": "^3.12.2",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
