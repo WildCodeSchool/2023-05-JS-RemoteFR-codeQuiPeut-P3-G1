@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 import "./PlayerCards.scss"
 
 import Arrow from "../../assets/icon-dashboard/arrow.svg"
@@ -8,7 +10,17 @@ import Dungeons from "../../assets/logoGames/d&d.svg"
 import Cthulhu from "../../assets/logoGames/callOfCthulhu.svg"
 import FiveRings from "../../assets/logoGames/fiveRings.svg"
 
-function PlayerCards() {
+function PlayerCards({ isOpen, onClose }) {
+  const [isPlayerOpen, setIsPlayerOpen] = useState(isOpen)
+
+  const handleClose = () => {
+    setIsPlayerOpen(false)
+    onClose()
+  }
+
+  if (!isPlayerOpen) {
+    return null
+  }
   return (
     <div className="PlayerCards_Main_Container">
       <div className="PlayerCards_Inside_FirstElement">
@@ -17,6 +29,7 @@ function PlayerCards() {
             src={Arrow}
             id="PlayerCards_BackButton_Img"
             alt="button_return"
+            onClick={handleClose}
           />
         </button>
         <button className="PlayerCards_CloseButton" type="button">

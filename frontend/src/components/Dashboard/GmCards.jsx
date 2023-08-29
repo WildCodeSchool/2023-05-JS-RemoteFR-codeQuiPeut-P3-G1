@@ -12,90 +12,113 @@ import AuthContext from "../AuthContext/AuthContext"
 
 const GmCards = () => {
   const [gamesData, setGamesData] = useState({})
+  const [isPlayerCardsOpen, setIsPlayerCardsOpen] = useState(false)
   const { user } = useContext(AuthContext)
-
-  const [PlayerCardsVisible, setPlayerCardsVisible] = useState("")
+  const scheduleDate = new Date(gamesData.schedule)
+  const options = {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }
+  const formattedSchedule = scheduleDate.toLocaleDateString("fr-FR", options)
 
   useEffect(() => {
-    // Faites une requête Axios pour récupérer les données de la table "games"
     axios
       .get("http://localhost:4242/games")
       .then((response) => {
-        // Supposons que response.data est un tableau d'objets avec les données des jeux
-        // Vous pouvez accéder à la première ligne en utilisant response.data[0]
         setGamesData(response.data[1])
       })
       .catch((error) => {
-        console.error("Une erreur s'est produite :", error)
+        console.error("An error occurred:", error)
       })
   }, [])
 
+  const handleTogglePlayerCards = () => {
+    setIsPlayerCardsOpen(!isPlayerCardsOpen)
+  }
+
   return (
     <div className="global-GmCards">
-      <div className="GmCards-container">
-        <div className="GmCards-header">
-          <img className="profile-picture" src={gmProfilePic} alt="" />
-          <div className="GmName-Btn-container">
-            <h1 className="GM-Name">{user.username} - AS GM</h1>
+      {!isPlayerCardsOpen && (
+        <div className="GmCards-container">
+          <div className="GmCards-header">
+            <img className="profile-picture" src={gmProfilePic} alt="" />
+            <div className="GmName-Btn-container">
+              <h1 className="GM-Name">{user.username} - AS GM</h1>
 
-            <button className="Btn-send">SEND A MESSAGE</button>
+              <button className="Btn-send">SEND A MESSAGE</button>
+            </div>
+            <div className="close-container">
+              <img className="close-modale" src={closeModal} alt="GM Profile" />
+            </div>
           </div>
-          <div className="close-container">
-            <img className="close-modale" src={closeModal} alt="GM Profile" />
-          </div>
-        </div>
-        <div className="GM-calendar-location">
-          <div className="game-info">
+          <div className="GM-calendar-location">
+            <div className="game-info">
+              <div className="game-logo-container">
+                <img src={Schedule} alt="icon of schedule" />
+                <h3 className="date-to">
+                  TO <span className="date">{formattedSchedule}</span>
+                </h3>
+                <img src={GamesType} alt="icon of the type of games" />
+                <h3 className="game-type">{gamesData.type}</h3>
+              </div>
+
+              <div className="location-container">
+                <img
+                  className="location-icon"
+                  src={Location}
+                  alt="icon of location"
+                />
+                <h3 className="location-city">
+                  IN <span className="city">{gamesData.city}</span>
+                </h3>
+              </div>
+            </div>
             <div className="game-logo-container">
-              <img src={Schedule} alt="icon of schedule" />
-              <h3 className="date-to">
-                TO <span className="date">{gamesData.schedule}</span>
-              </h3>
-              <img src={GamesType} alt="icon of the type of games" />
-              <h3 className="game-type">{gamesData.type}</h3>
+              <img className="game-black-logo" src={gameLogo} alt="" />
             </div>
-
-            <div className="location-container">
+          </div>
+          <div className="Participants">
+            <div className="participant-nb-container">
               <img
-                className="location-icon"
-                src={Location}
-                alt="icon of location"
+                className="participant-logo-gold"
+                src={participantsLogo}
+                alt=""
               />
-              <h3 className="location-city">
-                IN <span className="city">{gamesData.city}</span>
+              <h3 className="Participants-nb">
+                3/{gamesData.max_players_capacity} participants
               </h3>
             </div>
+            <div className="participants-pictures">
+              <img
+                className="player-profile-picture"
+                src={gmProfilePic}
+                alt=""
+              />
+              <img
+                className="player-profile-picture"
+                src={gmProfilePic}
+                alt=""
+              />
+              <img
+                className="player-profile-picture"
+                src={gmProfilePic}
+                alt=""
+              />
+            </div>
           </div>
-          <div className="game-logo-container">
-            <img className="game-black-logo" src={gameLogo} alt="" />
+          <div className="btn-player-container">
+            <button onClick={handleTogglePlayerCards}>SHOW PLAYER</button>
           </div>
         </div>
-        <div className="Participants">
-          <div className="participant-nb-container">
-            <img
-              className="participant-logo-gold"
-              src={participantsLogo}
-              alt=""
-            />
-            <h3 className="Participants-nb">
-              3/{gamesData.max_players_capacity} participants
-            </h3>
-          </div>
-          <div className="participants-pictures">
-            <img className="player-profile-picture" src={gmProfilePic} alt="" />
-            <img className="player-profile-picture" src={gmProfilePic} alt="" />
-            <img className="player-profile-picture" src={gmProfilePic} alt="" />
-          </div>
-        </div>
-        <div className="btn-player-container">
-          {PlayerCardsVisible && <PlayerCards />}
-          <button onClick={() => setPlayerCardsVisible(!PlayerCardsVisible)}>
-            {PlayerCardsVisible ? "CLOSE WINDOW" : "SHOW PLAYER"}
-          </button>
-        </div>
-      </div>
+      )}
+      {isPlayerCardsOpen && (
+        <PlayerCards
+          isOpen={isPlayerCardsOpen}
+          onClose={handleTogglePlayerCards}
+        />
+      )}
     </div>
   )
 }
-
 export default GmCards
