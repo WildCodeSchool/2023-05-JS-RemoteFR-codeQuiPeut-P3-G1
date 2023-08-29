@@ -1,17 +1,15 @@
-// import axios from "axios"
-// import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import Search from "../../assets/icon-dashboard/Search.png"
 import Dice from "../../assets/icon-dashboard/Dice.png"
 import Add from "../../assets/icon-dashboard/Add.png"
+import GmCards from "./GmCards"
 
 export default function futurGames() {
-  // const [games, setGames] = useState([])
-  // useEffect(() => {
-  //   axios.get("http://localhost:4242/games")
-  //   .then((res) => setGames(res.data))
-  //   console.info(games)
-  // }, [])
+  const [isGmCardsOpen, setIsGmCardsOpen] = useState(false)
+  const toggleGmCards = () => {
+    setIsGmCardsOpen(!isGmCardsOpen)
+  }
 
   return (
     <div className="myFutureGames">
@@ -34,8 +32,8 @@ export default function futurGames() {
             </div>
           </div>
           <p>
-            You are not registered for any games yet Check the list of upcoming
-            games or click on bouton find your party
+            You are not registered for any games yet. Check the list of upcoming
+            games or click on the "FIND YOUR PARTY" button.
           </p>
           <Link to="/UpcomingTable">
             <button id="partyFinder" type="button">
@@ -43,24 +41,11 @@ export default function futurGames() {
             </button>
           </Link>
         </div>
+        <button onClick={toggleGmCards}>
+          {isGmCardsOpen ? "Close GmCards" : "Show GmCards"}
+        </button>
+        {isGmCardsOpen && <GmCards onClose={toggleGmCards} />}
       </div>
     </div>
   )
 }
-
-// <div>
-//   {" "}
-//   {games.map((game) => (
-//     <div key={game.id}>
-//       <ul>
-//         <li>{game.role_playing_game_id}</li>
-//         <li>{game.gm_profiles_id}</li>
-//         <li>{game.schedule}</li>
-//         <li>{game.location}</li>
-//         <li>{game.max_players_capacity}</li>
-//         <li>{game.description}</li>
-//         <li>{game.filters_id}</li>
-//       </ul>
-//     </div>
-//   ))}
-// </div>
