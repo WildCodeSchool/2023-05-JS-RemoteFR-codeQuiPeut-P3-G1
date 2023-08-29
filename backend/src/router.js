@@ -20,12 +20,14 @@ const PrivateMessagesControllers = require("./controllers/PrivateMessagesControl
 
 router.post("/login", UsersControllers.verifyUser, verifyPassword)
 router.post("/users", hashPassword, UsersControllers.add)
+router.get("/testimonials", TestimonialsControllers.browse)
+router.get("/testimonials/:id", TestimonialsControllers.read)
 
+router.put("/users/:id", hashPassword, UsersControllers.edit)
 router.use(verifyToken)
 
 router.get("/users", UsersControllers.browse)
 router.get("/users/:id", UsersControllers.read)
-router.put("/users/:id", UsersControllers.edit)
 router.delete("/users/:id", UsersControllers.destroy)
 router.put(
   "/users/:id/updateProfilePicture",
@@ -42,8 +44,6 @@ router.get("/gamesRegistrations/:id", GamesRegistrationsControllers.read)
 router.put("/gamesRegistrations/:id", GamesRegistrationsControllers.edit)
 router.post("/gamesRegistrations", GamesRegistrationsControllers.add)
 
-router.get("/testimonials", TestimonialsControllers.browse)
-router.get("/testimonials/:id", TestimonialsControllers.read)
 router.put("/testimonials/:id", TestimonialsControllers.edit)
 router.post("/testimonials", TestimonialsControllers.add)
 router.delete("/testimonials/:id", TestimonialsControllers.destroy)

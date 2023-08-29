@@ -82,9 +82,7 @@ function SignUp() {
             <button
               type="button"
               onClick={
-                signUpPassword === signUpVerifyPassword
-                  ? handleCreateUser
-                  : null
+                signUpPassword === signUpVerifyPassword ? handleCreateUser : ""
               }
             >
               VALIDATE

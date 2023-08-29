@@ -21,7 +21,7 @@ function SignIn() {
           console.info("Connexion établie !")
           document.getElementById("cardLogIn-Input").reset()
           const token = res.data.token
-          Cookies.set("authToken", token, { expires: 0.5 })
+          Cookies.set("authToken", token, { expires: 0.5, sameSite: "strict" })
           Cookies.set("loggedInUser", JSON.stringify(res.data.user))
           Cookies.set("idUser", JSON.stringify(res.data.user.id))
           setSignInUsername()

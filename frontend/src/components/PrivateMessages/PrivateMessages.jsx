@@ -2,13 +2,20 @@ import { useState, useEffect, useContext } from "react"
 import axios from "axios"
 import FlecheRetour from "../../assets/logo/Arrow 4.svg"
 import AuthContext from "../AuthContext/AuthContext"
+import Cookies from "js-cookie"
 
 export default function PrivateMessages() {
   const [importMessages, setImportMessages] = useState([])
   const [sender, setSender] = useState("")
   const [recipient, setRecipient] = useState("")
   const [content, setContent] = useState("")
-  const { user, headers } = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
+
+  const tokenFromCookie = Cookies.get("authToken")
+
+  const headers = {
+    Authorization: `Bearer ${tokenFromCookie}`,
+  }
 
   const privateMessagesDiv = document.getElementById("messageBulleDiv")
 
