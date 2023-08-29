@@ -24,3 +24,73 @@ body {
   width: 100%;
   justify-content: flex-end;
 }
+
+.AppContainer {
+  width: 100vw;
+  height: 100vh;
+  color: #000000;
+  position: relative;
+
+  .Loading {
+    height: 100%;
+    width: 100%;
+    background-color: #121212;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+
+    .follow {
+      position: absolute;
+      background-color: burlywood;
+      height: 2px;
+      width: 0;
+      left: 0;
+      z-index: 2;
+    }
+
+    .ProgressBar {
+      position: absolute;
+      left: 0;
+      background-color: #fff;
+      height: 2px;
+      width: 0;
+      transition: 0.4s ease-out;
+    }
+
+    .Count {
+      position: absolute;
+      font-size: 130px;
+      color: #fff;
+      transform: translateY(-15px);
+      font-weight: 500;
+    }
+  }
+
+  // .Content {
+  //   height: 100%;
+  //   width: 0;
+  //   position: absolute;
+  //   left: 0;
+  //   top: 0;
+  //   background-color: #121212;
+  //   padding: auto;
+
+  //   z-index: 2;
+  //   display: flex;
+  //   align-items: center;
+  //   justify-content: center;
+  //   flex-direction: column;
+  //   // overflow: hidden;
+  //   color: #fff;
+
+  .title-lines {
+    text-align: center;
+    font-size: 104px;
+    opacity: 0;
+    display: none;
+    font-weight: 500;
+    margin: 0;
+  }
+}
