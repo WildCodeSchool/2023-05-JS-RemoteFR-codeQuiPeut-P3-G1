@@ -7,7 +7,10 @@ import React, { useContext } from "react"
 // import Location from "../../assets/icon-dashboard/Location.png"
 import AuthContext from "../AuthContext/AuthContext"
 
+// import GmCards from "./GmCards"
+
 const MyProfil = () => {
+  // const [gmCardsVisible, setGmCardsVisible] = useState(true)
   const { user } = useContext(AuthContext)
   // // console.info(user)
   // // const [userPicture, setUserPicture] = useState(null);
@@ -118,6 +121,10 @@ const MyProfil = () => {
             <h1>MY GAMES / SEARCH TO PLAY ON</h1>
           </div>
         </div>
+        {gmCardsVisible && <GmCards />}
+        <button onClick={() => setGmCardsVisible(!gmCardsVisible)}>
+          {gmCardsVisible ? "Fermer GmCards" : "Afficher GmCards"}
+        </button>
       </div> */}
     </>
   )

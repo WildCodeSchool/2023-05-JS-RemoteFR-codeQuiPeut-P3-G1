@@ -1,3 +1,6 @@
+import { useState, useEffect } from "react"
+import axios from "axios"
+
 import "./PlayerCards.scss"
 
 import Arrow from "../../assets/icon-dashboard/arrow.svg"
@@ -8,7 +11,36 @@ import Dungeons from "../../assets/logoGames/d&d.svg"
 import Cthulhu from "../../assets/logoGames/callOfCthulhu.svg"
 import FiveRings from "../../assets/logoGames/fiveRings.svg"
 
-function PlayerCards() {
+function PlayerCards({ isOpen, onClose }) {
+  const [isPlayerOpen, setIsPlayerOpen] = useState(isOpen)
+  const [gamesData, setGamesData] = useState({})
+  const scheduleDate = new Date(gamesData.schedule)
+  const options = {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }
+  const formattedSchedule = scheduleDate.toLocaleDateString("fr-FR", options)
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:4242/games")
+      .then((response) => {
+        setGamesData(response.data[1])
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error)
+      })
+  }, [])
+
+  const handleClose = () => {
+    setIsPlayerOpen(false)
+    onClose()
+  }
+
+  if (!isPlayerOpen) {
+    return null
+  }
   return (
     <div className="PlayerCards_Main_Container">
       <div className="PlayerCards_Inside_FirstElement">
@@ -17,6 +49,7 @@ function PlayerCards() {
             src={Arrow}
             id="PlayerCards_BackButton_Img"
             alt="button_return"
+            onClick={handleClose}
           />
         </button>
         <button className="PlayerCards_CloseButton" type="button">
@@ -44,7 +77,7 @@ function PlayerCards() {
       </div>
       <div className="PlayerCards_Inside_ThirdElement">
         <img src={Schedule} alt="icon of schedule" />
-        <span>Play with her :</span>
+        <span>Play with her : {formattedSchedule}</span>
       </div>
       <div className="PlayerCards_Inside_FourthElement">
         <div className="PlayerCards_Inside_FourthElement_Content">
