@@ -12,7 +12,9 @@ const MyProfil = () => {
 
   // const [userPicture, setUserPicture] = useState(null);
   const [imageUrl, setImageUrl] = useState(
-    user.profil_picture !== null ? user.profil_picture : null
+    user.profil_picture !== null
+      ? `${import.meta.env.VITE_BACKEND_URL}/${user.profil_picture}`
+      : null
   )
 
   const longDate = user.registration_date
@@ -90,7 +92,6 @@ const MyProfil = () => {
               accept="image/*"
               onChange={(e) => {
                 handlePictureChange(e)
-                updateProfilPictureOnServer(user.id, imageUrl)
               }}
               style={{ display: "none" }}
             />

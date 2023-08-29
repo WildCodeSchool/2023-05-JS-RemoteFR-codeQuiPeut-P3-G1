@@ -96,7 +96,7 @@ const uploadProfilPicture = (req, res) => {
   models.users
     .updateProfilPicture(
       users,
-      `public/assets/images/profilPictures/${req.file.originalname}`
+      `assets/images/profilPictures/${req.file.originalname}`
     )
     .then(([result]) => {
       if (result.affectedRows === 0) {
