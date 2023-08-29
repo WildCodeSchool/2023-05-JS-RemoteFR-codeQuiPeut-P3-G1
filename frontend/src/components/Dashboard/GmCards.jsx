@@ -10,7 +10,7 @@ import participantsLogo from "../../assets/GmCards-assets/participantsLogo.svg"
 import PlayerCards from "./PlayerCards"
 import AuthContext from "../AuthContext/AuthContext"
 
-const GmCards = () => {
+const GmCards = ({ onClose }) => {
   const [gamesData, setGamesData] = useState({})
   const [isPlayerCardsOpen, setIsPlayerCardsOpen] = useState(false)
   const { user } = useContext(AuthContext)
@@ -49,7 +49,12 @@ const GmCards = () => {
               <button className="Btn-send">SEND A MESSAGE</button>
             </div>
             <div className="close-container">
-              <img className="close-modale" src={closeModal} alt="GM Profile" />
+              <img
+                className="close-modale"
+                onClick={onClose}
+                src={closeModal}
+                alt="GM Profile"
+              />
             </div>
           </div>
           <div className="GM-calendar-location">
