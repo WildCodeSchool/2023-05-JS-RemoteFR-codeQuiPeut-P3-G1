@@ -9,7 +9,11 @@ import AuthContext from "../AuthContext/AuthContext"
 import GmCards from "./GmCards"
 
 const MyProfil = () => {
-  const [gmCardsVisible, setGmCardsVisible] = useState(true)
+  const [isGmCardsOpen, setIsGmCardsOpen] = useState(false)
+  const toggleGmCards = () => {
+    setIsGmCardsOpen(!isGmCardsOpen)
+  }
+
   const { user } = useContext(AuthContext)
 
   // const [userPicture, setUserPicture] = useState(null);
@@ -112,11 +116,14 @@ const MyProfil = () => {
         <div className="bottomProfile">
           <h1>MY GAMES / SEARCH TO PLAY ON</h1>
         </div>
+        <button onClick={toggleGmCards}>
+          {isGmCardsOpen ? "Close GmCards" : "Show GmCards"}
+        </button>
       </div>
-      {gmCardsVisible && <GmCards />}
-      <button onClick={() => setGmCardsVisible(!gmCardsVisible)}>
-        {gmCardsVisible ? "Fermer GmCards" : "Afficher GmCards"}
+      <button onClick={toggleGmCards}>
+        {isGmCardsOpen ? "Close GmCards" : "Show GmCards"}
       </button>
+      {isGmCardsOpen && <GmCards onClose={toggleGmCards} />}
     </div>
   )
 }
