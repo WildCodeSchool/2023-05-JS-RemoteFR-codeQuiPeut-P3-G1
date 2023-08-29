@@ -48,7 +48,6 @@ const MyProfil = () => {
     <>
       <p>{user.username}</p>
       <p>{longDate}</p>
-      <p>{longDate}</p>
       {/* <div className="myProfil">
         <div className="titleProfil">
           <img id="logoProfile" src={iconProfile} alt="logo of a profile" />

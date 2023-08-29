@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
+// import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import Cookies from "js-cookie"
-import axios from "axios"
+// import Cookies from "js-cookie"
+// import axios from "axios"
 
 import AuthContext from "./components/AuthContext/AuthContext"
 import Home from "./pages/Home"
@@ -16,35 +17,24 @@ function App() {
   const [users, setUsers] = useState([])
   const [user, setUser] = useState([])
 
-  const tokenFromCookie = Cookies.get("authToken")
-  const idUser = Cookies.get("idUser")
-  const storedUser = JSON.parse(Cookies.get("loggedInUser"))
+  // const tokenFromCookie = Cookies.get("authToken")
+  // const idUser = Cookies.get("idUser")
+  // const storedUser = JSON.parse(Cookies.get("loggedInUser"))
 
-  const headers = {
-    Authorization: `Bearer ${tokenFromCookie}`,
-  }
+  // const headers = {
+  //   Authorization: `Bearer ${tokenFromCookie}`,
+  // }
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:4242/users`, { headers })
-      .then((res) => {
-        setUsers(res.data)
-      })
-      .catch((err) => {
-        console.error("Problème lors du chargement des users", err)
-      })
-  }, [])
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:4242/users/${idUser}`, { headers })
-      .then((res) => {
-        setUser(res.data)
-      })
-      .catch((err) => {
-        console.error("Problème lors du chargement des users", err)
-      })
-  }, [])
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:4242/users`, { headers })
+  //     .then((res) => {
+  //       setUsers(res.data)
+  //     })
+  //     .catch((err) => {
+  //       console.error("Problème lors du chargement des users", err)
+  //     })
+  // }, [])
 
   return (
     <>
@@ -55,9 +45,6 @@ function App() {
             setUsers,
             user,
             setUser,
-            idUser,
-            storedUser,
-            headers,
           }}
         >
           <Router>
