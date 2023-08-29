@@ -9,41 +9,48 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid yellow;
+  // border: 2px solid yellow;
   width: 100vw;
   height: 100vh;
 
   .GmCards-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     width: 573px;
     height: 720px;
+    flex-shrink: 0;
     background-color: white;
     border: 3px solid $third-font-color;
     border-radius: 9px;
-    margin: 2rem;
-
-    .close-container {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      width: 100%;
-    }
 
     .GmCards-header {
       display: flex;
       justify-content: space-evenly;
       align-items: center;
       width: 100%;
+      height: 30%;
+      // border: 3px solid purple;
+      .close-container {
+        display: flex;
+        padding: 1rem;
+        height: 100%;
+        // border: 3px solid purple;
+
+        .close-modale {
+          display: flex;
+          align-self: flex-start;
+          height: 30%;
+        }
+      }
       .GmName-Btn-container {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
         width: 60%;
-        border-bottom: 1px solid $navbar-color;
+        height: 100%;
+        // border: 3px solid purple;
+        padding: 1rem;
 
         .GM-Name {
           color: #180b23;
@@ -52,6 +59,8 @@
           font-style: normal;
           font-weight: 400;
           line-height: normal;
+          width: 100%;
+          border-bottom: 1px solid $navbar-color;
         }
 
         .Btn-send {
@@ -70,45 +79,132 @@
           font-weight: 400;
           line-height: normal;
           color: $third-font-color;
-          margin: 1.5rem;
+          margin-top: 1.5rem;
         }
       }
 
       .profile-picture {
-        width: 18%;
+        width: 20%;
       }
     }
     .GM-calendar-location {
       display: flex;
-      border: 1px solid purple;
-      .game-logo-container {
+      width: 100%;
+      // border: 3px solid red;
+
+      .game-info {
         display: flex;
+        flex-direction: column;
         width: 100%;
-        border: 1px solid red;
-        .date-to,
-        .city {
+        padding: 2rem;
+        // border: 3px solid lightseagreen;
+        .game-logo-container {
           display: flex;
-          text-align: center;
-          font-family: Koh Santepheap;
-          font-size: 13px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: normal;
+          justify-content: space-around;
+
+          // border: 5px solid fuchsia;
+          .date,
+          .city {
+            color: #180b23;
+            font-family: Koh Santepheap;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            align-self: center;
+          }
+          .game-black-logo {
+            display: flex;
+            height: 10vw;
+          }
+          .date-to,
+          .location-city {
+            background: linear-gradient(180deg, #a4945e 0%, #180b23 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+
+          .game-type,
+          .location-city {
+            align-self: center;
+            color: #180b23;
+            font-family: Koh Santepheap;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+          }
         }
-        .game-type,
-        .location-city {
-          color: #180b23;
-          font-family: Koh Santepheap;
-          font-size: 16px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: normal;
+        .location-container {
+          display: flex;
+          // border: 3px solid salmon;
+          .location-city {
+            display: flex;
+            align-self: center;
+            background: linear-gradient(180deg, #a4945e 0%, #180b23 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+          .location-icon {
+            margin: 1rem;
+            height: 60%;
+          }
         }
       }
     }
-    .location-container {
+
+    .Participants {
       display: flex;
       flex-direction: column;
+      justify-content: center;
+
+      padding: 2rem;
+      border: 3px solid blue;
+      width: 100%;
+      height: 30%;
+      .participant-nb-container {
+        display: flex;
+        justify-content: flex-start;
+        // border: 3px solid green;
+        color: #180b23;
+        font-family: Koh Santepheap;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+      .participants-pictures {
+        display: flex;
+        align-self: center;
+
+        width: 90%;
+        height: 80%;
+        // border: 3px solid purple;
+      }
+      .player-profile-picture {
+        display: flex;
+        padding: 1rem;
+        height: 100px;
+      }
+      .participant-logo-gold {
+        display: flex;
+        height: 3.5vh;
+        margin: 1rem;
+      }
+      .Participants-nb {
+        color: #180b23;
+        font-family: Koh Santepheap;
+        font-size: 2vh;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        align-self: center;
+        border-bottom: 1px solid #180b23;
+        padding: 1rem;
+        width: 70%;
+      }
     }
   }
 }
