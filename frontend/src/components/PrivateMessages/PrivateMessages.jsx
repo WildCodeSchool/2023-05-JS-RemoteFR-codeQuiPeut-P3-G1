@@ -8,7 +8,7 @@ export default function PrivateMessages() {
   const [sender, setSender] = useState("")
   const [recipient, setRecipient] = useState("")
   const [content, setContent] = useState("")
-  const { user } = useContext(AuthContext)
+  const { user, headers } = useContext(AuthContext)
 
   const privateMessagesDiv = document.getElementById("messageBulleDiv")
 
@@ -31,9 +31,18 @@ export default function PrivateMessages() {
     }
 
     axios
-      .post("http://localhost:4242/PrivateMessages", messageData)
+      .post("http://localhost:4242/PrivateMessages", messageData, { headers })
       .then((response) => {
-        console.info(response)
+        console.info("axiospost", response)
+        axios
+          .get("http://localhost:4242/PrivateMessages", { headers })
+          .then((res) => {
+            console.info("axiosget", res)
+            setImportMessages(res.data)
+          })
+          .catch((error) => {
+            console.error("Erreur lors du chargement des messages :", error)
+          })
         scrollMessages()
       })
       .catch((err) => {
@@ -47,14 +56,15 @@ export default function PrivateMessages() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4242/PrivateMessages")
+      .get("http://localhost:4242/PrivateMessages", { headers })
       .then((res) => {
+        console.info("axiosget", res)
         setImportMessages(res.data)
       })
       .catch((error) => {
         console.error("Erreur lors du chagement des messages :", error)
       })
-  }, [handleClickSubmit])
+  }, []) // j'ai enlevé handleClickSubmit du tableau (désormais vide) car le UseEffect se jouait sans cesse
 
   const handleSender = (e) => {
     setSender(e.target.value)
@@ -68,9 +78,9 @@ export default function PrivateMessages() {
     setContent(e.target.value)
   }
 
-  useEffect(() => {
-    console.info(user)
-  }, [user])
+  // useEffect(() => {
+  //   console.info("user", user)
+  // }, [])
 
   // ID du recipient du message
 

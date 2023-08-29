@@ -1,55 +1,85 @@
-import { useState, useContext, useEffect } from "react"
-import AuthContext from "../../AuthContext/AuthContext"
+import { useState } from "react"
+// import AuthContext from "../../AuthContext/AuthContext"
 import { Link } from "react-router-dom"
+import Cookies from "js-cookie"
+import axios from "axios"
 
 function SignIn() {
-  const { users, setUser, user } = useContext(AuthContext)
+  const [signInUsername, setSignInUsername] = useState()
+  const [signInPassword, setSignInPassword] = useState()
+  // const { setIdUser } = useContext(AuthContext)
 
-  const [username, setUsername] = useState("")
-  const [password, setPassword] = useState("")
-
-  const handleConnect = (event) => {
-    event.preventDefault()
-
-    const utilisateur = users.find((u) => u.username === username)
-    if (!utilisateur) {
-      alert("Mauvais pseudo")
-      setUsername("")
-      setPassword("")
-    } else if (utilisateur.password !== password) {
-      alert("Mauvais mot de passe")
-      setPassword("")
-    } else {
-      setUser(utilisateur)
-    }
+  const handleLogin = (e) => {
+    e.preventDefault()
+    axios
+      .post("http://localhost:4242/login", {
+        username: signInUsername,
+        password: signInPassword,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          console.info("Connexion établie !")
+          document.getElementById("cardLogIn-Input").reset()
+          const token = res.data.token
+          Cookies.set("authToken", token, { expires: 0.5 })
+          Cookies.set("loggedInUser", JSON.stringify(res.data.user))
+          Cookies.set("idUser", JSON.stringify(res.data.user.id))
+          setSignInUsername()
+          setSignInPassword()
+          // localStorage.setItem("loggedInUser", JSON.stringify(res.data.user))
+          // console.info(res.data.user)
+        }
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la connexion :", error)
+      })
   }
 
-  const handleDisconnect = () => {
-    setUser(null)
-  }
+  // const { users, setUser, user } = useContext(AuthContext)
 
-  // Affiche le user quand il change
-  useEffect(() => {
-    console.info(user)
-  }, [user])
+  // const [username, setUsername] = useState("")
+  // const [password, setPassword] = useState("")
+
+  // const handleConnect = (event) => {
+  //   event.preventDefault()
+
+  //   const utilisateur = users.find((u) => u.username === username)
+  //   if (!utilisateur) {
+  //     alert("Mauvais pseudo")
+  //     setUsername("")
+  //     setPassword("")
+  //   } else if (utilisateur.password !== password) {
+  //     alert("Mauvais mot de passe")
+  //     setPassword("")
+  //   } else {
+  //     setUser(utilisateur)
+  //   }
+  // }
+
+  // const handleDisconnect = () => {
+  //   setUser(null)
+  // }
+
+  // // Affiche le user quand il change
+  // useEffect(() => {
+  //   console.info(user)
+  // }, [user])
 
   return (
     <div className="cardLogIn-container">
       <span id="title-card-logIn">LOGIN</span>
       <div>
-        <div className="cardLogIn-Input">
+        <form id="cardLogIn-Input">
           <span>Username</span>
           <input
             type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => setSignInUsername(e.target.value)}
           />
           <span>Password</span>
           <input
             id="input-password-LogIn"
-            value={password}
             type="password"
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => setSignInPassword(e.target.value)}
           />
           <div className="forgot-Input">
             <span>Forgot Password ?</span>
@@ -60,15 +90,13 @@ function SignIn() {
           <Link to="/home">
             <button type="home">home</button>
           </Link>
-        </div>
+        </form>
         <div className="button-SignIn-Container">
           <div className="button-SignIn">
-            <button type="button" onClick={handleConnect}>
+            <button type="button" onClick={handleLogin}>
               Sign In
             </button>
-            <button className="buttonLogout" onClick={handleDisconnect}>
-              Logout
-            </button>
+            <button className="buttonLogout">Logout</button>
           </div>
         </div>
       </div>

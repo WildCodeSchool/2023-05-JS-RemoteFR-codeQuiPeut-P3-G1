@@ -18,17 +18,19 @@ const UsersFiltersControllers = require("./controllers/UsersFiltersControllers")
 const RolePlayingGamesControllers = require("./controllers/RolePlayingGamesController")
 const PrivateMessagesControllers = require("./controllers/PrivateMessagesControllers")
 
+router.post("/login", UsersControllers.verifyUser, verifyPassword)
+router.post("/users", hashPassword, UsersControllers.add)
+
+router.use(verifyToken)
+
 router.get("/users", UsersControllers.browse)
 router.get("/users/:id", UsersControllers.read)
 router.put("/users/:id", UsersControllers.edit)
-router.post("/users", hashPassword, UsersControllers.add)
 router.delete("/users/:id", UsersControllers.destroy)
 router.put(
   "/users/:id/updateProfilePicture",
   UsersControllers.updateProfilPicture
 )
-
-router.post("/login", UsersControllers.verifyUser, verifyPassword)
 
 router.get("/games", GamesControllers.browse)
 router.get("/games/:id", GamesControllers.read)
@@ -95,8 +97,6 @@ router.get("/PrivateMessages", PrivateMessagesControllers.browse)
 router.get("/PrivateMessages/:id", PrivateMessagesControllers.read)
 router.put("/PrivateMessages/:id", PrivateMessagesControllers.edit)
 router.post("/PrivateMessages", PrivateMessagesControllers.add)
-
-router.use(verifyToken)
 
 router.delete("/gmprofil/:id", GmProfilControllers.destroy)
 router.delete("/categories/:id", CategoriesControllers.destroy)

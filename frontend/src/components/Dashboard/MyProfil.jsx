@@ -1,117 +1,126 @@
-import axios from "axios"
-import React, { useState, useContext, useEffect } from "react"
-import iconProfile from "../../assets/icon-dashboard/iconProfile.png"
-import Add2 from "../../assets/icon-dashboard/Add2.png"
-import Edit from "../../assets/icon-dashboard/Edit.png"
-import Location from "../../assets/icon-dashboard/Location.png"
+// import axios from "axios"
+// import React, { useContext, useState, useEffect } from "react"
+import React, { useContext } from "react"
+// import iconProfile from "../../assets/icon-dashboard/iconProfile.png"
+// import Add2 from "../../assets/icon-dashboard/Add2.png"
+// import Edit from "../../assets/icon-dashboard/Edit.png"
+// import Location from "../../assets/icon-dashboard/Location.png"
 import AuthContext from "../AuthContext/AuthContext"
 
 const MyProfil = () => {
   const { user } = useContext(AuthContext)
-
-  // const [userPicture, setUserPicture] = useState(null);
-  const [imageUrl, setImageUrl] = useState(
-    user.profil_picture !== null ? user.profil_picture : null
-  )
+  // // console.info(user)
+  // // const [userPicture, setUserPicture] = useState(null);
+  // const [imageUrl, setImageUrl] = useState(
+  //   user.profil_picture !== null ? user.profil_picture : null
+  // )
 
   const longDate = user.registration_date
-  const shortDate = longDate.substring(0, 10)
+  // const shortDate = longDate.substring(0, 10)
 
-  const handlePictureChange = (e) => {
-    const picture = e.target.files[0]
-    setImageUrl(URL.createObjectURL(picture))
+  // const handlePictureChange = (e) => {
+  //   const picture = e.target.files[0]
+  //   setImageUrl(URL.createObjectURL(picture))
 
-    // updateProfilPictureOnServer(user.id, URL.createObjectURL(picture));
-  }
+  //   // updateProfilPictureOnServer(user.id, URL.createObjectURL(picture));
+  // }
 
-  const updateProfilPictureOnServer = async (userId, newProfilPicture) => {
-    try {
-      const response = await axios.put(
-        `http://localhost:4242/users/${userId}/updateProfilPicture`,
-        newProfilPicture
-      )
-      return response.data
-    } catch (error) {
-      console.error(
-        "Erreur lors de la mise à jour de la photo de profil :",
-        error
-      )
-      throw error
-    }
-  }
-  useEffect(() => {
-    console.info(imageUrl)
-  }, [imageUrl])
+  // const updateProfilPictureOnServer = async (newProfilPicture) => {
+  //   try {
+  //     const response = await axios.put(
+  //       `http://localhost:4242/users/${idUser}/updateProfilPicture`,
+  //       newProfilPicture
+  //     )
+  //     return response.data
+  //   } catch (error) {
+  //     console.error(
+  //       "Erreur lors de la mise à jour de la photo de profil :",
+  //       error
+  //     )
+  //     throw error
+  //   }
+  // }
+  // useEffect(() => {
+  //   console.info(imageUrl)
+  // }, [imageUrl])
 
   return (
-    <div className="myProfil">
-      <div className="titleProfil">
-        <img id="logoProfile" src={iconProfile} alt="logo of a profile" />
-        <h2>MY PROFIL</h2>
-      </div>
-      <div className="contentMyProfil">
-        <div className="editProfile">
-          <button type="button" id="editButton">
-            <img id="logoEdit" src={Edit} alt="logo of a pen" />
-            <p>Edit Profile</p>
-          </button>
+    <>
+      <p>{user.username}</p>
+      <p>{longDate}</p>
+      <p>{longDate}</p>
+      {/* <div className="myProfil">
+        <div className="titleProfil">
+          <img id="logoProfile" src={iconProfile} alt="logo of a profile" />
+          <h2>MY PROFIL</h2>
         </div>
-        <div className="topProfile">
-          <div className="logoAdd2">
-            <label htmlFor="buttonPicture">
-              {imageUrl ? (
-                <img
-                  src={imageUrl}
-                  alt="userPicture"
-                  className="userPicture"
-                  id="profilPictureForm"
-                />
-              ) : (
-                <img className="userPicture" src={Add2} alt="logo of a cross" />
-              )}
-            </label>
-            <input
-              type="file"
-              id="buttonPicture"
-              accept="image/*"
-              onChange={(e) => {
-                handlePictureChange(e)
-                updateProfilPictureOnServer(user.id, imageUrl)
-              }}
-              style={{ display: "none" }}
-            />
+        <div className="contentMyProfil">
+          <div className="editProfile">
+            <button type="button" id="editButton">
+              <img id="logoEdit" src={Edit} alt="logo of a pen" />
+              <p>Edit Profile</p>
+            </button>
           </div>
-          <div className="centralDiv">
-            <div className="userInfoProfile">
-              <p>{user.username}</p>
-              <h2>{shortDate}</h2>
-            </div>
-            <div className="locationProfile">
-              <img
-                id="logoLocation"
-                src={Location}
-                alt="logo of a map pointer"
+          <div className="topProfile">
+            <div className="logoAdd2">
+              <label htmlFor="buttonPicture">
+                {imageUrl ? (
+                  <img
+                    src={imageUrl}
+                    alt="userPicture"
+                    className="userPicture"
+                    id="profilPictureForm"
+                  />
+                ) : (
+                  <img
+                    className="userPicture"
+                    src={Add2}
+                    alt="logo of a cross"
+                  />
+                )}
+              </label>
+              <input
+                type="file"
+                id="buttonPicture"
+                accept="image/*"
+                onChange={(e) => {
+                  handlePictureChange(e)
+                  updateProfilPictureOnServer(user.id, imageUrl)
+                }}
+                style={{ display: "none" }}
               />
-              <p>{user.location}</p>
+            </div>
+            <div className="centralDiv">
+              <div className="userInfoProfile">
+                <p>{user.username}</p>
+                <h2>{shortDate}</h2>
+              </div>
+              <div className="locationProfile">
+                <img
+                  id="logoLocation"
+                  src={Location}
+                  alt="logo of a map pointer"
+                />
+                <p>{user.location}</p>
+              </div>
+            </div>
+            <div className="profileButton">
+              <p>{user.is_gamemaster === 0 ? "PLAYER" : "GAMEMASTER"}</p>
             </div>
           </div>
-          <div className="profileButton">
-            <p>{user.is_gamemaster === 0 ? "PLAYER" : "GAMEMASTER"}</p>
+          <div className="middleProfile">
+            <p>
+              {user.description === "null"
+                ? "Warning: No bio founded on this profile. Dear user, please consider adding a bio to let others know more about you !"
+                : user.description}
+            </p>
+          </div>
+          <div className="bottomProfile">
+            <h1>MY GAMES / SEARCH TO PLAY ON</h1>
           </div>
         </div>
-        <div className="middleProfile">
-          <p>
-            {user.description === "null"
-              ? "Warning: No bio founded on this profile. Dear user, please consider adding a bio to let others know more about you !"
-              : user.description}
-          </p>
-        </div>
-        <div className="bottomProfile">
-          <h1>MY GAMES / SEARCH TO PLAY ON</h1>
-        </div>
-      </div>
-    </div>
+      </div> */}
+    </>
   )
 }
-
 export default MyProfil

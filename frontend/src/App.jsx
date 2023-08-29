@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Cookies from "js-cookie"
 import axios from "axios"
+
 import AuthContext from "./components/AuthContext/AuthContext"
 import Home from "./pages/Home"
 import CreateGame from "./pages/CreateGame"
@@ -12,13 +14,32 @@ import Topics from "./pages/Topics"
 
 function App() {
   const [users, setUsers] = useState([])
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState([])
+
+  const tokenFromCookie = Cookies.get("authToken")
+  const idUser = Cookies.get("idUser")
+  const storedUser = JSON.parse(Cookies.get("loggedInUser"))
+
+  const headers = {
+    Authorization: `Bearer ${tokenFromCookie}`,
+  }
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4242/users`)
+      .get(`http://localhost:4242/users`, { headers })
       .then((res) => {
         setUsers(res.data)
+      })
+      .catch((err) => {
+        console.error("Problème lors du chargement des users", err)
+      })
+  }, [])
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:4242/users/${idUser}`, { headers })
+      .then((res) => {
+        setUser(res.data)
       })
       .catch((err) => {
         console.error("Problème lors du chargement des users", err)
@@ -28,7 +49,17 @@ function App() {
   return (
     <>
       <div className="App">
-        <AuthContext.Provider value={{ user, setUser, users }}>
+        <AuthContext.Provider
+          value={{
+            users,
+            setUsers,
+            user,
+            setUser,
+            idUser,
+            storedUser,
+            headers,
+          }}
+        >
           <Router>
             <Routes>
               <Route path="/" element={<LandingPage />} />
