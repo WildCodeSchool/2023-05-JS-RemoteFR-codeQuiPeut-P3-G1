@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import axios from "axios"
 
 import "./PlayerCards.scss"
 
@@ -12,6 +13,25 @@ import FiveRings from "../../assets/logoGames/fiveRings.svg"
 
 function PlayerCards({ isOpen, onClose }) {
   const [isPlayerOpen, setIsPlayerOpen] = useState(isOpen)
+  const [gamesData, setGamesData] = useState({})
+  const scheduleDate = new Date(gamesData.schedule)
+  const options = {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }
+  const formattedSchedule = scheduleDate.toLocaleDateString("fr-FR", options)
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:4242/games")
+      .then((response) => {
+        setGamesData(response.data[1])
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error)
+      })
+  }, [])
 
   const handleClose = () => {
     setIsPlayerOpen(false)
@@ -57,7 +77,7 @@ function PlayerCards({ isOpen, onClose }) {
       </div>
       <div className="PlayerCards_Inside_ThirdElement">
         <img src={Schedule} alt="icon of schedule" />
-        <span>Play with her :</span>
+        <span>Play with her : {formattedSchedule}</span>
       </div>
       <div className="PlayerCards_Inside_FourthElement">
         <div className="PlayerCards_Inside_FourthElement_Content">
