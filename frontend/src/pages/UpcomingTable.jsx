@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useContext } from "react"
 import axios from "axios"
 import Game from "../components/Game/Game"
 import Player from "../components/Player/playerCard"
@@ -11,11 +11,12 @@ import GroupDiscussionIcon from "../assets/logo/GroupDiscussionIcon.png"
 import PlaceIconVector from "../assets/logo/PlaceIconVector.png"
 import ProfilIcon from "../assets/logo/ProfilIcon.png"
 import HexagonDiceIcon from "../assets/logo/HexagonDiceIcon.png"
+import AuthContext from "../components/AuthContext/AuthContext"
 
 function UpcomingTable() {
   const [games, setGames] = useState([])
   // const [switchPlayer, setSwitchPlayer] = useState(false)
-  const [users, setUsers] = useState([])
+  // const [users, setUsers] = useState([])
   const [rpg, setRpg] = useState([])
   const [cityFilter, setCityFilter] = useState("")
   const [gmFilter, setGmFilter] = useState("")
@@ -29,9 +30,9 @@ function UpcomingTable() {
   //   setSwitchPlayer(!switchPlayer)
   // }
 
-  const handleCityFilterChange = (event) => {
-    setCityFilter(event.target.value)
-  }
+  // const handleCityFilterChange = (event) => {
+  //   setCityFilter(event.target.value)
+  // }
 
   const handleGmFilterChange = (event) => {
     setGmFilter(event.target.value)
@@ -57,9 +58,11 @@ function UpcomingTable() {
     setRpgFilter(event.target.value)
   }
 
+  const { users } = useContext(AuthContext)
+
   useEffect(() => {
     axios.get("http://localhost:4242/games").then((res) => setGames(res.data))
-    axios.get("http://localhost:4242/users").then((res) => setUsers(res.data))
+    // axios.get("http://localhost:4242/users").then((res) => setUsers(res.data))
     axios
       .get("http://localhost:4242/role-playing-games")
       .then((res) => setRpg(res.data))
@@ -108,8 +111,8 @@ function UpcomingTable() {
               </div>
             </div>
             <div>
-              {users.map((user) => (
-                <Player key={user.id} users={user} />
+              {users.map((users) => (
+                <Player key={users.id} users={users} />
               ))}
             </div>
           </div>
@@ -170,7 +173,9 @@ function UpcomingTable() {
               type="text"
               placeholder="Filtrer par ville"
               value={cityFilter}
-              onChange={handleCityFilterChange}
+              onChange={(event) => {
+                setCityFilter(event.target.value)
+              }}
             />
 
             <input

@@ -1,8 +1,11 @@
-import React from "react"
-
+// import React from "react"
+import React, { useContext } from "react"
 import "./playerCard.scss"
+import AuthContext from "../AuthContext/AuthContext"
 
-export default function Player({ users }) {
+const { users } = useContext(AuthContext)
+
+export default function Player() {
   return (
     <>
       <div className="globalContainerCard">
@@ -11,7 +14,9 @@ export default function Player({ users }) {
         <div className="gameLocationUpcoming">
           {users.description_as_player}
         </div>
-        <div className="gameLocationUpcoming">{users.profil_picture}</div>
+        <div className="gameLocationUpcoming">
+          <img src={users.profil_picture} alt="profil photo" />
+        </div>
       </div>
     </>
   )
