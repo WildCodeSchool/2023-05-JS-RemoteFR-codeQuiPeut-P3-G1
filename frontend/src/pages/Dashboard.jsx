@@ -1,5 +1,4 @@
 import NavBar from "../components/NavBar/Navbar"
-import "./Dashboard.scss"
 
 import questionMark from "../assets/icon-dashboard/questionMark.png"
 import Notepad from "../assets/icon-dashboard/Notepad.png"

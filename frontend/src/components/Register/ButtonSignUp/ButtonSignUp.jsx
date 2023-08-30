@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react"
-import "./ButtonSignUp.scss"
 
 import SignUp from "../SignUp/SignUp"
 

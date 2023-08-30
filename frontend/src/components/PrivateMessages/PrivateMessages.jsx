@@ -1,4 +1,3 @@
-import "./PrivateMessages.scss"
 import { useState, useEffect, useContext } from "react"
 import axios from "axios"
 import FlecheRetour from "../../assets/logo/Arrow 4.svg"

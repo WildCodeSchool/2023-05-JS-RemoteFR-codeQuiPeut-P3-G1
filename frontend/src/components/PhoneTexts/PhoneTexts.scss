@@ -1,4 +1,3 @@
-@import "../../Variable.scss";
 * {
   margin: 0;
   padding: 0;
@@ -31,7 +30,7 @@
       color: $third-font-color;
       text-align: justify;
       font-family: $title-font;
-      font-size: 43px;
+      font-size: 2.84vw;
       font-style: normal;
       font-weight: 400;
       line-height: normal;
@@ -43,7 +42,7 @@
       color: $third-font-color;
       text-align: justify;
       font-family: $content-font;
-      font-size: 22px;
+      font-size: 1.45vw;
       font-style: normal;
       font-weight: 400;
       line-height: normal;
@@ -56,14 +55,13 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-
         border-radius: 5px;
         background: #f6f6e9;
         border: none;
         color: #4d194d;
         text-align: center;
         font-family: Karma;
-        font-size: 1.5rem;
+        font-size: 1.05vw;
         padding: 10px;
         font-style: normal;
         font-weight: 700;
