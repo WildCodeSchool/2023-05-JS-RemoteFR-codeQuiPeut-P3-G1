@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react"
 import axios from "axios"
+import Cookies from "js-cookie"
 import gmProfilePic from "../../assets/GmCards-assets/GMProfilePic.png"
 import closeModal from "../../assets/GmCards-assets/closeModal.png"
 import gameLogo from "../../assets/GmCards-assets/gameLogo.png"
@@ -22,9 +23,15 @@ const GmCards = () => {
   }
   const formattedSchedule = scheduleDate.toLocaleDateString("fr-FR", options)
 
+  const tokenFromCookie = Cookies.get("authToken")
+
+  const headers = {
+    Authorization: `Bearer ${tokenFromCookie}`,
+  }
+
   useEffect(() => {
     axios
-      .get("http://localhost:4242/games")
+      .get("http://localhost:4242/games", { headers })
       .then((response) => {
         setGamesData(response.data[1])
       })
