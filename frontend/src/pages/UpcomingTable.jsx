@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect } from "react"
 import axios from "axios"
 import Game from "../components/Game/Game"
 import Player from "../components/Player/playerCard"
@@ -11,12 +11,13 @@ import GroupDiscussionIcon from "../assets/logo/GroupDiscussionIcon.png"
 import PlaceIconVector from "../assets/logo/PlaceIconVector.png"
 import ProfilIcon from "../assets/logo/ProfilIcon.png"
 import HexagonDiceIcon from "../assets/logo/HexagonDiceIcon.png"
-import AuthContext from "../components/AuthContext/AuthContext"
+// import AuthContext from "../components/AuthContext/AuthContext"
+import Cookies from "js-cookie"
 
 function UpcomingTable() {
   const [games, setGames] = useState([])
   // const [switchPlayer, setSwitchPlayer] = useState(false)
-  // const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([])
   const [rpg, setRpg] = useState([])
   const [cityFilter, setCityFilter] = useState("")
   const [gmFilter, setGmFilter] = useState("")
@@ -33,6 +34,13 @@ function UpcomingTable() {
   // const handleCityFilterChange = (event) => {
   //   setCityFilter(event.target.value)
   // }
+
+  // sert a récupérer le token qui certifie que l'utilisateur est connecté.
+  const tokenFromCookie = Cookies.get("authToken")
+
+  const headers = {
+    Authorization: `Bearer ${tokenFromCookie}`,
+  }
 
   const handleGmFilterChange = (event) => {
     setGmFilter(event.target.value)
@@ -58,13 +66,19 @@ function UpcomingTable() {
     setRpgFilter(event.target.value)
   }
 
-  const { users } = useContext(AuthContext)
+  // useContexte qui ne fonctionne pas car il est dans App.
+  // const { users } = useContext(AuthContext)
+  console.info(users)
 
   useEffect(() => {
-    axios.get("http://localhost:4242/games").then((res) => setGames(res.data))
-    // axios.get("http://localhost:4242/users").then((res) => setUsers(res.data))
     axios
-      .get("http://localhost:4242/role-playing-games")
+      .get("http://localhost:4242/users", { headers })
+      .then((res) => setUsers(res.data))
+    axios
+      .get("http://localhost:4242/games", { headers })
+      .then((res) => setGames(res.data))
+    axios
+      .get("http://localhost:4242/role-playing-games", { headers })
       .then((res) => setRpg(res.data))
   }, [])
 

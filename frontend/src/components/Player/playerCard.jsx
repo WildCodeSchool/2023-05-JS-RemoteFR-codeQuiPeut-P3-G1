@@ -1,11 +1,8 @@
-// import React from "react"
-import React, { useContext } from "react"
+import React from "react"
+
 import "./playerCard.scss"
-import AuthContext from "../AuthContext/AuthContext"
 
-const { users } = useContext(AuthContext)
-
-export default function Player() {
+export default function Player({ users }) {
   return (
     <>
       <div className="globalContainerCard">
