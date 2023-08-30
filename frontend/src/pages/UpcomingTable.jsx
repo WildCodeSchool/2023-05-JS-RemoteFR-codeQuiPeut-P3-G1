@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import Game from "../components/Game/Game"
+import Player from "../components/Player/playerCard"
 import NavBar from "../components/NavBar/Navbar"
 import "./UpcomingTable.scss"
 import BladeIcon from "../assets/logo/BladeIcon.png"
@@ -13,7 +14,7 @@ import HexagonDiceIcon from "../assets/logo/HexagonDiceIcon.png"
 
 function UpcomingTable() {
   const [games, setGames] = useState([])
-  const [switchPlayer, setSwitchPlayer] = useState(false)
+  // const [switchPlayer, setSwitchPlayer] = useState(false)
   const [users, setUsers] = useState([])
   const [rpg, setRpg] = useState([])
   const [cityFilter, setCityFilter] = useState("")
@@ -22,10 +23,11 @@ function UpcomingTable() {
   const [typeFilter, setTypeFilter] = useState("") // Filtre pour le type de partie
   const [dateFilter, setDateFilter] = useState("") // Filtre pour la date de partie
   const [nameFilter, setNameFilter] = useState("") // Filtre pour le nom de partie
+  const [rpgFilter, setRpgFilter] = useState("") // Filtre pour le type de RPG
 
-  const handleSwitchPlayer = () => {
-    setSwitchPlayer(!switchPlayer)
-  }
+  // const handleSwitchPlayer = () => {
+  //   setSwitchPlayer(!switchPlayer)
+  // }
 
   const handleCityFilterChange = (event) => {
     setCityFilter(event.target.value)
@@ -51,6 +53,10 @@ function UpcomingTable() {
     setNameFilter(event.target.value)
   }
 
+  const handleRpgFilterChange = (event) => {
+    setRpgFilter(event.target.value)
+  }
+
   useEffect(() => {
     axios.get("http://localhost:4242/games").then((res) => setGames(res.data))
     axios.get("http://localhost:4242/users").then((res) => setUsers(res.data))
@@ -63,10 +69,56 @@ function UpcomingTable() {
     <>
       <div className="globalcontainerUT">
         <NavBar />
+        <div className="containerFilterAndCardsPlayer">
+          <div className="bigBoxPlayer">
+            <div className="BoxTitle">
+              <div className="boxTitlePlayer">
+                <img
+                  className="iconUpcomingTablePlayer"
+                  src={ProfilIcon}
+                  alt="icon blade gold"
+                />
+                <div className="containeurTitlePlayer">Player</div>
+              </div>
+              <div className="boxTitlePlayer">
+                <img
+                  className="iconUpcomingTablePlayer"
+                  src={CalandarIcon}
+                  alt="icon blade gold"
+                />
+                <div className="containeurTitlePlayer">Availability</div>
+              </div>
+              <div className="boxTitlePlayer">
+                <div className="containeurTitlePlayer">
+                  <img
+                    className="iconUpcomingTablePlayer"
+                    src={PlaceIconVector}
+                    alt="icon blade gold"
+                  />
+                  <div>Place</div>
+                </div>
+              </div>
+              <div className="boxTitlePlayer">
+                <img
+                  className="iconUpcomingTablePlayer"
+                  src={HexagonDiceIcon}
+                  alt="icon blade gold"
+                />
+                <div className="containeurTitlePlayer">Description</div>
+              </div>
+            </div>
+            <div>
+              {users.map((user) => (
+                <Player key={user.id} users={user} />
+              ))}
+            </div>
+          </div>
+        </div>
         <div
-          className={`containerFilterAndCards ${
-            switchPlayer ? "filterGameLeft" : "filterGameRight"
-          }`}
+          className="containerFilterAndCardsGames"
+          // className={`containerFilterAndCards ${
+          //   switchPlayer ? "filterGameLeft" : "filterGameRight"
+          // }`}
         >
           <div className="filterContainer">
             <div className="titleUpcommingTable">
@@ -117,83 +169,86 @@ function UpcomingTable() {
               className="inputUT"
               type="text"
               placeholder="Filtrer par ville"
-              value={gmFilter}
+              value={cityFilter}
               onChange={handleCityFilterChange}
             />
 
-            <button type="button" onClick={handleSwitchPlayer}>
+            <input
+              className="inputUT"
+              type="text"
+              placeholder="Filtrer par type de RPG"
+              value={rpgFilter}
+              onChange={handleRpgFilterChange}
+            />
+
+            {/* <button type="button" onClick={handleSwitchPlayer}>
               Find a Player
-            </button>
+            </button> */}
           </div>
           <div className="gamecard">
             <div className="containerMenuGame">
-              <div className="containerTitleBar">
+              <div className="boxTitlePlayer">
                 <img
-                  className="iconUpcomingTable"
+                  className="iconUpcomingTablePlayer"
                   src={BladeIcon}
                   alt="icon blade gold"
                 />
-                <p className="containerTitleUP">Guil</p>
+                <div className="containerTitleUP">Game Title</div>
               </div>
-              <div className="containerTitleBar">
+              <div className="boxTitlePlayer">
                 <img
-                  className="iconUpcomingTable"
+                  className="iconUpcomingTablePlayer"
                   src={ProfilIcon}
                   alt="icon blade gold"
                 />
-                <p className="containerTitleUP">Game Master</p>
+                <div className="containerTitleUP">Game Master</div>
               </div>
-              <div className="containerTitleBar">
+              <div className="boxTitlePlayer">
                 <img
-                  className="iconUpcomingTable"
+                  className="iconUpcomingTablePlayer"
                   src={CalandarIcon}
                   alt="icon blade gold"
                 />
-                <p className="containerTitleUP">Game Date</p>
+                <div className="containerTitleUP">Game Date</div>
               </div>
-              <div className="containerTitleBar">
+              <div className="boxTitlePlayer">
                 <div className="containerTitleUP">
-                  <p>Place</p>
                   <img
-                    className="iconUpcomingTable"
+                    className="iconUpcomingTablePlayer"
                     src={PlaceIconVector}
                     alt="icon blade gold"
                   />
+                  <div>Place</div>
                 </div>
               </div>
-              <div className="containerTitleBar">
+              <div className="boxTitlePlayer">
                 <img
-                  className="iconUpcomingTable"
+                  className="iconUpcomingTablePlayer"
                   src={HexagonDiceIcon}
                   alt="icon blade gold"
                 />
-                <p className="containerTitleUP">RPG</p>
+                <div className="containerTitleUP">RPG</div>
               </div>
-              <div className="containerTitleBar">
+              <div className="boxTitlePlayer">
                 <img
-                  className="iconUpcomingTable"
+                  className="iconUpcomingTablePlayer"
                   src={BookVector}
                   alt="icon blade gold"
                 />
-                <p className="containerTitleUP">Type</p>
+                <div className="containerTitleUP">Type</div>
               </div>
-              <div className="containerTitleBar">
+              <div className="boxTitlePlayer">
                 <img
-                  className="iconUpcomingTable"
+                  className="iconUpcomingTablePlayer"
                   src={GroupDiscussionIcon}
                   alt="icon blade gold"
                 />
-                <p className="containerTitleUP">Player</p>
+                <div className="containerTitleUP">Player</div>
               </div>
             </div>
             {games
               .filter((game) =>
-                game.location.toLowerCase().includes(cityFilter.toLowerCase())
-              )
-              .filter((users) =>
-                users.some((user) =>
-                  user.username.toLowerCase().includes(gmFilter.toLowerCase())
-                )
+                game.city.toLowerCase().includes(cityFilter.toLowerCase())
               )
               .filter((game) =>
                 game.max_players_capacity.toString().includes(maxPlayersFilter)
@@ -206,6 +261,20 @@ function UpcomingTable() {
               )
               .filter((game) =>
                 game.name.toLowerCase().includes(nameFilter.toLowerCase())
+              )
+              .filter(
+                (game) =>
+                  gmFilter === "" ||
+                  users.some((user) =>
+                    user.username.toLowerCase().includes(gmFilter.toLowerCase())
+                  )
+              )
+              .filter(
+                (game) =>
+                  rpgFilter === "" ||
+                  rpg.some((r) =>
+                    r.name.toLowerCase().includes(rpgFilter.toLowerCase())
+                  )
               )
               .map((game) => (
                 <Game key={game.id} games={game} users={users} rpg={rpg} />

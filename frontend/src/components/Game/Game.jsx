@@ -27,7 +27,7 @@ export default function Game({ games, users, rpg }) {
           {gameMaster ? `${gameMaster.username}` : "N/A"}
         </div>
         <div className="gameLocationUpcoming">{formattedDate}</div>
-        <div className="gameLocationUpcoming">{games.location}</div>
+        <div className="gameLocationUpcoming">{games.city}</div>
         <div className="gameLocationUpcoming">
           {/* {games.role_playing_game_id} */}
           {nameOfRpg ? `${nameOfRpg.name}` : "N/A"}

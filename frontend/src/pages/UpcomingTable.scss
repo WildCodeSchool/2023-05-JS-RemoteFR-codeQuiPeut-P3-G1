@@ -6,11 +6,12 @@
     text-align: center;
   }
 
-  .containerFilterAndCards {
+  .containerFilterAndCardsGames {
     display: flex;
     width: 100%;
     display: flex;
     justify-content: space-between; /* Espace équivalent entre les éléments */
+    display: none;
 
     &.filterGameLeft {
       flex-direction: row;
@@ -102,23 +103,51 @@
         height: 50px;
         border-radius: 10px 10px 0px 0px;
 
-        .containerTitleBar {
+        .boxTitleUT {
           width: 100%;
           display: flex;
-
           flex-direction: row;
 
           .iconUpcomingTable {
-            width: 10%;
-            margin-right: 10px;
+            width: 20%;
+            margin-right: 5px;
           }
           .containerTitleUP {
             color: rgb(194 177 108);
             display: flex;
             align-items: center;
-            // display: flex;
-            // flex-wrap: wrap;
-            width: 100%;
+            justify-content: center;
+            // width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .containerFilterAndCardsPlayer {
+    .bigBoxPlayer {
+      .BoxTitle {
+        display: flex;
+        justify-content: space-between; /* Espace équivalent entre les éléments */
+        border: 3px solid rgb(194 177 108);
+        height: 60px;
+        border-radius: 10px 10px 0px 0px;
+
+        .boxTitlePlayer {
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+
+          .iconUpcomingTablePlayer {
+            width: 20%;
+            margin-right: 5px;
+          }
+          .containeurTitlePlayer {
+            color: rgb(194 177 108);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            // width: 100%;
           }
         }
       }
