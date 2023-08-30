@@ -1,57 +1,61 @@
-// import axios from "axios"
-// import React, { useContext, useState, useEffect } from "react"
-import React, { useContext } from "react"
-// import iconProfile from "../../assets/icon-dashboard/iconProfile.png"
-// import Add2 from "../../assets/icon-dashboard/Add2.png"
-// import Edit from "../../assets/icon-dashboard/Edit.png"
-// import Location from "../../assets/icon-dashboard/Location.png"
+import axios from "axios"
+import React, { useContext, useState, useEffect } from "react"
+// import React, { useContext } from "react"
+import iconProfile from "../../assets/icon-dashboard/iconProfile.png"
+import Add2 from "../../assets/icon-dashboard/Add2.png"
+import Edit from "../../assets/icon-dashboard/Edit.png"
+import Location from "../../assets/icon-dashboard/Location.png"
 import AuthContext from "../AuthContext/AuthContext"
 
-// import GmCards from "./GmCards"
+import GmCards from "./GmCards"
 
 const MyProfil = () => {
-  // const [gmCardsVisible, setGmCardsVisible] = useState(true)
-  const { user } = useContext(AuthContext)
-  // // console.info(user)
-  // // const [userPicture, setUserPicture] = useState(null);
-  // const [imageUrl, setImageUrl] = useState(
-  //   user.profil_picture !== null ? user.profil_picture : null
-  // )
+  const [gmCardsVisible, setGmCardsVisible] = useState(true)
+  const { user, idUser, headers } = useContext(AuthContext)
+  // console.info(user)
+  // const [userPicture, setUserPicture] = useState(null);
+  const [imageUrl, setImageUrl] = useState(
+    user.profil_picture !== null ? user.profil_picture : null
+  )
 
-  const longDate = user.registration_date
-  // const shortDate = longDate.substring(0, 10)
+  const shortDate = String(user.registration_date)
+    .substring(0, 10)
+    .split("-")
+    .reverse()
+    .join("-")
 
-  // const handlePictureChange = (e) => {
-  //   const picture = e.target.files[0]
-  //   setImageUrl(URL.createObjectURL(picture))
+  const handlePictureChange = (e) => {
+    const picture = e.target.files[0]
+    setImageUrl(URL.createObjectURL(picture))
 
-  //   // updateProfilPictureOnServer(user.id, URL.createObjectURL(picture));
-  // }
+    // updateProfilPictureOnServer(user.id, URL.createObjectURL(picture));
+  }
 
-  // const updateProfilPictureOnServer = async (newProfilPicture) => {
-  //   try {
-  //     const response = await axios.put(
-  //       `http://localhost:4242/users/${idUser}/updateProfilPicture`,
-  //       newProfilPicture
-  //     )
-  //     return response.data
-  //   } catch (error) {
-  //     console.error(
-  //       "Erreur lors de la mise à jour de la photo de profil :",
-  //       error
-  //     )
-  //     throw error
-  //   }
-  // }
-  // useEffect(() => {
-  //   console.info(imageUrl)
-  // }, [imageUrl])
+  const updateProfilPictureOnServer = async (newProfilPicture) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:4242/users/${idUser}/updateProfilPicture`,
+        { headers },
+        newProfilPicture
+      )
+      return response.data
+    } catch (error) {
+      console.error(
+        "Erreur lors de la mise à jour de la photo de profil :",
+        error
+      )
+      throw error
+    }
+  }
+  useEffect(() => {
+    console.info(imageUrl)
+  }, [imageUrl])
 
   return (
     <>
-      <p>{user.username}</p>
-      <p>{longDate}</p>
-      {/* <div className="myProfil">
+      {/* <p>{user.username}</p>
+      <p>{longDate}</p> */}
+      <div className="myProfil">
         <div className="titleProfil">
           <img id="logoProfile" src={iconProfile} alt="logo of a profile" />
           <h2>MY PROFIL</h2>
@@ -125,7 +129,7 @@ const MyProfil = () => {
         <button onClick={() => setGmCardsVisible(!gmCardsVisible)}>
           {gmCardsVisible ? "Fermer GmCards" : "Afficher GmCards"}
         </button>
-      </div> */}
+      </div>
     </>
   )
 }

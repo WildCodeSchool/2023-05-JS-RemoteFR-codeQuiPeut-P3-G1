@@ -49,7 +49,7 @@ const Dashboard = () => {
           </div>
           <div className="dashboardComponents">
             <FuturGames />
-            <MyProfil />
+            <MyProfil idUser={idUser} />
           </div>
         </div>
         <NavBar />
