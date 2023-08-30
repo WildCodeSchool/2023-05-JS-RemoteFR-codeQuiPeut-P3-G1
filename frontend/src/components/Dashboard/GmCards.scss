@@ -4,12 +4,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 2px solid yellow;
 
   .GmCards-container {
     position: fixed;
     display: flex;
-
     top: 50%; // Adjust as needed
     left: 50%; // Adjust as needed
     transform: translate(-50%, -50%);
