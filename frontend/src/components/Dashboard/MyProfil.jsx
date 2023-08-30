@@ -1,10 +1,11 @@
 import axios from "axios"
 import React, { useState, useContext, useEffect } from "react"
-import iconProfile from "../../assets/icon-dashboard/iconProfile.png"
 import Add2 from "../../assets/icon-dashboard/Add2.png"
 import Edit from "../../assets/icon-dashboard/Edit.png"
 import Location from "../../assets/icon-dashboard/Location.png"
 import AuthContext from "../AuthContext/AuthContext"
+import profilePictureLogo from "../../assets/icon-dashboard/profilePictureLogo.svg"
+import gameLogo from "../../assets/icon-dashboard/gameLogo.png"
 
 const MyProfil = () => {
   const { user } = useContext(AuthContext)
@@ -46,7 +47,13 @@ const MyProfil = () => {
   return (
     <div className="myProfil">
       <div className="titleProfil">
-        <img id="logoProfile" src={iconProfile} alt="logo of a profile" />
+        <div className="profilePic-container">
+          <img
+            id="logoProfile"
+            src={profilePictureLogo}
+            alt="logo of a profile"
+          />
+        </div>
         <h2>MY PROFIL</h2>
       </div>
       <div className="contentMyProfil">
@@ -108,6 +115,11 @@ const MyProfil = () => {
         </div>
         <div className="bottomProfile">
           <h1>MY GAMES / SEARCH TO PLAY ON</h1>
+          <div className="gamesContainer">
+            <img className="blackLogoGame" src={gameLogo} alt="game logo" />
+            <img className="blackLogoGame" src={gameLogo} alt="game logo" />
+            <img className="blackLogoGame" src={gameLogo} alt="game logo" />
+          </div>
         </div>
       </div>
     </div>
