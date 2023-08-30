@@ -54,6 +54,10 @@ const verifyToken = (req, res, next) => {
   try {
     const authorizationHeader = req.get("Authorization")
 
+    if (req.url.startsWith("/assets/images/profilPictures")) {
+      return next()
+    }
+
     if (authorizationHeader == null) {
       throw new Error("Authorization header is missing")
     }

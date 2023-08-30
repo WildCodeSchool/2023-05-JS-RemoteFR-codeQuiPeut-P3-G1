@@ -1,5 +1,8 @@
 const express = require("express")
 const { hashPassword, verifyPassword, verifyToken } = require("./auth.js")
+const multer = require("multer")
+
+const upload = multer({ dest: "public/assets/tmp" })
 
 const router = express.Router()
 
@@ -23,16 +26,19 @@ router.post("/users", hashPassword, UsersControllers.add)
 router.get("/testimonials", TestimonialsControllers.browse)
 router.get("/testimonials/:id", TestimonialsControllers.read)
 
-router.put("/users/:id", hashPassword, UsersControllers.edit)
 router.use(verifyToken)
 
-router.get("/users", UsersControllers.browse)
-router.get("/users/:id", UsersControllers.read)
-router.delete("/users/:id", UsersControllers.destroy)
 router.put(
-  "/users/:id/updateProfilePicture",
+  "/users/:id/upload",
+  upload.single("myFile"),
   UsersControllers.updateProfilPicture
 )
+
+router.get("/users/:id", UsersControllers.read)
+router.put("/users/:id", hashPassword, UsersControllers.edit)
+
+router.get("/users", UsersControllers.browse)
+router.delete("/users/:id", UsersControllers.destroy)
 
 router.get("/games", GamesControllers.browse)
 router.get("/games/:id", GamesControllers.read)
