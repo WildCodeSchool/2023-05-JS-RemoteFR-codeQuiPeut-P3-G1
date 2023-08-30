@@ -2,7 +2,7 @@ import React from "react"
 
 import "./Game.scss"
 
-export default function Game({ games, gm }) {
+export default function Game({ games, users, rpg }) {
   // Convertir la date au format souhaité
   const formattedDate = new Date(games.schedule).toLocaleString("fr-FR", {
     day: "numeric",
@@ -12,21 +12,28 @@ export default function Game({ games, gm }) {
     minute: "2-digit",
   })
 
-  // Trouver le GM correspondant dans le tableau gm en utilisant games.gm_profiles_id
-  const gameMaster = gm.find((user) => user.id === games.gm_profiles_id)
+  // Trouver le GM correspondant dans le tableau users en utilisant games.gm_profiles_id
+  const gameMaster = users.find((user) => user.id === games.gm_profiles_id)
+
+  const nameOfRpg = rpg.find(
+    (typeRpg) => typeRpg.id === games.role_playing_game_id
+  )
 
   return (
     <>
       <div className="globalContainerCard">
-        <p> XXX </p>
+        <div className="gameLocationUpcoming">{games.name}</div>
         <div className="gameLocationUpcoming">
           {gameMaster ? `${gameMaster.username}` : "N/A"}
         </div>
         <div className="gameLocationUpcoming">{formattedDate}</div>
         <div className="gameLocationUpcoming">{games.location}</div>
+        <div className="gameLocationUpcoming">
+          {/* {games.role_playing_game_id} */}
+          {nameOfRpg ? `${nameOfRpg.name}` : "N/A"}
+        </div>
+        <div className="gameLocationUpcoming">{games.type}</div>
         <div className="gameLocationUpcoming">{games.max_players_capacity}</div>
-        <p> XXX </p>
-        <p> XXX </p>
       </div>
     </>
   )

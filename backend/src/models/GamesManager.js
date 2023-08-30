@@ -12,7 +12,7 @@ class GamesManager extends AbstractManager {
     //   .slice(0, 19)
     //   .replace("T", " ")
     return this.database.query(
-      `INSERT INTO ${this.table} (role_playing_game_id, gm_profiles_id, schedule, location, max_players_capacity, description) VALUES (?, ?, DATE_FORMAT(?, '%Y-%m-%d %H:%i'), ?, ?, ?)`,
+      `INSERT INTO ${this.table} (role_playing_game_id, gm_profiles_id, schedule, location, max_players_capacity, description, game, type) VALUES (?, ?, DATE_FORMAT(?, '%Y-%m-%d %H:%i'), ?, ?, ?, ?, ?)`,
       [
         games.role_playing_game_id,
         games.gm_profiles_id,
@@ -21,13 +21,15 @@ class GamesManager extends AbstractManager {
         games.location,
         games.max_players_capacity,
         games.description,
+        games.name,
+        games.type,
       ]
     )
   }
 
   update(games) {
     return this.database.query(
-      `UPDATE ${this.table} SET role_playing_game_id = ?, gm_profiles_id = ?, schedule = DATE_FORMAT(?, '%Y-%m-%d %H:%i'), location = ?, max_players_capacity = ?, description = ? WHERE id = ?`,
+      `UPDATE ${this.table} SET role_playing_game_id = ?, gm_profiles_id = ?, schedule = DATE_FORMAT(?, '%Y-%m-%d %H:%i'), location = ?, max_players_capacity = ?, description = ? WHERE id = ? name = ? type = ?`,
       [
         games.role_playing_games_id,
         games.gm_profiles_id,
@@ -35,6 +37,8 @@ class GamesManager extends AbstractManager {
         games.location,
         games.max_players_capacity,
         games.description,
+        games.name,
+        games.type,
       ]
     )
   }
