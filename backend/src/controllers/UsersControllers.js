@@ -1,4 +1,5 @@
 const models = require("../models")
+const fs = require("fs")
 
 const browse = (req, res) => {
   models.users
@@ -82,20 +83,38 @@ const destroy = (req, res) => {
     })
 }
 
-const updateProfilPicture = async (req, res) => {
+const uploadProfilPicture = (req, res) => {
   const users = req.body
+
+  console.info(req.file)
+  console.info(req.body)
 
   // TODO validations (length, format...)
 
   users.id = parseInt(req.params.id, 10)
 
   models.users
-    .update(users)
+    .updateProfilPicture(
+      users,
+      `assets/images/profilPictures/${req.file.originalname}`
+    )
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404)
       } else {
-        res.sendStatus(204)
+        // Déplacez la photo après avoir effectué l'opération de mise à jour
+        fs.rename(
+          req.file.path,
+          `public/assets/images/profilPictures/${req.file.originalname}`,
+          (err) => {
+            if (err) {
+              console.error(err)
+              res.status(500).send("Error while moving the uploaded file")
+            } else {
+              res.sendStatus(204)
+            }
+          }
+        )
       }
     })
     .catch((err) => {
@@ -110,5 +129,5 @@ module.exports = {
   edit,
   add,
   destroy,
-  updateProfilPicture,
+  uploadProfilPicture,
 }

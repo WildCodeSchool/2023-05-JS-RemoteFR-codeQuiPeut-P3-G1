@@ -1,4 +1,7 @@
 const express = require("express")
+const multer = require("multer")
+
+const upload = multer({ dest: "public/assets/tmp" })
 
 const router = express.Router()
 
@@ -22,9 +25,11 @@ router.get("/users/:id", UsersControllers.read)
 router.put("/users/:id", UsersControllers.edit)
 router.post("/users", UsersControllers.add)
 router.delete("/users/:id", UsersControllers.destroy)
+
 router.put(
-  "/users/:id/updateProfilePicture",
-  UsersControllers.updateProfilPicture
+  "/users/:id/upload",
+  upload.single("myFile"),
+  UsersControllers.uploadProfilPicture
 )
 
 router.get("/games", GamesControllers.browse)
