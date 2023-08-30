@@ -32,13 +32,11 @@
     "husky": "^8.0.3"
   },
   "dependencies": {
-    "@react-google-maps/api": "^2.19.2",
     "@splinetool/react-spline": "^2.2.6",
     "esbuild": "^0.16.17",
-    
-    "react-router-dom": "^6.15.0",
+    "multer": "^1.4.5-lts.1",
     "mysql2": "^3.5.2",
-    "react-google-maps": "^9.4.5",
+    "react-router-dom": "^6.15.0",
     "sass": "^1.64.1"
   }
 }

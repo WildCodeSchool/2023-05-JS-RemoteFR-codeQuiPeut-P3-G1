@@ -6,29 +6,32 @@ import Edit from "../../assets/icon-dashboard/Edit.png"
 import Location from "../../assets/icon-dashboard/Location.png"
 import AuthContext from "../AuthContext/AuthContext"
 
+import GmCards from "./GmCards"
+
 const MyProfil = () => {
+  const [gmCardsVisible, setGmCardsVisible] = useState(true)
   const { user } = useContext(AuthContext)
 
   // const [userPicture, setUserPicture] = useState(null);
   const [imageUrl, setImageUrl] = useState(
-    user.profil_picture !== null ? user.profil_picture : null
+    user.profil_picture !== null
+      ? `${import.meta.env.VITE_BACKEND_URL}/${user.profil_picture}`
+      : null
   )
 
   const longDate = user.registration_date
   const shortDate = longDate.substring(0, 10)
 
-  const handlePictureChange = (e) => {
-    const picture = e.target.files[0]
-    setImageUrl(URL.createObjectURL(picture))
-
-    // updateProfilPictureOnServer(user.id, URL.createObjectURL(picture));
-  }
-
-  const updateProfilPictureOnServer = async (userId, newProfilPicture) => {
+  const updateProfilPictureOnServer = async (userId, formData) => {
     try {
       const response = await axios.put(
-        `http://localhost:4242/users/${userId}/updateProfilPicture`,
-        newProfilPicture
+        `http://localhost:4242/users/${userId}/upload`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Important for sending files
+          },
+        }
       )
       return response.data
     } catch (error) {
@@ -39,6 +42,20 @@ const MyProfil = () => {
       throw error
     }
   }
+
+  const handlePictureChange = (e) => {
+    const picture = e.target.files[0]
+
+    // Créez un objet FormData pour envoyer la photo
+    const formData = new FormData()
+    formData.append("myFile", picture)
+
+    setImageUrl(URL.createObjectURL(picture))
+
+    // Appel de la fonction pour mettre à jour la photo de profil sur le serveur
+    updateProfilPictureOnServer(user.id, formData)
+  }
+
   useEffect(() => {
     console.info(imageUrl)
   }, [imageUrl])
@@ -63,6 +80,7 @@ const MyProfil = () => {
                 <img
                   src={imageUrl}
                   alt="userPicture"
+                  name="myFile"
                   className="userPicture"
                   id="profilPictureForm"
                 />
@@ -76,7 +94,6 @@ const MyProfil = () => {
               accept="image/*"
               onChange={(e) => {
                 handlePictureChange(e)
-                updateProfilPictureOnServer(user.id, imageUrl)
               }}
               style={{ display: "none" }}
             />
@@ -110,6 +127,10 @@ const MyProfil = () => {
           <h1>MY GAMES / SEARCH TO PLAY ON</h1>
         </div>
       </div>
+      {gmCardsVisible && <GmCards />}
+      <button onClick={() => setGmCardsVisible(!gmCardsVisible)}>
+        {gmCardsVisible ? "Fermer GmCards" : "Afficher GmCards"}
+      </button>
     </div>
   )
 }

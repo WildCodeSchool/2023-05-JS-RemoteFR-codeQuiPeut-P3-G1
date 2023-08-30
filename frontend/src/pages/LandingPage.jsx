@@ -1,7 +1,7 @@
 import FAQ from "../components/FAQ/FAQ"
-import GuildPhone from "../components/3DGuildPhone/GuildPhone"
-import PhoneTexts from "../components/PhoneTexts/PhoneTexts"
-import MockUpInstructions from "../components/MockupInstructions/MockUpInstructions"
+// import GuildPhone from "../components/3DGuildPhone/GuildPhone"
+// import PhoneTexts from "../components/PhoneTexts/PhoneTexts"
+// import MockUpInstructions from "../components/MockupInstructions/MockUpInstructions"
 import Footer from "../components/Footer/Footer"
 import ButtonSignIn from "../components/Register/ButtonSignIn/ButtonSignIn"
 import ButtonSignUp from "../components/Register/ButtonSignUp/ButtonSignUp"
@@ -17,9 +17,9 @@ function LandingPage() {
             <ButtonSignUp />
           </div>
         </div>
-        <GuildPhone />
+        {/* <GuildPhone />
         <MockUpInstructions />
-        <PhoneTexts />
+        <PhoneTexts /> */}
         <div className="polygonSVG">
           <svg
             xmlns="http://www.w3.org/2000/svg"
