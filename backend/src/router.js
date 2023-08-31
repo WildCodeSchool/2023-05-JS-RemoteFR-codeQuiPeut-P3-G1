@@ -46,7 +46,7 @@ router.put("/games/:id", GamesControllers.edit)
 router.post("/games", GamesControllers.add)
 
 router.get(
-  "/usernameGMFutureGames",
+  "/usernameGMFutureGames/:id",
   GameRegistrationsControllers.futureGamesGMUsername
 )
 router.get("/gamesRegistrations", GameRegistrationsControllers.browse)
