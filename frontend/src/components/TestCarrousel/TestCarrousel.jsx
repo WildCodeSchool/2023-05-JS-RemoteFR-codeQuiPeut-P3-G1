@@ -3,7 +3,7 @@ import axios from "axios"
 import { Carousel } from "react-responsive-carousel"
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 
-import imgCarrousel from "../../assets/test-carrousel/photoCarrousel.png"
+// import imgCarrousel from "../../assets/test-carrousel/photoCarrousel.png"
 
 function TestCarousel() {
   const sentence = "They Tested, They Find Their Guild And They Like It"
