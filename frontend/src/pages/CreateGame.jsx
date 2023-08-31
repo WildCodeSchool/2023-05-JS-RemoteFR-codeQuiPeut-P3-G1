@@ -1,5 +1,6 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
+import Cookies from "js-cookie"
 
 import NavBar from "../components/NavBar/Navbar"
 
@@ -7,9 +8,11 @@ import createGameDice from "../assets/icon-create-game/dice.png"
 
 export default function CreateGame() {
   const [gameRPGList, setGameRPGList] = useState([])
+  const [departmentList, setDepartementList] = useState([])
+  const [departmentId, setDepartementId] = useState("")
   const [cityList, setCityList] = useState([])
   const [gameRPGID, setGameRPGID] = useState("")
-  const [gameGMID, setGameGMID] = useState("")
+  const [gamemasterUsername, setGamemasterUsername] = useState("")
   const [gameDate, setGameDate] = useState("")
   const [gamePlace, setGamePlace] = useState("")
   const [gamePlayersCapacity, setGamePlayersCapacity] = useState("")
@@ -19,16 +22,46 @@ export default function CreateGame() {
   // const [gameIsRemote, setGameIsRemote] = useState(0)
   const [gameIsCampaign, setGameIsCampaign] = useState(0)
 
+  const tokenFromCookie = Cookies.get("authToken")
+  const idUser = Cookies.get("idUser")
+
+  const headers = {
+    Authorization: `Bearer ${tokenFromCookie}`,
+  }
+
   useEffect(() => {
     axios
-      .get("http://localhost:4242/role-playing-games")
+      .get("http://localhost:4242/role-playing-games", { headers })
       .then((res) => setGameRPGList(res.data))
   }, [])
+
   useEffect(() => {
     axios
-      .get("https://geo.api.gouv.fr/communes")
-      .then((res) => setCityList(res.data))
+      .get(`http://localhost:4242/users/${idUser}`, { headers })
+      .then((res) => setGamemasterUsername(res.data.username))
   }, [])
+
+  useEffect(() => {
+    axios
+      .get("https://geo.api.gouv.fr/departements")
+      .then((res) => setDepartementList(res.data))
+  }, [])
+
+  useEffect(() => {
+    if (departmentId !== "") {
+      axios
+        .get(`https://geo.api.gouv.fr/departements/${departmentId}/communes`)
+        .then((res) => {
+          setCityList(res.data)
+        })
+        .catch((error) => {
+          console.error("Error fetching cities:", error)
+          setCityList([])
+        })
+    } else {
+      setCityList([])
+    }
+  }, [departmentId])
 
   const handleChange = () => {
     if (gameIsCampaign === 0) {
@@ -41,16 +74,20 @@ export default function CreateGame() {
   const handleCreateUser = (e) => {
     e.preventDefault()
     axios
-      .post("http://localhost:4242/games", {
-        role_playing_game_id: gameRPGID,
-        gm_profiles_id: gameGMID,
-        schedule: gameDate,
-        city: gamePlace,
-        max_players_capacity: gamePlayersCapacity,
-        description: gameDesc,
-        type: gameType,
-        name: gameName,
-      })
+      .post(
+        "http://localhost:4242/games",
+        {
+          role_playing_game_id: gameRPGID,
+          gm_username: gamemasterUsername,
+          schedule: gameDate,
+          city: gamePlace,
+          max_players_capacity: gamePlayersCapacity,
+          description: gameDesc,
+          type: gameType,
+          name: gameName,
+        },
+        { headers }
+      )
       .then((res) => {
         if (res.status === 200) {
           console.info("Partie créée avec succès !")
@@ -63,6 +100,19 @@ export default function CreateGame() {
       })
   }
 
+  console.info(
+    "finalTest",
+    gamemasterUsername,
+    gameName,
+    gameType,
+    gameRPGID,
+    gameIsCampaign,
+    gamePlayersCapacity,
+    gameDesc,
+    gamePlace,
+    gameDate
+  )
+
   return (
     <main id="createGameGlobal">
       <NavBar />
@@ -71,14 +121,14 @@ export default function CreateGame() {
           <img src={createGameDice} />
           <h1>CREATE GAME</h1>
         </div>
-        <label htmlFor="idGm">
+        {/* <label htmlFor="idGm">
           <p style={{ color: "white" }}>ID du GM</p>
           <input
             type="text"
             name="idGm"
-            onChange={(e) => setGameGMID(e.target.value)}
+            onChange={(e) => setGamemasterUsername(e.target.value)}
           />
-        </label>
+        </label> */}
         <form id="createGameForm" onSubmit={handleCreateUser}>
           <div id="createGameColumns">
             <div id="createGameFirstGroup">
@@ -97,8 +147,9 @@ export default function CreateGame() {
                     onChange={(event) => setGameType(event.target.value)}
                     name="format"
                     id="gameTypeSelecter"
+                    defaultValue=""
                   >
-                    <option value="" selected disabled>
+                    <option value="" disabled>
                       Select your categorie
                     </option>
                     <option value="Horror">Horror</option>
@@ -113,8 +164,9 @@ export default function CreateGame() {
                   <select
                     onChange={(event) => setGameRPGID(event.target.value)}
                     id="rpgNameSelecter"
+                    defaultValue=""
                   >
-                    <option value="" selected disabled>
+                    <option value="" disabled>
                       Select your game
                     </option>
                     {gameRPGList.map((rpg) => (
@@ -154,29 +206,48 @@ export default function CreateGame() {
               </label>
             </div>
             <div id="createGameThirdGroup">
-              <label htmlFor="city">
-                <p>City</p>
+              <label htmlFor="Department">
+                <p>Department</p>
                 <div className="createGameSelect">
-                  {/* <input
-                  type="text"
-                  name="city"
-                  onChange={(e) => setGamePlace(e.target.value)}
-                /> */}
                   <select
-                    onChange={(event) => setGamePlace(event.target.value)}
-                    id="cityNameSelecter"
+                    id="departmentNameSelecter"
+                    defaultValue=""
+                    onChange={(event) => setDepartementId(event.target.value)}
                   >
-                    <option value="" selected disabled>
-                      Select your city
+                    <option value="" disabled>
+                      Select your department
                     </option>
-                    {cityList.map((city) => (
-                      <option key={city.code} value={city.nom}>
-                        {city.nom}
+                    {departmentList.map((department) => (
+                      <option key={department.code} value={department.code}>
+                        {department.nom}
                       </option>
                     ))}
                   </select>
                 </div>
               </label>
+              {departmentId !== "" ? (
+                <label htmlFor="city">
+                  <p>City</p>
+                  <div className="createGameSelect">
+                    <select
+                      onChange={(event) => setGamePlace(event.target.value)}
+                      id="cityNameSelecter"
+                      defaultValue=""
+                    >
+                      <option value="" disabled>
+                        Select your city
+                      </option>
+                      {cityList.map((city) => (
+                        <option key={city.code} value={city.nom}>
+                          {city.nom}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </label>
+              ) : (
+                ""
+              )}
               <label htmlFor="date">
                 <p>Date</p>
                 <input
@@ -187,7 +258,11 @@ export default function CreateGame() {
               </label>
             </div>
           </div>
-          <button type="submit">VALIDATE</button>
+          <div id="createGameButton">
+            <button type="submit">
+              <span>VALIDATE</span>
+            </button>
+          </div>
         </form>
       </div>
     </main>

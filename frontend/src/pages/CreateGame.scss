@@ -33,6 +33,7 @@
   #createGameForm {
     display: flex;
     flex-direction: column;
+    // align-items: center;
     width: 80%;
     padding: 73px 32px 93px 64px;
     border: 1px solid #a4945e;
@@ -52,6 +53,31 @@
     p {
       font-family: $content-font;
       color: $third-font-color;
+    }
+    textarea {
+      border: none;
+      border-radius: 6px;
+      &:focus {
+        outline: 2px solid #a4945e;
+      }
+    }
+    #createGameButton {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      transform: translateY(230%);
+      button {
+        background: $navbar-color;
+        width: 191px;
+        height: 54px;
+        border: none;
+        span {
+          font-family: $content-font;
+          color: $button-gold;
+          font-size: 23px;
+          font-weight: 600;
+        }
+      }
     }
   }
   #createGameColumns {
