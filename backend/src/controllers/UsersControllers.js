@@ -42,7 +42,7 @@ const edit = (req, res) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404)
       } else {
-        res.sendStatus(204)
+        res.sendStatus(200)
       }
     })
     .catch((err) => {
@@ -83,7 +83,41 @@ const destroy = (req, res) => {
     })
 }
 
-const uploadProfilPicture = (req, res) => {
+// const verifyUser = (req, res, next) => {
+//   models.users
+//     .getUserByUsernameWithPassword(req.body.username)
+//     .then(([users]) => {
+//       if (users[0] != null) {
+//         req.user = users[0]
+//         next()
+//       } else {
+//         res.sendStatus(401)
+//       }
+//     })
+//     .catch((err) => {
+//       console.error(err)
+//       res.status(500).send("Error retrieving data from the database")
+//     })
+// }
+
+const verifyUser = (req, res, next) => {
+  models.users
+    .getUserByUsernameWithPassword(req.body.username)
+    .then(([users]) => {
+      if (users[0] != null) {
+        req.user = users[0]
+        next()
+      } else {
+        res.sendStatus(401)
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.status(500).send("Error retrieving data from the database")
+    })
+}
+
+const updateProfilPicture = async (req, res) => {
   const users = req.body
 
   console.info(req.file)
@@ -129,5 +163,6 @@ module.exports = {
   edit,
   add,
   destroy,
-  uploadProfilPicture,
+  updateProfilPicture,
+  verifyUser,
 }

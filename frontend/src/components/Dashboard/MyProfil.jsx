@@ -1,26 +1,33 @@
 import axios from "axios"
-import React, { useState, useContext, useEffect } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import iconProfile from "../../assets/icon-dashboard/iconProfile.png"
 import Add2 from "../../assets/icon-dashboard/Add2.png"
 import Edit from "../../assets/icon-dashboard/Edit.png"
 import Location from "../../assets/icon-dashboard/Location.png"
 import AuthContext from "../AuthContext/AuthContext"
+import Cookies from "js-cookie"
 
 import GmCards from "./GmCards"
 
 const MyProfil = () => {
   const [gmCardsVisible, setGmCardsVisible] = useState(true)
   const { user } = useContext(AuthContext)
+  console.info(user)
+  const [imageUrl, setImageUrl] = useState(null)
 
-  // const [userPicture, setUserPicture] = useState(null);
-  const [imageUrl, setImageUrl] = useState(
-    user.profil_picture !== null
-      ? `${import.meta.env.VITE_BACKEND_URL}/${user.profil_picture}`
-      : null
-  )
+  useEffect(() => {
+    setImageUrl(`${import.meta.env.VITE_BACKEND_URL}/${user.profil_picture}`)
+  }, [user.profil_picture])
 
-  const longDate = user.registration_date
-  const shortDate = longDate.substring(0, 10)
+  const tokenFromCookie = Cookies.get("authToken")
+
+  console.info("prout", user.profil_picture)
+
+  const shortDate = String(user.registration_date)
+    .substring(0, 10)
+    .split("-")
+    .reverse()
+    .join("-")
 
   const updateProfilPictureOnServer = async (userId, formData) => {
     try {
@@ -29,7 +36,8 @@ const MyProfil = () => {
         formData,
         {
           headers: {
-            "Content-Type": "multipart/form-data", // Important for sending files
+            "Content-Type": "multipart/form-data", // Important for sending files,
+            Authorization: `Bearer ${tokenFromCookie}`,
           },
         }
       )
@@ -56,10 +64,6 @@ const MyProfil = () => {
     updateProfilPictureOnServer(user.id, formData)
   }
 
-  useEffect(() => {
-    console.info(imageUrl)
-  }, [imageUrl])
-
   return (
     <div className="myProfil">
       <div className="titleProfil">
@@ -76,7 +80,7 @@ const MyProfil = () => {
         <div className="topProfile">
           <div className="logoAdd2">
             <label htmlFor="buttonPicture">
-              {imageUrl ? (
+              {user.profil_picture !== null ? (
                 <img
                   src={imageUrl}
                   alt="userPicture"
@@ -134,5 +138,4 @@ const MyProfil = () => {
     </div>
   )
 }
-
 export default MyProfil
