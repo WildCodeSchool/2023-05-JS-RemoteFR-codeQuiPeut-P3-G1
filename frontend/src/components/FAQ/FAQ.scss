@@ -1,0 +1,80 @@
+.container-FAQ {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+
+  .title-FAQ {
+    span {
+      text-align: center;
+      color: $third-font-color;
+      font-family: $title-font;
+      font-size: 3.24vw;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      margin: 0;
+    }
+  }
+  .line-FAQ {
+    border-top: 1px solid $third-font-color;
+    width: 90%;
+  }
+  .card-Container {
+    margin-top: 50px;
+    .card-FAQ {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      width: 80vw;
+      height: 6vh;
+      border-radius: 20px;
+      background: rgba(217, 217, 217, 0.1);
+      margin-bottom: 10px;
+      &.expanded {
+        height: 15vh;
+        justify-content: space-around;
+      }
+      h2 {
+        font-size: 2.31vw;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        color: $third-font-color;
+        text-align: center;
+        font-family: $content-font;
+      }
+      .card-header {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        .h2-card-header {
+          width: 90%;
+          h2 {
+            margin-left: 12%;
+          }
+        }
+        .svg-card-header {
+          display: flex;
+          justify-content: center;
+          width: 10%;
+        }
+      }
+      .card-content {
+        p {
+          font-size: 1.98vw;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          color: $third-font-color;
+          text-align: center;
+          font-family: $content-font;
+          padding-left: 200px;
+          padding-right: 200px;
+        }
+      }
+    }
+  }
+}
