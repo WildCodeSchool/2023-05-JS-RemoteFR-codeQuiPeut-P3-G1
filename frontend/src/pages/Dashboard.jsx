@@ -3,7 +3,7 @@ import axios from "axios"
 import Cookies from "js-cookie"
 import AuthContext from "../components/AuthContext/AuthContext"
 
-import NavBar from "../components/NavBar/Navbar"
+// import NavBar from "../components/NavBar/Navbar"
 
 import questionMark from "../assets/icon-dashboard/questionMark.png"
 import Notepad from "../assets/icon-dashboard/Notepad.png"
@@ -52,7 +52,7 @@ const Dashboard = () => {
             <MyProfil idUser={idUser} />
           </div>
         </div>
-        <NavBar />
+        {/* <NavBar /> */}
       </div>
     </>
   )

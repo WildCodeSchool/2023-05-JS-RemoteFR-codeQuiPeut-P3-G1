@@ -12,6 +12,7 @@ import Dashboard from "./pages/Dashboard"
 import GmCards from "./components/Dashboard/GmCards"
 import PrivateMessages from "./components/PrivateMessages/PrivateMessages"
 import Topics from "./pages/Topics"
+import NavBar from "./components/NavBar/Navbar"
 
 function App() {
   const [users, setUsers] = useState([])
@@ -57,6 +58,9 @@ function App() {
               <Route path="/test" element={<Home />} />
               <Route path="/privatemessages" element={<PrivateMessages />} />
             </Routes>
+            <div className="navBar">
+              <NavBar />
+            </div>
           </Router>
         </AuthContext.Provider>
       </div>
