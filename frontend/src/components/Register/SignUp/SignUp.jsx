@@ -1,23 +1,92 @@
+import axios from "axios"
+import { useState } from "react"
+
 function SignUp() {
+  const [signUpUsername, setSignUpUsername] = useState()
+  const [signUpEmail, setSignUpEmail] = useState()
+  const [signUpCity, setSignUpCity] = useState()
+  const [signUpPassword, setSignUpPassword] = useState()
+  const [signUpVerifyPassword, setSignUpVerifyPassword] = useState()
+
+  const handleCreateUser = (e) => {
+    e.preventDefault()
+    axios
+      .post("http://localhost:4242/users", {
+        username: signUpUsername,
+        email_adress: signUpEmail,
+        password: signUpPassword,
+        location: signUpCity,
+      })
+      .then((res) => {
+        if (res.status === 201) {
+          console.info("Utilisateur créé avec succès !")
+          document.getElementById("cardLogIn-Input2").reset()
+          setSignUpUsername()
+          setSignUpEmail()
+          setSignUpCity()
+          setSignUpPassword()
+          setSignUpVerifyPassword()
+        }
+      })
+      .catch((error) => {
+        console.error(
+          "Erreur lors de la création de la création de l'utilisateur :",
+          error
+        )
+      })
+  }
+
   return (
     <div className="cardLogIn-container2">
       <span id="title-card-logIn2">SIGN UP</span>
       <div>
-        <div className="cardLogIn-Input2">
+        <form id="cardLogIn-Input2">
           <span>Username</span>
-          <input type="text" />
+          <input
+            type="text"
+            onChange={(event) => setSignUpUsername(event.target.value)}
+            required
+            minLength="4"
+          />
           <span>Email</span>
-          <input type="text" />
+          <input
+            type="email"
+            onChange={(event) => setSignUpEmail(event.target.value)}
+            required
+            pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+            minLength="4"
+          />
           <span>City</span>
-          <input type="text" />
+          <input
+            type="text"
+            onChange={(event) => setSignUpCity(event.target.value)}
+            required
+            minLength="1"
+          />
           <span>Password</span>
-          <input type="password" />
+          <input
+            type="password"
+            onChange={(event) => setSignUpPassword(event.target.value)}
+            required
+            minLength="5"
+          />
           <span>Validate Password</span>
-          <input id="input-password-LogIn2" type="password" />
-        </div>
+          <input
+            id="input-password-LogIn2"
+            type="password"
+            onChange={(event) => setSignUpVerifyPassword(event.target.value)}
+          />
+        </form>
         <div className="button-SignIn-Container2">
           <div className="button-SignIn2">
-            <button type="button">VALIDATE</button>
+            <button
+              type="button"
+              onClick={
+                signUpPassword === signUpVerifyPassword ? handleCreateUser : ""
+              }
+            >
+              VALIDATE
+            </button>
           </div>
         </div>
       </div>

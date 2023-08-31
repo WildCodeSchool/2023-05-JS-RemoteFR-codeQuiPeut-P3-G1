@@ -6,13 +6,20 @@ import Dice from "../../assets/icon-dashboard/Dice.png"
 import Add from "../../assets/icon-dashboard/Add.png"
 import eyeBtn from "../../assets/icon-dashboard/eyeBtn.svg"
 import GmCards from "./GmCards"
+import Cookies from "js-cookie"
 
 export default function FutureGames() {
   const [isGmCardsOpen, setIsGmCardsOpen] = useState(false)
-  // const [participantsData, setParticipantsData] = useState({})
+
   const [gameData, setGameData] = useState({})
   const [gameTypeData, setGameTypeData] = useState({})
   const [gameGMData, setGameGMData] = useState({})
+
+  const tokenFromCookie = Cookies.get("authToken")
+
+  const headers = {
+    Authorization: `Bearer ${tokenFromCookie}`,
+  }
 
   const toggleGmCards = () => {
     setIsGmCardsOpen(!isGmCardsOpen)
@@ -25,31 +32,21 @@ export default function FutureGames() {
   }
   const formattedSchedule = scheduleDate.toLocaleDateString("en-Us", options)
 
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:4242/games_has_users")
-  //     .then((response) => {
-  //       setParticipantsData(response.data[1])
-  //     })
-  //     .catch((error) => {
-  //       console.error("An error occurred:", error)
-  //     })
-  // }, [])
-
   useEffect(() => {
     axios
-      .get("http://localhost:4242/games")
+      .get("http://localhost:4242/games", { headers })
       .then((response) => {
         setGameData(response.data[1])
       })
       .catch((error) => {
         console.error("An error occurred:", error)
       })
+    console.info(setGameData)
   }, [])
 
   useEffect(() => {
     axios
-      .get("http://localhost:4242/role-playing-games")
+      .get("http://localhost:4242/role-playing-games", { headers })
       .then((response) => {
         setGameTypeData(response.data[1])
         console.info(gameTypeData)
@@ -61,7 +58,7 @@ export default function FutureGames() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4242/usernameGMFutureGames")
+      .get("http://localhost:4242/usernameGMFutureGames", { headers })
       .then((response) => {
         setGameGMData(response.data)
         console.info(gameGMData, "hello")

@@ -481,17 +481,17 @@ CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
   `email_adress` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
+  `hashedPassword` varchar(255) NOT NULL,
   `other_information` text,
   `is_gamemaster` enum('playerOnly','gmOnly','both') NOT NULL DEFAULT 'playerOnly',
   `availability_schedule` text,
   `description_as_player` text,
   `registration_date` timestamp NOT NULL,
   `location` varchar(255) DEFAULT NULL,
-  `profil_picture` varchar(255) DEFAULT NULL,
+  `profil_picture` varchar(255) DEFAULT 'assets/images/profilPictures/defaultUserPicture.png',
   `description_as_gm` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -500,7 +500,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'fredgreg','fred@greg.com','azerty','i\'m cool','playerOnly','2023-08-14 09:00:00','je suis là','2022-08-16 10:00:00','Paris','https://static.vecteezy.com/ti/vecteur-libre/p1/5544770-profil-icone-design-vecteur-gratuit-vectoriel.jpg','je suis gm'),(2,'romainniort','romain@niort.com','aqwxsz','coucou les gens','both','2023-08-14 09:00:00','i\'m here','2022-08-14 09:00:00','Nantes',NULL,'je suis plus gm que l\'autre');
+INSERT INTO `users` VALUES (1,'fredgreg','fred@greg.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','i\'m cool','playerOnly','2023-08-14 09:00:00',NULL,'2022-08-16 10:00:00','Paris','assets/images/profilPictures/Pokecop.jpg','je suis gm'),(2,'romainniort','romain@niort.com','$argon2id$v=19$m=65536,t=5,p=1$axqiAE6csCCwh7gwPE3v1w$Rxz+OtrGxdLBfRsY+dGNNodOVN4zRv4ZQD589nPXcqo','coucou les gens','both','2023-08-14 09:00:00',NULL,'2022-08-14 09:00:00','Nantes',NULL,'je suis plus gm que l\'autre'),(3,'hugo','hugo@mail.com','$argon2id$v=19$m=65536,t=5,p=1$m3kIrB4pbFqO4hY5Fw2EaA$8v8PcD/6mQf9AUaifb7nqMkyd1PeW5wqOSLQ3Uw9aZY',NULL,'playerOnly',NULL,NULL,'2023-08-29 17:07:29','Tours',NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -571,4 +571,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-28 10:49:51
+-- Dump completed on 2023-08-30 15:03:55
