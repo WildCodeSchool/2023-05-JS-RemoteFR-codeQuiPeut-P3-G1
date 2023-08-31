@@ -12,6 +12,7 @@ export default function FutureGames() {
   // const [participantsData, setParticipantsData] = useState({})
   const [gameData, setGameData] = useState({})
   const [gameTypeData, setGameTypeData] = useState({})
+  const [gameGMData, setGameGMData] = useState({})
 
   const toggleGmCards = () => {
     setIsGmCardsOpen(!isGmCardsOpen)
@@ -48,9 +49,22 @@ export default function FutureGames() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4242/role_playing_games")
+      .get("http://localhost:4242/role-playing-games")
       .then((response) => {
         setGameTypeData(response.data[1])
+        console.info(gameTypeData)
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error)
+      })
+  }, [])
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:4242/usernameGMFutureGames")
+      .then((response) => {
+        setGameGMData(response.data)
+        console.info(gameGMData, "hello")
       })
       .catch((error) => {
         console.error("An error occurred:", error)
@@ -91,7 +105,7 @@ export default function FutureGames() {
                   <div className="infoGames_FG_Text">
                     <div>
                       <span id="goldenText_FG">WITH </span>
-                      <span id="future-GM">Abdou</span>{" "}
+                      <span id="future-GM">{gameGMData.gm_username}</span>{" "}
                     </div>
                     <span id="lineSeparator_FG"></span>
                     <div>
