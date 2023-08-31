@@ -12,11 +12,8 @@ import Dashboard from "./pages/Dashboard"
 import GmCards from "./components/Dashboard/GmCards"
 import PrivateMessages from "./components/PrivateMessages/PrivateMessages"
 import Topics from "./pages/Topics"
-<<<<<<< HEAD
-import UpcomingTable from "./pages/UpcomingTable"
-=======
 import NavBar from "./components/NavBar/Navbar"
->>>>>>> dev
+import UpcomingTable from "./pages/UpcomingTable.jsx"
 
 function App() {
   const [users, setUsers] = useState([])
