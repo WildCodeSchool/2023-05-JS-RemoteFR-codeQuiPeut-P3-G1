@@ -1,0 +1,93 @@
+@import "../../Variable.scss";
+
+.Friends-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .Global-friendRequest {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .sword-logo {
+      width: 25%;
+      padding: 1rem;
+      border-bottom: 1px solid #a4945e;
+    }
+    .Request-Title {
+      text-align: center;
+      font-family: $content-font;
+      font-size: 2.5vh;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      text-transform: uppercase;
+      background: linear-gradient(180deg, #e2d07c 0%, #a4945e 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-top: 1rem;
+    }
+  }
+  .Friends-content {
+    display: flex;
+
+    .friends {
+      display: flex;
+      border: 3px solid lightgreen;
+      align-items: center;
+      justify-content: center;
+      width: 30vw;
+      height: 20vh;
+      border-radius: 8px;
+      border: 4px solid #4d194d;
+      background: rgba(217, 217, 217, 0.22);
+      gap: 10px;
+      .friend-name {
+        color: #fff;
+        font-family: Koh Santepheap;
+        font-size: 1.2vh;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+      .wantToJoin {
+        background: linear-gradient(180deg, #e2d07c 0%, #a4945e 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .guild-name {
+        color: #fff;
+        font-family: Petrona;
+        font-size: 1.5vh;
+        font-style: italic;
+        font-weight: 500;
+        line-height: normal;
+        text-transform: uppercase;
+      }
+      .logo-check {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        background-color: #4d194d;
+      }
+
+      .logo-rejected {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        border: 1px solid white;
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react"
 import axios from "axios"
+import Cookies from "js-cookie"
 import gmProfilePic from "../../assets/GmCards-assets/GMProfilePic.png"
 import closeModal from "../../assets/GmCards-assets/closeModal.png"
 import gameLogo from "../../assets/GmCards-assets/gameLogo.png"
@@ -10,7 +11,7 @@ import participantsLogo from "../../assets/GmCards-assets/participantsLogo.svg"
 import PlayerCards from "./PlayerCards"
 import AuthContext from "../AuthContext/AuthContext"
 
-const GmCards = () => {
+const GmCards = ({ onClose }) => {
   const [gamesData, setGamesData] = useState({})
   const [isPlayerCardsOpen, setIsPlayerCardsOpen] = useState(false)
   const { user } = useContext(AuthContext)
@@ -22,9 +23,15 @@ const GmCards = () => {
   }
   const formattedSchedule = scheduleDate.toLocaleDateString("fr-FR", options)
 
+  const tokenFromCookie = Cookies.get("authToken")
+
+  const headers = {
+    Authorization: `Bearer ${tokenFromCookie}`,
+  }
+
   useEffect(() => {
     axios
-      .get("http://localhost:4242/games")
+      .get("http://localhost:4242/games", { headers })
       .then((response) => {
         setGamesData(response.data[1])
       })
@@ -49,7 +56,12 @@ const GmCards = () => {
               <button className="Btn-send">SEND A MESSAGE</button>
             </div>
             <div className="close-container">
-              <img className="close-modale" src={closeModal} alt="GM Profile" />
+              <img
+                className="close-modale"
+                onClick={onClose}
+                src={closeModal}
+                alt="GM Profile"
+              />
             </div>
           </div>
           <div className="GM-calendar-location">

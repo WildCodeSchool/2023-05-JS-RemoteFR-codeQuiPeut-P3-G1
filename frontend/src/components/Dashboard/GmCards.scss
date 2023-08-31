@@ -1,20 +1,18 @@
 @import "../../Variable.scss";
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 .global-GmCards {
   display: flex;
   justify-content: center;
   align-items: center;
-  // border: 2px solid yellow;
-  width: 100vw;
-  height: 100vh;
+  border: 2px solid yellow;
 
   .GmCards-container {
+    position: fixed;
     display: flex;
+
+    top: 50%; // Adjust as needed
+    left: 50%; // Adjust as needed
+    transform: translate(-50%, -50%);
     flex-direction: column;
     align-items: center;
     width: 573px;
@@ -53,7 +51,7 @@
         padding: 1rem;
 
         .GM-Name {
-          color: #180b23;
+          color: $navbar-color;
           font-family: $content-font;
           font-size: 2.5rem;
           font-style: normal;
@@ -161,7 +159,7 @@
       justify-content: center;
 
       padding: 2rem;
-      border: 3px solid blue;
+      // border: 3px solid blue;
       width: 100%;
       height: 30%;
       .participant-nb-container {
