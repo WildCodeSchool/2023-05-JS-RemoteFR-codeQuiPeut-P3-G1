@@ -58,6 +58,10 @@ const verifyToken = (req, res, next) => {
       return next()
     }
 
+    // if (req.url.startsWith("/login")) {
+    //   return next()
+    // }
+
     if (authorizationHeader == null) {
       throw new Error("Authorization header is missing")
     }

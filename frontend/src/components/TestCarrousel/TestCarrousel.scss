@@ -21,120 +21,72 @@
     font-weight: 400;
     line-height: normal;
     margin-top: 120px;
-  }
-  .carrousel-content {
     display: flex;
+    text-align: left;
+    justify-content: center;
+  }
+  .carousel-content {
     width: 100%;
-    height: 100%;
-    gap: 50px;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.3s ease;
-    margin-bottom: 162px;
+    height: 400px;
   }
-  .carrousel-item {
-    display: flex;
-    position: relative;
-    width: 15%;
-    // width: 345.269px;
-    // height: 221px;
-    padding: 20px;
-    box-sizing: border-box;
-    text-align: center;
-    transition: opacity 0.3s ease;
-    border-radius: 8px;
-    background: #42384b;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    $border: 5px;
-    background-clip: padding-box; /* !importanté */
-    border: solid $border transparent; /* !importanté */
-    &:before {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: -1;
-      margin: -$border; /* !importanté */
-      border-radius: inherit; /* !importanté */
-      background: linear-gradient(to bottom, #4d194d, #ffffff);
-    }
+}
 
-    .carrousel-header {
+// Css Carousel
+.carousel-root {
+  height: 100%;
+  .carousel {
+    height: 400px;
+    .slide {
+      height: 350px;
+      width: 100%;
       display: flex;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: center;
-      width: 100%;
-      height: auto;
-
-      img {
-        width: 101.668px;
-        height: 95px;
-      }
-
-      .H2HR-carrousel {
+      .testimonialCard {
+        height: 400px;
+        width: 600px;
+        background: rgb(65, 47, 85);
+        border-radius: 20px;
+        border: 3px solid $third-font-color;
         display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        width: 100%;
-        height: auto;
-        span {
-          color: #a4945e;
-          font-size: 1.91vw;
-          font-style: normal;
-          font-weight: 700;
-          line-height: normal;
-          font-family: $content-font;
-          margin: 0;
+        flex-direction: row;
+        .jeSaisPas {
+          width: 40%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.447);
+          }
         }
-
-        hr {
-          width: 100%;
-          height: 1px;
-          border: none;
-          background: #a4945e;
+        .jeSaisPasContenu {
+          width: 60%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          gap: 40px;
+          flex-direction: column;
+          h3 {
+            padding: 3px;
+            margin-top: 70px;
+            font-family: $title-font;
+            color: $third-font-color;
+            font-size: 40px;
+            // border: 2px solid blue;
+            border-bottom: 1px solid $third-font-color;
+            width: 300px;
+          }
+          p {
+            color: $secondary-font-color;
+            font-size: 30px;
+            width: 300px;
+          }
         }
       }
-    }
-    p {
-      color: #fff;
-      text-align: justify;
-      font-size: 1vw;
-      font-style: normal;
-      font-family: $ponctual-font;
-      font-weight: 400;
-      line-height: normal;
-      width: 100%;
-      text-align: center;
-    }
-  }
-
-  .carrousel-item.active {
-    opacity: 1;
-  }
-
-  .carrousel-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 60.397px;
-    height: 60px;
-    background: #fff;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-
-    &.prev {
-      left: 20px;
-    }
-
-    &.next {
-      right: 20px;
     }
   }
 }
