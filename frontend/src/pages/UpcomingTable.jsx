@@ -28,15 +28,19 @@ function UpcomingTable() {
   const [rpgFilter, setRpgFilter] = useState("") // Filtre pour le type de RPG
   const [usernameFilter, setUsernameFilter] = useState("")
   const [locationFilter, setLocationFilter] = useState("")
-  const [showPlayerContainer, setShowPlayerContainer] = useState(true)
+  const [showPlayerContainer, setShowPlayerContainer] = useState(false)
 
   const toggleContainer = () => {
     setShowPlayerContainer(!showPlayerContainer)
-  }
 
-  // const handleCityFilterChange = (event) => {
-  //   setCityFilter(event.target.value)
-  // }
+    // Ajouter la classe d'animation lorsque le conteneur Player devient visible
+    if (!showPlayerContainer) {
+      const playerContainer = document.querySelector(".bigBoxPlayer")
+      if (playerContainer) {
+        playerContainer.classList.add("flip-in-hor-top")
+      }
+    }
+  }
 
   // sert a récupérer le token qui certifie que l'utilisateur est connecté.
   const tokenFromCookie = Cookies.get("authToken")
@@ -100,7 +104,8 @@ function UpcomingTable() {
           className="containerFilterAndCardsPlayer"
           style={{ display: showPlayerContainer ? "flex" : "none" }}
         >
-          <div className="bigBoxPlayer">
+          <div className="bigBoxPlayer flip-in-hor-top">
+            <h1 className="titleUpcommingTable"> Upcoming Table</h1>
             <div className="BoxTitle">
               <div className="boxTitlePlayer">
                 <img
@@ -176,7 +181,7 @@ function UpcomingTable() {
           </div>
         </div>
         <div
-          className="containerFilterAndCardsGames"
+          className="containerFilterAndCardsGames flip-in-hor-top"
           style={{ display: showPlayerContainer ? "none" : "flex" }}
         >
           <div className="filterContainer">
@@ -247,6 +252,7 @@ function UpcomingTable() {
             </button>
           </div>
           <div className="gamecard">
+            <h1 className="titleUpcommingTable"> Upcoming Table</h1>
             <div className="containerMenuGame">
               <div className="boxTitleGame">
                 <img
