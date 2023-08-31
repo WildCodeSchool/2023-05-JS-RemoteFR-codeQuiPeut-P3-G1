@@ -13,16 +13,16 @@
     justify-content: space-between; /* Espace équivalent entre les éléments */
     display: none;
 
-    &.filterGameLeft {
-      flex-direction: row;
-      transition: all 1s ease;
-    }
+    // &.filterGameLeft {
+    //   flex-direction: row;
+    //   transition: all 1s ease;
+    // }
 
-    &.filterGameRight {
-      flex-direction: row-reverse;
-      transition: all 1s ease;
-      animation-duration: 1s;
-    }
+    // &.filterGameRight {
+    //   flex-direction: row-reverse;
+    //   transition: all 1s ease;
+    //   animation-duration: 1s;
+    // }
 
     .filterContainer {
       display: flex;
@@ -103,7 +103,7 @@
         height: 50px;
         border-radius: 10px 10px 0px 0px;
 
-        .boxTitleUT {
+        .boxTitleGame {
           width: 100%;
           display: flex;
           flex-direction: row;
@@ -125,7 +125,34 @@
   }
 
   .containerFilterAndCardsPlayer {
+    display: flex;
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Espace équivalent entre les éléments */
+    // display: none;
+
+    
+    .bigBoxFilterPlayer{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      width: 30%;
+      border: solid rgb(194 177 108);
+      height: 50%;
+      width: auto;
+      margin-left: 25px;
+      margin-right: 25px;
+      padding-left: 20px;
+      padding-right: 20px;
+      gap: 10px;
+      }
+    
     .bigBoxPlayer {
+      
+
+
       .BoxTitle {
         display: flex;
         justify-content: space-between; /* Espace équivalent entre les éléments */

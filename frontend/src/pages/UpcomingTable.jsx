@@ -26,10 +26,13 @@ function UpcomingTable() {
   const [dateFilter, setDateFilter] = useState("") // Filtre pour la date de partie
   const [nameFilter, setNameFilter] = useState("") // Filtre pour le nom de partie
   const [rpgFilter, setRpgFilter] = useState("") // Filtre pour le type de RPG
+  const [usernameFilter, setUsernameFilter] = useState("")
+  const [locationFilter, setLocationFilter] = useState("")
+  const [showPlayerContainer, setShowPlayerContainer] = useState(true)
 
-  // const handleSwitchPlayer = () => {
-  //   setSwitchPlayer(!switchPlayer)
-  // }
+  const toggleContainer = () => {
+    setShowPlayerContainer(!showPlayerContainer)
+  }
 
   // const handleCityFilterChange = (event) => {
   //   setCityFilter(event.target.value)
@@ -40,6 +43,14 @@ function UpcomingTable() {
 
   const headers = {
     Authorization: `Bearer ${tokenFromCookie}`,
+  }
+
+  const handleUsernameFilterChange = (event) => {
+    setUsernameFilter(event.target.value)
+  }
+
+  const handleLocationFilterChange = (event) => {
+    setLocationFilter(event.target.value)
   }
 
   const handleGmFilterChange = (event) => {
@@ -68,7 +79,6 @@ function UpcomingTable() {
 
   // useContexte qui ne fonctionne pas car il est dans App.
   // const { users } = useContext(AuthContext)
-  console.info(users)
 
   useEffect(() => {
     axios
@@ -86,7 +96,10 @@ function UpcomingTable() {
     <>
       <div className="globalcontainerUT">
         <NavBar />
-        <div className="containerFilterAndCardsPlayer">
+        <div
+          className="containerFilterAndCardsPlayer"
+          style={{ display: showPlayerContainer ? "flex" : "none" }}
+        >
           <div className="bigBoxPlayer">
             <div className="BoxTitle">
               <div className="boxTitlePlayer">
@@ -125,17 +138,48 @@ function UpcomingTable() {
               </div>
             </div>
             <div>
-              {users.map((users) => (
-                <Player key={users.id} users={users} />
-              ))}
+              {users
+                .filter((user) =>
+                  user.username
+                    .toLowerCase()
+                    .includes(usernameFilter.toLowerCase())
+                )
+                .filter((user) =>
+                  user.location
+                    .toLowerCase()
+                    .includes(locationFilter.toLowerCase())
+                )
+                .map((user) => (
+                  <Player key={user.id} users={user} />
+                ))}
             </div>
+          </div>
+          <div className="bigBoxFilterPlayer">
+            <h2>Find your Players</h2>
+            <input
+              className="inputUT"
+              type="text"
+              placeholder="Filter by username"
+              value={usernameFilter}
+              onChange={handleUsernameFilterChange}
+            />
+
+            <input
+              className="inputUT"
+              type="text"
+              placeholder="Filter by city"
+              value={locationFilter}
+              onChange={handleLocationFilterChange}
+            />
+
+            <button type="button" onClick={toggleContainer}>
+              Toggle Containers
+            </button>
           </div>
         </div>
         <div
           className="containerFilterAndCardsGames"
-          // className={`containerFilterAndCards ${
-          //   switchPlayer ? "filterGameLeft" : "filterGameRight"
-          // }`}
+          style={{ display: showPlayerContainer ? "none" : "flex" }}
         >
           <div className="filterContainer">
             <div className="titleUpcommingTable">
@@ -200,67 +244,67 @@ function UpcomingTable() {
               onChange={handleRpgFilterChange}
             />
 
-            {/* <button type="button" onClick={handleSwitchPlayer}>
-              Find a Player
-            </button> */}
+            <button type="button" onClick={toggleContainer}>
+              Toggle Containers
+            </button>
           </div>
           <div className="gamecard">
             <div className="containerMenuGame">
-              <div className="boxTitlePlayer">
+              <div className="boxTitleGame">
                 <img
-                  className="iconUpcomingTablePlayer"
+                  className="iconUpcomingTableGame"
                   src={BladeIcon}
                   alt="icon blade gold"
                 />
                 <div className="containerTitleUP">Game Title</div>
               </div>
-              <div className="boxTitlePlayer">
+              <div className="boxTitleGame">
                 <img
-                  className="iconUpcomingTablePlayer"
+                  className="iconUpcomingTableGame"
                   src={ProfilIcon}
-                  alt="icon blade gold"
+                  alt="icon profil gold"
                 />
                 <div className="containerTitleUP">Game Master</div>
               </div>
-              <div className="boxTitlePlayer">
+              <div className="boxTitleGame">
                 <img
-                  className="iconUpcomingTablePlayer"
+                  className="iconUpcomingTableGame"
                   src={CalandarIcon}
-                  alt="icon blade gold"
+                  alt="icon calandar gold"
                 />
                 <div className="containerTitleUP">Game Date</div>
               </div>
-              <div className="boxTitlePlayer">
+              <div className="boxTitleGame">
                 <div className="containerTitleUP">
                   <img
-                    className="iconUpcomingTablePlayer"
+                    className="iconUpcomingTableGame"
                     src={PlaceIconVector}
-                    alt="icon blade gold"
+                    alt="icon place gold"
                   />
                   <div>Place</div>
                 </div>
               </div>
-              <div className="boxTitlePlayer">
+              <div className="boxTitleGame">
                 <img
-                  className="iconUpcomingTablePlayer"
+                  className="iconUpcomingTableGame"
                   src={HexagonDiceIcon}
-                  alt="icon blade gold"
+                  alt="icon Hexagon gold"
                 />
                 <div className="containerTitleUP">RPG</div>
               </div>
-              <div className="boxTitlePlayer">
+              <div className="boxTitleGame">
                 <img
-                  className="iconUpcomingTablePlayer"
+                  className="iconUpcomingTableGame"
                   src={BookVector}
-                  alt="icon blade gold"
+                  alt="icon book gold"
                 />
                 <div className="containerTitleUP">Type</div>
               </div>
-              <div className="boxTitlePlayer">
+              <div className="boxTitleGame">
                 <img
-                  className="iconUpcomingTablePlayer"
+                  className="iconUpcomingTableGame"
                   src={GroupDiscussionIcon}
-                  alt="icon blade gold"
+                  alt="icon Group Discussion gold"
                 />
                 <div className="containerTitleUP">Player</div>
               </div>
