@@ -52,6 +52,7 @@ router.get("/gamesRegistrations", GameRegistrationsControllers.browse)
 router.get("/gamesRegistrations/:id", GameRegistrationsControllers.read)
 router.put("/gamesRegistrations/:id", GameRegistrationsControllers.edit)
 router.post("/gamesRegistrations", GameRegistrationsControllers.add)
+router.delete("/gamesRegistrations/:id", GameRegistrationsControllers.destroy)
 
 router.put("/testimonials/:id", TestimonialsControllers.edit)
 router.post("/testimonials", TestimonialsControllers.add)
