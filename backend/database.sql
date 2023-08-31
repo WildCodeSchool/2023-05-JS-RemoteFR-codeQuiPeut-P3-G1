@@ -1,6 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `guilden` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `guilden`;
--- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.33, for macos13 (arm64)
 --
 -- Host: 127.0.0.1    Database: guilden
 -- ------------------------------------------------------
@@ -389,14 +387,11 @@ DROP TABLE IF EXISTS `testimonials`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `testimonials` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `users_id` int NOT NULL,
-  `title` varchar(255) NOT NULL,
+  `user_name` varchar(255) NOT NULL,
   `content` text NOT NULL,
   `date` timestamp NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `ID_user` (`users_id`),
-  CONSTRAINT `testimonials_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -405,7 +400,7 @@ CREATE TABLE `testimonials` (
 
 LOCK TABLES `testimonials` WRITE;
 /*!40000 ALTER TABLE `testimonials` DISABLE KEYS */;
-INSERT INTO `testimonials` VALUES (1,1,'je vous aime','je vous aime vraiment','2023-08-16 10:00:00'),(2,2,'coucou les enfants','je vous salue','2023-08-16 10:05:00');
+INSERT INTO `testimonials` VALUES (1,'je vous aime','Wallah c\'est bien ','2023-08-16 10:00:00'),(2,'coucou les enfants','je vous salue','2023-08-16 10:05:00'),(3,'Frère le boss','Super site','2023-08-16 10:15:00'),(4,'Zizou','Coup d\'boule','2023-08-16 10:25:00'),(5,'Mehdyzizi','Vazyzyzyzy','2023-08-16 10:35:00'),(6,'Charles-Henry','Superbe !','2023-08-16 10:45:00');
 /*!40000 ALTER TABLE `testimonials` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -571,4 +566,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-30 15:03:55
+-- Dump completed on 2023-08-31 12:22:53
