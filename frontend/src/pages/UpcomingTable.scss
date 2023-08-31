@@ -1,0 +1,264 @@
+.globalcontainerUT {
+  display: flex;
+
+  .titleUpcommingTable {
+    color: rgb(194 177 108);
+    text-align: center;
+  }
+
+  .containerFilterAndCardsGames {
+    display: flex;
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Espace équivalent entre les éléments */
+    display: none;
+
+    // &.filterGameLeft {
+    //   flex-direction: row;
+    //   transition: all 1s ease;
+    // }
+
+    // &.filterGameRight {
+    //   flex-direction: row-reverse;
+    //   transition: all 1s ease;
+    //   animation-duration: 1s;
+    // }
+
+    .filterContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      width: 30%;
+      border: solid rgb(194 177 108);
+      height: 50%;
+      width: auto;
+      margin-left: 25px;
+      margin-right: 25px;
+      padding-left: 20px;
+      padding-right: 20px;
+      gap: 10px;
+      margin-top: 56px;
+
+      .inputUT {
+        height: 50px;
+        width: 300px;
+        border: solid rgb(194 177 108);
+      }
+
+      button {
+        display: inline-block;
+        padding: 0.75rem 1.25rem;
+        border-radius: 10rem;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 1rem;
+        letter-spacing: 0.15rem;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        &:after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgb(194 177 108);
+          border-radius: 10rem;
+          z-index: -2;
+        }
+        &:before {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0%;
+          height: 100%;
+          background-color: darken(rgb(194 177 108), 15%);
+          transition: all 0.3s;
+          border-radius: 10rem;
+          z-index: -1;
+        }
+        &:hover {
+          color: #fff;
+          &:before {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .gamecard {
+      // border: solid rgb(3, 125, 44);
+      color: white;
+      width: 100%;
+      margin: 20px;
+
+      .containerMenuGame {
+        display: flex;
+        justify-content: space-between; /* Espace équivalent entre les éléments */
+        border: 3px solid rgb(194 177 108);
+        height: 50px;
+        border-radius: 10px 10px 0px 0px;
+        margin: 20px;
+        padding: 20px;
+        height: 10%;
+
+        .boxTitleGame {
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+
+          .iconUpcomingTableGame {
+            width: 20%;
+            margin-right: 5px;
+          }
+          .containerTitleUP {
+            color: rgb(194 177 108);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            // width: 100%;
+          }
+        }
+      }
+    }
+  }
+
+  .containerFilterAndCardsPlayer {
+    display: flex;
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Espace équivalent entre les éléments */
+    // display: none;
+
+    .bigBoxFilterPlayer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      width: 30%;
+      border: solid rgb(194 177 108);
+      height: 50%;
+      width: auto;
+      margin-left: 25px;
+      margin-right: 25px;
+      padding-left: 20px;
+      padding-right: 20px;
+      gap: 10px;
+      margin-top: 56px;
+
+      .inputUT {
+        height: 50px;
+        width: 300px;
+        border: solid rgb(194 177 108);
+      }
+
+      button {
+        display: inline-block;
+        padding: 0.75rem 1.25rem;
+        border-radius: 10rem;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: 1rem;
+        letter-spacing: 0.15rem;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        &:after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgb(194 177 108);
+          border-radius: 10rem;
+          z-index: -2;
+        }
+        &:before {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0%;
+          height: 100%;
+          background-color: darken(rgb(194 177 108), 15%);
+          transition: all 0.3s;
+          border-radius: 10rem;
+          z-index: -1;
+        }
+        &:hover {
+          color: #fff;
+          &:before {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .bigBoxPlayer {
+      width: 100%;
+
+      .BoxTitle {
+        display: flex;
+        justify-content: space-between; /* Espace équivalent entre les éléments */
+        border: 3px solid rgb(194 177 108);
+        height: 60px;
+        border-radius: 10px 10px 0px 0px;
+        margin: 20px;
+        padding: 10px;
+
+        .boxTitlePlayer {
+          width: 100%;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+
+          .iconUpcomingTablePlayer {
+            width: 10%;
+            margin-right: 5px;
+          }
+          .containeurTitlePlayer {
+            color: rgb(194 177 108);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            // width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@-webkit-keyframes flip-in-hor-top {
+  0% {
+    -webkit-transform: rotateX(-80deg);
+    transform: rotateX(-80deg);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0);
+    opacity: 1;
+  }
+}
+@keyframes flip-in-hor-top {
+  0% {
+    -webkit-transform: rotateX(-80deg);
+    transform: rotateX(-80deg);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0);
+    opacity: 1;
+  }
+}

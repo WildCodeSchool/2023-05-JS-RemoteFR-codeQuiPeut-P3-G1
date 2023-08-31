@@ -12,6 +12,8 @@ import Dashboard from "./pages/Dashboard"
 import GmCards from "./components/Dashboard/GmCards"
 import PrivateMessages from "./components/PrivateMessages/PrivateMessages"
 import Topics from "./pages/Topics"
+import NavBar from "./components/NavBar/Navbar"
+import UpcomingTable from "./pages/UpcomingTable.jsx"
 
 function App() {
   const [users, setUsers] = useState([])
@@ -54,7 +56,11 @@ function App() {
               <Route path="/topics" element={<Topics />} />
               <Route path="/test" element={<Home />} />
               <Route path="/privatemessages" element={<PrivateMessages />} />
+              <Route path="/upcoming-table" element={<UpcomingTable />} />
             </Routes>
+            <div className="navBar">
+              <NavBar />
+            </div>
           </Router>
         </AuthContext.Provider>
       </div>

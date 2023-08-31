@@ -26,6 +26,23 @@ class GameRegistrationsManager extends AbstractManager {
       ]
     )
   }
+
+  // Cette requete affiche les tables ou l'user est inscrit
+  getGameRegistrationsWithDetails(id) {
+    return this.database.query(
+      `
+      
+      SELECT
+  g.*
+FROM
+  games g
+  JOIN games_has_users gu ON g.id = gu.games_id
+WHERE
+  gu.users_id = ?;
+    `,
+      [id]
+    )
+  }
 }
 
 module.exports = GameRegistrationsManager

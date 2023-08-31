@@ -1,18 +1,15 @@
 import axios from "axios"
-import React, { useContext, useState, useEffect } from "react"
-import iconProfile from "../../assets/icon-dashboard/iconProfile.png"
+import React, { useState, useContext, useEffect } from "react"
 import Add2 from "../../assets/icon-dashboard/Add2.png"
 import Edit from "../../assets/icon-dashboard/Edit.png"
 import Location from "../../assets/icon-dashboard/Location.png"
 import AuthContext from "../AuthContext/AuthContext"
+import profilePictureLogo from "../../assets/icon-dashboard/profilePictureLogo.svg"
+import gameLogo from "../../assets/icon-dashboard/gameLogo.png"
 import Cookies from "js-cookie"
 
-import GmCards from "./GmCards"
-
 const MyProfil = () => {
-  const [gmCardsVisible, setGmCardsVisible] = useState(true)
   const { user } = useContext(AuthContext)
-  console.info(user)
   const [imageUrl, setImageUrl] = useState(null)
 
   useEffect(() => {
@@ -21,13 +18,12 @@ const MyProfil = () => {
 
   const tokenFromCookie = Cookies.get("authToken")
 
-  console.info("prout", user.profil_picture)
-
   const shortDate = String(user.registration_date)
     .substring(0, 10)
+    .substring(5, 10)
     .split("-")
-    .reverse()
     .join("-")
+    .concat("-", String(user.registration_date).substring(0, 4))
 
   const updateProfilPictureOnServer = async (userId, formData) => {
     try {
@@ -67,7 +63,13 @@ const MyProfil = () => {
   return (
     <div className="myProfil">
       <div className="titleProfil">
-        <img id="logoProfile" src={iconProfile} alt="logo of a profile" />
+        <div className="profilePic-container">
+          <img
+            id="logoProfile"
+            src={profilePictureLogo}
+            alt="logo of a profile"
+          />
+        </div>
         <h2>MY PROFIL</h2>
       </div>
       <div className="contentMyProfil">
@@ -129,12 +131,13 @@ const MyProfil = () => {
         </div>
         <div className="bottomProfile">
           <h1>MY GAMES / SEARCH TO PLAY ON</h1>
+          <div className="gamesContainer">
+            <img className="blackLogoGame" src={gameLogo} alt="game logo" />
+            <img className="blackLogoGame" src={gameLogo} alt="game logo" />
+            <img className="blackLogoGame" src={gameLogo} alt="game logo" />
+          </div>
         </div>
       </div>
-      {gmCardsVisible && <GmCards />}
-      <button onClick={() => setGmCardsVisible(!gmCardsVisible)}>
-        {gmCardsVisible ? "Fermer GmCards" : "Afficher GmCards"}
-      </button>
     </div>
   )
 }
