@@ -24,6 +24,10 @@ router.post("/login", UsersControllers.verifyUser, verifyPassword)
 router.post("/users", hashPassword, UsersControllers.add)
 router.get("/testimonials", TestimonialsControllers.browse)
 router.get("/testimonials/:id", TestimonialsControllers.read)
+router.get(
+  "/testimonialsCarrousel",
+  TestimonialsControllers.getTestimonialsCarrousel
+)
 
 router.use(verifyToken)
 

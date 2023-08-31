@@ -6,9 +6,9 @@
       width: 124px;
       height: 38px;
       border-radius: 5px;
-      border: 1px solid #f6f6e9;
-      background: rgba(246, 246, 233, 0);
-      color: #f6f6e9;
+      background: rgb(246, 246, 233);
+      color: #000000;
+      border: none;
       text-align: center;
       font-size: 1.05vw;
       font-style: normal;
@@ -16,6 +16,14 @@
       line-height: normal;
       font-family: $title-font;
       cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: 0.3s;
+      &:hover {
+        transition: 0.3s;
+        background: #4c2556;
+        backdrop-filter: blur(10px);
+        color: white;
+      }
     }
   }
   .card-LogIn-container2 {
