@@ -20,8 +20,6 @@ function App() {
   const [user, setUser] = useState([])
 
   // const tokenFromCookie = Cookies.get("authToken")
-  // const idUser = Cookies.get("idUser")
-  // const storedUser = JSON.parse(Cookies.get("loggedInUser"))
 
   // const headers = {
   //   Authorization: `Bearer ${tokenFromCookie}`,

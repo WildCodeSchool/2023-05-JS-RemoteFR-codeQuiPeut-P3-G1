@@ -20,9 +20,10 @@ const MyProfil = () => {
 
   const shortDate = String(user.registration_date)
     .substring(0, 10)
+    .substring(5, 10)
     .split("-")
-    .reverse()
     .join("-")
+    .concat("-", String(user.registration_date).substring(0, 4))
 
   const updateProfilPictureOnServer = async (userId, formData) => {
     try {

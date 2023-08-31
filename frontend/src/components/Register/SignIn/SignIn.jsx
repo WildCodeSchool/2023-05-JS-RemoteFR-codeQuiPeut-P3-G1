@@ -21,8 +21,12 @@ function SignIn() {
           document.getElementById("cardLogIn-Input").reset()
           const token = res.data.token
           Cookies.set("authToken", token, { expires: 0.5, sameSite: "strict" })
-          Cookies.set("loggedInUser", JSON.stringify(res.data.user))
-          Cookies.set("idUser", JSON.stringify(res.data.user.id))
+          Cookies.set("loggedInUser", JSON.stringify(res.data.user), {
+            sameSite: "strict",
+          })
+          Cookies.set("idUser", JSON.stringify(res.data.user.id), {
+            sameSite: "strict",
+          })
           setSignInUsername()
           setSignInPassword()
         }
