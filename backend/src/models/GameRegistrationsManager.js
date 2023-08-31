@@ -28,18 +28,19 @@ class GameRegistrationsManager extends AbstractManager {
   }
 
   // Cette requete affiche les tables ou l'user est inscrit
-  getGameRegistrationsWithDetails(userRegistrationId) {
+  getGameRegistrationsWithDetails(id) {
     return this.database.query(
       `
       
-      SELECT G.*, U.username AS gm_username
-      FROM games G
-      INNER JOIN game_registrations GR ON G.id = GR.games_id
-      INNER JOIN gm_profiles GM ON G.gm_profiles_id = GM.id
-      INNER JOIN users U ON GM.users_id = U.id
-      WHERE GR.users_id = "1";
+      SELECT
+  g.*
+FROM
+  games g
+  JOIN games_has_users gu ON g.id = gu.games_id
+WHERE
+  gu.users_id = ?;
     `,
-      [userRegistrationId]
+      [id]
     )
   }
 }
