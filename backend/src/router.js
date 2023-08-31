@@ -11,7 +11,6 @@ const TestimonialsControllers = require("./controllers/TestimonialsControllers")
 const TopicsControllers = require("./controllers/TopicsControllers")
 const TopicsSubscriptionControllers = require("./controllers/TopicsSubscriptionControllers")
 const CategoriesControllers = require("./controllers/CategoriesControllers")
-const GmProfilControllers = require("./controllers/GmProfilControllers")
 const GamesControllers = require("./controllers/GamesControllers")
 const GameRegistrationsControllers = require("./controllers/GameRegistrationsControllers")
 const PostsControllers = require("./controllers/PostsControllers")
@@ -46,7 +45,7 @@ router.put("/games/:id", GamesControllers.edit)
 router.post("/games", GamesControllers.add)
 
 router.get(
-  "/usernameGMFutureGames",
+  "/usernameGMFutureGames/:id",
   GameRegistrationsControllers.futureGamesGMUsername
 )
 router.get("/gamesRegistrations", GameRegistrationsControllers.browse)
@@ -73,11 +72,6 @@ router.get("/categories", CategoriesControllers.browse)
 router.get("/categories/:id", CategoriesControllers.read)
 router.put("/categories/:id", CategoriesControllers.edit)
 router.post("/categories", CategoriesControllers.add)
-
-router.get("/gmprofil", GmProfilControllers.browse)
-router.get("/gmprofil/:id", GmProfilControllers.read)
-router.get("/gmprofil/:id", GmProfilControllers.edit)
-router.get("/gmprofil", GmProfilControllers.add)
 
 router.get("/posts", PostsControllers.browse)
 router.get("/posts/:id", PostsControllers.read)
@@ -109,7 +103,6 @@ router.get("/PrivateMessages/:id", PrivateMessagesControllers.read)
 router.put("/PrivateMessages/:id", PrivateMessagesControllers.edit)
 router.post("/PrivateMessages", PrivateMessagesControllers.add)
 
-router.delete("/gmprofil/:id", GmProfilControllers.destroy)
 router.delete("/categories/:id", CategoriesControllers.destroy)
 router.delete("/topics_subscription/:id", TopicsSubscriptionControllers.destroy)
 router.delete("/topics/:id", TopicsControllers.destroy)

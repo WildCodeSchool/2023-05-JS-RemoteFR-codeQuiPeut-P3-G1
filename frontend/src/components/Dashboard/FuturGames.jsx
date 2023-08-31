@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react"
+
 import { Link } from "react-router-dom"
 import axios from "axios"
 import Search from "../../assets/icon-dashboard/Search.png"
@@ -10,12 +11,10 @@ import Cookies from "js-cookie"
 
 export default function FutureGames() {
   const [isGmCardsOpen, setIsGmCardsOpen] = useState(false)
-
-  const [gameData, setGameData] = useState({})
-  const [gameTypeData, setGameTypeData] = useState({})
   const [gameGMData, setGameGMData] = useState({})
 
   const tokenFromCookie = Cookies.get("authToken")
+  const idUser = Cookies.get("idUser")
 
   const headers = {
     Authorization: `Bearer ${tokenFromCookie}`,
@@ -24,7 +23,7 @@ export default function FutureGames() {
   const toggleGmCards = () => {
     setIsGmCardsOpen(!isGmCardsOpen)
   }
-  const scheduleDate = new Date(gameData.schedule)
+  const scheduleDate = new Date(gameGMData.schedule)
   const options = {
     year: "numeric",
     month: "2-digit",
@@ -34,34 +33,9 @@ export default function FutureGames() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4242/games", { headers })
-      .then((response) => {
-        setGameData(response.data[1])
-      })
-      .catch((error) => {
-        console.error("An error occurred:", error)
-      })
-    console.info(setGameData)
-  }, [])
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:4242/role-playing-games", { headers })
-      .then((response) => {
-        setGameTypeData(response.data[1])
-        console.info(gameTypeData)
-      })
-      .catch((error) => {
-        console.error("An error occurred:", error)
-      })
-  }, [])
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:4242/usernameGMFutureGames", { headers })
+      .get(`http://localhost:4242/usernameGMFutureGames/${idUser}`, { headers })
       .then((response) => {
         setGameGMData(response.data)
-        console.info(gameGMData, "hello")
       })
       .catch((error) => {
         console.error("An error occurred:", error)
@@ -79,7 +53,7 @@ export default function FutureGames() {
           <h2>MY FUTURE GAMES</h2>
         </div>
         <div className="inside_myFutureGames_Container">
-          {gameTypeData ? (
+          {gameGMData ? (
             <div className="display_myfutureGames">
               <div className="logoContentFG">
                 <Link to="/create-game">
@@ -107,7 +81,7 @@ export default function FutureGames() {
                     <span id="lineSeparator_FG"></span>
                     <div>
                       <span id="goldenText_FG">ON </span>
-                      {gameTypeData.name}
+                      {gameGMData.name}
                     </div>
                     <span id="lineSeparator_FG"></span>
                     <div>

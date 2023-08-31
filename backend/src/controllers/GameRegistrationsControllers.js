@@ -30,7 +30,7 @@ const read = (req, res) => {
 
 const futureGamesGMUsername = (req, res) => {
   models.gameRegistrationsManager
-    .getGameRegistrationsWithDetails()
+    .getGameRegistrationsWithDetails(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
         res.sendStatus(404)
