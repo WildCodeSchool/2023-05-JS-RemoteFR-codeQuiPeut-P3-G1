@@ -6,9 +6,9 @@
       width: 124px;
       height: 38px;
       border-radius: 5px;
-      border: none;
-      background: #f6f6e9;
-      color: #4d194d;
+      border: 1px solid #f6f6e9;
+      background: #e7e7e530;
+      color: #ffffff;
       text-align: center;
       font-size: 1.05vw;
       font-style: normal;
@@ -16,6 +16,13 @@
       line-height: normal;
       font-family: $title-font;
       cursor: pointer;
+      backdrop-filter: blur(10px);
+      transition: 0.3s;
+      &:hover {
+        transition: 0.3s;
+        background: #e2cf7cb2;
+        backdrop-filter: blur(10px);
+      }
     }
   }
   .card-LogIn-container {

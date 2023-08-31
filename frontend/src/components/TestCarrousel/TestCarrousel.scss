@@ -21,6 +21,9 @@
     font-weight: 400;
     line-height: normal;
     margin-top: 120px;
+    display: flex;
+    text-align: left;
+    justify-content: center;
   }
   .carousel-content {
     width: 100%;
@@ -40,11 +43,49 @@
       justify-content: center;
       align-items: center;
       .testimonialCard {
-        height: 100%;
-        width: 40%;
+        height: 400px;
+        width: 600px;
         background: rgb(65, 47, 85);
         border-radius: 20px;
         border: 3px solid $third-font-color;
+        display: flex;
+        flex-direction: row;
+        .jeSaisPas {
+          width: 40%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.447);
+          }
+        }
+        .jeSaisPasContenu {
+          width: 60%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          gap: 40px;
+          flex-direction: column;
+          h3 {
+            padding: 3px;
+            margin-top: 70px;
+            font-family: $title-font;
+            color: $third-font-color;
+            font-size: 40px;
+            // border: 2px solid blue;
+            border-bottom: 1px solid $third-font-color;
+            width: 300px;
+          }
+          p {
+            color: $secondary-font-color;
+            font-size: 30px;
+            width: 300px;
+          }
+        }
       }
     }
   }

@@ -23,6 +23,12 @@ class TestimonialsManager extends AbstractManager {
       ]
     )
   }
+
+  testimonialsCarrousel() {
+    return this.database.query(
+      `SELECT u.id, u.username, t.content, u.profil_picture FROM ${this.table} AS t JOIN users AS u ON t.users_id = u.id`
+    )
+  }
 }
 
 module.exports = TestimonialsManager

@@ -3,24 +3,12 @@ import axios from "axios"
 import { Carousel } from "react-responsive-carousel"
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 
-// import imgCarrousel from "../../assets/test-carrousel/photoCarrousel.png"
-
 function TestCarousel() {
-  const sentence = "They Tested, They Find Their Guild And They Like It"
-  const wordsToColor = ["Tested", "Find", "Like", "It"]
-  const words = sentence.split(/\s+|[,!.?;]/) // Séparation par espace ou les signes de ponctuation
-
-  const cleanWord = (word) => {
-    // Suppression des signes de ponctuation en début et fin de mot
-    return word.replace(/^[,!.?;:()]+|[,!.?;:()]+$/g, "")
-  }
   const [testimonials, setTemoignages] = useState([])
 
   useEffect(() => {
-    const apiUrl = "http://localhost:4242/testimonials"
-
     axios
-      .get(apiUrl)
+      .get(`${import.meta.env.VITE_BACKEND_URL}/testimonialsCarrousel`)
       .then((response) => {
         setTemoignages(response.data)
       })
@@ -32,26 +20,17 @@ function TestCarousel() {
   return (
     <div className="carrousel-container">
       <div className="title-carrousel">
-        {words.map((word, index) => {
-          const cleanedWord = cleanWord(word)
-          return (
-            <span
-              key={index}
-              style={{
-                color: wordsToColor.includes(cleanedWord)
-                  ? "#A4945E"
-                  : "#FFFFFF",
-              }}
-            >
-              {word}{" "}
-            </span>
-          )
-        })}
+        <p>
+          They <span style={{ color: "#e2d07c" }}>Tested</span>, They{" "}
+          <span style={{ color: "#e2d07c" }}>Find</span> Their Guild <br />
+          And They{" "}
+          <span style={{ color: "#e2d07c", fontWeight: "bold" }}>Liked It</span>
+        </p>
       </div>
       <div className="carousel-content">
         <Carousel
-          // autoPlay // Active le mode de lecture automatique
-          interval={3000} // Définit l'intervalle entre les slides (en millisecondes)
+          autoPlay // Active le mode de lecture automatique
+          interval={4000} // Définit l'intervalle entre les slides (en millisecondes)
           showArrows={false} // Masque les flèches de navigation
           showThumbs={false} // Masque les miniatures de navigation
           infiniteLoop // Boucle infinie du carousel
@@ -60,8 +39,18 @@ function TestCarousel() {
         >
           {testimonials.map((test) => (
             <div className="testimonialCard" key={test.id}>
-              <h3>{test.user_name}</h3>
-              <p className="textTestimonial">{test.content}</p>
+              <div className="jeSaisPas">
+                <img
+                  src={`${import.meta.env.VITE_BACKEND_URL}/${
+                    test.profil_picture
+                  }`}
+                  alt="Profil_picture"
+                />
+              </div>
+              <div className="jeSaisPasContenu">
+                <h3>{test.username}</h3>
+                <p className="textTestimonial">"{test.content}"</p>
+              </div>
             </div>
           ))}
         </Carousel>
