@@ -116,18 +116,20 @@ function NavBar() {
               )}
             </div>
           </Link>
-          <div
-            className="partyNavBar"
-            onMouseEnter={handleMouseEnter2}
-            onMouseLeave={handleMouseLeave2}
-          >
-            <img src={Party} alt="logo of party in the navbar" />
-            {isHovering2 && (
-              <div className="hiddenPartyNavBar">
-                <span>PARTY</span>
-              </div>
-            )}
-          </div>
+          <Link to="/upcoming-table">
+            <div
+              className="partyNavBar"
+              onMouseEnter={handleMouseEnter2}
+              onMouseLeave={handleMouseLeave2}
+            >
+              <img src={Party} alt="logo of party in the navbar" />
+              {isHovering2 && (
+                <div className="hiddenPartyNavBar">
+                  <span>PARTY</span>
+                </div>
+              )}
+            </div>
+          </Link>
           <div
             className="profilNavBar"
             onMouseEnter={handleMouseEnter3}
@@ -166,18 +168,20 @@ function NavBar() {
               </div>
             )}
           </div>
-          <div
-            className="forumNavBar"
-            onMouseEnter={handleMouseEnter6}
-            onMouseLeave={handleMouseLeave6}
-          >
-            <img src={Forum} alt="logo of forum in the navbar" />
-            {isHovering6 && (
-              <div className="hiddenForumNavBar">
-                <span>FORUM</span>
-              </div>
-            )}
-          </div>
+          <Link to="/topics">
+            <div
+              className="forumNavBar"
+              onMouseEnter={handleMouseEnter6}
+              onMouseLeave={handleMouseLeave6}
+            >
+              <img src={Forum} alt="logo of forum in the navbar" />
+              {isHovering6 && (
+                <div className="hiddenForumNavBar">
+                  <span>FORUM</span>
+                </div>
+              )}
+            </div>
+          </Link>
         </div>
         <div className="bottomButtonNavBar">
           <div

@@ -1,7 +1,7 @@
 const models = require("../models")
 
 const browse = (req, res) => {
-  models.gameRegistrations
+  models.gameRegistrationsManager
     .findAll()
     .then(([rows]) => {
       res.send(rows)
@@ -13,8 +13,24 @@ const browse = (req, res) => {
 }
 
 const read = (req, res) => {
-  models.gameRegistrations
+  models.gameRegistrationsManager
     .find(req.params.id)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(404)
+      } else {
+        res.send(rows[0])
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
+const futureGamesGMUsername = (req, res) => {
+  models.gameRegistrationsManager
+    .getGameRegistrationsWithDetails(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
         res.sendStatus(404)
@@ -31,7 +47,7 @@ const read = (req, res) => {
 const edit = (req, res) => {
   const gameRegistrations = req.body
   gameRegistrations.id = parseInt(req.params.id, 10)
-  models.gameRegistrations
+  models.gameRegistrationsManager
     .update(gameRegistrations)
     .then(([result]) => {
       if (result.affectedRows === 0) {
@@ -49,7 +65,7 @@ const edit = (req, res) => {
 const add = (req, res) => {
   const gameRegistrations = req.body
 
-  models.gameRegistrations
+  models.gameRegistrationsManager
     .insert(gameRegistrations)
     .then(([result]) => {
       res.location(`/game_registrations/${result.insertId}`).sendStatus(201)
@@ -61,7 +77,7 @@ const add = (req, res) => {
 }
 
 const destroy = (req, res) => {
-  models.gameRegistrations
+  models.gameRegistrationsManager
     .delete(req.params.id)
     .then(([result]) => {
       if (result.affectedRows === 0) {
@@ -82,4 +98,5 @@ module.exports = {
   edit,
   add,
   destroy,
+  futureGamesGMUsername,
 }
