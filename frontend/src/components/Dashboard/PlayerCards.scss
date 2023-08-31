@@ -1,24 +1,24 @@
 @import "../../Variable.scss";
 .major_Container_PlayerCards {
-    position: fixed;
-    display: flex;
-    top: 50%; // Adjust as needed
-    left: 50%; // Adjust as needed
-    transform: translate(-50%, -50%);
+  position: fixed;
+  display: flex;
+  top: 50%; // Adjust as needed
+  left: 50%; // Adjust as needed
+  transform: translate(-50%, -50%);
   .PlayerCards_Main_Container {
     width: 573px;
     height: 720px;
     border-radius: 9px;
     border: 3px solid #a4945e;
     background: #fff;
-  
+
     .PlayerCards_Inside_FirstElement {
       display: flex;
       justify-content: center;
       gap: 70%;
       margin-top: 29px;
       max-width: 100%;
-  
+
       .PlayerCards_BackButton {
         display: flex;
         align-items: center;
@@ -42,7 +42,7 @@
         height: 54px;
       }
     }
-  
+
     .PlayerCards_Inside_SecondElement_Container {
       display: flex;
       justify-content: center;
@@ -176,6 +176,4 @@
       }
     }
   }
-
 }
-

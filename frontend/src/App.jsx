@@ -13,6 +13,7 @@ import GmCards from "./components/Dashboard/GmCards"
 import PrivateMessages from "./components/PrivateMessages/PrivateMessages"
 import Topics from "./pages/Topics"
 import NavBar from "./components/NavBar/Navbar"
+import Profil from "./pages/Profil"
 
 function App() {
   const [users, setUsers] = useState([])
@@ -57,6 +58,7 @@ function App() {
               <Route path="/topics" element={<Topics />} />
               <Route path="/test" element={<Home />} />
               <Route path="/privatemessages" element={<PrivateMessages />} />
+              <Route path="/profil" element={<Profil />} />
             </Routes>
             <div className="navBar">
               <NavBar />
