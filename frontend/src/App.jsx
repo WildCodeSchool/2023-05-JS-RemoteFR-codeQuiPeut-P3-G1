@@ -12,7 +12,11 @@ import Dashboard from "./pages/Dashboard"
 import GmCards from "./components/Dashboard/GmCards"
 import PrivateMessages from "./components/PrivateMessages/PrivateMessages"
 import Topics from "./pages/Topics"
+<<<<<<< HEAD
 import UpcomingTable from "./pages/UpcomingTable"
+=======
+import NavBar from "./components/NavBar/Navbar"
+>>>>>>> dev
 
 function App() {
   const [users, setUsers] = useState([])
@@ -59,6 +63,9 @@ function App() {
               <Route path="/privatemessages" element={<PrivateMessages />} />
               <Route path="/upcoming-table" element={<UpcomingTable />} />
             </Routes>
+            <div className="navBar">
+              <NavBar />
+            </div>
           </Router>
         </AuthContext.Provider>
       </div>

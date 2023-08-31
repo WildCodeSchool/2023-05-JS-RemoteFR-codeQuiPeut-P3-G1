@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 import Logo from "../../assets/logo/logoNavBar.png"
 import Home from "../../assets/icon-navbar/home.png"
@@ -22,6 +22,12 @@ function NavBar() {
   const [isHovering8, setIsHovering8] = useState(false)
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const location = useLocation()
+
+  if (location.pathname === "/") {
+    return null
+  }
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen)
