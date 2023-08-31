@@ -119,14 +119,12 @@ function UpcomingTable() {
                 <div className="containeurTitlePlayer">Availability</div>
               </div>
               <div className="boxTitlePlayer">
-                <div className="containeurTitlePlayer">
-                  <img
-                    className="iconUpcomingTablePlayer"
-                    src={PlaceIconVector}
-                    alt="icon blade gold"
-                  />
-                  <div>Place</div>
-                </div>
+                <img
+                  className="iconUpcomingTablePlayer"
+                  src={PlaceIconVector}
+                  alt="icon blade gold"
+                />
+                <div className="containeurTitlePlayer">Place</div>
               </div>
               <div className="boxTitlePlayer">
                 <img
@@ -155,7 +153,7 @@ function UpcomingTable() {
             </div>
           </div>
           <div className="bigBoxFilterPlayer">
-            <h2>Find your Players</h2>
+            <h1 className="titleUpcommingTable">"Find your Players"</h1>
             <input
               className="inputUT"
               type="text"
@@ -172,8 +170,8 @@ function UpcomingTable() {
               onChange={handleLocationFilterChange}
             />
 
-            <button type="button" onClick={toggleContainer}>
-              Toggle Containers
+            <button type="buttonGame" onClick={toggleContainer}>
+              Find a Game
             </button>
           </div>
         </div>
@@ -245,7 +243,7 @@ function UpcomingTable() {
             />
 
             <button type="button" onClick={toggleContainer}>
-              Toggle Containers
+              Find a Player
             </button>
           </div>
           <div className="gamecard">
@@ -275,14 +273,12 @@ function UpcomingTable() {
                 <div className="containerTitleUP">Game Date</div>
               </div>
               <div className="boxTitleGame">
-                <div className="containerTitleUP">
-                  <img
-                    className="iconUpcomingTableGame"
-                    src={PlaceIconVector}
-                    alt="icon place gold"
-                  />
-                  <div>Place</div>
-                </div>
+                <img
+                  className="iconUpcomingTableGame"
+                  src={PlaceIconVector}
+                  alt="icon place gold"
+                />
+                <div className="containerTitleUP">Place</div>
               </div>
               <div className="boxTitleGame">
                 <img

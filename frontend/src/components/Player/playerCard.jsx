@@ -6,14 +6,13 @@ export default function Player({ users }) {
   return (
     <>
       <div className="globalContainerCard">
-        <div className="gameLocationUpcoming">
+        <div className="boxGameCard">
           <img src={users.profil_picture} alt="profil photo" />
+          {users.username}
         </div>
-        <div className="gameLocationUpcoming">{users.username}</div>
-        <div className="gameLocationUpcoming">{users.location}</div>
-        <div className="gameLocationUpcoming">
-          {users.description_as_player}
-        </div>
+        <div className="boxGameCard">Mes disponibilités</div>
+        <div className="boxGameCard">{users.location}</div>
+        <div className="boxGameCard">{users.description_as_player}</div>
       </div>
     </>
   )

@@ -22,18 +22,18 @@ export default function Game({ games, users, rpg }) {
   return (
     <>
       <div className="globalContainerCard">
-        <div className="gameLocationUpcoming">{games.name}</div>
-        <div className="gameLocationUpcoming">
+        <div className="boxGameCard">{games.name}</div>
+        <div className="boxGameCard">
           {gameMaster ? `${gameMaster.username}` : "N/A"}
         </div>
-        <div className="gameLocationUpcoming">{formattedDate}</div>
-        <div className="gameLocationUpcoming">{games.city}</div>
-        <div className="gameLocationUpcoming">
+        <div className="boxGameCard">{formattedDate}</div>
+        <div className="boxGameCard">{games.city}</div>
+        <div className="boxGameCard">
           {/* {games.role_playing_game_id} */}
           {nameOfRpg ? `${nameOfRpg.name}` : "N/A"}
         </div>
-        <div className="gameLocationUpcoming">{games.type}</div>
-        <div className="gameLocationUpcoming">{games.max_players_capacity}</div>
+        <div className="boxGameCard">{games.type}</div>
+        <div className="boxGameCard">{games.max_players_capacity}</div>
       </div>
     </>
   )
