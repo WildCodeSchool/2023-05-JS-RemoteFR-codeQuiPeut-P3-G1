@@ -13,7 +13,7 @@ import FuturGames from "../components/Dashboard/FuturGames"
 import FriendRequest from "../components/Dashboard/FriendRequest"
 
 const Dashboard = () => {
-  const { setUser } = useContext(AuthContext)
+  const { setUser, setUsers } = useContext(AuthContext)
   const tokenFromCookie = Cookies.get("authToken")
   const idUser = Cookies.get("idUser")
   // const storedUser = JSON.parse(Cookies.get("loggedInUser"))
@@ -21,6 +21,17 @@ const Dashboard = () => {
   const headers = {
     Authorization: `Bearer ${tokenFromCookie}`,
   }
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:4242/users`, { headers })
+      .then((res) => {
+        setUsers(res.data)
+      })
+      .catch((err) => {
+        console.error("Problème lors du chargement des users", err)
+      })
+  }, [])
 
   useEffect(() => {
     axios
