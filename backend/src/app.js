@@ -51,7 +51,12 @@ if (fs.existsSync(reactIndexFile)) {
   // redirect all requests to the REACT index file
 
   app.get("*", (req, res) => {
-    res.sendFile(reactIndexFile)
+    console.info(req.path)
+    if (req.path.includes("public")) {
+      res.sendFile(path.join(__dirname, "..", "..", req.path))
+    } else {
+      res.sendFile(reactIndexFile)
+    }
   })
 }
 
