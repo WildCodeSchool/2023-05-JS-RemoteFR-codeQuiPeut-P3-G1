@@ -17,20 +17,16 @@ class GamesManager extends AbstractManager {
         games.role_playing_game_id,
         games.gm_profiles_id,
         games.schedule,
+        games.location,
         games.max_players_capacity,
         games.description,
-        games.type,
-        games.name,
-        games.city,
-        games.is_remote,
-        games.is_campaign,
       ]
     )
   }
 
   update(games) {
     return this.database.query(
-      `UPDATE ${this.table} SET role_playing_game_id = ?, gm_profiles_id = ?, schedule = DATE_FORMAT(?, '%Y-%m-%d %H:%i'), city = ?, max_players_capacity = ?, description = ? WHERE id = ?`,
+      `UPDATE ${this.table} SET role_playing_game_id = ?, gm_profiles_id = ?, schedule = DATE_FORMAT(?, '%Y-%m-%d %H:%i'), location = ?, max_players_capacity = ?, description = ? WHERE id = ?`,
       [
         games.role_playing_games_id,
         games.gm_profiles_id,
@@ -38,6 +34,8 @@ class GamesManager extends AbstractManager {
         games.city,
         games.max_players_capacity,
         games.description,
+        games.name,
+        games.type,
       ]
     )
   }

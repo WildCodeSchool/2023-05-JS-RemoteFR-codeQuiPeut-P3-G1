@@ -1,0 +1,22 @@
+.boxGameCard {
+  color: white;
+  height: 50px;
+  width: 100%;
+  // border: 1px solid red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.globalContainerCard {
+  border: 3px solid rgb(194 177 108);
+  display: flex;
+  // width: 100%;
+  justify-content: center;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  gap: 30px;
+  margin: 20px;
+}
