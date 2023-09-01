@@ -12,9 +12,7 @@ export default function Game({ games, users, rpg }) {
     minute: "2-digit",
   })
 
-  // Trouver le GM correspondant dans le tableau users en utilisant games.gm_profiles_id
-  const gameMaster = users.find((user) => user.id === games.gm_profiles_id)
-
+  // jointure à faire pour chopper l'info directement en Back
   const nameOfRpg = rpg.find(
     (typeRpg) => typeRpg.id === games.role_playing_game_id
   )
@@ -23,9 +21,7 @@ export default function Game({ games, users, rpg }) {
     <>
       <div className="globalContainerCard">
         <div className="boxGameCard">{games.name}</div>
-        <div className="boxGameCard">
-          {gameMaster ? `${gameMaster.username}` : "N/A"}
-        </div>
+        <div className="boxGameCard">{games.gm_username}</div>
         <div className="boxGameCard">{formattedDate}</div>
         <div className="boxGameCard">{games.city}</div>
         <div className="boxGameCard">
