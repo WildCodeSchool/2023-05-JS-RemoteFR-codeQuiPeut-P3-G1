@@ -1,12 +1,13 @@
 import { useState } from "react"
-// import AuthContext from "../../AuthContext/AuthContext"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Cookies from "js-cookie"
 import axios from "axios"
 
 function SignIn() {
   const [signInUsername, setSignInUsername] = useState()
   const [signInPassword, setSignInPassword] = useState()
+
+  const navigate = useNavigate()
 
   const handleLogin = (e) => {
     e.preventDefault()
@@ -25,6 +26,7 @@ function SignIn() {
           Cookies.set("idUser", JSON.stringify(res.data.user.id))
           setSignInUsername()
           setSignInPassword()
+          navigate("/home")
         }
       })
       .catch((error) => {
