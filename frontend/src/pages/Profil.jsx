@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react"
 import Cookies from "js-cookie"
-import "./Profil.scss"
 import axios from "axios"
 import AuthContext from "../components/AuthContext/AuthContext"
 
@@ -8,6 +7,7 @@ const Profil = () => {
   const { user } = useContext(AuthContext)
   const tokenFromCookie = Cookies.get("authToken")
   const [gameData, setGameData] = useState({})
+  const [isClicked, setIsClicked] = useState(false)
 
   const headers = {
     Authorization: `Bearer ${tokenFromCookie}`,
@@ -34,13 +34,28 @@ const Profil = () => {
   return (
     <div className="mainContainerProfil">
       <div className="leftBoxMain">
-        <div className="settingsTitle">SETTINGS</div>
+        <div className="settingsTitle">
+          <h1>SETTINGS</h1>
+        </div>
         <div className="settingsTab">
-          <ul>
-            <li>PROFILE</li>
-            <li>MY GAMES</li>
-            <li>SOCIAL</li>
-          </ul>
+          <div
+            className={isClicked === true ? "Cliked" : "settingsButton"}
+            onClick={() => setIsClicked(!isClicked)}
+          >
+            <button type="button">PROFILE</button>
+          </div>
+          <div
+            className={isClicked === true ? "Cliked" : "settingsButton"}
+            onClick={() => setIsClicked(!isClicked)}
+          >
+            <button type="button">MY GAMES</button>
+          </div>
+          <div
+            className={isClicked === true ? "Cliked" : "settingsButton"}
+            onClick={() => setIsClicked(!isClicked)}
+          >
+            <button type="button">SOCIAL</button>
+          </div>
         </div>
       </div>
       <div className="mainTitleand?">balise image PROFILE balise image</div>
@@ -56,12 +71,25 @@ const Profil = () => {
               />
               <span>{shortDate}</span>
             </div>
-            <div className="boxName">INPUT NAME</div>
-            <div className="localisationBox">INPUT/PAYS INPUT/PARIS</div>
+            <div className="boxName">{user.username}</div>
+            <div className="localisationBox">
+              <span>Country</span>
+              <input
+                type="text"
+                className="inputTopProfil"
+                placeholder="France d'afrique"
+              />
+              <span>City</span>
+              <input
+                type="text"
+                className="inputTopProfil"
+                placeholder="Rabbat de l'Est"
+              />
+            </div>
           </div>
           <div className="bioBoxProfil">
-            <div className="bioBoxProfilTitle">Bio en profile</div>
-            <div className="bioBoxProfilText">votre bio de sarasin ici</div>
+            <div className="bioBoxProfilTitle">Bio on Profil</div>
+            <div className="bioBoxProfilText">{user.description_as_player}</div>
           </div>
           <div className="gameBoxProfil">
             <div className="gameBoxProfilTitle">SEARCH TO PLAY ON</div>

@@ -130,18 +130,20 @@ function NavBar() {
               )}
             </div>
           </Link>
-          <div
-            className="profilNavBar"
-            onMouseEnter={handleMouseEnter3}
-            onMouseLeave={handleMouseLeave3}
-          >
-            <img src={Profil} alt="logo of profil in the navbar" />
-            {isHovering3 && (
-              <div className="hiddenProfilNavBar">
-                <span>PROFIL</span>
-              </div>
-            )}
-          </div>
+          <Link to="/profil">
+            <div
+              className="profilNavBar"
+              onMouseEnter={handleMouseEnter3}
+              onMouseLeave={handleMouseLeave3}
+            >
+              <img src={Profil} alt="logo of profil in the navbar" />
+              {isHovering3 && (
+                <div className="hiddenProfilNavBar">
+                  <span>PROFIL</span>
+                </div>
+              )}
+            </div>
+          </Link>
           <Link to="/create-game">
             <div
               className="createGameNavBar"
