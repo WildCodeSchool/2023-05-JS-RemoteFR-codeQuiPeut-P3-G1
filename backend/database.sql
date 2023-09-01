@@ -1,6 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `guilden` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `guilden`;
--- MySQL dump 10.13  Distrib 8.0.33, for macos13 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: guilden
 -- ------------------------------------------------------
@@ -457,7 +457,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'user1','user1@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,NULL,'2023-08-31 14:24:53',NULL,'assets/images/profilPictures/defaultUserPicture.png',NULL),(2,'user2','user2@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,NULL,'2023-08-31 14:24:53',NULL,'assets/images/profilPictures/defaultUserPicture.png',NULL),(3,'user3','user3@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,NULL,'2023-08-31 14:24:53',NULL,'assets/images/profilPictures/defaultUserPicture.png',NULL),(4,'user4','user4@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,NULL,'2023-08-31 14:24:53',NULL,'assets/images/profilPictures/defaultUserPicture.png',NULL),(5,'user5','user5@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,NULL,'2023-08-31 14:24:53',NULL,'assets/images/profilPictures/defaultUserPicture.png',NULL);
+INSERT INTO `users` VALUES (1,'user1','user1@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,'Bla bla bla','2023-08-31 14:24:53','Paris','assets/images/profilPictures/defaultUserPicture.png','Gm at 90%'),(2,'user2','user2@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,'Moi aussi bla bla bla','2023-08-31 14:24:53','Lyon','assets/images/profilPictures/defaultUserPicture.png','Gm at 0%'),(3,'user3','user3@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,':) # ?‍♂️','2023-08-31 14:24:53','Marseille','assets/images/profilPictures/defaultUserPicture.png','What\'s a GM ? '),(4,'user4','user4@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,'?','2023-08-31 14:24:53','Tours','assets/images/profilPictures/defaultUserPicture.png','Only Dnd'),(5,'user5','user5@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,'?','2023-08-31 14:24:53','Bordeaux','assets/images/profilPictures/defaultUserPicture.png','Only Fan');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -528,4 +528,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-31 16:37:59
+-- Dump completed on 2023-09-01 10:03:07

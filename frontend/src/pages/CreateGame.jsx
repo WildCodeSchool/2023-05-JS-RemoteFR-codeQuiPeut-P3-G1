@@ -1,6 +1,7 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import Cookies from "js-cookie"
+import Calendar from "moedim"
 
 import NavBar from "../components/NavBar/Navbar"
 
@@ -13,7 +14,7 @@ export default function CreateGame() {
   const [cityList, setCityList] = useState([])
   const [gameRPGID, setGameRPGID] = useState("")
   const [gamemasterUsername, setGamemasterUsername] = useState("")
-  const [gameDate, setGameDate] = useState("")
+  const [gameDate, setGameDate] = useState(new Date())
   const [gamePlace, setGamePlace] = useState("")
   const [gamePlayersCapacity, setGamePlayersCapacity] = useState("")
   const [gameDesc, setGameDesc] = useState("")
@@ -250,12 +251,30 @@ export default function CreateGame() {
               )}
               <label htmlFor="date">
                 <p>Date</p>
+                <Calendar
+                  value={gameDate}
+                  onChange={(e) => setGameDate(e)}
+                  id="createGameCalendar"
+                />
+              </label>
+              <label htmlFor="heure">
+                <p>Hour</p>
+                <input
+                  id="createGameHour"
+                  type="time"
+                  placeholder="00:00"
+                  maxLength="5"
+                  required
+                />
+              </label>
+              {/* <label htmlFor="date">
+                <p>Date</p>
                 <input
                   type="datetime-local"
                   onChange={(e) => setGameDate(e.target.value)}
                   name="date"
                 />
-              </label>
+              </label> */}
             </div>
           </div>
           <div id="createGameButton">
