@@ -43,7 +43,7 @@ class GameRegistrationsManager extends AbstractManager {
   getAllPlayersForThisGame(id) {
     return this.database.query(
       `
-      SELECT game_registrations.*, users.*
+      SELECT game_registrations.*, users.id, users.username, users.description_as_player, users.profil_picture
       FROM game_registrations
       INNER JOIN users ON game_registrations.users_id = users.id
       WHERE game_registrations.games_id = ?;

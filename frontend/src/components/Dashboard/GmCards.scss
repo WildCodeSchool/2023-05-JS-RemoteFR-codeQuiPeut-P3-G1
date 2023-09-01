@@ -37,7 +37,7 @@
         flex-direction: column;
         width: 50%;
         gap: 10px;
-        color: #180B23;
+        color: #180b23;
         font-family: Koh Santepheap;
         font-size: 27px;
         font-style: normal;
@@ -54,7 +54,7 @@
         button {
           border-radius: 4px;
           background: #180b23;
-          color: #A4945E;
+          color: #a4945e;
           padding: 10px;
           text-align: center;
           font-family: Koh Santepheap;
@@ -214,7 +214,7 @@
       gap: 20px;
       padding-left: 10%;
       img {
-        width: 10%;
+        width: 50%;
       }
     }
     .iframe-GmCards {
@@ -227,6 +227,7 @@
         border-radius: 8px;
         width: 90%;
         height: 100%;
+        padding: 0 0 20px 0;
       }
     }
   }

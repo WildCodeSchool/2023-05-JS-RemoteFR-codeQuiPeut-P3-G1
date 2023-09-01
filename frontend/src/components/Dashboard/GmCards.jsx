@@ -13,7 +13,7 @@ import PlayerCards from "./PlayerCards"
 
 const GmCards = ({ onClose }) => {
   const [gamesData, setGamesData] = useState({})
-  const [playerProfil, setPlayerProfil] = useState([])
+  const [playersProfil, setPlayersProfil] = useState([])
   const [isPlayerCardsOpen, setIsPlayerCardsOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [userData, setUserData] = useState(null)
@@ -31,6 +31,8 @@ const GmCards = ({ onClose }) => {
   const headers = {
     Authorization: `Bearer ${tokenFromCookie}`,
   }
+
+  console.info(gamesData)
 
   useEffect(() => {
     axios
@@ -51,7 +53,7 @@ const GmCards = ({ onClose }) => {
           headers,
         })
         .then((response) => {
-          setPlayerProfil(response.data)
+          setPlayersProfil(response.data)
         })
         .catch((error) => {
           console.error("An error occurred:", error)
@@ -62,13 +64,13 @@ const GmCards = ({ onClose }) => {
   //   setIsPlayerCardsOpen(!isPlayerCardsOpen)
   // }
 
-  const totalUsers = playerProfil.length
-  console.info("Nombre total d'utilisateurs :", totalUsers)
+  //   const totalUsers = playersProfil.length
+  //   console.info("Nombre total d'utilisateurs :", totalUsers)
 
-  const handleProfileClick = (userData) => {
-    // Ouvrez le composant PlayerCards en passant les informations de l'utilisateur cible.
+  const handleProfileClick = (playerData) => {
+    // Ouvrez le composant PlayerCards en passant les informations du joueur sélectionné.
     setIsPlayerCardsOpen(true)
-    setUserData(userData)
+    setUserData(playerData)
   }
 
   return (
@@ -120,7 +122,7 @@ const GmCards = ({ onClose }) => {
               </div>
               <div className="Particpants-nb">
                 <h3 className="Participants-nb">
-                  {playerProfil.length}/{gamesData.max_players_capacity}{" "}
+                  {playersProfil.length}/{gamesData.max_players_capacity}{" "}
                   participants
                 </h3>
               </div>
@@ -135,14 +137,15 @@ const GmCards = ({ onClose }) => {
           </div>
           <span id="underline-GMParticipants"></span>
           <div className="participants-pictures">
-            {playerProfil.map((userId) => (
-              <img
-                key={userId.id}
-                src={`${import.meta.env.VITE_BACKEND_URL}/${
-                  userId.profil_picture
-                }`}
-                onClick={() => handleProfileClick(userId)}
-              />
+            {playersProfil.map((userId) => (
+              <div key={userId.id}>
+                <img
+                  src={`${import.meta.env.VITE_BACKEND_URL}/${
+                    userId.profil_picture
+                  }`}
+                  onClick={() => handleProfileClick(userId)}
+                />
+              </div>
             ))}
           </div>
           <div className="iframe-GmCards">
@@ -158,6 +161,7 @@ const GmCards = ({ onClose }) => {
           isOpen={isPlayerCardsOpen}
           onClose={() => setIsPlayerCardsOpen(false)}
           userData={userData}
+          formattedSchedule={formattedSchedule}
         />
       )}
     </div>
