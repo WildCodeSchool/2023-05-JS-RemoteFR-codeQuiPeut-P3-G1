@@ -7,7 +7,11 @@ export default function Player({ users }) {
     <>
       <div className="globalContainerCard">
         <div className="boxGameCard">
-          <img src={users.profil_picture} alt="profil photo" />
+          <img
+            className="boxGameCardImage"
+            src={`${import.meta.env.VITE_BACKEND_URL}/${users.profil_picture}`}
+            alt="profil photo"
+          />{" "}
           {users.username}
         </div>
         <div className="boxGameCard">Mes disponibilités</div>

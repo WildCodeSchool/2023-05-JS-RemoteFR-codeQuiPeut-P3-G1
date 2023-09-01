@@ -96,6 +96,8 @@ function UpcomingTable() {
       .then((res) => setRpg(res.data))
   }, [])
 
+  console.info(users)
+
   return (
     <>
       <div className="globalcontainerUT">
@@ -208,7 +210,7 @@ function UpcomingTable() {
             <input
               className="inputUT"
               type="text"
-              placeholder="Filtrer par date de partie"
+              placeholder="Filtrer par date"
               value={dateFilter}
               onChange={handleDateFilterChange}
             />
