@@ -1,5 +1,9 @@
+
+
 #createGameGlobal {
   display: flex;
+  width: 100%;
+  height: 100%;
   #gameTypeSelecter::after {
     color: red;
   }
@@ -7,13 +11,15 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    height: 100vh;
     align-items: center;
   }
   #createGameTitle {
     display: flex;
     align-items: center;
+    justify-content: center;
     border-bottom: 2px solid #a4945e;
-    margin: 0 0 47px 0;
+    margin: 47px 0 47px 0;
     // width: 25%;
     img {
       margin: 0 20px 0 0;
@@ -33,8 +39,9 @@
   #createGameForm {
     display: flex;
     flex-direction: column;
-    // align-items: center;
+    justify-content: center;
     width: 80%;
+    height: 80%;
     padding: 73px 32px 73px 64px;
     border: 1px solid #a4945e;
     border-radius: 8px;
@@ -83,13 +90,19 @@
   #createGameColumns {
     display: flex;
     gap: 12%;
+    width: 100%;
+    height: 100%;
+
     #createGameFirstGroup,
     #createGameSecondGroup,
     #createGameThirdGroup {
-      width: 25%;
+      width: 100%;
+      height: 100%;
       display: flex;
+      justify-content: flex-start;
       flex-direction: column;
-      gap: 20px;
+      gap: 30px;
+
       label {
         display: flex;
         flex-direction: column;
@@ -170,28 +183,181 @@
         }
         /* End of the switch - the box around the slider */
       }
+      .form-type-number {
+        position: relative;
+        height: 50px;
+        input {
+          appearance: none; /* Initialize the appearance */
+          position: absolute;
+          top: 0;
+          display: block;
+          width: 100%;
+          height: 50px;
+          padding: 0 50px;
+          text-align: center;
+          font-size: 1.5rem;
+          color: #fff;
+          background: none;
+          border-radius: 6px;
+          border: 1px solid #A4945E;
+          &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+          }
+          &::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+          }
+        }
+        .btn-minus,
+        .btn-plus {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: absolute;
+          color: #fff;
+          z-index: 100;
+          border: none;
+          top: 10px;
+          width: 30px;
+          height: 30px;
+          
+          background: none;
+          text-align: center;
+          font-size: 2rem;
+        }
+        .btn-minus {
+          left: 10px;
+        }
+        .btn-plus {
+          right: 10px;
+        }
+      }
+
+      .checkbox-CreateGame-Remote {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+      }
+
+      #createGameHour[type=time] {
+        display: flex;
+        border: none;
+        color: #2a2c2d;
+        font-size: 14px;
+        font-family: helvetica;
+        width: 40%;
+        height: 100%;
+        background: none;
+      }
+      
+      /* Wrapper around the hour, minute, second, and am/pm fields as well as 
+      the up and down buttons and the 'X' button */
+      #createGameHour[type=time]::-webkit-datetime-edit-fields-wrapper {
+        display: flex;
+      }
+      
+      /* The space between the fields - between hour and minute, the minute and 
+      second, second and am/pm */
+      #createGameHour[type=time]::-webkit-datetime-edit-text {
+        padding: 19px 4px;
+      }
+      
+      /* The naming convention for the hour, minute, second, and am/pm field is
+      `-webkit-datetime-edit-{field}-field` */
+      
+      /* Hour */
+      #createGameHour[type=time]::-webkit-datetime-edit-hour-field {
+        background-color: #f2f4f5;
+        border-radius: 15%;
+        padding: 19px 13px;
+      }
+      
+      /* Minute */
+      #createGameHour[type=time]::-webkit-datetime-edit-minute-field {
+        background-color: #f2f4f5;
+        border-radius: 15%;
+        padding: 19px 13px;
+      }
+
+
     }
   }
+  .jdiNPu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    --moedim-primary: #180b23;
+    border: none;
+    border-radius: 4px;
+    background: rgb(255, 255, 255);
+    font-family: inherit;
+    font-size: 18px;
+    line-height: 28px;
+    color: rgb(23, 23, 23);
+    width: 90%;
+    height: 100%;
+    padding: 20px 12px 16px 12px;
+  }
+  .bwNdeo {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0px, 1fr) minmax(0px, max-content);
+    gap: 8px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+  }
+  .iNTkPl {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0px, 1fr);
+    gap: 4px;
+  }
+  .YPIdN {
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    font-size: 16px;
+    display: table-cell;
+    font-weight: 500;
+    vertical-align: middle;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    padding: 0px;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 50%;
+    background: transparent;
+    box-sizing: border-box;
+    font-family: inherit;
 }
-
-.dHWzoH,
-.hsZXZs {
-  font-family: $content-font;
-}
-
-.sc-fqkvVR,
-.sc-imWYAI .jdiNPu {
-  --moedim-primary: #1a73e8;
-  border: 2px solid rgb(207, 207, 207);
-  border-radius: 4px;
-  background: rgb(255, 255, 255);
-  font-family: $content-font;
-  font-size: 18px;
-  line-height: 28px;
-  color: rgb(23, 23, 23);
-  // width: max-content;
-  width: 100%;
-  padding: 12px;
+  .YPIdN[aria-pressed="true"] {
+    border-radius: 20px;
+    background: linear-gradient(180deg, #180b23 0%, #752b75 100%);
+    color: rgb(255, 255, 255);
+  }
+  .hsZXZs {
+    color: var(--gray-100, #666);
+    text-align: center;
+    font-feature-settings: "clig" off, "liga" off;
+    /* Android/Subtitle 2 */
+    font-family: Balsamiq Sans;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 171.429% */
+  }
+  .dHWzoH {
+    color: #180b23;
+    font-feature-settings: "clig" off, "liga" off;
+    font-family: Petrona;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px; /* 171.429% */
+  }
 }
 
 select {
