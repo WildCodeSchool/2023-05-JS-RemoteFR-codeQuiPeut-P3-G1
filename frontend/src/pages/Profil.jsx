@@ -2,12 +2,19 @@ import React, { useContext, useEffect, useState } from "react"
 import Cookies from "js-cookie"
 import axios from "axios"
 import AuthContext from "../components/AuthContext/AuthContext"
+import iconProfil from "../assets/Profil/iconProfil.png.png"
+import questionMark from "../assets/Profil/questionMark.png.png"
 
 const Profil = () => {
   const { user } = useContext(AuthContext)
   const tokenFromCookie = Cookies.get("authToken")
   const [gameData, setGameData] = useState({})
-  const [isClicked, setIsClicked] = useState(false)
+  // const [isClicked, setIsClicked] = useState(false)
+  const [buttonStates, setButtonStates] = useState({
+    profil: false,
+    myGames: false,
+    social: false,
+  })
 
   const headers = {
     Authorization: `Bearer ${tokenFromCookie}`,
@@ -33,34 +40,63 @@ const Profil = () => {
 
   return (
     <div className="mainContainerProfil">
+      <div className="questionMark">
+        <img src={questionMark} />
+      </div>
       <div className="leftBoxMain">
         <div className="settingsTitle">
           <h1>SETTINGS</h1>
         </div>
         <div className="settingsTab">
           <div
-            className={isClicked === true ? "Cliked" : "settingsButton"}
-            onClick={() => setIsClicked(!isClicked)}
+            className={buttonStates.profil ? "Cliked" : "settingsButton"}
+            onClick={() =>
+              setButtonStates({
+                ...buttonStates,
+                profil: !buttonStates.profil,
+                myGames: false,
+                social: false,
+              })
+            }
           >
             <button type="button">PROFILE</button>
           </div>
           <div
-            className={isClicked === true ? "Cliked" : "settingsButton"}
-            onClick={() => setIsClicked(!isClicked)}
+            className={buttonStates.myGames ? "Cliked" : "settingsButton"}
+            onClick={() =>
+              setButtonStates({
+                ...buttonStates,
+                myGames: !buttonStates.myGames,
+                profil: false,
+                social: false,
+              })
+            }
           >
             <button type="button">MY GAMES</button>
           </div>
           <div
-            className={isClicked === true ? "Cliked" : "settingsButton"}
-            onClick={() => setIsClicked(!isClicked)}
+            className={buttonStates.social ? "Cliked" : "settingsButton"}
+            onClick={() =>
+              setButtonStates({
+                ...buttonStates,
+                social: !buttonStates.social,
+                myGames: false,
+                profil: false,
+              })
+            }
           >
             <button type="button">SOCIAL</button>
           </div>
         </div>
       </div>
-      <div className="mainTitleand?">balise image PROFILE balise image</div>
+
       <div className="rightBoxMain">
-        <div>
+        <div className="mainTitleProfil">
+          <img src={iconProfil} />
+          <h1>PROFILE</h1>
+        </div>
+
+        <div className="bigBoxRight">
           <div className="titleProfil">PUBLIC INFORMATION</div>
           <div className="topBoxProfil">
             <div className="boxPhoto">
@@ -83,7 +119,7 @@ const Profil = () => {
               <input
                 type="text"
                 className="inputTopProfil"
-                placeholder="Rabbat de l'Est"
+                placeholder="Oran de l'Est"
               />
             </div>
           </div>
