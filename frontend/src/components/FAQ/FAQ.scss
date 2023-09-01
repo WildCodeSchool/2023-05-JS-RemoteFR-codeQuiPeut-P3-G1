@@ -33,9 +33,13 @@
       border-radius: 20px;
       background: rgba(217, 217, 217, 0.1);
       margin-bottom: 10px;
+      overflow: hidden;
+      transition: max-height 0.5s ease-in-out;
+      max-height: 60px;
       &.expanded {
         height: 15vh;
         justify-content: space-around;
+        max-height: 1500px;
       }
       h2 {
         font-size: 2.31vw;
@@ -63,12 +67,15 @@
         }
       }
       .card-content {
+        padding: 0 20px;
+        opacity: 1;
+        height: auto;
         p {
           font-size: 1.98vw;
           font-style: normal;
           font-weight: 400;
           line-height: normal;
-          color: $third-font-color;
+          color: $secondary-font-color;
           text-align: center;
           font-family: $content-font;
           padding-left: 200px;

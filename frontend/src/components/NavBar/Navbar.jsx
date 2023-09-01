@@ -109,7 +109,7 @@ function NavBar() {
     <>
       <div className="navBarDesktopContainer">
         <div className="logoNavBar">
-          <Link to="/">
+          <Link to="/home">
             <img
               id="logoNavBar"
               src={Logo}
