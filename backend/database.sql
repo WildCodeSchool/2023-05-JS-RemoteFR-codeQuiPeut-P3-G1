@@ -455,7 +455,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'user1','user1@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','OK','Bla bla bla','2023-08-31 14:24:53','Paris','assets/images/profilPictures/defaultUserPicture.png','Gm at 90%'),(2,'user2','user2@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','Ok2','Moi aussi bla bla bla','2023-08-31 14:24:53','Lyon','assets/images/profilPictures/defaultUserPicture.png','Gm at 0%'),(3,'user3','user3@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','ok3',':) # ?‍♂️','2023-08-31 14:24:53','Marseille','assets/images/profilPictures/defaultUserPicture.png','What\'s a GM ? '),(4,'user4','user4@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','ok4','?','2023-08-31 14:24:53','Tours','assets/images/profilPictures/defaultUserPicture.png','Only Dnd'),(5,'user5','user5@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','ok5','?','2023-08-31 14:24:53','Bordeau','assets/images/profilPictures/defaultUserPicture.png','Only Fan');
+INSERT INTO `users` VALUES (1,'user1','user1@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','OK','Bla bla bla','2023-08-31 14:24:53','Paris','assets/images/profilPictures/ADider_Bourdon.jpeg','Gm at 90%'),(2,'user2','user2@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','Ok2','Moi aussi bla bla bla','2023-08-31 14:24:53','Lyon','assets/images/profilPictures/AJackyMichel.jpeg','Gm at 0%'),(3,'user3','user3@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','ok3',':) # ?‍♂️','2023-08-31 14:24:53','Marseille','assets/images/profilPictures/AJacqueline_Dupond.jpeg','What\'s a GM ? '),(4,'user4','user4@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','ok4','?','2023-08-31 14:24:53','Tours','assets/images/profilPictures/ASandrine_Rousseau.jpeg','Only Dnd'),(5,'user5','user5@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','ok5','?','2023-08-31 14:24:53','Bordeau','assets/images/profilPictures/defaultUserPicture.png','Only Fan');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -526,4 +526,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-01 16:03:00
+-- Dump completed on 2023-09-01 16:23:34
