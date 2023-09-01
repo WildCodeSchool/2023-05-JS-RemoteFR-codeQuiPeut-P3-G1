@@ -48,6 +48,10 @@ router.get(
   "/usernameGMFutureGames/:id",
   GameRegistrationsControllers.futureGamesGMUsername
 )
+router.get(
+  "/playersForThisGame/:id",
+  GameRegistrationsControllers.allPlayersForThisGame
+)
 router.get("/gamesRegistrations", GameRegistrationsControllers.browse)
 router.get("/gamesRegistrations/:id", GameRegistrationsControllers.read)
 router.put("/gamesRegistrations/:id", GameRegistrationsControllers.edit)

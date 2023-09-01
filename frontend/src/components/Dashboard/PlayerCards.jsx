@@ -12,16 +12,23 @@ import Dungeons from "../../assets/logoGames/d&d.svg"
 import Cthulhu from "../../assets/logoGames/callOfCthulhu.svg"
 import FiveRings from "../../assets/logoGames/fiveRings.svg"
 
-function PlayerCards({ isOpen, onClose }) {
+function PlayerCards({ isOpen, onClose, userData: initialUserData }) {
+  if (!isOpen) {
+    return null
+  }
+  const [userData, setUserData] = useState(initialUserData)
   const [isPlayerOpen, setIsPlayerOpen] = useState(isOpen)
   const [gamesData, setGamesData] = useState({})
-  const scheduleDate = new Date(gamesData.schedule)
+  const scheduleDate =
+    gamesData && gamesData.schedule ? new Date(gamesData.schedule) : null
   const options = {
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
   }
-  const formattedSchedule = scheduleDate.toLocaleDateString("fr-FR", options)
+  const formattedSchedule = scheduleDate
+    ? scheduleDate.toLocaleDateString("fr-FR", options)
+    : ""
 
   const tokenFromCookie = Cookies.get("authToken")
 
@@ -33,12 +40,31 @@ function PlayerCards({ isOpen, onClose }) {
     axios
       .get("http://localhost:4242/games", { headers })
       .then((response) => {
-        setGamesData(response.data[1])
+        setGamesData(response.data)
       })
       .catch((error) => {
         console.error("An error occurred:", error)
       })
   }, [])
+
+  useEffect(() => {
+    if (userData) {
+      axios
+        .get(`http://localhost:4242/users/${userData.id}`, {
+          headers,
+        })
+        .then((response) => {
+          // Mettez à jour l'état avec les informations de l'utilisateur cible
+          setUserData(response.data)
+
+          // Utilisez setGamesData pour mettre à jour l'état des informations de jeu
+          setGamesData(response.data.gamesData)
+        })
+        .catch((error) => {
+          console.error("An error occurred:", error)
+        })
+    }
+  }, [userData])
 
   const handleClose = () => {
     setIsPlayerOpen(false)
@@ -89,11 +115,7 @@ function PlayerCards({ isOpen, onClose }) {
         </div>
         <div className="PlayerCards_Inside_FourthElement">
           <div className="PlayerCards_Inside_FourthElement_Content">
-            <p>
-              🕵️‍♀️ Plongeuse dans l'inconnu 🔍 Amatrice de JDR d'enquêtes et
-              Cthulhu 🐙 Fascinée par les mystères occultes 🌌 Chasseuse de
-              vérité surnaturelle 💪😱 L'univers sombre m'appelle ! 🌑🎲
-            </p>
+            <p>{userData.description_has_player}</p>
           </div>
         </div>
         <div className="PlayerCards_Inside_FifthElement">

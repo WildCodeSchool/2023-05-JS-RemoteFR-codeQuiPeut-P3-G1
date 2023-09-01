@@ -8,6 +8,7 @@
   .GmCards-container {
     position: fixed;
     display: flex;
+    // justify-content: space-around;
     top: 50%; // Adjust as needed
     left: 50%; // Adjust as needed
     transform: translate(-50%, -50%);
@@ -19,187 +20,213 @@
     background-color: white;
     border: 3px solid $third-font-color;
     border-radius: 9px;
+    gap: 10px;
 
     .GmCards-header {
       display: flex;
-      justify-content: space-evenly;
+      justify-content: space-around;
       align-items: center;
       width: 100%;
-      height: 30%;
-      // border: 3px solid purple;
-      .close-container {
-        display: flex;
-        padding: 1rem;
-        height: 100%;
-        // border: 3px solid purple;
+      margin-top: 5%;
 
-        .close-modale {
-          display: flex;
-          align-self: flex-start;
-          height: 30%;
-        }
+      .profile-picture {
+        display: flex;
       }
-      .GmName-Btn-container {
+      .GM-Name {
         display: flex;
         flex-direction: column;
+        width: 50%;
+        gap: 10px;
+        color: #180B23;
+        font-family: Koh Santepheap;
+        font-size: 27px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+      .Btn-send {
+        display: flex;
         justify-content: center;
-        width: 60%;
-        height: 100%;
-        // border: 3px solid purple;
-        padding: 1rem;
+        align-items: center;
+        width: 148px;
+        height: 39.943px;
 
-        .GM-Name {
-          color: $navbar-color;
-          font-family: $content-font;
-          font-size: 2.5rem;
-          font-style: normal;
-          font-weight: 400;
-          line-height: normal;
-          width: 100%;
-          border-bottom: 1px solid $navbar-color;
-        }
-
-        .Btn-send {
-          display: flex;
-          width: 143px;
-          height: 37.895px;
-          flex-direction: column;
-          justify-content: center;
-          flex-shrink: 0;
-          background-color: $navbar-color;
+        button {
           border-radius: 4px;
-          align-items: center;
+          background: #180b23;
+          color: #A4945E;
+          padding: 10px;
+          text-align: center;
           font-family: Koh Santepheap;
           font-size: 13px;
           font-style: normal;
           font-weight: 400;
           line-height: normal;
-          color: $third-font-color;
-          margin-top: 1.5rem;
         }
       }
 
-      .profile-picture {
-        width: 20%;
+      #underline-GMUsername {
+        width: 100%;
+        height: 1px;
+        background: #180b23;
+      }
+      .close-container {
+        display: flex;
+        margin-bottom: 100px;
       }
     }
-    .GM-calendar-location {
+    .GmCards-Middle {
       display: flex;
-      width: 100%;
-      // border: 3px solid red;
+      justify-content: space-around;
+      align-items: center;
+      width: 85%;
+      // height: 50%;
 
-      .game-info {
+      .GmCards-Middle-Left {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        // width: 100%;
+        // height: 100%;
+        gap: 20px;
+      }
+      .GmCards-Middle-Middle_Left {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        margin-left: 5%;
         width: 100%;
-        padding: 2rem;
-        // border: 3px solid lightseagreen;
-        .game-logo-container {
-          display: flex;
-          justify-content: space-around;
+        height: 100%;
+        gap: 40px;
 
-          // border: 5px solid fuchsia;
-          .date,
-          .city {
-            color: #180b23;
+        .date-to-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          .date-to {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
             font-family: Koh Santepheap;
-            font-size: 16px;
+            font-size: 13px;
             font-style: normal;
             font-weight: 400;
             line-height: normal;
-            align-self: center;
+            color: #a4945e;
+            #date {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              color: #180b23;
+              font-family: Koh Santepheap;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;
+            }
           }
-          .game-black-logo {
+        }
+        .location-city-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          .location-city {
             display: flex;
-            height: 10vw;
-          }
-          .date-to,
-          .location-city {
-            background: linear-gradient(180deg, #a4945e 0%, #180b23 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-          }
-
-          .game-type,
-          .location-city {
-            align-self: center;
-            color: #180b23;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
             font-family: Koh Santepheap;
-            font-size: 16px;
+            font-size: 13px;
             font-style: normal;
             font-weight: 400;
             line-height: normal;
+            color: #a4945e;
+            .city {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              color: #180b23;
+              font-family: Koh Santepheap;
+              font-size: 16px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;
+            }
           }
         }
-        .location-container {
+
+        .Participants-nb {
           display: flex;
-          // border: 3px solid salmon;
-          .location-city {
-            display: flex;
-            align-self: center;
-            background: linear-gradient(180deg, #a4945e 0%, #180b23 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-          }
-          .location-icon {
-            margin: 1rem;
-            height: 60%;
-          }
+          justify-content: center;
+          align-items: center;
+          color: #180b23;
+          font-family: Koh Santepheap;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
         }
+      }
+      .GmCards-Middle-Middle_Right {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-around;
+        width: 100%;
+        height: 100%;
+        .game-type {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 20%;
+          color: #180b23;
+          font-family: Koh Santepheap;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+      }
+      .GmCards-Middle-Right {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        width: 100%;
+        height: 100%;
       }
     }
+    #underline-GMParticipants {
+      width: 80%;
+      height: 1px;
+      background: #180b23;
+    }
 
-    .Participants {
+    .participants-pictures {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-
-      padding: 2rem;
-      // border: 3px solid blue;
       width: 100%;
-      height: 30%;
-      .participant-nb-container {
-        display: flex;
-        justify-content: flex-start;
-        // border: 3px solid green;
-        color: #180b23;
-        font-family: Koh Santepheap;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
+      gap: 20px;
+      padding-left: 10%;
+      img {
+        width: 10%;
       }
-      .participants-pictures {
-        display: flex;
-        align-self: center;
-
+    }
+    .iframe-GmCards {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      iframe {
+        border: none;
+        border-radius: 8px;
         width: 90%;
-        height: 80%;
-        // border: 3px solid purple;
-      }
-      .player-profile-picture {
-        display: flex;
-        padding: 1rem;
-        height: 100px;
-      }
-      .participant-logo-gold {
-        display: flex;
-        height: 3.5vh;
-        margin: 1rem;
-      }
-      .Participants-nb {
-        color: #180b23;
-        font-family: Koh Santepheap;
-        font-size: 2vh;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        align-self: center;
-        border-bottom: 1px solid #180b23;
-        padding: 1rem;
-        width: 70%;
+        height: 100%;
       }
     }
   }
