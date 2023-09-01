@@ -1,5 +1,6 @@
 import React, { useState } from "react"
-import { Link, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
+import Cookies from "js-cookie"
 
 import Logo from "../../assets/logo/logoNavBar.png"
 import Home from "../../assets/icon-navbar/home.png"
@@ -22,6 +23,7 @@ function NavBar() {
   const [isHovering8, setIsHovering8] = useState(false)
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const navigate = useNavigate()
 
   const location = useLocation()
 
@@ -95,11 +97,25 @@ function NavBar() {
     setIsHovering8(false)
   }
 
+  const handleLogout = () => {
+    Cookies.remove("authToken")
+    Cookies.remove("loggedInUser")
+    Cookies.remove("idUser")
+
+    navigate("/")
+  }
+
   return (
     <>
       <div className="navBarDesktopContainer">
         <div className="logoNavBar">
-          <img id="logoNavBar" src={Logo} alt="logo of website in the navbar" />
+          <Link to="/">
+            <img
+              id="logoNavBar"
+              src={Logo}
+              alt="logo of website in the navbar"
+            />
+          </Link>
         </div>
         <div className="mainButtonsNavBar">
           <Link to="/home">
@@ -156,18 +172,20 @@ function NavBar() {
               )}
             </div>
           </Link>
-          <div
-            className="messageNavBar"
-            onMouseEnter={handleMouseEnter5}
-            onMouseLeave={handleMouseLeave5}
-          >
-            <img src={Messagerie} alt="logo of messagerie in the navbar" />
-            {isHovering5 && (
-              <div className="hiddenMessageNavBar">
-                <span>MESSAGE</span>
-              </div>
-            )}
-          </div>
+          <Link to="/privateMessages">
+            <div
+              className="messageNavBar"
+              onMouseEnter={handleMouseEnter5}
+              onMouseLeave={handleMouseLeave5}
+            >
+              <img src={Messagerie} alt="logo of messagerie in the navbar" />
+              {isHovering5 && (
+                <div className="hiddenMessageNavBar">
+                  <span>MESSAGE</span>
+                </div>
+              )}
+            </div>
+          </Link>
           <Link to="/topics">
             <div
               className="forumNavBar"
@@ -201,7 +219,11 @@ function NavBar() {
             onMouseEnter={handleMouseEnter8}
             onMouseLeave={handleMouseLeave8}
           >
-            <img src={LogOut} alt="logo of forum in the navbar" />
+            <img
+              src={LogOut}
+              onClick={handleLogout}
+              alt="logo of forum in the navbar"
+            />
             {isHovering8 && (
               <div className="hiddenLogOutNavBar">
                 <span>LOG OUT</span>
