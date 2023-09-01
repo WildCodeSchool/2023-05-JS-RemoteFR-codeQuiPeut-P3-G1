@@ -442,8 +442,6 @@ CREATE TABLE `users` (
   `email_adress` varchar(255) NOT NULL,
   `hashedPassword` varchar(255) NOT NULL,
   `other_information` text,
-  `is_gamemaster` enum("0", "1") NOT NULL DEFAULT "0",
-  `availability_schedule` text,
   `description_as_player` text,
   `registration_date` timestamp NOT NULL,
   `location` varchar(255) DEFAULT NULL,
@@ -459,7 +457,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'user1','user1@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,'playerOnly',NULL,NULL,'2023-08-31 14:24:53',NULL,'assets/images/profilPictures/defaultUserPicture.png',NULL),(2,'user2','user2@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,'gmOnly',NULL,NULL,'2023-08-31 14:24:53',NULL,'assets/images/profilPictures/defaultUserPicture.png',NULL),(3,'user3','user3@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,'both',NULL,NULL,'2023-08-31 14:24:53',NULL,'assets/images/profilPictures/defaultUserPicture.png',NULL),(4,'user4','user4@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,'playerOnly',NULL,NULL,'2023-08-31 14:24:53',NULL,'assets/images/profilPictures/defaultUserPicture.png',NULL),(5,'user5','user5@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,'gmOnly',NULL,NULL,'2023-08-31 14:24:53',NULL,'assets/images/profilPictures/defaultUserPicture.png',NULL);
+INSERT INTO `users` VALUES (1,'user1','user1@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,NULL,'2023-08-31 14:24:53',NULL,'assets/images/profilPictures/defaultUserPicture.png',NULL),(2,'user2','user2@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,NULL,'2023-08-31 14:24:53',NULL,'assets/images/profilPictures/defaultUserPicture.png',NULL),(3,'user3','user3@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,NULL,'2023-08-31 14:24:53',NULL,'assets/images/profilPictures/defaultUserPicture.png',NULL),(4,'user4','user4@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,NULL,'2023-08-31 14:24:53',NULL,'assets/images/profilPictures/defaultUserPicture.png',NULL),(5,'user5','user5@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,NULL,'2023-08-31 14:24:53',NULL,'assets/images/profilPictures/defaultUserPicture.png',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
