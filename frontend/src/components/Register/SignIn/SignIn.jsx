@@ -1,13 +1,13 @@
 import { useState } from "react"
-// import AuthContext from "../../AuthContext/AuthContext"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Cookies from "js-cookie"
 import axios from "axios"
 
 function SignIn() {
   const [signInUsername, setSignInUsername] = useState()
   const [signInPassword, setSignInPassword] = useState()
-  // const { setIdUser } = useContext(AuthContext)
+
+  const navigate = useNavigate()
 
   const handleLogin = (e) => {
     e.preventDefault()
@@ -22,48 +22,21 @@ function SignIn() {
           document.getElementById("cardLogIn-Input").reset()
           const token = res.data.token
           Cookies.set("authToken", token, { expires: 0.5, sameSite: "strict" })
-          Cookies.set("loggedInUser", JSON.stringify(res.data.user))
-          Cookies.set("idUser", JSON.stringify(res.data.user.id))
+          Cookies.set("loggedInUser", JSON.stringify(res.data.user), {
+            sameSite: "strict",
+          })
+          Cookies.set("idUser", JSON.stringify(res.data.user.id), {
+            sameSite: "strict",
+          })
           setSignInUsername()
           setSignInPassword()
-          // localStorage.setItem("loggedInUser", JSON.stringify(res.data.user))
-          // console.info(res.data.user)
+          navigate("/home")
         }
       })
       .catch((error) => {
         console.error("Erreur lors de la connexion :", error)
       })
   }
-
-  // const { users, setUser, user } = useContext(AuthContext)
-
-  // const [username, setUsername] = useState("")
-  // const [password, setPassword] = useState("")
-
-  // const handleConnect = (event) => {
-  //   event.preventDefault()
-
-  //   const utilisateur = users.find((u) => u.username === username)
-  //   if (!utilisateur) {
-  //     alert("Mauvais pseudo")
-  //     setUsername("")
-  //     setPassword("")
-  //   } else if (utilisateur.password !== password) {
-  //     alert("Mauvais mot de passe")
-  //     setPassword("")
-  //   } else {
-  //     setUser(utilisateur)
-  //   }
-  // }
-
-  // const handleDisconnect = () => {
-  //   setUser(null)
-  // }
-
-  // // Affiche le user quand il change
-  // useEffect(() => {
-  //   console.info(user)
-  // }, [user])
 
   return (
     <div className="cardLogIn-container">
@@ -87,16 +60,14 @@ function SignIn() {
           <Link to="/privatemessages">
             <button type="button">Messages</button>
           </Link>
-          <Link to="/home">
-            <button type="home">home</button>
-          </Link>
         </form>
         <div className="button-SignIn-Container">
           <div className="button-SignIn">
-            <button type="button" onClick={handleLogin}>
-              Sign In
-            </button>
-            <button className="buttonLogout">Logout</button>
+            <Link to="/home">
+              <button type="button" onClick={handleLogin}>
+                Sign In
+              </button>
+            </Link>
           </div>
         </div>
       </div>

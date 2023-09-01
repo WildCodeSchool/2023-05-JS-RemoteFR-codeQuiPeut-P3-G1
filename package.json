@@ -36,7 +36,9 @@
     "esbuild": "^0.16.17",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.5.2",
+    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.15.0",
+    "react-slick": "^0.29.0",
     "sass": "^1.64.1"
   }
 }

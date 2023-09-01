@@ -10,7 +10,6 @@ import Cookies from "js-cookie"
 
 const MyProfil = () => {
   const { user } = useContext(AuthContext)
-  console.info(user)
   const [imageUrl, setImageUrl] = useState(null)
 
   useEffect(() => {
@@ -19,13 +18,12 @@ const MyProfil = () => {
 
   const tokenFromCookie = Cookies.get("authToken")
 
-  console.info("prout", user.profil_picture)
-
   const shortDate = String(user.registration_date)
     .substring(0, 10)
+    .substring(5, 10)
     .split("-")
-    .reverse()
     .join("-")
+    .concat("-", String(user.registration_date).substring(0, 4))
 
   const updateProfilPictureOnServer = async (userId, formData) => {
     try {

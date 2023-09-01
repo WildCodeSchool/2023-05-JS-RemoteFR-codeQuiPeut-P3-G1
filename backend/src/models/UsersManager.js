@@ -7,7 +7,7 @@ class UsersManager extends AbstractManager {
 
   insert(users) {
     return this.database.query(
-      `insert into ${this.table} (username, email_adress, location, hashedPassword, is_gamemaster, registration_date) values (?, ?, ?, ?, "playerOnly", NOW())`,
+      `insert into ${this.table} (username, email_adress, location, hashedPassword, registration_date) values (?, ?, ?, ?, NOW())`,
       [
         users.username,
         users.email_adress,
@@ -21,14 +21,12 @@ class UsersManager extends AbstractManager {
 
   update(users) {
     return this.database.query(
-      `update ${this.table} set username = ?, email_adress = ?, hashedPassword = ?, other_information = ?, is_gamemaster = ?, availability_schedule = ?, description_as_player = ?, location = ?, profil_picture = ?, description_as_gm = ? where id = ?`,
+      `update ${this.table} set username = ?, email_adress = ?, hashedPassword = ?, other_information = ?, description_as_player = ?, location = ?, profil_picture = ?, description_as_gm = ? where id = ?`,
       [
         users.username,
         users.email_adress,
         users.hashedPassword,
         users.other_information,
-        users.is_gamemaster,
-        users.availability_schedule,
         users.descriptions_as_player,
         users.location,
         users.profil_picture,

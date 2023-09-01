@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
+import Cookies from "js-cookie"
 
 import "./PlayerCards.scss"
 
@@ -22,9 +23,15 @@ function PlayerCards({ isOpen, onClose }) {
   }
   const formattedSchedule = scheduleDate.toLocaleDateString("fr-FR", options)
 
+  const tokenFromCookie = Cookies.get("authToken")
+
+  const headers = {
+    Authorization: `Bearer ${tokenFromCookie}`,
+  }
+
   useEffect(() => {
     axios
-      .get("http://localhost:4242/games")
+      .get("http://localhost:4242/games", { headers })
       .then((response) => {
         setGamesData(response.data[1])
       })

@@ -13,6 +13,7 @@ import GmCards from "./components/Dashboard/GmCards"
 import PrivateMessages from "./components/PrivateMessages/PrivateMessages"
 import Topics from "./pages/Topics"
 import NavBar from "./components/NavBar/Navbar"
+import UpcomingTable from "./pages/UpcomingTable.jsx"
 import Profil from "./pages/Profil"
 
 function App() {
@@ -20,8 +21,6 @@ function App() {
   const [user, setUser] = useState([])
 
   // const tokenFromCookie = Cookies.get("authToken")
-  // const idUser = Cookies.get("idUser")
-  // const storedUser = JSON.parse(Cookies.get("loggedInUser"))
 
   // const headers = {
   //   Authorization: `Bearer ${tokenFromCookie}`,
@@ -58,6 +57,7 @@ function App() {
               <Route path="/topics" element={<Topics />} />
               <Route path="/test" element={<Home />} />
               <Route path="/privatemessages" element={<PrivateMessages />} />
+              <Route path="/upcoming-table" element={<UpcomingTable />} />
               <Route path="/profil" element={<Profil />} />
             </Routes>
             <div className="navBar">
