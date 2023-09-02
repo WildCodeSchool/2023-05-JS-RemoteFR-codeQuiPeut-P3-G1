@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: guilden
 -- ------------------------------------------------------
@@ -436,15 +436,16 @@ DROP TABLE IF EXISTS `users`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) NOT NULL,
-  `email_adress` varchar(255) NOT NULL,
+  `username` varchar(45) NOT NULL,
+  `email_adress` varchar(45) NOT NULL,
   `hashedPassword` varchar(255) NOT NULL,
   `other_information` text,
   `description_as_player` text,
   `registration_date` timestamp NOT NULL,
-  `location` varchar(255) DEFAULT NULL,
+  `city` varchar(45) DEFAULT NULL,
   `profil_picture` varchar(255) DEFAULT 'assets/images/profilPictures/defaultUserPicture.png',
   `description_as_gm` varchar(255) DEFAULT NULL,
+  `country` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -455,7 +456,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'user1','user1@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,'Bla bla bla','2023-08-31 14:24:53','Paris','assets/images/profilPictures/defaultUserPicture.png','Gm at 90%'),(2,'user2','user2@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,'Moi aussi bla bla bla','2023-08-31 14:24:53','Lyon','assets/images/profilPictures/defaultUserPicture.png','Gm at 0%'),(3,'user3','user3@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,':) # ?‍♂️','2023-08-31 14:24:53','Marseille','assets/images/profilPictures/defaultUserPicture.png','What\'s a GM ? '),(4,'user4','user4@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,'?','2023-08-31 14:24:53','Tours','assets/images/profilPictures/defaultUserPicture.png','Only Dnd'),(5,'user5','user5@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,'?','2023-08-31 14:24:53','Bordeau','assets/images/profilPictures/defaultUserPicture.png','Only Fan');
+INSERT INTO `users` VALUES (1,'user1','user1@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,'Bla bla bla','2023-08-31 14:24:53','Paris','assets/images/profilPictures/defaultUserPicture.png','Gm at 90%','France'),(2,'user2','user2@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,'Moi aussi bla bla bla','2023-08-31 14:24:53','Lyon','assets/images/profilPictures/defaultUserPicture.png','Gm at 0%',NULL),(3,'user3','user3@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,':) # ?‍♂️','2023-08-31 14:24:53','Marseille','assets/images/profilPictures/defaultUserPicture.png','What\'s a GM ? ',NULL),(4,'user4','user4@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,'?','2023-08-31 14:24:53','Tours','assets/images/profilPictures/defaultUserPicture.png','Only Dnd',NULL),(5,'user5','user5@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM',NULL,'?','2023-08-31 14:24:53','Bordeau','assets/images/profilPictures/defaultUserPicture.png','Only Fan',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -526,4 +527,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-01 10:03:07
+-- Dump completed on 2023-09-02 14:34:04

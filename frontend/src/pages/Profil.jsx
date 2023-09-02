@@ -10,6 +10,12 @@ const Profil = () => {
   const tokenFromCookie = Cookies.get("authToken")
   const [gameData, setGameData] = useState({})
   // const [isClicked, setIsClicked] = useState(false)
+  const [isEditing, setIsEditing] = useState(false)
+  const [newUsername, setNewUsername] = useState(user.username)
+  const [isEditingBioBox, setIsEditingBioBox] = useState(false)
+  const [newDescription, setNewDescription] = useState(
+    user.description_as_player
+  )
   const [buttonStates, setButtonStates] = useState({
     profil: false,
     myGames: false,
@@ -107,39 +113,123 @@ const Profil = () => {
               />
               <span>{shortDate}</span>
             </div>
-            <div className="boxName">{user.username}</div>
+
+            <div className="boxName">
+              {isEditing ? (
+                <div className="editNameDiv">
+                  <input
+                    className="inputNewName"
+                    type="text"
+                    value={newUsername}
+                    onChange={(e) => setNewUsername(e.target.value)}
+                  />
+                  <button
+                    id="buttonNewName"
+                    onClick={() => setIsEditing(false)}
+                  >
+                    Save
+                  </button>
+                </div>
+              ) : (
+                <div className="userNameDiv">
+                  UserName
+                  <button
+                    id="userNameButton"
+                    onClick={() => setIsEditing(true)}
+                  >
+                    {user.username}
+                  </button>
+                </div>
+              )}
+            </div>
             <div className="localisationBox">
               <span>Country</span>
               <input
                 type="text"
-                className="inputTopProfil"
-                placeholder="France d'afrique"
+                className="inputCountryCity"
+                placeholder="Enter your country"
               />
               <span>City</span>
               <input
                 type="text"
-                className="inputTopProfil"
-                placeholder="Oran de l'Est"
+                className="inputCountryCity"
+                placeholder="Enter Your City"
               />
             </div>
           </div>
           <div className="bioBoxProfil">
             <div className="bioBoxProfilTitle">Bio on Profil</div>
-            <div className="bioBoxProfilText">{user.description_as_player}</div>
-          </div>
-          <div className="gameBoxProfil">
-            <div className="gameBoxProfilTitle">SEARCH TO PLAY ON</div>
-            <div className="gameBoxGamesList">composant gamelist</div>
-          </div>
-          <div className="bottomBoxProfil">
-            <div className="privateInfoBox">PERSONAL EN ITALIEN</div>
-            <div className="mailBox">CHAMP EMAIL</div>
-            <div className="passwordBox">
-              <div className="oldPassword">CHAMP ANCIEN PASSWORD</div>
-              <div className="newPassword">NEW PASSWORD</div>
+            <div className="bioBoxProfilText">
+              {isEditingBioBox ? (
+                <div className="editDescriptionBox">
+                  <input
+                    className="inputNewDescription"
+                    type="text"
+                    value={newDescription}
+                    onChange={(e) => setNewDescription(e.target.value)}
+                  />
+                  <button
+                    type="button"
+                    id="buttonNewDescription"
+                    onClick={() => setIsEditingBioBox(false)}
+                  >
+                    Save
+                  </button>
+                </div>
+              ) : (
+                <div className="userDescriptionDiv">
+                  <button
+                    id="userNameDescription"
+                    onClick={() => setIsEditingBioBox(true)}
+                  >
+                    {user.description_as_player}
+                  </button>
+                </div>
+              )}
             </div>
           </div>
-          <div className="validateProfil">BOUTON VALIDATE</div>
+          <div className="gameBoxProfil">
+            <div className="gameBoxProfilTitle">
+              SEARCH TO PLAY ON
+              <hr />
+            </div>
+
+            <div className="gameBoxGamesList">composant gamelist</div>
+          </div>
+          <div id="hrDiv">
+            <hr />
+          </div>
+          <div className="bottomBoxProfil">
+            <div className="privateInfoBox">PERSONAL INFORMATIONS</div>
+
+            <hr />
+            <div className="mailBox">
+              Email adress
+              <input
+                type="email"
+                className="inputBottomProfil"
+                placeholder="Enter Your Email"
+              />
+            </div>
+            <div className="passwordBox">
+              <div className="oldPassword">
+                Current Password
+                <input
+                  type="password"
+                  className="inputBottomProfil"
+                  placeholder="Current password"
+                />
+              </div>
+              <div className="newPassword">
+                New Password
+                <input
+                  type="password"
+                  className="inputBottomProfil"
+                  placeholder="New password"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
