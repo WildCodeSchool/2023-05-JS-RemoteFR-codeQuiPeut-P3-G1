@@ -7,6 +7,9 @@
     "fix": "prettier --write . && eslint --fix --ext .jsx ."
   },
   "dependencies": {
+    "@react-three/drei": "^9.80.9",
+    "@splinetool/loader": "^0.9.432",
+    "@splinetool/r3f-spline": "^1.0.2",
     "@splinetool/react-spline": "^2.2.6",
     "@splinetool/runtime": "^0.9.429",
     "@vitejs/plugin-react": "^3.0.1",

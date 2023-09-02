@@ -18,7 +18,6 @@ const GuildPhone = () => {
           </p>
         </div>
         <div className="GuildPhone">
-          {/* <Spline scene="https://prod.spline.design/KGm3zLCbHu38cGRd/scene.splinecode" /> */}
           <Spline scene="https://prod.spline.design/KGm3zLCbHu38cGRd/scene.splinecode" />
         </div>
       </div>
