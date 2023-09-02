@@ -1,11 +1,18 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
+import { TimePicker } from "react-ios-time-picker"
 import Cookies from "js-cookie"
 import Calendar from "moedim"
 
-import createGameDice from "../assets/icon-create-game/dice.png"
+import createGameDice from "../assets/icon-create-game/dice.svg"
+import hour from "../assets/icon-create-game/horaire.png"
 
 export default function CreateGame() {
+  const [value, setValue] = useState("10:00")
+
+  const onChange = (timeValue) => {
+    setValue(timeValue)
+  }
   const [isTimeRequired, setIsTimeRequired] = useState(true)
 
   const handleDecrement = () => {
@@ -130,11 +137,17 @@ export default function CreateGame() {
 
   return (
     <main id="createGameGlobal">
-      <div id="contentCreateGame">
+      <div id="createGameTitle-Container">
         <div id="createGameTitle">
-          <img src={createGameDice} />
-          <h1>CREATE GAME</h1>
+          <div id="createGameTitle-Img">
+            <img src={createGameDice} />
+          </div>
+          <div id="createGameTitle-Title">
+            <span>CREATE GAME</span>
+          </div>
         </div>
+      </div>
+      <div id="contentCreateGame">
         {/* <label htmlFor="idGm">
           <p style={{ color: "white" }}>ID du GM</p>
           <input
@@ -231,28 +244,25 @@ export default function CreateGame() {
                 />
               </label>
               <div className="checkbox-CreateGame-Remote">
-                <label htmlFor="Remote">
-                  <p>Remote</p>
-                  <input
-                    type="radio"
-                    name="gameLocation"
-                    id="radio-Remote"
-                    value="Remote"
-                    checked={gameIsRemote === 1}
-                    onChange={() => setGameIsRemote(1)}
-                  />
-                </label>
-                <label htmlFor="OnPlace">
-                  <p>On place</p>
-                  <input
-                    type="radio"
-                    name="gameLocation"
-                    id="radio-OnPlace"
-                    value="OnPlace"
-                    checked={gameIsRemote === 0}
-                    onChange={() => setGameIsRemote(0)}
-                  />
-                </label>
+                <input
+                  type="radio"
+                  name="gameLocation"
+                  className="demo1"
+                  id="radio-Remote"
+                  checked={gameIsRemote === 1}
+                  onChange={() => setGameIsRemote(1)}
+                />
+                <label htmlFor="radio-Remote">Remote</label>
+
+                <input
+                  type="radio"
+                  name="gameLocation"
+                  className="demo1"
+                  id="radio-OnPlace"
+                  checked={gameIsRemote === 0}
+                  onChange={() => setGameIsRemote(0)}
+                />
+                <label htmlFor="radio-OnPlace">On Place</label>
               </div>
             </div>
             <div id="createGameThirdGroup">
@@ -307,7 +317,7 @@ export default function CreateGame() {
                   required
                 />
               </label>
-              <label htmlFor="heure">
+              {/* <label htmlFor="heure">
                 <p>Hour</p>
                 <input
                   id="createGameHour"
@@ -318,15 +328,29 @@ export default function CreateGame() {
                   onFocus={() => setIsTimeRequired(false)} // Désactive le required lorsque l'input est en focus
                   onBlur={() => setIsTimeRequired(true)} // Réactive le required lorsque l'input perd le focus
                 />
+              </label> */}
+              <label htmlFor="heure">
+                <p>Hour</p>
               </label>
+              <div className="timePicker-CreateGame">
+                <TimePicker
+                  onChange={onChange}
+                  value={value}
+                  className="timepicker"
+                  required={isTimeRequired}
+                  onFocus={() => setIsTimeRequired(false)} // Désactive le required lorsque l'input est en focus
+                  onBlur={() => setIsTimeRequired(true)} // Réactive le required lorsque l'input perd le focus
+                />
+                <img src={hour} />
+              </div>
             </div>
           </div>
-          <div id="createGameButton">
-            <button type="submit">
-              <span>VALIDATE</span>
-            </button>
-          </div>
         </form>
+        <div id="createGameButton">
+          <button type="submit">
+            <span>VALIDATE</span>
+          </button>
+        </div>
       </div>
     </main>
   )
