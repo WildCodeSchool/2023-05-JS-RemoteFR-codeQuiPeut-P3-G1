@@ -27,7 +27,7 @@
   }
   .carousel-content {
     width: 100%;
-    height: 400px;
+    height: 45vh;
   }
 }
 
@@ -35,16 +35,16 @@
 .carousel-root {
   height: 100%;
   .carousel {
-    height: 400px;
+    height: 45vh;
     .slide {
-      height: 350px;
+      height: 39vh;
       width: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
       .testimonialCard {
-        height: 400px;
-        width: 600px;
+        height: 36vh;
+        width: 30vw;
         background: rgb(65, 47, 85);
         border-radius: 20px;
         border: 3px solid $third-font-color;
@@ -58,8 +58,8 @@
           align-items: center;
           img {
             border-radius: 50%;
-            width: 200px;
-            height: 200px;
+            width: 10vw;
+            height: 18vh;
             box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.447);
           }
         }
@@ -75,7 +75,7 @@
             margin-top: 70px;
             font-family: $title-font;
             color: $third-font-color;
-            font-size: 40px;
+            font-size: 2.81vw;
             // border: 2px solid blue;
             border-bottom: 1px solid $third-font-color;
             width: 300px;
