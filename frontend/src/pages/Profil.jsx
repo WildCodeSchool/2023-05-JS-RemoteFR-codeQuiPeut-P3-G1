@@ -11,6 +11,7 @@ const Profil = () => {
   const [gameData, setGameData] = useState({})
   // const [isClicked, setIsClicked] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
+  const [switchPassword, setSwitchpassWord] = useState(false)
   const [newUsername, setNewUsername] = useState(user.username)
   const [isEditingBioBox, setIsEditingBioBox] = useState(false)
   const [newDescription, setNewDescription] = useState(
@@ -21,6 +22,26 @@ const Profil = () => {
     myGames: false,
     social: false,
   })
+
+  // const handleKeyPressEnter = (event) => {
+  //   if (event.key === "Enter") {
+  //     buttonRef.current.click()
+  //   }
+  // }
+
+  // const handleKeyPressEscape = (event) => {
+  //   if (event.key === "Escape") {
+  //     onClose();
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   document.addEventListener("keydown", handleKeyPressEscape);
+  //   return () => {
+  //     document.removeEventListener("keydown", handleKeyPressEscape);
+  //   };
+  // }, []);
+  // onKeyDown={handleKeyPressEnter} // mettre au niveau des boutons fermants
 
   const headers = {
     Authorization: `Bearer ${tokenFromCookie}`,
@@ -103,17 +124,18 @@ const Profil = () => {
         </div>
 
         <div className="bigBoxRight">
-          <div className="titleProfil">PUBLIC INFORMATION</div>
+          <div className="titleProfil">PUBLIC INFORMATIONS</div>
           <div className="topBoxProfil">
-            <div className="boxPhoto">
-              <img
-                src={`${import.meta.env.VITE_BACKEND_URL}/${
-                  user.profil_picture
-                }`}
-              />
-              <span>{shortDate}</span>
+            <div className="boxDateAndBoxPhoto">
+              <div className="boxPhoto">
+                <img
+                  src={`${import.meta.env.VITE_BACKEND_URL}/${
+                    user.profil_picture
+                  }`}
+                />
+              </div>
+              <span>Register since {shortDate}</span>
             </div>
-
             <div className="boxName">
               {isEditing ? (
                 <div className="editNameDiv">
@@ -126,6 +148,7 @@ const Profil = () => {
                   <button
                     id="buttonNewName"
                     onClick={() => setIsEditing(false)}
+                    // onKeyDown={handleKeyPressEnter}
                   >
                     Save
                   </button>
@@ -158,8 +181,8 @@ const Profil = () => {
             </div>
           </div>
           <div className="bioBoxProfil">
-            <div className="bioBoxProfilTitle">Bio on Profil</div>
             <div className="bioBoxProfilText">
+              <div className="bioBoxProfilTitle">Bio on Profil</div>
               {isEditingBioBox ? (
                 <div className="editDescriptionBox">
                   <input
@@ -172,6 +195,7 @@ const Profil = () => {
                     type="button"
                     id="buttonNewDescription"
                     onClick={() => setIsEditingBioBox(false)}
+                    // onKeyDown={handleKeyPressEnter}
                   >
                     Save
                   </button>
@@ -190,17 +214,22 @@ const Profil = () => {
           </div>
           <div className="gameBoxProfil">
             <div className="gameBoxProfilTitle">
-              SEARCH TO PLAY ON
+              <h2>SEARCH TO PLAY ON</h2>
+            </div>
+            <div className="hrDiv">
               <hr />
             </div>
 
             <div className="gameBoxGamesList">composant gamelist</div>
           </div>
-          <div id="hrDiv">
+          <div className="hrDiv">
             <hr />
           </div>
           <div className="bottomBoxProfil">
-            <div className="privateInfoBox">PERSONAL INFORMATIONS</div>
+            <div className="privateInfoBox">
+              <h3>PERSONAL</h3>
+              <h3>INFORMATIONS</h3>
+            </div>
 
             <hr />
             <div className="mailBox">
@@ -211,23 +240,41 @@ const Profil = () => {
                 placeholder="Enter Your Email"
               />
             </div>
-            <div className="passwordBox">
-              <div className="oldPassword">
-                Current Password
-                <input
-                  type="password"
-                  className="inputBottomProfil"
-                  placeholder="Current password"
-                />
+            <div className="changePassword">
+              <div
+                className={
+                  switchPassword === true ? "passwordBox" : "noDisplay"
+                }
+              >
+                <div className="oldPassword">
+                  Current Password
+                  <input
+                    type="password"
+                    className="inputBottomProfil"
+                    placeholder="Current password"
+                  />
+                </div>
+                <div className="newPassword">
+                  New Password
+                  <input
+                    type="password"
+                    className="inputBottomProfil"
+                    placeholder="New password"
+                  />
+                </div>
               </div>
-              <div className="newPassword">
-                New Password
-                <input
-                  type="password"
-                  className="inputBottomProfil"
-                  placeholder="New password"
-                />
-              </div>
+              <button
+                id={
+                  switchPassword === false ? "passwordButton" : "validateButton"
+                }
+                type="button"
+                onClick={() => setSwitchpassWord(!switchPassword)}
+              >
+                {switchPassword === false
+                  ? "Modify your password"
+                  : "Validate new password"}
+              </button>
+              <div />
             </div>
           </div>
         </div>

@@ -2,14 +2,10 @@
   display: flex;
   height: 100vh;
   width: 95%;
-  position: absolute;
-  right: 0;
-  // border: solid 2px red;
   justify-content: space-evenly;
   align-items: center;
-  // color: yellow;
-  color: #e2d07c;
-  font-family: "Petrona", serif;
+  color: $third-font-color;
+  font-family: $content-font;
 
   .leftBoxMain {
     display: flex;
@@ -42,14 +38,13 @@
         button {
           width: 100%;
           height: 100%;
-          border: 2px solid blue;
           justify-content: center;
           align-items: center;
           display: flex;
           background: none;
           cursor: pointer;
-          color: #e2d07c;
-          font-family: "Petrona", serif;
+          color: $third-font-color;
+          font-family: $content-font;
         }
         button:hover {
           background: #e74c3c;
@@ -70,21 +65,21 @@
   }
 
   .rightBoxMain {
-    border: solid 2px red;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
     width: 60%;
-    // background-color:#e2d07c;
     .mainTitleProfil {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 100%;
+      width: 50%;
       height: 10%;
-      border: 2px solid lime;
+      // gap:10px;
+      font-size: 28px;
+      border-bottom: 1px solid #e2d07c;
     }
     .bigBoxRight {
       display: flex;
@@ -94,22 +89,31 @@
       height: 100%;
       background: #8b8b8b39;
       border-radius: 12px;
-      gap: 30px;
+      // gap: 30px;
       .titleProfil {
         color: #fff;
         display: flex;
         font-size: 30px;
         margin-bottom: 20px;
+        border-bottom: 1px solid white;
+        width: fit-content;
       }
       .topBoxProfil {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        .boxPhoto {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
+        border: solid 1px blue;
+
+        .boxDateAndBoxPhoto {
+          border: 1px solid black;
+          img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 5px solid $third-font-color;
+          }
         }
+
         .userNameDiv {
           display: flex;
           flex-direction: column;
@@ -137,20 +141,24 @@
           width: 161px;
           height: 30px;
           border-radius: 4px;
+          background-color: #fff;
         }
 
         .localisationBox {
           display: flex;
           flex-direction: column;
-          border: 2px solid red;
         }
       }
       .bioBoxProfil {
         display: flex;
         flex-direction: column;
         align-items: center;
+        .bioBoxProfilTitle {
+          display: flex;
+          align-self: baseline;
+        }
         #userNameDescription {
-          width: 1000px;
+          width: 46vw;
           height: 111px;
           font-family: $content-font;
           font-size: 18px;
@@ -176,22 +184,35 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      .gameBoxProfilTitle {
+        width: 100%;
+        align-self: baseline;
+        h2 {
+          font-size: 22px;
+          font-family: $title-font;
+          color: $secondary-font-color;
+          padding-left: 75px;
+        }
+        hr {
+          margin-left: 55px;
+          width: 45vw;
+          border-color: #e2d07c;
+        }
+      }
       .gameBoxGamesList {
         display: flex;
         justify-content: center;
         align-items: center;
+        width: 100%;
+        height: 10vh;
       }
     }
-    .gameBoxProfilTitle hr {
-      width: 15vw;
-      border-color: #e2d07c;
-    }
 
-    #hrDiv {
+    .hrDiv {
       display: flex;
       justify-content: center;
       hr {
-        width: 762px;
+        width: 45vw;
         border-color: #e2d07c;
       }
     }
@@ -202,6 +223,8 @@
       align-items: center;
       align-content: center;
       justify-items: center;
+      padding-right: 60px;
+      padding-left: 60px;
       hr {
         height: 20vh;
         border-color: #e2d07c;
@@ -211,25 +234,58 @@
         width: 237px;
         height: 27px;
         border-radius: 4px;
+        background-color: #fff;
       }
       .privateInfoBox {
         display: flex;
+        flex-direction: column;
+        align-items: center;
+        h3 {
+          font-size: 30px;
+          font-family: $content-font;
+          color: $secondary-font-color;
+        }
       }
 
       .mailBox {
         display: flex;
         flex-direction: column;
       }
-      .passwordBox {
+
+      #passwordButton {
+        background-color: red;
+        transition: 0.3s;
+      }
+      #validateButton {
+        background-color: green;
+        transition: 0.3s;
+      }
+
+      .changePassword {
         display: flex;
         flex-direction: column;
-        .oldPassword {
-          display: flex;
-          flex-direction: column;
+
+        align-items: center;
+
+        width: 10vw;
+        .noDisplay {
+          opacity: 0;
+          transition: 0.3s;
         }
-        .newPassword {
+        .passwordBox {
           display: flex;
           flex-direction: column;
+
+          transition: 0.3s;
+
+          .oldPassword {
+            display: flex;
+            flex-direction: column;
+          }
+          .newPassword {
+            display: flex;
+            flex-direction: column;
+          }
         }
       }
     }
