@@ -85,19 +85,6 @@ export default function PrivateMessages() {
     setContent(e.target.value)
   }
 
-  // useEffect(() => {
-  //   console.info("user", user)
-  // }, [])
-
-  // ID du recipient du message
-
-  //   axios.get("http://localhost:4242/PrivateMessages").then((res) => {
-  //     setRecipientInfo(res.data)
-  //   }).catch((error) => {
-  //     console.error("Erreur lors du chagement des messages :", error)
-  //   })
-  // }, [recipient])
-
   return (
     <div className="privateMessagesBackground">
       <div className="headerMessage">
@@ -113,7 +100,6 @@ export default function PrivateMessages() {
         />
         <div className="messageReceiverName">
           <h2>{user.username}</h2>
-          <h3>GAMEMASTER</h3>
         </div>
       </div>
       <div className="messageBulle" id="messageBulleDiv">
@@ -135,7 +121,9 @@ export default function PrivateMessages() {
                 <li>{message.seen}</li> */}
               </ul>
             </div>
-            <img src="https://this-person-does-not-exist.com/img/avatar-gen11178be98f2b2c21b16328dba21251b1.jpg" />
+            <img
+              src={`${import.meta.env.VITE_BACKEND_URL}/${user.profil_picture}`}
+            />
           </div>
         ))}
       </div>
