@@ -49,19 +49,26 @@ function App() {
           }}
         >
           <Router>
-            <Routes>
-              <Route path="/" element={<LandingPage />} />
-              <Route path="/create-game" element={<CreateGame />} />
-              <Route path="/home" element={<Dashboard />} />
-              <Route path="/gmcards" element={<GmCards />} />
-              <Route path="/topics" element={<Topics />} />
-              <Route path="/test" element={<Home />} />
-              <Route path="/privatemessages" element={<PrivateMessages />} />
-              <Route path="/upcoming-table" element={<UpcomingTable />} />
-              <Route path="/profil" element={<Profil />} />
-            </Routes>
             <div className="navBar">
               <NavBar />
+            </div>
+            <div
+              className={
+                location.pathname === "/" ? "pageContainer1" : "pageContainer2"
+              }
+            >
+              {/* <div className="pageContainer1"> */}
+              <Routes>
+                <Route path="/" element={<LandingPage />} />
+                <Route path="/create-game" element={<CreateGame />} />
+                <Route path="/home" element={<Dashboard />} />
+                <Route path="/gmcards" element={<GmCards />} />
+                <Route path="/topics" element={<Topics />} />
+                <Route path="/test" element={<Home />} />
+                <Route path="/privatemessages" element={<PrivateMessages />} />
+                <Route path="/upcoming-table" element={<UpcomingTable />} />
+                <Route path="/profil" element={<Profil />} />
+              </Routes>
             </div>
           </Router>
         </AuthContext.Provider>

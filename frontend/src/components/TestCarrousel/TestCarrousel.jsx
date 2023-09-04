@@ -35,20 +35,26 @@ function TestCarousel() {
           showThumbs={false} // Masque les miniatures de navigation
           infiniteLoop // Boucle infinie du carousel
           showStatus={false} // Masque le statut
-          itemsToShow={1} // Définissez le nombre de slides à afficher
+          centerMode={true} // Activer le mode centre pour afficher le nombre d'éléments souhaité
+          centerSlidePercentage={33.33} // Définir la largeur des éléments centraux
+          className="my-carousel"
         >
           {testimonials.map((test) => (
             <div className="testimonialCard" key={test.id}>
               <div className="jeSaisPas">
-                <img
-                  src={`${import.meta.env.VITE_BACKEND_URL}/${
-                    test.profil_picture
-                  }`}
-                  alt="Profil_picture"
-                />
+                <div className="testimonialImg">
+                  <img
+                    src={`${import.meta.env.VITE_BACKEND_URL}/${
+                      test.profil_picture
+                    }`}
+                    alt="Profil_picture"
+                  />
+                </div>
+                <div className="testimonialUsername">
+                  <h3>{test.username}</h3>
+                </div>
               </div>
               <div className="jeSaisPasContenu">
-                <h3>{test.username}</h3>
                 <p className="textTestimonial">"{test.content}"</p>
               </div>
             </div>

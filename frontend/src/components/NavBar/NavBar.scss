@@ -4,13 +4,15 @@
   flex-direction: column;
   align-items: center;
   width: 104px;
-  height: 100vh;
+  height: 100%;
+  overflow: hidden;
   background-color: $navbar-color; // Utilisation de la variable $navbar-color pour définir la couleur de fond
   border-right: 1px solid rgba(255, 255, 255, 0.22); // Bordure droite avec couleur semi-transparente
   // font: $primary-font; // Utilisation de la variable $primary-font pour définir la police
   // Styles pour le logo de la barre de navigation
   .logoNavBar {
     margin-left: 8px;
+    cursor: pointer;
   }
 
   // Styles pour les boutons principaux de la barre de navigation
@@ -25,7 +27,7 @@
     // Styles pour le bouton "Accueil"
     .homeNavBar {
       position: relative;
-
+      cursor: pointer;
       // Styles pour les options cachées du bouton "Accueil"
       .hiddenHomeNavBar {
         position: absolute;
@@ -42,13 +44,15 @@
         background-color: #a4945e;
         border-left: none;
         text-align: center;
-        animation: scale-in-hor-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+        animation: scale-in-hor-left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)
           both; // Utilisation de l'animation "scale-in-hor-left" définie ci-dessous
       }
     }
     // Styles similaires pour les autres boutons : "Partie", "Profil", "Créer un jeu", "Message" et "Forum"
     .partyNavBar {
       position: relative;
+      cursor: pointer;
+
       .hiddenPartyNavBar {
         position: absolute;
         display: flex;
@@ -64,12 +68,14 @@
         background-color: #a4945e;
         border-left: none;
         text-align: center;
-        animation: scale-in-hor-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+        animation: scale-in-hor-left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)
           both;
       }
     }
     .profilNavBar {
       position: relative;
+      cursor: pointer;
+
       .hiddenProfilNavBar {
         position: absolute;
         display: flex;
@@ -85,12 +91,14 @@
         background-color: #a4945e;
         border-left: none;
         text-align: center;
-        animation: scale-in-hor-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+        animation: scale-in-hor-left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)
           both;
       }
     }
     .createGameNavBar {
       position: relative;
+      cursor: pointer;
+
       .hiddenCreateGameNavBar {
         position: absolute;
         display: flex;
@@ -106,12 +114,14 @@
         background-color: #a4945e;
         border-left: none;
         text-align: center;
-        animation: scale-in-hor-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+        animation: scale-in-hor-left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)
           both;
       }
     }
     .messageNavBar {
       position: relative;
+      cursor: pointer;
+
       .hiddenMessageNavBar {
         position: absolute;
         display: flex;
@@ -127,12 +137,14 @@
         background-color: #a4945e;
         border-left: none;
         text-align: center;
-        animation: scale-in-hor-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+        animation: scale-in-hor-left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)
           both;
       }
     }
     .forumNavBar {
       position: relative;
+      cursor: pointer;
+
       .hiddenForumNavBar {
         position: absolute;
         display: flex;
@@ -148,7 +160,7 @@
         background-color: #a4945e;
         border-left: none;
         text-align: center;
-        animation: scale-in-hor-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+        animation: scale-in-hor-left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)
           both;
       }
     }
@@ -165,6 +177,7 @@
     gap: 15px;
     .settingNavBar {
       position: relative;
+      cursor: pointer;
       .hiddenSettingNavBar {
         position: absolute;
         display: flex;
@@ -180,13 +193,14 @@
         background-color: #a4945e;
         border-left: none;
         text-align: center;
-        animation: scale-in-hor-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+        animation: scale-in-hor-left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)
           both;
       }
     }
     .logOutNavBar {
       position: relative;
       margin-right: 14px;
+      cursor: pointer;
       .hiddenLogOutNavBar {
         position: absolute;
         display: flex;
@@ -202,7 +216,7 @@
         background-color: #a4945e;
         border-left: none;
         text-align: center;
-        animation: scale-in-hor-left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+        animation: scale-in-hor-left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)
           both;
       }
     }
