@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import NewTopic from "../components/NewTopic/NewTopic"
-import NavBar from "../components/NavBar/Navbar"
 
 export default function Topics() {
   const [topics, setTopics] = useState([])
@@ -21,9 +20,6 @@ export default function Topics() {
 
   return (
     <div className="globalDivTopics">
-      <div>
-        <NavBar />
-      </div>
       <div className="BoxTopicsAndNewTopics">
         <div className="glaobalTopicsBox">
           {topics.map((topic) => (

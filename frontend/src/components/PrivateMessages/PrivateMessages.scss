@@ -1,8 +1,8 @@
 .privateMessagesBackground {
-  width: 100vw;
-  height: 100vh;
+  width: auto;
+  height: 100%;
   background-color: none;
-  position: absolute;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
