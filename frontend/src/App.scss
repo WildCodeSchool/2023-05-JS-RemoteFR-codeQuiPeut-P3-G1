@@ -3,24 +3,38 @@
   padding: 0;
   box-sizing: border-box;
 }
-// html {
-//   background-color: #180C23;
-// }
-
 body {
   margin: 0;
   padding: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: scroll;
+  width: 100%;
+  height: 100%;
+  // overflow: scroll;
   overscroll-behavior: contain;
   background: $background-gradient;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-.navBar {
-  position: absolute;
-  top: 0;
-  left: 0;
+.App {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  .pageContainer1 {
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    width: calc(100%);
+    // overflow: hidden;
+  }
+
+  .pageContainer2 {
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% - 104px);
+    overflow: hidden;
+  }
+  .navBar {
+    height: 100%;
+  }
 }

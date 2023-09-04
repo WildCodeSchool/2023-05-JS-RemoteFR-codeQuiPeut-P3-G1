@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 import Game from "../components/Game/Game"
 import Player from "../components/Player/playerCard"
-import NavBar from "../components/NavBar/Navbar"
 import "./UpcomingTable.scss"
 import BladeIcon from "../assets/logo/BladeIcon.png"
 import BookVector from "../assets/logo/BookVector.png"
@@ -96,10 +95,11 @@ function UpcomingTable() {
       .then((res) => setRpg(res.data))
   }, [])
 
+  console.info(users)
+
   return (
     <>
       <div className="globalcontainerUT">
-        <NavBar />
         <div
           className="containerFilterAndCardsPlayer"
           style={{ display: showPlayerContainer ? "flex" : "none" }}
@@ -208,7 +208,7 @@ function UpcomingTable() {
             <input
               className="inputUT"
               type="text"
-              placeholder="Filtrer par date de partie"
+              placeholder="Filtrer par date"
               value={dateFilter}
               onChange={handleDateFilterChange}
             />
