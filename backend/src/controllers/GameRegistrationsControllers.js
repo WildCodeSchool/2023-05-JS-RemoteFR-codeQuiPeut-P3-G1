@@ -44,6 +44,22 @@ const futureGamesGMUsername = (req, res) => {
     })
 }
 
+const allPlayersForThisGame = (req, res) => {
+  models.gameRegistrationsManager
+    .getAllPlayersForThisGame(req.params.id)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(404)
+      } else {
+        res.send(rows)
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 const edit = (req, res) => {
   const gameRegistrations = req.body
   gameRegistrations.id = parseInt(req.params.id, 10)
@@ -99,4 +115,5 @@ module.exports = {
   add,
   destroy,
   futureGamesGMUsername,
+  allPlayersForThisGame,
 }
