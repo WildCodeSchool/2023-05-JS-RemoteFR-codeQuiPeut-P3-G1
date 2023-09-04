@@ -39,7 +39,6 @@ const TopicsSubscriptionManager = require("./TopicsSubscriptionManager")
 const CategoriesManager = require("./CategoriesManager")
 const FriendRequestManager = require("./FriendRequestManager")
 const FiltersManager = require("./FiltersManager")
-const GmProfilManager = require("./GmProfilManager")
 const UsersFiltersManager = require("./UsersFiltersManager")
 const PrivateMessagesManager = require("./PrivateMessagesManager")
 const RolePlayingGamesManager = require("./RolePlayingGamesManager")
@@ -73,9 +72,6 @@ models.categories.setDatabase(pool)
 
 models.filter = new FiltersManager()
 models.filter.setDatabase(pool)
-
-models.gmProfiles = new GmProfilManager()
-models.gmProfiles.setDatabase(pool)
 
 models.usersFilters = new UsersFiltersManager()
 models.usersFilters.setDatabase(pool)

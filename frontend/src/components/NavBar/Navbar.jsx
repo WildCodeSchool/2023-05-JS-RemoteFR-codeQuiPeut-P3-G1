@@ -1,5 +1,6 @@
 import React, { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
+import Cookies from "js-cookie"
 
 import Logo from "../../assets/logo/logoNavBar.png"
 import Home from "../../assets/icon-navbar/home.png"
@@ -22,6 +23,13 @@ function NavBar() {
   const [isHovering8, setIsHovering8] = useState(false)
 
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const navigate = useNavigate()
+
+  const location = useLocation()
+
+  if (location.pathname === "/") {
+    return null
+  }
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -89,11 +97,25 @@ function NavBar() {
     setIsHovering8(false)
   }
 
+  const handleLogout = () => {
+    Cookies.remove("authToken")
+    Cookies.remove("loggedInUser")
+    Cookies.remove("idUser")
+
+    navigate("/")
+  }
+
   return (
     <>
       <div className="navBarDesktopContainer">
         <div className="logoNavBar">
-          <img id="logoNavBar" src={Logo} alt="logo of website in the navbar" />
+          <Link to="/home">
+            <img
+              id="logoNavBar"
+              src={Logo}
+              alt="logo of website in the navbar"
+            />
+          </Link>
         </div>
         <div className="mainButtonsNavBar">
           <Link to="/home">
@@ -110,30 +132,34 @@ function NavBar() {
               )}
             </div>
           </Link>
-          <div
-            className="partyNavBar"
-            onMouseEnter={handleMouseEnter2}
-            onMouseLeave={handleMouseLeave2}
-          >
-            <img src={Party} alt="logo of party in the navbar" />
-            {isHovering2 && (
-              <div className="hiddenPartyNavBar">
-                <span>PARTY</span>
-              </div>
-            )}
-          </div>
-          <div
-            className="profilNavBar"
-            onMouseEnter={handleMouseEnter3}
-            onMouseLeave={handleMouseLeave3}
-          >
-            <img src={Profil} alt="logo of profil in the navbar" />
-            {isHovering3 && (
-              <div className="hiddenProfilNavBar">
-                <span>PROFIL</span>
-              </div>
-            )}
-          </div>
+          <Link to="/upcoming-table">
+            <div
+              className="partyNavBar"
+              onMouseEnter={handleMouseEnter2}
+              onMouseLeave={handleMouseLeave2}
+            >
+              <img src={Party} alt="logo of party in the navbar" />
+              {isHovering2 && (
+                <div className="hiddenPartyNavBar">
+                  <span>PARTY</span>
+                </div>
+              )}
+            </div>
+          </Link>
+          <Link to="/profil">
+            <div
+              className="profilNavBar"
+              onMouseEnter={handleMouseEnter3}
+              onMouseLeave={handleMouseLeave3}
+            >
+              <img src={Profil} alt="logo of profil in the navbar" />
+              {isHovering3 && (
+                <div className="hiddenProfilNavBar">
+                  <span>PROFIL</span>
+                </div>
+              )}
+            </div>
+          </Link>
           <Link to="/create-game">
             <div
               className="createGameNavBar"
@@ -148,30 +174,34 @@ function NavBar() {
               )}
             </div>
           </Link>
-          <div
-            className="messageNavBar"
-            onMouseEnter={handleMouseEnter5}
-            onMouseLeave={handleMouseLeave5}
-          >
-            <img src={Messagerie} alt="logo of messagerie in the navbar" />
-            {isHovering5 && (
-              <div className="hiddenMessageNavBar">
-                <span>MESSAGE</span>
-              </div>
-            )}
-          </div>
-          <div
-            className="forumNavBar"
-            onMouseEnter={handleMouseEnter6}
-            onMouseLeave={handleMouseLeave6}
-          >
-            <img src={Forum} alt="logo of forum in the navbar" />
-            {isHovering6 && (
-              <div className="hiddenForumNavBar">
-                <span>FORUM</span>
-              </div>
-            )}
-          </div>
+          <Link to="/privateMessages">
+            <div
+              className="messageNavBar"
+              onMouseEnter={handleMouseEnter5}
+              onMouseLeave={handleMouseLeave5}
+            >
+              <img src={Messagerie} alt="logo of messagerie in the navbar" />
+              {isHovering5 && (
+                <div className="hiddenMessageNavBar">
+                  <span>MESSAGE</span>
+                </div>
+              )}
+            </div>
+          </Link>
+          <Link to="/topics">
+            <div
+              className="forumNavBar"
+              onMouseEnter={handleMouseEnter6}
+              onMouseLeave={handleMouseLeave6}
+            >
+              <img src={Forum} alt="logo of forum in the navbar" />
+              {isHovering6 && (
+                <div className="hiddenForumNavBar">
+                  <span>FORUM</span>
+                </div>
+              )}
+            </div>
+          </Link>
         </div>
         <div className="bottomButtonNavBar">
           <div
@@ -191,7 +221,11 @@ function NavBar() {
             onMouseEnter={handleMouseEnter8}
             onMouseLeave={handleMouseLeave8}
           >
-            <img src={LogOut} alt="logo of forum in the navbar" />
+            <img
+              src={LogOut}
+              onClick={handleLogout}
+              alt="logo of forum in the navbar"
+            />
             {isHovering8 && (
               <div className="hiddenLogOutNavBar">
                 <span>LOG OUT</span>

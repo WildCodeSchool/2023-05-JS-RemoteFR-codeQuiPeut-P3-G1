@@ -1,41 +1,45 @@
 import axios from "axios"
 import React, { useState, useContext, useEffect } from "react"
-import iconProfile from "../../assets/icon-dashboard/iconProfile.png"
 import Add2 from "../../assets/icon-dashboard/Add2.png"
 import Edit from "../../assets/icon-dashboard/Edit.png"
 import Location from "../../assets/icon-dashboard/Location.png"
 import AuthContext from "../AuthContext/AuthContext"
-
-import GmCards from "./GmCards"
+import profilePictureLogo from "../../assets/icon-dashboard/profilePictureLogo.svg"
+import gameLogo from "../../assets/icon-dashboard/gameLogo.png"
+import Cookies from "js-cookie"
 
 const MyProfil = () => {
   const [isGmCardsOpen, setIsGmCardsOpen] = useState(false)
   const toggleGmCards = () => {
     setIsGmCardsOpen(!isGmCardsOpen)
   }
-
   const { user } = useContext(AuthContext)
+  const [imageUrl, setImageUrl] = useState(null)
 
-  // const [userPicture, setUserPicture] = useState(null);
-  const [imageUrl, setImageUrl] = useState(
-    user.profil_picture !== null ? user.profil_picture : null
-  )
+  useEffect(() => {
+    setImageUrl(`${import.meta.env.VITE_BACKEND_URL}/${user.profil_picture}`)
+  }, [user.profil_picture])
 
-  const longDate = user.registration_date
-  const shortDate = longDate.substring(0, 10)
+  const tokenFromCookie = Cookies.get("authToken")
 
-  const handlePictureChange = (e) => {
-    const picture = e.target.files[0]
-    setImageUrl(URL.createObjectURL(picture))
+  const shortDate = String(user.registration_date)
+    .substring(0, 10)
+    .substring(5, 10)
+    .split("-")
+    .join("-")
+    .concat("-", String(user.registration_date).substring(0, 4))
 
-    // updateProfilPictureOnServer(user.id, URL.createObjectURL(picture));
-  }
-
-  const updateProfilPictureOnServer = async (userId, newProfilPicture) => {
+  const updateProfilPictureOnServer = async (userId, formData) => {
     try {
       const response = await axios.put(
-        `http://localhost:4242/users/${userId}/updateProfilPicture`,
-        newProfilPicture
+        `http://localhost:4242/users/${userId}/upload`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Important for sending files,
+            Authorization: `Bearer ${tokenFromCookie}`,
+          },
+        }
       )
       return response.data
     } catch (error) {
@@ -46,14 +50,30 @@ const MyProfil = () => {
       throw error
     }
   }
-  useEffect(() => {
-    console.info(imageUrl)
-  }, [imageUrl])
+
+  const handlePictureChange = (e) => {
+    const picture = e.target.files[0]
+
+    // Créez un objet FormData pour envoyer la photo
+    const formData = new FormData()
+    formData.append("myFile", picture)
+
+    setImageUrl(URL.createObjectURL(picture))
+
+    // Appel de la fonction pour mettre à jour la photo de profil sur le serveur
+    updateProfilPictureOnServer(user.id, formData)
+  }
 
   return (
     <div className="myProfil">
       <div className="titleProfil">
-        <img id="logoProfile" src={iconProfile} alt="logo of a profile" />
+        <div className="profilePic-container">
+          <img
+            id="logoProfile"
+            src={profilePictureLogo}
+            alt="logo of a profile"
+          />
+        </div>
         <h2>MY PROFIL</h2>
       </div>
       <div className="contentMyProfil">
@@ -66,10 +86,11 @@ const MyProfil = () => {
         <div className="topProfile">
           <div className="logoAdd2">
             <label htmlFor="buttonPicture">
-              {imageUrl ? (
+              {user.profil_picture !== null ? (
                 <img
                   src={imageUrl}
                   alt="userPicture"
+                  name="myFile"
                   className="userPicture"
                   id="profilPictureForm"
                 />
@@ -83,7 +104,6 @@ const MyProfil = () => {
               accept="image/*"
               onChange={(e) => {
                 handlePictureChange(e)
-                updateProfilPictureOnServer(user.id, imageUrl)
               }}
               style={{ display: "none" }}
             />
@@ -115,17 +135,17 @@ const MyProfil = () => {
         </div>
         <div className="bottomProfile">
           <h1>MY GAMES / SEARCH TO PLAY ON</h1>
+          <div className="gamesContainer">
+            <img className="blackLogoGame" src={gameLogo} alt="game logo" />
+            <img className="blackLogoGame" src={gameLogo} alt="game logo" />
+            <img className="blackLogoGame" src={gameLogo} alt="game logo" />
+          </div>
         </div>
         <button onClick={toggleGmCards}>
           {isGmCardsOpen ? "Close GmCards" : "Show GmCards"}
         </button>
       </div>
-      <button onClick={toggleGmCards}>
-        {isGmCardsOpen ? "Close GmCards" : "Show GmCards"}
-      </button>
-      {isGmCardsOpen && <GmCards onClose={toggleGmCards} />}
     </div>
   )
 }
-
 export default MyProfil
