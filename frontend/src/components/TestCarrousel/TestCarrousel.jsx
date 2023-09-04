@@ -42,7 +42,7 @@ function TestCarousel() {
           {testimonials.map((test) => (
             <div className="testimonialCard" key={test.id}>
               <div className="jeSaisPas">
-                <div className="testimoniallImg">
+                <div className="testimonialImg">
                   <img
                     src={`${import.meta.env.VITE_BACKEND_URL}/${
                       test.profil_picture
