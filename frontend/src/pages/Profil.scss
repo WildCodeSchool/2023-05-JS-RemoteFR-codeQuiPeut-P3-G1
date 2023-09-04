@@ -1,0 +1,237 @@
+.mainContainerProfil {
+  display: flex;
+  height: 100vh;
+  width: 95%;
+  position: absolute;
+  right: 0;
+  // border: solid 2px red;
+  justify-content: space-evenly;
+  align-items: center;
+  // color: yellow;
+  color: #e2d07c;
+  font-family: "Petrona", serif;
+
+  .leftBoxMain {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    height: 50%;
+    width: 15%;
+    gap: 15px;
+    .settingsTitle {
+      font-size: 15px;
+      color: #e2d07c;
+      font-family: "Petrona", serif;
+    }
+    .settingsTab {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+      background-color: white;
+      border-radius: 20px;
+
+      .settingsButton,
+      .Cliked {
+        border-radius: 5px;
+        height: 3rem;
+        width: 10rem;
+        button {
+          width: 100%;
+          height: 100%;
+          border: 2px solid blue;
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          background: none;
+          cursor: pointer;
+          color: #e2d07c;
+          font-family: "Petrona", serif;
+        }
+        button:hover {
+          background: #e74c3c;
+        }
+      }
+      .settingsButton {
+        background: #180b23;
+      }
+      .Cliked {
+        background: #e74c3c;
+      }
+    }
+  }
+  .questionMark {
+    position: absolute;
+    top: 10px;
+    right: 0;
+  }
+
+  .rightBoxMain {
+    border: solid 2px red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 60%;
+    // background-color:#e2d07c;
+    .mainTitleProfil {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 10%;
+      border: 2px solid lime;
+    }
+    .bigBoxRight {
+      display: flex;
+      flex-direction: column;
+      padding: 30px;
+      width: 100%;
+      height: 100%;
+      background: #8b8b8b39;
+      border-radius: 12px;
+      gap: 30px;
+      .titleProfil {
+        color: #fff;
+        display: flex;
+        font-size: 30px;
+        margin-bottom: 20px;
+      }
+      .topBoxProfil {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .boxPhoto {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+        .userNameDiv {
+          display: flex;
+          flex-direction: column;
+          #userNameButton {
+            width: 210px;
+            height: 39px;
+            font-family: $content-font;
+            font-size: 25px;
+            background-color: #fff;
+            cursor: pointer;
+          }
+        }
+        .editNameDiv {
+          display: flex;
+          flex-direction: column;
+          .inputNewName {
+            width: 210px;
+            height: 39px;
+            font-family: $content-font;
+            font-size: 25px;
+            background-color: #fff;
+          }
+        }
+        .inputCountryCity {
+          width: 161px;
+          height: 30px;
+          border-radius: 4px;
+        }
+
+        .localisationBox {
+          display: flex;
+          flex-direction: column;
+          border: 2px solid red;
+        }
+      }
+      .bioBoxProfil {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        #userNameDescription {
+          width: 1000px;
+          height: 111px;
+          font-family: $content-font;
+          font-size: 18px;
+          background-color: #fff;
+          border-radius: 7px;
+          cursor: pointer;
+          padding: 20px;
+        }
+        .editDescriptionBox {
+          display: flex;
+          flex-direction: column;
+          .inputNewDescription {
+            width: 738px;
+            height: 111px;
+            font-family: $content-font;
+            font-size: 18px;
+            background-color: #fff;
+          }
+        }
+      }
+    }
+    .gameBoxProfil {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      .gameBoxGamesList {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .gameBoxProfilTitle hr {
+      width: 15vw;
+      border-color: #e2d07c;
+    }
+
+    #hrDiv {
+      display: flex;
+      justify-content: center;
+      hr {
+        width: 762px;
+        border-color: #e2d07c;
+      }
+    }
+
+    .bottomBoxProfil {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      align-content: center;
+      justify-items: center;
+      hr {
+        height: 20vh;
+        border-color: #e2d07c;
+      }
+
+      .inputBottomProfil {
+        width: 237px;
+        height: 27px;
+        border-radius: 4px;
+      }
+      .privateInfoBox {
+        display: flex;
+      }
+
+      .mailBox {
+        display: flex;
+        flex-direction: column;
+      }
+      .passwordBox {
+        display: flex;
+        flex-direction: column;
+        .oldPassword {
+          display: flex;
+          flex-direction: column;
+        }
+        .newPassword {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}
