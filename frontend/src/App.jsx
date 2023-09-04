@@ -14,6 +14,7 @@ import PrivateMessages from "./components/PrivateMessages/PrivateMessages"
 import Topics from "./pages/Topics"
 import NavBar from "./components/NavBar/Navbar"
 import UpcomingTable from "./pages/UpcomingTable.jsx"
+import Profil from "./pages/Profil"
 
 function App() {
   const [users, setUsers] = useState([])
@@ -66,6 +67,7 @@ function App() {
                 <Route path="/test" element={<Home />} />
                 <Route path="/privatemessages" element={<PrivateMessages />} />
                 <Route path="/upcoming-table" element={<UpcomingTable />} />
+                <Route path="/profil" element={<Profil />} />
               </Routes>
             </div>
           </Router>
