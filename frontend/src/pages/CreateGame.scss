@@ -1,11 +1,13 @@
 #createGameGlobal {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
   // justify-content: space-around;
-  gap: 3%;
-  width: 100vw;
+  // gap: 50px;
+  max-width: 100%;
   height: 100%;
-  // border: 1px solid green;
+  // border: 4px solid green;
   // background-color: green;
   #gameTypeSelecter::after {
     color: red;
@@ -14,37 +16,34 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    // margin-left: 2%;
+    // border: 2px solid cyan;
     // height: 20%;
     // background-color: yellow;
     #createGameTitle {
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       border-bottom: 1px solid #a4945e;
-      margin-top: 5%;
-      width: 40%;
+      margin-right: 3%;
       // height: 20vh;
       // border: 1px solid red;
       #createGameTitle-Img {
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 20%;
         img {
           margin: 0 20px 0 0;
-          height: 100%;
           width: 100%;
         }
       }
       #createGameTitle-Title {
         display: flex;
         align-items: center;
-        width: 80%;
+        width: 100%;
         span {
           color: $third-font-color;
           font-family: $title-font;
-          font-size: 5vw;
+          font-size: 3vw;
           font-weight: 400;
           line-height: normal;
           font-style: normal;
@@ -58,6 +57,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    // border: 2px solid red;
     // margin-left: 3%;
     // height: 100%;
     align-items: center;
@@ -66,9 +66,9 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      width: 80%;
-      height: 100%;
-      padding: 70px 30px 70px 30px;
+      width: 90%;
+      height: 90%;
+      padding: 60px 35px 0 35px;
       border: 1px solid #a4945e;
       border-radius: 8px;
       background: rgba(255, 255, 255, 0.2);
@@ -76,25 +76,30 @@
       backdrop-filter: blur(5px);
       -webkit-backdrop-filter: blur(5px);
       input {
-        height: 2.58vh;
+        height: 4.73vh;
+        padding: 0 0 0 8px;
         border: none;
         border-radius: 6px;
         background: #fff;
-        font-size: 1vw;
-        text-align: center;
+        font-size: 15px;
+        width: 50%;
         &:focus {
           outline: 2px solid #a4945e;
         }
       }
+      #createGameGuildName {
+        width: 100%;
+      }
       p {
         font-family: $content-font;
         color: $third-font-color;
-        font-size: 1.5vw;
+        font-size: 1vw;
       }
       textarea {
         border: none;
+        padding: 8px;
         border-radius: 6px;
-        font-size: 1.5vw;
+        font-size: 15px;
         font-family: $content-font;
         &:focus {
           outline: 2px solid #a4945e;
@@ -102,7 +107,7 @@
       }
       #createGameColumns {
         display: flex;
-        gap: 12%;
+        gap: 10%;
         width: 100%;
         height: 100%;
 
@@ -114,11 +119,12 @@
           display: flex;
           justify-content: flex-start;
           flex-direction: column;
-          gap: 30px;
+          gap: 20px;
 
           label {
             display: flex;
             flex-direction: column;
+            font-size: 1vw;
             p {
               margin: 0 0 10px 0;
             }
@@ -196,23 +202,25 @@
             }
             /* End of the switch - the box around the slider */
           }
-          .form-type-number {
-            position: relative;
-            height: 50px;
+          .formTypeNumber {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #a4945e;
+            border-radius: 6px;
+            padding: 0 10px 0 10px;
+
             input {
               appearance: none; /* Initialize the appearance */
-              position: absolute;
-              top: 0;
-              display: block;
               width: 100%;
-              height: 50px;
+              height: 4.73vh;
               padding: 0 50px;
               text-align: center;
-              font-size: 1.5vw;
+              font-size: 1vw;
               color: $third-font-color;
               background: none;
-              border-radius: 6px;
-              border: 1px solid #a4945e;
+              outline: none;
               &::-webkit-inner-spin-button {
                 -webkit-appearance: none;
               }
@@ -225,13 +233,8 @@
               display: flex;
               align-items: center;
               justify-content: center;
-              position: absolute;
               color: $third-font-color;
-              z-index: 100;
               border: none;
-              top: 10px;
-              width: 30px;
-              height: 30px;
               background: none;
               text-align: center;
               font-size: 2vw;
@@ -248,8 +251,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 0 0 25px 0;
             gap: 10px;
-            font-size: 1.5vw;
+            font-size: 1vw;
             font-family: $content-font;
             color: $button-gold;
 
@@ -322,8 +326,8 @@
           font-size: 1.11vw;
           line-height: 28px;
           color: rgb(23, 23, 23);
-          width: 90%;
-          height: 100%;
+          width: 100%;
+          // height: 100%;
           padding: 20px 12px 16px 12px;
         }
         .bwNdeo {
@@ -375,7 +379,7 @@
           font-feature-settings: "clig" off, "liga" off;
           /* Android/Subtitle 2 */
           font-family: Balsamiq Sans;
-          font-size: 1.11vw;
+          font-size: 1vw;
           font-style: normal;
           font-weight: 400;
           line-height: 24px; /* 171.429% */
@@ -384,7 +388,7 @@
           color: #180b23;
           font-feature-settings: "clig" off, "liga" off;
           font-family: $content-font;
-          font-size: 1.26vw;
+          font-size: 0.9vw;
           font-style: normal;
           font-weight: 400;
           line-height: 24px; /* 171.429% */
@@ -403,13 +407,15 @@
             appearance: none;
             box-shadow: none;
             background-image: none;
-            flex: 1;
+            // flex: 1;
+            height: 4.73vh;
+            width: 100%;
             padding: 0 0.5em;
             color: #666;
             cursor: pointer;
-            height: 36px;
+            // height: 36px;
             font-family: $content-font;
-            font-size: 1vw;
+            font-size: 0.8vw;
             border-radius: 6px;
             border: none;
           }
@@ -419,16 +425,29 @@
           &::after {
             content: url("../src/assets/icon-create-game/arrow-select.svg");
             text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             position: absolute;
-            // top: 0;
+            top: 0;
             right: 0;
             background: $navbar-color;
             cursor: pointer;
             pointer-events: none;
             transition: 0.25s all ease;
-            width: 15%;
-            height: 36px;
+            width: 25%;
+            height: 100%;
           }
+        }
+        #createGameDepartmentCity {
+          gap: 20px;
+          width: 100%;
+          display: flex;
+        }
+
+        #createGameDepartment {
+          gap: 20px;
+          width: 100%;
         }
       }
     }
@@ -436,7 +455,7 @@
       display: flex;
       justify-content: center;
       width: 100%;
-      transform: translateY(-50%);
+      // transform: translateY(45%);
       // margin-left: 3%;
 
       button {
@@ -450,7 +469,7 @@
         span {
           font-family: $content-font;
           color: $button-gold;
-          font-size: 1.82vw;
+          font-size: 1.5vw;
           text-align: center;
           font-style: normal;
           font-weight: 700;
@@ -466,9 +485,10 @@
   justify-content: flex-start;
   align-items: center;
   gap: 20px;
+  width: 100%;
 
   img {
-    width: 20%;
+    width: 50px;
   }
 }
 
