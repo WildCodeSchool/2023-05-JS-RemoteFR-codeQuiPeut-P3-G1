@@ -42,15 +42,19 @@ function TestCarousel() {
           {testimonials.map((test) => (
             <div className="testimonialCard" key={test.id}>
               <div className="jeSaisPas">
-                <img
-                  src={`${import.meta.env.VITE_BACKEND_URL}/${
-                    test.profil_picture
-                  }`}
-                  alt="Profil_picture"
-                />
+                <div className="testimoniallImg">
+                  <img
+                    src={`${import.meta.env.VITE_BACKEND_URL}/${
+                      test.profil_picture
+                    }`}
+                    alt="Profil_picture"
+                  />
+                </div>
+                <div className="testimonialUsername">
+                  <h3>{test.username}</h3>
+                </div>
               </div>
               <div className="jeSaisPasContenu">
-                <h3>{test.username}</h3>
                 <p className="textTestimonial">"{test.content}"</p>
               </div>
             </div>

@@ -1,3 +1,5 @@
+
+
 .carrousel-container {
   width: 100%;
   height: 100%;
@@ -25,65 +27,95 @@
     text-align: left;
     justify-content: center;
   }
-  .carousel-content {
-    width: 100%;
-    height: 45vh;
-  }
 }
+.carousel-content {
+  width: 100%;
+  height: 45vh;
 
-// Css Carousel
-.carousel-root {
-  height: 100%;
-  .carousel {
-    height: 45vh;
-    .slide {
-      height: 39vh;
+  .carousel-root {
+    height: 100%;
+    
+    .carousel {
       width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      .testimonialCard {
-        height: 36vh;
-        width: 30vw;
-        background: rgb(65, 47, 85);
-        border-radius: 20px;
-        border: 3px solid $third-font-color;
+      height: 100%;
+      .slide {
+        // height: 39vh;
+        width: 100%;
         display: flex;
-        flex-direction: row;
-        .jeSaisPas {
-          width: 40%;
-          height: 100%;
+        justify-content: center;
+        align-items: center;
+
+        .testimonialCard {
+          height: 30vh;
+          width: 30vw;
+          background: rgb(65, 47, 85);
+          border-radius: 10px;
+          // // gap: 30px;
+          // border: 3px solid $third-font-color;
+          position: relative;
           display: flex;
           justify-content: center;
           align-items: center;
-          img {
-            border-radius: 50%;
-            width: 10vw;
-            height: 18vh;
-            box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.447);
-          }
-        }
-        .jeSaisPasContenu {
-          width: 60%;
-          height: 100%;
-          display: flex;
-          align-items: center;
-          gap: 40px;
           flex-direction: column;
-          h3 {
-            padding: 3px;
-            margin-top: 70px;
-            font-family: $title-font;
-            color: $third-font-color;
-            font-size: 2.81vw;
-            // border: 2px solid blue;
-            border-bottom: 1px solid $third-font-color;
-            width: 300px;
+          &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 10px; 
+            padding: 10px; 
+            background:linear-gradient(180deg, rgba(77,25,77,1) 0%, rgba(255,255,255,1) 100%); 
+            -webkit-mask: 
+               linear-gradient(#fff 0 0) content-box, 
+               linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+                    mask-composite: exclude; 
           }
-          p {
-            color: $secondary-font-color;
-            font-size: 30px;
-            width: 300px;
+
+          .jeSaisPas {
+            width: 90%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            gap: 40px;
+            align-items: center;
+            .testimonialImg {
+              width: 100%;
+              img {
+                border-radius: 50%;
+                width: 100%;
+                box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.447);
+              }
+            }
+            .testimonialUsername {
+              width: 100%;
+              h3 {
+                padding: 3px;
+                text-align: start;
+                // margin-top: 70px;
+                font-family: $title-font;
+                color: $third-font-color;
+                font-size: 2.81vw;
+                // border: 2px solid blue;
+                border-bottom: 1px solid $third-font-color;
+                width: 300px;
+              }
+            }
+          }
+          .jeSaisPasContenu {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            
+            p {
+              color: $secondary-font-color;
+              font-size: 1.5vw;
+              text-align: center;
+              width: 80%;
+            }
           }
         }
       }
