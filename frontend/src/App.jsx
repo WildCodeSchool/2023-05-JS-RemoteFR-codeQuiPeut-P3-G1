@@ -51,7 +51,12 @@ function App() {
             <div className="navBar">
               <NavBar />
             </div>
-            <div className="pageContainer">
+            <div
+              className={
+                location.pathname === "/" ? "pageContainer1" : "pageContainer2"
+              }
+            >
+              {/* <div className="pageContainer1"> */}
               <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/create-game" element={<CreateGame />} />

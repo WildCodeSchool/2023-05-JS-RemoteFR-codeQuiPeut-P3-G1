@@ -19,7 +19,15 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: row;
-  .pageContainer {
+  .pageContainer1 {
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    width: calc(100%);
+    // overflow: hidden;
+  }
+
+  .pageContainer2 {
     height: 100%;
     justify-content: center;
     align-items: center;
@@ -30,5 +38,3 @@ body {
     height: 100%;
   }
 }
-
-
