@@ -8,11 +8,6 @@ import createGameDice from "../assets/icon-create-game/dice.svg"
 import hour from "../assets/icon-create-game/horaire.png"
 
 export default function CreateGame() {
-  const [value, setValue] = useState("10:00")
-
-  const onChange = (timeValue) => {
-    setValue(timeValue)
-  }
   const [isTimeRequired, setIsTimeRequired] = useState(true)
 
   const handleDecrement = () => {
@@ -32,7 +27,7 @@ export default function CreateGame() {
   const [gameRPGID, setGameRPGID] = useState("")
   const [gamemasterUsername, setGamemasterUsername] = useState("")
   const [gameDateToFormat, setGameDateToFormat] = useState(new Date())
-  // const [gameHourToFormat, setGameHourToFormat] = useState(new Date())
+  const [gameHourToFormat, setGameHourToFormat] = useState("10:00")
   // const [gameDate, setGameDate] = useState("")
   const [gamePlace, setGamePlace] = useState("")
   const [gamePlayersCapacity, setGamePlayersCapacity] = useState(1)
@@ -122,6 +117,18 @@ export default function CreateGame() {
       })
   }
 
+  const formatDateToYYYYMMDD = (date) => {
+    const year = date.getFullYear()
+    const month = String(date.getMonth() + 1).padStart(2, "0")
+    const day = String(date.getDate()).padStart(2, "0")
+
+    return `${year}-${month}-${day}`
+  }
+
+  const formattedDate = formatDateToYYYYMMDD(gameDateToFormat)
+
+  console.info(formattedDate) // Affichera : "2023-09-07"
+
   console.info(
     "finalTest",
     gamemasterUsername,
@@ -131,7 +138,9 @@ export default function CreateGame() {
     gameIsCampaign,
     gamePlayersCapacity,
     gameDesc,
-    gamePlace
+    gamePlace,
+    gameHourToFormat,
+    gameDateToFormat
     // gameDate
   )
 
@@ -148,14 +157,6 @@ export default function CreateGame() {
         </div>
       </div>
       <div id="contentCreateGame">
-        {/* <label htmlFor="idGm">
-          <p style={{ color: "white" }}>ID du GM</p>
-          <input
-            type="text"
-            name="idGm"
-            onChange={(e) => setGamemasterUsername(e.target.value)}
-          />
-        </label> */}
         <form id="createGameForm" onSubmit={handleCreateUser}>
           <div id="createGameColumns">
             <div id="createGameFirstGroup">
@@ -329,20 +330,22 @@ export default function CreateGame() {
                   onBlur={() => setIsTimeRequired(true)} // Réactive le required lorsque l'input perd le focus
                 />
               </label> */}
-              <label htmlFor="heure">
+              <label htmlFor="hour">
                 <p>Hour</p>
+                <div className="timePicker-CreateGame">
+                  <TimePicker
+                    onChange={(timeValue) => {
+                      setGameHourToFormat(timeValue)
+                    }}
+                    value={gameHourToFormat}
+                    className="timepicker"
+                    required={isTimeRequired}
+                    onFocus={() => setIsTimeRequired(false)} // Désactive le required lorsque l'input est en focus
+                    onBlur={() => setIsTimeRequired(true)} // Réactive le required lorsque l'input perd le focus
+                  />
+                  <img src={hour} />
+                </div>
               </label>
-              <div className="timePicker-CreateGame">
-                <TimePicker
-                  onChange={onChange}
-                  value={value}
-                  className="timepicker"
-                  required={isTimeRequired}
-                  onFocus={() => setIsTimeRequired(false)} // Désactive le required lorsque l'input est en focus
-                  onBlur={() => setIsTimeRequired(true)} // Réactive le required lorsque l'input perd le focus
-                />
-                <img src={hour} />
-              </div>
             </div>
           </div>
         </form>
