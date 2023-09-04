@@ -2,8 +2,6 @@ import axios from "axios"
 import React, { useEffect, useState } from "react"
 import Cookies from "js-cookie"
 
-import NavBar from "../components/NavBar/Navbar"
-
 import createGameDice from "../assets/icon-create-game/dice.png"
 
 export default function CreateGame() {
@@ -115,7 +113,6 @@ export default function CreateGame() {
 
   return (
     <main id="createGameGlobal">
-      <NavBar />
       <div id="contentCreateGame">
         <div id="createGameTitle">
           <img src={createGameDice} />
