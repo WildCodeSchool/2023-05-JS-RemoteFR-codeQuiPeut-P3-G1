@@ -51,6 +51,17 @@ class GameRegistrationsManager extends AbstractManager {
       [id]
     )
   }
+
+  gameJoiningRequests(username) {
+    return this.database.query(
+      `SELECT u.profil_picture, u.username, ga.guild_name, gr.status, ga.gm_username 
+        FROM ${this.table} AS gr
+        JOIN users AS u on gr.requester_id = u.id
+        JOIN games AS ga on gr.games_id = ga.id 
+        WHERE ga.gm_username = ?;`,
+      [username]
+    )
+  }
 }
 
 module.exports = GameRegistrationsManager

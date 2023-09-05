@@ -29,6 +29,8 @@ router.get(
   TestimonialsControllers.getTestimonialsCarrousel
 )
 
+router.get("/joiningRequests/:id", GameRegistrationsControllers.joiningRequests)
+
 router.use(verifyToken)
 
 router.put(
