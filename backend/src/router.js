@@ -29,6 +29,8 @@ router.get(
   TestimonialsControllers.getTestimonialsCarrousel
 )
 
+router.get("/joiningRequests/:id", GameRegistrationsControllers.joiningRequests)
+
 router.use(verifyToken)
 
 router.put(
@@ -51,6 +53,10 @@ router.post("/games", GamesControllers.add)
 router.get(
   "/usernameGMFutureGames/:id",
   GameRegistrationsControllers.futureGamesGMUsername
+)
+router.get(
+  "/playersForThisGame/:id",
+  GameRegistrationsControllers.allPlayersForThisGame
 )
 router.get("/gamesRegistrations", GameRegistrationsControllers.browse)
 router.get("/gamesRegistrations/:id", GameRegistrationsControllers.read)
