@@ -19,6 +19,16 @@ class UsersManager extends AbstractManager {
     )
   }
 
+  rpgDisplay(id) {
+    return this.database.query(
+      `select r.rpg_icon
+      FROM role_playing_games AS r
+      INNER JOIN users_has_role_playing_games AS uhr ON r.id = uhr.role_playing_games_id
+      WHERE uhr.users_id = ?`,
+      [id]
+    )
+  }
+
   update(users) {
     return this.database.query(
       `update ${this.table} set username = ?, email_adress = ?, hashedPassword = ?, other_information = ?, description_as_player = ?, location = ?, profil_picture = ?, description_as_gm = ? where id = ?`,

@@ -12,7 +12,7 @@
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
-    height: 50%;
+    height: 60%;
     width: 15%;
     gap: 15px;
     .settingsTitle {
@@ -47,14 +47,14 @@
           font-family: $content-font;
         }
         button:hover {
-          background: #e74c3c;
+          background: #4d194d;
         }
       }
       .settingsButton {
         background: #180b23;
       }
       .Cliked {
-        background: #e74c3c;
+        background: #4d194d;
       }
     }
   }
@@ -69,17 +69,19 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    width: 60%;
+    height: 88%;
+    width: 45%;
+    // gap:10px;
     .mainTitleProfil {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 50%;
       height: 10%;
-      // gap:10px;
+      gap: 15px;
       font-size: 28px;
       border-bottom: 1px solid #e2d07c;
+      margin-bottom: 3vh;
     }
     .bigBoxRight {
       display: flex;
@@ -89,7 +91,8 @@
       height: 100%;
       background: #8b8b8b39;
       border-radius: 12px;
-      // gap: 30px;
+      border: 2px solid #a4945e;
+      gap: 10px;
       .titleProfil {
         color: #fff;
         display: flex;
@@ -102,60 +105,121 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border: solid 1px blue;
 
         .boxDateAndBoxPhoto {
-          border: 1px solid black;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
           img {
-            width: 160px;
-            height: 160px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             border: 5px solid $third-font-color;
           }
+          span {
+            font-size: 10px;
+          }
         }
+        .boxName {
+          display: flex;
+          flex-direction: column;
+          span {
+            font-size: 12px;
+          }
+          .displayUsername {
+            display: flex;
+            align-items: center;
+            p {
+              font-family: $content-font;
+              font-size: 25px;
+              color: black;
+            }
+            width: 13vw;
+            height: 4vh;
 
+            background-color: #fff;
+            border-radius: 4px;
+          }
+          input {
+            width: 13vw;
+            height: 4vh;
+            font-family: $content-font;
+            font-size: 25px;
+            background-color: #fff;
+            border-radius: 4px;
+          }
+        }
         .userNameDiv {
           display: flex;
           flex-direction: column;
-          #userNameButton {
-            width: 210px;
-            height: 39px;
-            font-family: $content-font;
-            font-size: 25px;
-            background-color: #fff;
-            cursor: pointer;
+        }
+        .countryCityNameBox {
+          display: flex;
+          transform: translateX(-10%);
+          gap: 5px;
+          margin-top: 10px;
+          img {
+            width: 17px;
+            height: 22px;
           }
         }
-        .editNameDiv {
+        .countryCityP {
           display: flex;
-          flex-direction: column;
-          .inputNewName {
-            width: 210px;
-            height: 39px;
+          align-items: center;
+          width: 10vw;
+          height: 3vh;
+          background-color: #fff;
+          border-radius: 5px;
+          p {
             font-family: $content-font;
-            font-size: 25px;
-            background-color: #fff;
+            font-size: 20px;
+            color: black;
           }
         }
         .inputCountryCity {
-          width: 161px;
-          height: 30px;
-          border-radius: 4px;
+          width: 10vw;
+          height: 3vh;
+          font-family: $content-font;
+          font-size: 20px;
           background-color: #fff;
+          border-radius: 4px;
         }
 
         .localisationBox {
           display: flex;
           flex-direction: column;
+          gap: 5px;
         }
       }
       .bioBoxProfil {
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 10px;
+        // margin-top: 20px;
         .bioBoxProfilTitle {
           display: flex;
-          align-self: baseline;
+          width: 90%;
+          align-self: center;
+          // margin-bottom: 10px;
+        }
+        .bioBoxProfilText {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: black;
+          width: 90%;
+          height: 11.42vh;
+          background-color: #fff;
+          border-radius: 8px;
+          // margin-bottom: 20px;
+          textarea {
+            width: 47vw;
+            height: 11.42vh;
+            outline: none;
+            border-radius: 6px;
+            resize: none;
+          }
         }
         #userNameDescription {
           width: 46vw;
@@ -204,7 +268,7 @@
         justify-content: center;
         align-items: center;
         width: 100%;
-        height: 10vh;
+        height: 15vh;
       }
     }
 
@@ -212,21 +276,23 @@
       display: flex;
       justify-content: center;
       hr {
-        width: 45vw;
+        width: 35vw;
         border-color: #e2d07c;
       }
     }
 
     .bottomBoxProfil {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-evenly;
+      // justify-content: center;
       align-items: center;
       align-content: center;
       justify-items: center;
-      padding-right: 60px;
-      padding-left: 60px;
+      // padding-right: 60px;
+      // padding-left: 60px;
+      // gap:40px;
       hr {
-        height: 20vh;
+        height: 10vh;
         border-color: #e2d07c;
       }
 
@@ -241,9 +307,10 @@
         flex-direction: column;
         align-items: center;
         h3 {
-          font-size: 30px;
+          font-size: 20px;
           font-family: $content-font;
           color: $secondary-font-color;
+          border-bottom: solid 1px #fff;
         }
       }
 
@@ -251,43 +318,54 @@
         display: flex;
         flex-direction: column;
       }
-
-      #passwordButton {
-        background-color: red;
-        transition: 0.3s;
+    }
+    .bottomBoxProfilEdit {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      align-content: center;
+      justify-items: center;
+      padding-left: 15px;
+      gap: 20px;
+      hr {
+        height: 10vh;
+        border-color: #e2d07c;
       }
-      #validateButton {
-        background-color: green;
-        transition: 0.3s;
-      }
 
-      .changePassword {
+      .inputBottomProfil {
+        width: 237px;
+        height: 27px;
+        border-radius: 4px;
+        background-color: #fff;
+      }
+      .privateInfoBox {
         display: flex;
         flex-direction: column;
-
         align-items: center;
-
-        width: 10vw;
-        .noDisplay {
-          opacity: 0;
-          transition: 0.3s;
-        }
-        .passwordBox {
-          display: flex;
-          flex-direction: column;
-
-          transition: 0.3s;
-
-          .oldPassword {
-            display: flex;
-            flex-direction: column;
-          }
-          .newPassword {
-            display: flex;
-            flex-direction: column;
-          }
+        h3 {
+          font-size: 20px;
+          font-family: $content-font;
+          color: $secondary-font-color;
+          border-bottom: solid 1px #fff;
         }
       }
+
+      .mailBox {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+  .divButtonSwitchEdit,
+  .divButtonSwitchValidate {
+    transform: translateY(-50%);
+    button {
+      font-size: 20px;
+      color: #e2d07c;
+      width: 191px;
+      height: 54px;
+      border-radius: 4px;
+      background-color: #180b23;
     }
   }
 }
