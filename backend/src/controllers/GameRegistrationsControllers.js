@@ -78,6 +78,38 @@ const edit = (req, res) => {
     })
 }
 
+const joiningRequestsRejected = (req, res) => {
+  models.gameRegistrationsManager
+    .joiningRequestsRejected(req.params.requester_id, req.params.games_id)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404)
+      } else {
+        res.sendStatus(204)
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
+const joiningRequestsAccepted = (req, res) => {
+  models.gameRegistrationsManager
+    .joiningRequestsAccepted(req.params.requester_id, req.params.games_id)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404)
+      } else {
+        res.sendStatus(204)
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 const add = (req, res) => {
   const gameRegistrations = req.body
 
@@ -112,10 +144,10 @@ const joiningRequests = (req, res) => {
   models.gameRegistrationsManager
     .gameJoiningRequests(req.params.id)
     .then(([rows]) => {
-      if (rows[0] == null) {
+      if (rows == null) {
         res.sendStatus(404)
       } else {
-        res.send(rows[0])
+        res.send(rows)
       }
     })
     .catch((err) => {
@@ -133,4 +165,6 @@ module.exports = {
   futureGamesGMUsername,
   allPlayersForThisGame,
   joiningRequests,
+  joiningRequestsRejected,
+  joiningRequestsAccepted,
 }

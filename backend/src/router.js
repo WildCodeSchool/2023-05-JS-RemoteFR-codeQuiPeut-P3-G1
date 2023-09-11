@@ -30,6 +30,14 @@ router.get(
 )
 
 router.get("/joiningRequests/:id", GameRegistrationsControllers.joiningRequests)
+router.put(
+  "/joiningRequestsRejected/:requester_id/:games_id",
+  GameRegistrationsControllers.joiningRequestsRejected
+)
+router.put(
+  "/joiningRequestsAccepted/:requester_id/:games_id",
+  GameRegistrationsControllers.joiningRequestsAccepted
+)
 
 router.use(verifyToken)
 

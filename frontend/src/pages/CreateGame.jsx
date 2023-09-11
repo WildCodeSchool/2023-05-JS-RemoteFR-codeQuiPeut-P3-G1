@@ -41,7 +41,7 @@ export default function CreateGame() {
   const idUser = Cookies.get("idUser")
 
   const headers = {
-    Authorization: `Bearer ${tokenFromCookie}`,
+    Authorization: `Bearer ${tokenFromCookie}`
   }
 
   useEffect(() => {
@@ -101,7 +101,7 @@ export default function CreateGame() {
           city: gamePlace,
           is_remote: gameIsRemote,
           is_campaign: gameIsCampaign,
-          gm_username: gamemasterUsername,
+          gm_username: gamemasterUsername
         },
         { headers }
       )

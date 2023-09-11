@@ -57,7 +57,7 @@ export default function NewTopic({ onClose }) {
       .post("http://localhost:4242/topics", {
         title: nom,
         categories_id: categorie,
-        users_id: user,
+        users_id: user
       })
       .then((res) => {
         if (res.status === 200) {

@@ -36,57 +36,99 @@
 
     .friends {
       display: flex;
-      border: 3px solid lightgreen;
       align-items: center;
-      justify-content: center;
+      justify-content: start;
+      flex-direction: column;
       width: 30vw;
       height: 20vh;
       border-radius: 8px;
       border: 4px solid #4d194d;
       background: rgba(217, 217, 217, 0.22);
-      gap: 10px;
-      .friend-name {
-        color: #fff;
-        font-family: Koh Santepheap;
-        font-size: 1.2vh;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-      }
-      .wantToJoin {
-        background: linear-gradient(180deg, #e2d07c 0%, #a4945e 100%);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .guild-name {
-        color: #fff;
-        font-family: Petrona;
-        font-size: 1.5vh;
-        font-style: italic;
-        font-weight: 500;
-        line-height: normal;
-        text-transform: uppercase;
-      }
-      .logo-check {
+      gap: 5px;
+      padding: 5px;
+      .rawFriendRequest {
+        padding-bottom: 5px;
+        border-bottom: 2px solid $third-font-color;
+        width: 100%;
+        height: 30%;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50%;
-        width: 32px;
-        height: 32px;
-        background-color: #4d194d;
-      }
-
-      .logo-rejected {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 50%;
-        width: 32px;
-        height: 32px;
-        border: 1px solid white;
+        justify-content: space-between;
+        .requesterProfilPicture {
+          width: fit-content;
+          img {
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            width: auto;
+            height: 100%;
+            border: 2px solid $third-font-color;
+          }
+        }
+        .requesterName {
+          display: flex;
+          justify-content: start;
+          align-items: center;
+          height: 100%;
+          width: fit-content;
+          p {
+            margin-left: 5px;
+            color: $secondary-font-color;
+            font-family: $content-font;
+          }
+        }
+        .wantsToJoin {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          width: 50%;
+          p {
+            display: inline;
+            font-size: 15px;
+            color: $third-font-color;
+          }
+        }
+        .requesterGame {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          width: 100%;
+          p {
+            color: $secondary-font-color;
+            font-family: $content-font;
+          }
+        }
+        .requesterButton {
+          height: 100%;
+          width: fit-content;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 5px;
+          #validateButton {
+            border: 2px solid $third-font-color;
+            aspect-ratio: 1/1;
+            height: 80%;
+            background: $background-gradient-home-page;
+            border-radius: 50%;
+            cursor: pointer;
+            &:hover {
+              background: #a4945e;
+            }
+          }
+          #refuseButton {
+            border: 2px solid $secondary-font-color;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            height: 80%;
+            background: none;
+            border-radius: 50%;
+            cursor: pointer;
+            &:hover {
+              background-color: rgb(149, 18, 18);
+            }
+          }
+        }
       }
     }
   }

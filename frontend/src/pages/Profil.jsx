@@ -19,11 +19,11 @@ const Profil = () => {
   const [buttonStates, setButtonStates] = useState({
     profil: false,
     myGames: false,
-    social: false,
+    social: false
   })
 
   const headers = {
-    Authorization: `Bearer ${tokenFromCookie}`,
+    Authorization: `Bearer ${tokenFromCookie}`
   }
 
   useEffect(() => {
@@ -61,7 +61,7 @@ const Profil = () => {
                 ...buttonStates,
                 profil: !buttonStates.profil,
                 myGames: false,
-                social: false,
+                social: false
               })
             }
           >
@@ -74,7 +74,7 @@ const Profil = () => {
                 ...buttonStates,
                 myGames: !buttonStates.myGames,
                 profil: false,
-                social: false,
+                social: false
               })
             }
           >
@@ -87,7 +87,7 @@ const Profil = () => {
                 ...buttonStates,
                 social: !buttonStates.social,
                 myGames: false,
-                profil: false,
+                profil: false
               })
             }
           >
