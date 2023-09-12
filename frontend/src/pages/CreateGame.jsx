@@ -167,7 +167,7 @@ export default function CreateGame() {
         </div>
         <div className="underlineCreateGame"></div>
       </div>
-      {createOrResume === 0 ? (
+      {createOrResume === 1 ? (
         <div className="formCreateGame">
           <FormCreateGame
             isTimeRequired={isTimeRequired}
