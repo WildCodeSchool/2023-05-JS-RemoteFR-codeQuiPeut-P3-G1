@@ -15,19 +15,6 @@ const FriendRequest = () => {
     Authorization: `Bearer ${tokenFromCookie}`
   }
 
-  useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/joiningRequests/${idUser}`, {
-        headers
-      })
-      .then((response) => {
-        setJoiningRequestData(response.data)
-      })
-      .catch((error) => {
-        console.error("An error occurred:", error)
-      })
-  }, [])
-
   const rejectRequest = (requesterId, gameId) => {
     axios
       .put(
@@ -58,7 +45,34 @@ const FriendRequest = () => {
       .catch((error) => {
         console.error("Error accepting request:", error)
       })
+
+    axios
+      .post(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/dispatchPlayer/${requesterId}/${gameId}`,
+        { headers }
+      )
+      .then((res) => {
+        console.info("Dispatch player successfull", res.data)
+      })
+      .catch((err) => {
+        console.error("Error when dispatch player", err)
+      })
   }
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/joiningRequests/${idUser}`, {
+        headers
+      })
+      .then((response) => {
+        setJoiningRequestData(response.data)
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error)
+      })
+  }, [acceptedRequest, rejectRequest])
 
   return (
     <div className="Friends-container">
@@ -82,7 +96,7 @@ const FriendRequest = () => {
                 <p>{request.username}</p>
               </div>
               <div className="wantsToJoin">
-                <p>requests to join</p>
+                <p>requests to join :</p>
               </div>
               <div className="requesterGame">
                 <p>{request.guild_name}</p>

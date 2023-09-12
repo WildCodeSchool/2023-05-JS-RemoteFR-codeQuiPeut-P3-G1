@@ -80,7 +80,7 @@ const edit = (req, res) => {
 
 const joiningRequestsRejected = (req, res) => {
   models.gameRegistrationsManager
-    .joiningRequestsRejected(req.params.requester_id, req.params.games_id)
+    .joiningRequestsRejected(req.params.requesterId, req.params.gameId)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404)
@@ -96,7 +96,7 @@ const joiningRequestsRejected = (req, res) => {
 
 const joiningRequestsAccepted = (req, res) => {
   models.gameRegistrationsManager
-    .joiningRequestsAccepted(req.params.requester_id, req.params.games_id)
+    .joiningRequestsAccepted(req.params.requesterId, req.params.gameId)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404)

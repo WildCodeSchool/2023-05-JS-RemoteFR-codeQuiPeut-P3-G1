@@ -70,9 +70,10 @@
           height: 100%;
           width: fit-content;
           p {
-            margin-left: 5px;
+            margin: 0 5px 0 5px;
             color: $secondary-font-color;
             font-family: $content-font;
+            font-size: 15px;
           }
         }
         .wantsToJoin {
@@ -80,11 +81,12 @@
           justify-content: center;
           align-items: center;
           height: 100%;
-          width: 50%;
+          width: 70%;
           p {
             display: inline;
-            font-size: 15px;
+            font-size: 12px;
             color: $third-font-color;
+            font-style: italic;
           }
         }
         .requesterGame {
@@ -92,10 +94,11 @@
           justify-content: center;
           align-items: center;
           height: 100%;
-          width: 100%;
+          width: 80%;
           p {
             color: $secondary-font-color;
             font-family: $content-font;
+            font-size: 15px;
           }
         }
         .requesterButton {
