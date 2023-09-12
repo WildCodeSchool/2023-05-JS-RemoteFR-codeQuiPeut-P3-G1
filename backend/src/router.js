@@ -19,6 +19,7 @@ const FriendRequestControllers = require("./controllers/FriendRequestControllers
 const UsersFiltersControllers = require("./controllers/UsersFiltersControllers")
 const RolePlayingGamesControllers = require("./controllers/RolePlayingGamesController")
 const PrivateMessagesControllers = require("./controllers/PrivateMessagesControllers")
+const GamesHasUsersControllers = require("./controllers/GamesHasUsersControllers.js")
 
 router.post("/login", UsersControllers.verifyUser, verifyPassword)
 router.post("/users", hashPassword, UsersControllers.add)
@@ -30,6 +31,19 @@ router.get(
 )
 
 router.get("/joiningRequests/:id", GameRegistrationsControllers.joiningRequests)
+router.put(
+  "/joiningRequestsRejected/:requesterId/:gameId",
+  GameRegistrationsControllers.joiningRequestsRejected
+)
+router.put(
+  "/joiningRequestsAccepted/:requesterId/:gameId",
+  GameRegistrationsControllers.joiningRequestsAccepted
+)
+
+router.post(
+  "/dispatchPlayer/:requesterId/:gameId",
+  GamesHasUsersControllers.add
+)
 
 router.use(verifyToken)
 

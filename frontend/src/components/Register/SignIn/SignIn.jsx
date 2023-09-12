@@ -14,7 +14,7 @@ function SignIn() {
     axios
       .post("http://localhost:4242/login", {
         username: signInUsername,
-        password: signInPassword,
+        password: signInPassword
       })
       .then((res) => {
         if (res.status === 200) {
@@ -23,10 +23,10 @@ function SignIn() {
           const token = res.data.token
           Cookies.set("authToken", token, { expires: 0.5, sameSite: "strict" })
           Cookies.set("loggedInUser", JSON.stringify(res.data.user), {
-            sameSite: "strict",
+            sameSite: "strict"
           })
           Cookies.set("idUser", JSON.stringify(res.data.user.id), {
-            sameSite: "strict",
+            sameSite: "strict"
           })
           setSignInUsername()
           setSignInPassword()

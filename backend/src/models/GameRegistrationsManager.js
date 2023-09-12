@@ -18,12 +18,26 @@ class GameRegistrationsManager extends AbstractManager {
 
   update(gameRegistrations) {
     return this.database.query(
-      `UPDATE ${this.table} SET games_id = ?, status = ?,users_id = ? WHERE id = ?`,
+      `UPDATE ${this.table} SET games_id = ?, status = ?,requester_id = ? WHERE id = ?`,
       [
         gameRegistrations.games_id,
         gameRegistrations.status,
-        gameRegistrations.users_id,
+        gameRegistrations.requester_id,
       ]
+    )
+  }
+
+  joiningRequestsRejected(requesterId, GamesId) {
+    return this.database.query(
+      `UPDATE ${this.table} SET status = "rejected" WHERE requester_id = ? AND games_id = ?`,
+      [requesterId, GamesId]
+    )
+  }
+
+  joiningRequestsAccepted(requesterId, GamesId) {
+    return this.database.query(
+      `UPDATE ${this.table} SET status = "accepted" WHERE requester_id = ? AND games_id = ?`,
+      [requesterId, GamesId]
     )
   }
 
@@ -52,14 +66,14 @@ class GameRegistrationsManager extends AbstractManager {
     )
   }
 
-  gameJoiningRequests(username) {
+  gameJoiningRequests(id) {
     return this.database.query(
-      `SELECT u.profil_picture, u.username, ga.guild_name, gr.status, ga.gm_username 
-        FROM ${this.table} AS gr
-        JOIN users AS u on gr.requester_id = u.id
-        JOIN games AS ga on gr.games_id = ga.id 
-        WHERE ga.gm_username = ?;`,
-      [username]
+      `SELECT gr.id, u.profil_picture, u.username, ga.guild_name, gr.status, ga.gm_id, gr.games_id, gr.requester_id 
+      FROM ${this.table} AS gr
+      JOIN users AS u ON gr.requester_id = u.id
+      JOIN games AS ga ON gr.games_id = ga.id 
+      WHERE gm_id = ? AND status = "pending";`,
+      [id]
     )
   }
 }
