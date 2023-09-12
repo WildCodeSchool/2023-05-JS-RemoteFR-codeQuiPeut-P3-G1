@@ -73,7 +73,7 @@
             margin: 0 5px 0 5px;
             color: $secondary-font-color;
             font-family: $content-font;
-            font-size: 15px;
+            font-size: 1vw;
           }
         }
         .wantsToJoin {
@@ -82,11 +82,14 @@
           align-items: center;
           height: 100%;
           width: 70%;
-          p {
+          span {
             display: inline;
-            font-size: 12px;
-            color: $third-font-color;
-            font-style: italic;
+            font-size: 1vw;
+            font-style: normal;
+            background: linear-gradient(180deg, #e2d07c 0%, #a4945e 100%);
+            line-height: normal;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
           }
         }
         .requesterGame {
@@ -98,7 +101,7 @@
           p {
             color: $secondary-font-color;
             font-family: $content-font;
-            font-size: 15px;
+            font-size: 1vw;
           }
         }
         .requesterButton {
