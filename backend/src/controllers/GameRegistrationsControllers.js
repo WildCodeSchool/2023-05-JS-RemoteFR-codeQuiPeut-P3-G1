@@ -44,11 +44,59 @@ const futureGamesGMUsername = (req, res) => {
     })
 }
 
+const allPlayersForThisGame = (req, res) => {
+  models.gameRegistrationsManager
+    .getAllPlayersForThisGame(req.params.id)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(404)
+      } else {
+        res.send(rows)
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 const edit = (req, res) => {
   const gameRegistrations = req.body
   gameRegistrations.id = parseInt(req.params.id, 10)
   models.gameRegistrationsManager
     .update(gameRegistrations)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404)
+      } else {
+        res.sendStatus(204)
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
+const joiningRequestsRejected = (req, res) => {
+  models.gameRegistrationsManager
+    .joiningRequestsRejected(req.params.requesterId, req.params.gameId)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404)
+      } else {
+        res.sendStatus(204)
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
+const joiningRequestsAccepted = (req, res) => {
+  models.gameRegistrationsManager
+    .joiningRequestsAccepted(req.params.requesterId, req.params.gameId)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404)
@@ -92,6 +140,22 @@ const destroy = (req, res) => {
     })
 }
 
+const joiningRequests = (req, res) => {
+  models.gameRegistrationsManager
+    .gameJoiningRequests(req.params.id)
+    .then(([rows]) => {
+      if (rows == null) {
+        res.sendStatus(404)
+      } else {
+        res.send(rows)
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 module.exports = {
   browse,
   read,
@@ -99,4 +163,8 @@ module.exports = {
   add,
   destroy,
   futureGamesGMUsername,
+  allPlayersForThisGame,
+  joiningRequests,
+  joiningRequestsRejected,
+  joiningRequestsAccepted,
 }

@@ -14,7 +14,7 @@ export default function PrivateMessages() {
   const tokenFromCookie = Cookies.get("authToken")
 
   const headers = {
-    Authorization: `Bearer ${tokenFromCookie}`,
+    Authorization: `Bearer ${tokenFromCookie}`
   }
 
   const privateMessagesDiv = document.getElementById("messageBulleDiv")
@@ -23,7 +23,7 @@ export default function PrivateMessages() {
     // privateMessagesDiv.scrollTop = privateMessagesDiv.scrollHeight
     privateMessagesDiv.scrollTo({
       Bottom: 0,
-      behavior: "smooth",
+      behavior: "smooth"
     })
   }
   // Gestion messages API PrivateMessages
@@ -34,7 +34,7 @@ export default function PrivateMessages() {
       users_id_sender: sender,
       users_id_recipient: recipient,
       content,
-      seen: 0,
+      seen: 0
     }
 
     axios

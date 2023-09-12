@@ -27,21 +27,21 @@ export default function CreateGame() {
   const [gameRPGID, setGameRPGID] = useState("")
   const [gamemasterUsername, setGamemasterUsername] = useState("")
   const [gameDateToFormat, setGameDateToFormat] = useState(new Date())
-  const [gameHourToFormat, setGameHourToFormat] = useState("10:00")
-  // const [gameDate, setGameDate] = useState("")
+  const [gameHourToFormat, setGameHourToFormat] = useState("00:00")
+  const [gameDate, setGameDate] = useState("")
   const [gamePlace, setGamePlace] = useState("")
   const [gamePlayersCapacity, setGamePlayersCapacity] = useState(1)
   const [gameDesc, setGameDesc] = useState("")
   const [gameType, setGameType] = useState("")
   const [gameName, setGameName] = useState("")
-  const [gameIsRemote, setGameIsRemote] = useState(0)
   const [gameIsCampaign, setGameIsCampaign] = useState(0)
+  const [gameIsRemote, setGameIsRemote] = useState(0)
 
   const tokenFromCookie = Cookies.get("authToken")
   const idUser = Cookies.get("idUser")
 
   const headers = {
-    Authorization: `Bearer ${tokenFromCookie}`,
+    Authorization: `Bearer ${tokenFromCookie}`
   }
 
   useEffect(() => {
@@ -93,41 +93,42 @@ export default function CreateGame() {
         "http://localhost:4242/games",
         {
           role_playing_game_id: gameRPGID,
-          // schedule: gameDate,
+          schedule: gameDate,
           max_players_capacity: gamePlayersCapacity,
           description: gameDesc,
           type: gameType,
           name: gameName,
           city: gamePlace,
           is_remote: gameIsRemote,
-          is_campain: gameIsCampaign,
-          gm_username: gamemasterUsername,
+          is_campaign: gameIsCampaign,
+          gm_username: gamemasterUsername
         },
         { headers }
       )
       .then((res) => {
-        if (res.status === 200) {
+        if (res.status === 201) {
           console.info("Partie créée avec succès !")
         }
+        setGamePlayersCapacity(1)
+        setGameHourToFormat("00:00")
         document.getElementById("createGameForm").reset()
-        document.getElementById("createGameSelecter").selectedIndex = 0
+        // document.getElementById("createGameSelecter").selectedIndex = 0
       })
       .catch((error) => {
         console.error("Erreur lors de la création de la partie :", error)
       })
   }
 
-  const formatDateToYYYYMMDD = (date) => {
-    const year = date.getFullYear()
-    const month = String(date.getMonth() + 1).padStart(2, "0")
-    const day = String(date.getDate()).padStart(2, "0")
-
+  const formattedDate = (gameDateToFormat) => {
+    const year = gameDateToFormat.getFullYear()
+    const month = String(gameDateToFormat.getMonth() + 1).padStart(2, "0")
+    const day = String(gameDateToFormat.getDate()).padStart(2, "0")
     return `${year}-${month}-${day}`
   }
 
-  const formattedDate = formatDateToYYYYMMDD(gameDateToFormat)
-
-  console.info(formattedDate) // Affichera : "2023-09-07"
+  useEffect(() => {
+    setGameDate(`${formattedDate(gameDateToFormat)}T${gameHourToFormat}:00`)
+  }, [gameHourToFormat, gameDateToFormat])
 
   console.info(
     "finalTest",
@@ -136,12 +137,11 @@ export default function CreateGame() {
     gameType,
     gameRPGID,
     gameIsCampaign,
+    gameIsRemote,
     gamePlayersCapacity,
     gameDesc,
     gamePlace,
-    gameHourToFormat,
-    gameDateToFormat
-    // gameDate
+    gameDate
   )
 
   return (
@@ -166,6 +166,7 @@ export default function CreateGame() {
                   type="text"
                   onChange={(e) => setGameName(e.target.value)}
                   name="guildName"
+                  id="createGameGuildName"
                 />
               </label>
               <label htmlFor="gameTypeSelecter">
@@ -215,21 +216,29 @@ export default function CreateGame() {
               </div>
               <label htmlFor="maxCapacity">
                 <p>Number of Players</p>
-                <div className="form-type-number">
+                <div className="formTypeNumber">
+                  <button
+                    type="button"
+                    className="btn-minus"
+                    onClick={handleDecrement}
+                  >
+                    -
+                  </button>
                   <input
-                    id="quantity"
+                    id="createGameQuantity"
                     max="99"
                     min="1"
-                    type="number"
                     name="maxCapacity"
                     value={gamePlayersCapacity}
                     readOnly
                     onChange={(e) => setGamePlayersCapacity(e.target.value)}
                   />
-                  <button className="btn-minus" onClick={handleDecrement}>
-                    -
-                  </button>
-                  <button onClick={handleIncrement} className="btn-plus">
+
+                  <button
+                    type="button"
+                    onClick={handleIncrement}
+                    className="btn-plus"
+                  >
                     +
                   </button>
                 </div>
@@ -267,26 +276,30 @@ export default function CreateGame() {
               </div>
             </div>
             <div id="createGameThirdGroup">
-              <label htmlFor="Department">
-                <p>Department</p>
-                <div className="createGameSelect">
-                  <select
-                    id="departmentNameSelecter"
-                    defaultValue=""
-                    onChange={(event) => setDepartementId(event.target.value)}
-                  >
-                    <option value="" disabled>
-                      Select your department
-                    </option>
-                    {departmentList.map((department) => (
-                      <option key={department.code} value={department.code}>
-                        {department.nom}
+              {gameIsRemote === 1 ? (
+                ""
+              ) : (
+                <label htmlFor="Department">
+                  <p>Department</p>
+                  <div className="createGameSelect">
+                    <select
+                      id="departmentNameSelecter"
+                      defaultValue=""
+                      onChange={(event) => setDepartementId(event.target.value)}
+                    >
+                      <option value="" disabled>
+                        Select your department
                       </option>
-                    ))}
-                  </select>
-                </div>
-              </label>
-              {departmentId !== "" ? (
+                      {departmentList.map((department) => (
+                        <option key={department.code} value={department.code}>
+                          {department.nom}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </label>
+              )}
+              {departmentId !== "" && gameIsRemote !== 1 ? (
                 <label htmlFor="city">
                   <p>City</p>
                   <div className="createGameSelect">
@@ -346,14 +359,15 @@ export default function CreateGame() {
                   <img src={hour} />
                 </div>
               </label>
+              <div />
             </div>
           </div>
+          <div id="createGameButton">
+            <button type="submit" onClick={handleCreateUser}>
+              <span>VALIDATE</span>
+            </button>
+          </div>
         </form>
-        <div id="createGameButton">
-          <button type="submit">
-            <span>VALIDATE</span>
-          </button>
-        </div>
       </div>
     </main>
   )

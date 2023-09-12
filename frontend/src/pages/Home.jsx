@@ -10,7 +10,7 @@ export default function Home() {
     axios
       .post("http://localhost:4242/users", {
         username: usernameDb,
-        password: passwordDb,
+        password: passwordDb
       })
       .then((res) => {
         if (res.status === 200) {

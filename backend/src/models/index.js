@@ -42,6 +42,7 @@ const FiltersManager = require("./FiltersManager")
 const UsersFiltersManager = require("./UsersFiltersManager")
 const PrivateMessagesManager = require("./PrivateMessagesManager")
 const RolePlayingGamesManager = require("./RolePlayingGamesManager")
+const GamesHasUsersManager = require("./GamesHasUsersManager")
 
 models.users = new UsersManager()
 models.users.setDatabase(pool)
@@ -57,6 +58,9 @@ models.gameRegistrationsManager.setDatabase(pool)
 
 models.posts = new PostsManager()
 models.posts.setDatabase(pool)
+
+models.gamesHasUsersManager = new GamesHasUsersManager()
+models.gamesHasUsersManager.setDatabase(pool)
 
 models.FriendRequest = new FriendRequestManager()
 models.FriendRequest.setDatabase(pool)

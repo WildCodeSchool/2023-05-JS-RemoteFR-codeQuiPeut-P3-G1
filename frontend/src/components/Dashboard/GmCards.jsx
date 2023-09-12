@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useContext } from "react"
+import React, { useState, useEffect } from "react"
 import axios from "axios"
 import Cookies from "js-cookie"
+
 import gmProfilePic from "../../assets/GmCards-assets/GMProfilePic.png"
 import closeModal from "../../assets/GmCards-assets/closeModal.png"
 import gameLogo from "../../assets/GmCards-assets/gameLogo.png"
@@ -9,39 +10,67 @@ import Location from "../../assets/GmCards-assets/locationGames.svg"
 import GamesType from "../../assets/GmCards-assets/gamesType.svg"
 import participantsLogo from "../../assets/GmCards-assets/participantsLogo.svg"
 import PlayerCards from "./PlayerCards"
-import AuthContext from "../AuthContext/AuthContext"
 
 const GmCards = ({ onClose }) => {
   const [gamesData, setGamesData] = useState({})
+  const [playersProfil, setPlayersProfil] = useState([])
   const [isPlayerCardsOpen, setIsPlayerCardsOpen] = useState(false)
-  const { user } = useContext(AuthContext)
+  const [isLoading, setIsLoading] = useState(false)
+  const [userData, setUserData] = useState(null)
   const scheduleDate = new Date(gamesData.schedule)
   const options = {
     year: "numeric",
     month: "2-digit",
-    day: "2-digit",
+    day: "2-digit"
   }
   const formattedSchedule = scheduleDate.toLocaleDateString("fr-FR", options)
 
   const tokenFromCookie = Cookies.get("authToken")
+  const idUser = Cookies.get("idUser")
 
   const headers = {
-    Authorization: `Bearer ${tokenFromCookie}`,
+    Authorization: `Bearer ${tokenFromCookie}`
   }
+
+  console.info(gamesData)
 
   useEffect(() => {
     axios
-      .get("http://localhost:4242/games", { headers })
+      .get(`http://localhost:4242/usernameGMFutureGames/${idUser}`, { headers })
       .then((response) => {
-        setGamesData(response.data[1])
+        setGamesData(response.data)
+        setIsLoading(true)
       })
       .catch((error) => {
         console.error("An error occurred:", error)
       })
   }, [])
 
-  const handleTogglePlayerCards = () => {
-    setIsPlayerCardsOpen(!isPlayerCardsOpen)
+  useEffect(() => {
+    isLoading &&
+      axios
+        .get(`http://localhost:4242/playersForThisGame/${gamesData.id}`, {
+          headers
+        })
+        .then((response) => {
+          setPlayersProfil(response.data)
+        })
+        .catch((error) => {
+          console.error("An error occurred:", error)
+        })
+  }, [isLoading])
+
+  // const handleTogglePlayerCards = () => {
+  //   setIsPlayerCardsOpen(!isPlayerCardsOpen)
+  // }
+
+  //   const totalUsers = playersProfil.length
+  //   console.info("Nombre total d'utilisateurs :", totalUsers)
+
+  const handleProfileClick = (playerData) => {
+    // Ouvrez le composant PlayerCards en passant les informations du joueur sélectionné.
+    setIsPlayerCardsOpen(true)
+    setUserData(playerData)
   }
 
   return (
@@ -49,11 +78,15 @@ const GmCards = ({ onClose }) => {
       {!isPlayerCardsOpen && (
         <div className="GmCards-container">
           <div className="GmCards-header">
-            <img className="profile-picture" src={gmProfilePic} alt="" />
-            <div className="GmName-Btn-container">
-              <h1 className="GM-Name">{user.username} - AS GM</h1>
-
-              <button className="Btn-send">SEND A MESSAGE</button>
+            <div className="profile-picture">
+              <img src={gmProfilePic} alt="" />
+            </div>
+            <div className="GM-Name">
+              <span>{gamesData.gm_username} - AS GM</span>
+              <div id="underline-GMUsername"></div>
+              <div className="Btn-send">
+                <button>SEND A MESSAGE</button>
+              </div>
             </div>
             <div className="close-container">
               <img
@@ -64,70 +97,71 @@ const GmCards = ({ onClose }) => {
               />
             </div>
           </div>
-          <div className="GM-calendar-location">
-            <div className="game-info">
-              <div className="game-logo-container">
-                <img src={Schedule} alt="icon of schedule" />
-                <h3 className="date-to">
-                  TO <span className="date">{formattedSchedule}</span>
-                </h3>
-                <img src={GamesType} alt="icon of the type of games" />
-                <h3 className="game-type">{gamesData.type}</h3>
-              </div>
-
-              <div className="location-container">
-                <img
-                  className="location-icon"
-                  src={Location}
-                  alt="icon of location"
-                />
-                <h3 className="location-city">
-                  IN <span className="city">{gamesData.city}</span>
-                </h3>
-              </div>
-            </div>
-            <div className="game-logo-container">
-              <img className="game-black-logo" src={gameLogo} alt="" />
-            </div>
-          </div>
-          <div className="Participants">
-            <div className="participant-nb-container">
+          <div className="GmCards-Middle">
+            <div className="GmCards-Middle-Left">
+              <img src={Schedule} alt="icon of schedule" />
+              <img
+                className="location-icon"
+                src={Location}
+                alt="icon of location"
+              />
               <img
                 className="participant-logo-gold"
                 src={participantsLogo}
                 alt=""
               />
-              <h3 className="Participants-nb">
-                3/{gamesData.max_players_capacity} participants
-              </h3>
             </div>
-            <div className="participants-pictures">
-              <img
-                className="player-profile-picture"
-                src={gmProfilePic}
-                alt=""
-              />
-              <img
-                className="player-profile-picture"
-                src={gmProfilePic}
-                alt=""
-              />
-              <img
-                className="player-profile-picture"
-                src={gmProfilePic}
-                alt=""
-              />
+            <div className="GmCards-Middle-Middle_Left">
+              <div className="date-to-container">
+                <h3 className="date-to">ON</h3>
+                <span id="date">{formattedSchedule}</span>
+              </div>
+              <div className="location-city-container">
+                <h3 className="location-city">IN</h3>
+                <span className="city">{gamesData.city}</span>
+              </div>
+              <div className="Particpants-nb">
+                <h3 className="Participants-nb">
+                  {playersProfil.length}/{gamesData.max_players_capacity}{" "}
+                  participants
+                </h3>
+              </div>
+            </div>
+            <div className="GmCards-Middle-Middle_Right">
+              <img src={GamesType} alt="icon of the type of games" />
+              <h3 className="game-type">{gamesData.type}</h3>
+            </div>
+            <div className="GmCards-Middle-Right">
+              <img className="game-black-logo" src={gameLogo} alt="" />
             </div>
           </div>
-          <div className="btn-player-container">
+          <span id="underline-GMParticipants"></span>
+          <div className="participants-pictures">
+            {playersProfil.map((userId) => (
+              <div key={userId.id}>
+                <img
+                  src={`${import.meta.env.VITE_BACKEND_URL}/${
+                    userId.profil_picture
+                  }`}
+                  onClick={() => handleProfileClick(userId)}
+                />
+              </div>
+            ))}
+          </div>
+          <div className="iframe-GmCards">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d43214.45269481307!2d0.6537433684748363!3d47.394319723298125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47fcd5b34a979a55%3A0x40dc8d705388430!2sTours!5e0!3m2!1sfr!2sfr!4v1693503608708!5m2!1sfr!2sfr"></iframe>
+          </div>
+          {/* <div className="btn-player-container">
             <button onClick={handleTogglePlayerCards}>SHOW PLAYER</button>
-          </div>
+          </div> */}
         </div>
       )}
       {isPlayerCardsOpen && (
         <PlayerCards
           isOpen={isPlayerCardsOpen}
-          onClose={handleTogglePlayerCards}
+          onClose={() => setIsPlayerCardsOpen(false)}
+          userData={userData}
+          formattedSchedule={formattedSchedule}
         />
       )}
     </div>
