@@ -129,6 +129,18 @@ const display = (req, res) => {
     })
 }
 
+const rpgAdder = (req, res) => {
+  models.users
+    .rpgAdder(req.params.userId, req.params.rpgId)
+    .then(() => {
+      res.status(201).send("Successfully inserted")
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 const updateProfilPicture = async (req, res) => {
   const users = req.body
 
@@ -178,4 +190,5 @@ module.exports = {
   updateProfilPicture,
   verifyUser,
   display,
+  rpgAdder,
 }

@@ -29,6 +29,8 @@ router.get(
   TestimonialsControllers.getTestimonialsCarrousel
 )
 
+router.post("/rpgAdder/:userId/:rpgId", UsersControllers.rpgAdder)
+
 router.use(verifyToken)
 
 router.put(

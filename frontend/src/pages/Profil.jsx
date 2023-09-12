@@ -2,26 +2,22 @@ import React, { useContext, useEffect, useState } from "react"
 import Cookies from "js-cookie"
 import axios from "axios"
 import AuthContext from "../components/AuthContext/AuthContext"
+import RpgAdding from "../components/profilPage/RpgAdding"
+
 import iconProfil from "../assets/Profil/iconProfil.png.png"
 import questionMark from "../assets/Profil/questionMark.png.png"
 import Add2 from "../assets/icon-dashboard/Add2.png"
 import iconSettings from "../assets/Profil/iconSettings.png.png"
 import pinPointer from "../assets/Profil/pinPointer.png.png"
-// import caca from "../../../backend/public/assets/images/rpgPictures/dndIcon.png"
 
 const Profil = () => {
-  const { user, setUser, setUsers } = useContext(AuthContext)
-  // const [gameData, setGameData] = useState({})
   const [isEditing, setIsEditing] = useState(false)
+  const { user, setUser, setUsers } = useContext(AuthContext)
   const idUser = Cookies.get("idUser")
   const [imageUrl, setImageUrl] = useState(null)
-  const [rpgPicture, setRpgPicture] = useState(null)
-  // const [newUsername, setNewUsername] = useState(user.username)
-  // const [switchPassword, setSwitchpassWord] = useState(false)
-  // const [isEditingBioBox, setIsEditingBioBox] = useState(false)
-  // const [newDescription, setNewDescription] = useState(
-  //   user.description_as_player
-  // )
+  const [rpgPictures, setRpgPictures] = useState(null)
+  const [onAddRpg, setOnAddRpg] = useState(false)
+
   const [buttonStates, setButtonStates] = useState({
     profil: false,
     myGames: false,
@@ -62,10 +58,10 @@ const Profil = () => {
   useEffect(() => {
     axios
       .get(`http://localhost:4242/pictureRPG/${idUser}`, { headers })
-      .then((res) => setRpgPicture(res.data))
-  }, [user, isEditing])
+      .then((res) => setRpgPictures(res.data))
+  }, [user, isEditing, onAddRpg])
 
-  console.info(rpgPicture)
+  // console.info(rpgPictures)
   // console.info(idUser)
   // console.info(headers)
   const updateProfilPictureOnServer = async (userId, formData) => {
@@ -108,7 +104,7 @@ const Profil = () => {
     .split("-")
     .reverse()
     .join("-")
-
+  // console.info(`${import.meta.env.VITE_BACKEND_URL}/${rpgPictures[0].rpg_icon}`)
   return (
     <div className="mainContainerProfil">
       <div className="questionMark">
@@ -244,20 +240,25 @@ const Profil = () => {
               <div className="hrDiv">
                 <hr />
               </div>
+              {/* <img src={`${import.meta.env.VITE_BACKEND_URL}/${rpgPictures[0].rpg_icon}`}/>
+              <img src={`${import.meta.env.VITE_BACKEND_URL}/assets/images/profilPictures/dndIcon.png`} />
+              <img src="http://localhost:4242/assets/images/profilPictures/dndIcon.png"/> */}
 
-              {/* <img src={`${import.meta.env.VITE_BACKEND_URL}/pictureRPG/${idUser}`} /> */}
-              {/* <img src="http://localhost:4242/assets/images/rpgPictures/dndIcon.png"/> */}
-
-              {/* <img src={caca}/> */}
-              {rpgPicture.map((rpgPicture) => (
-                <div className="gameBoxGamesList" key={rpgPicture.id}>
-                  <img
-                    src={`${import.meta.env.VITE_BACKEND_URL}/${
-                      rpgPicture.rpg_icon
-                    }`}
-                  />
+              <div className="compoAndMap">
+                <RpgAdding onAddRpg={() => setOnAddRpg(!onAddRpg)} />
+                <div className="gameBoxGamesList">
+                  {rpgPictures.map((rpgPicture, index) => (
+                    <div className="boxRpgPicture" key={index}>
+                      <img
+                        src={`${import.meta.env.VITE_BACKEND_URL}/${
+                          rpgPicture.rpg_icon
+                        }`}
+                        alt={`Image for game with ID ${rpgPicture.rpg_icon}`}
+                      />
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
             <div className="hrDiv">
               <hr />

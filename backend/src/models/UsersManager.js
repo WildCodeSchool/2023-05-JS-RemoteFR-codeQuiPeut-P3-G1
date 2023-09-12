@@ -29,6 +29,13 @@ class UsersManager extends AbstractManager {
     )
   }
 
+  rpgAdder(usersId, rolePlayingGamesId) {
+    return this.database.query(
+      "INSERT INTO users_has_role_playing_games (users_id, role_playing_games_id) VALUES (? ,?)",
+      [usersId, rolePlayingGamesId]
+    )
+  }
+
   update(users) {
     return this.database.query(
       `update ${this.table} set username = ?, email_adress = ?, hashedPassword = ?, other_information = ?, description_as_player = ?, location = ?, profil_picture = ?, description_as_gm = ? where id = ?`,

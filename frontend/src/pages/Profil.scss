@@ -263,12 +263,34 @@
           border-color: #e2d07c;
         }
       }
-      .gameBoxGamesList {
+      .compoAndMap {
         display: flex;
+        flex-direction: row-reverse;
         justify-content: center;
         align-items: center;
-        width: 100%;
-        height: 15vh;
+        .gameBoxGamesList {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 18vh;
+          gap: 20px;
+          margin-top: 10px;
+          .boxRpgPicture {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #180b23;
+            width: 117px;
+            height: 73px;
+            border-radius: 11px;
+            img {
+              width: 94px;
+              height: 30.73px;
+            }
+          }
+        }
       }
     }
 
@@ -358,6 +380,8 @@
   }
   .divButtonSwitchEdit,
   .divButtonSwitchValidate {
+    -webkit-box-shadow: 1px 1px 23px 12px rgba(77, 25, 77, 0.7);
+    box-shadow: 1px 1px 23px 12px rgba(77, 25, 77, 0.7);
     transform: translateY(-50%);
     button {
       font-size: 20px;
