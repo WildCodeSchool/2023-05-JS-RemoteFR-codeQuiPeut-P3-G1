@@ -1,26 +1,41 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
+import { TimePicker } from "react-ios-time-picker"
 import Cookies from "js-cookie"
+import Calendar from "moedim"
 
-import NavBar from "../components/NavBar/Navbar"
-
-import createGameDice from "../assets/icon-create-game/dice.png"
+import createGameDice from "../assets/icon-create-game/dice.svg"
+import hour from "../assets/icon-create-game/horaire.png"
 
 export default function CreateGame() {
+  const [isTimeRequired, setIsTimeRequired] = useState(true)
+
+  const handleDecrement = () => {
+    if (gamePlayersCapacity > 1) {
+      setGamePlayersCapacity(gamePlayersCapacity - 1)
+    }
+  }
+
+  const handleIncrement = () => {
+    setGamePlayersCapacity(gamePlayersCapacity + 1)
+  }
+
   const [gameRPGList, setGameRPGList] = useState([])
   const [departmentList, setDepartementList] = useState([])
   const [departmentId, setDepartementId] = useState("")
   const [cityList, setCityList] = useState([])
   const [gameRPGID, setGameRPGID] = useState("")
   const [gamemasterUsername, setGamemasterUsername] = useState("")
+  const [gameDateToFormat, setGameDateToFormat] = useState(new Date())
+  const [gameHourToFormat, setGameHourToFormat] = useState("00:00")
   const [gameDate, setGameDate] = useState("")
   const [gamePlace, setGamePlace] = useState("")
-  const [gamePlayersCapacity, setGamePlayersCapacity] = useState("")
+  const [gamePlayersCapacity, setGamePlayersCapacity] = useState(1)
   const [gameDesc, setGameDesc] = useState("")
   const [gameType, setGameType] = useState("")
   const [gameName, setGameName] = useState("")
-  // const [gameIsRemote, setGameIsRemote] = useState(0)
   const [gameIsCampaign, setGameIsCampaign] = useState(0)
+  const [gameIsRemote, setGameIsRemote] = useState(0)
 
   const tokenFromCookie = Cookies.get("authToken")
   const idUser = Cookies.get("idUser")
@@ -78,27 +93,42 @@ export default function CreateGame() {
         "http://localhost:4242/games",
         {
           role_playing_game_id: gameRPGID,
-          gm_username: gamemasterUsername,
           schedule: gameDate,
-          city: gamePlace,
           max_players_capacity: gamePlayersCapacity,
           description: gameDesc,
           type: gameType,
           name: gameName,
+          city: gamePlace,
+          is_remote: gameIsRemote,
+          is_campaign: gameIsCampaign,
+          gm_username: gamemasterUsername,
         },
         { headers }
       )
       .then((res) => {
-        if (res.status === 200) {
+        if (res.status === 201) {
           console.info("Partie créée avec succès !")
         }
+        setGamePlayersCapacity(1)
+        setGameHourToFormat("00:00")
         document.getElementById("createGameForm").reset()
-        document.getElementById("createGameSelecter").selectedIndex = 0
+        // document.getElementById("createGameSelecter").selectedIndex = 0
       })
       .catch((error) => {
         console.error("Erreur lors de la création de la partie :", error)
       })
   }
+
+  const formattedDate = (gameDateToFormat) => {
+    const year = gameDateToFormat.getFullYear()
+    const month = String(gameDateToFormat.getMonth() + 1).padStart(2, "0")
+    const day = String(gameDateToFormat.getDate()).padStart(2, "0")
+    return `${year}-${month}-${day}`
+  }
+
+  useEffect(() => {
+    setGameDate(`${formattedDate(gameDateToFormat)}T${gameHourToFormat}:00`)
+  }, [gameHourToFormat, gameDateToFormat])
 
   console.info(
     "finalTest",
@@ -107,6 +137,7 @@ export default function CreateGame() {
     gameType,
     gameRPGID,
     gameIsCampaign,
+    gameIsRemote,
     gamePlayersCapacity,
     gameDesc,
     gamePlace,
@@ -115,20 +146,17 @@ export default function CreateGame() {
 
   return (
     <main id="createGameGlobal">
-      <NavBar />
-      <div id="contentCreateGame">
+      <div id="createGameTitle-Container">
         <div id="createGameTitle">
-          <img src={createGameDice} />
-          <h1>CREATE GAME</h1>
+          <div id="createGameTitle-Img">
+            <img src={createGameDice} />
+          </div>
+          <div id="createGameTitle-Title">
+            <span>CREATE GAME</span>
+          </div>
         </div>
-        {/* <label htmlFor="idGm">
-          <p style={{ color: "white" }}>ID du GM</p>
-          <input
-            type="text"
-            name="idGm"
-            onChange={(e) => setGamemasterUsername(e.target.value)}
-          />
-        </label> */}
+      </div>
+      <div id="contentCreateGame">
         <form id="createGameForm" onSubmit={handleCreateUser}>
           <div id="createGameColumns">
             <div id="createGameFirstGroup">
@@ -138,6 +166,7 @@ export default function CreateGame() {
                   type="text"
                   onChange={(e) => setGameName(e.target.value)}
                   name="guildName"
+                  id="createGameGuildName"
                 />
               </label>
               <label htmlFor="gameTypeSelecter">
@@ -187,12 +216,32 @@ export default function CreateGame() {
               </div>
               <label htmlFor="maxCapacity">
                 <p>Number of Players</p>
-                <input
-                  type="text"
-                  name="maxCapacity"
-                  onChange={(e) => setGamePlayersCapacity(e.target.value)}
-                  maxLength="2"
-                />
+                <div className="formTypeNumber">
+                  <button
+                    type="button"
+                    className="btn-minus"
+                    onClick={handleDecrement}
+                  >
+                    -
+                  </button>
+                  <input
+                    id="createGameQuantity"
+                    max="99"
+                    min="1"
+                    name="maxCapacity"
+                    value={gamePlayersCapacity}
+                    readOnly
+                    onChange={(e) => setGamePlayersCapacity(e.target.value)}
+                  />
+
+                  <button
+                    type="button"
+                    onClick={handleIncrement}
+                    className="btn-plus"
+                  >
+                    +
+                  </button>
+                </div>
               </label>
             </div>
             <div id="createGameSecondGroup">
@@ -204,28 +253,53 @@ export default function CreateGame() {
                   onChange={(e) => setGameDesc(e.target.value)}
                 />
               </label>
+              <div className="checkbox-CreateGame-Remote">
+                <input
+                  type="radio"
+                  name="gameLocation"
+                  className="demo1"
+                  id="radio-Remote"
+                  checked={gameIsRemote === 1}
+                  onChange={() => setGameIsRemote(1)}
+                />
+                <label htmlFor="radio-Remote">Remote</label>
+
+                <input
+                  type="radio"
+                  name="gameLocation"
+                  className="demo1"
+                  id="radio-OnPlace"
+                  checked={gameIsRemote === 0}
+                  onChange={() => setGameIsRemote(0)}
+                />
+                <label htmlFor="radio-OnPlace">On Place</label>
+              </div>
             </div>
             <div id="createGameThirdGroup">
-              <label htmlFor="Department">
-                <p>Department</p>
-                <div className="createGameSelect">
-                  <select
-                    id="departmentNameSelecter"
-                    defaultValue=""
-                    onChange={(event) => setDepartementId(event.target.value)}
-                  >
-                    <option value="" disabled>
-                      Select your department
-                    </option>
-                    {departmentList.map((department) => (
-                      <option key={department.code} value={department.code}>
-                        {department.nom}
+              {gameIsRemote === 1 ? (
+                ""
+              ) : (
+                <label htmlFor="Department">
+                  <p>Department</p>
+                  <div className="createGameSelect">
+                    <select
+                      id="departmentNameSelecter"
+                      defaultValue=""
+                      onChange={(event) => setDepartementId(event.target.value)}
+                    >
+                      <option value="" disabled>
+                        Select your department
                       </option>
-                    ))}
-                  </select>
-                </div>
-              </label>
-              {departmentId !== "" ? (
+                      {departmentList.map((department) => (
+                        <option key={department.code} value={department.code}>
+                          {department.nom}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </label>
+              )}
+              {departmentId !== "" && gameIsRemote !== 1 ? (
                 <label htmlFor="city">
                   <p>City</p>
                   <div className="createGameSelect">
@@ -250,16 +324,46 @@ export default function CreateGame() {
               )}
               <label htmlFor="date">
                 <p>Date</p>
-                <input
-                  type="datetime-local"
-                  onChange={(e) => setGameDate(e.target.value)}
-                  name="date"
+                <Calendar
+                  value={gameDateToFormat}
+                  onChange={(e) => setGameDateToFormat(e)}
+                  id="createGameCalendar"
+                  required
                 />
               </label>
+              {/* <label htmlFor="heure">
+                <p>Hour</p>
+                <input
+                  id="createGameHour"
+                  type="time"
+                  placeholder="00:00"
+                  maxLength="5"
+                  required={isTimeRequired} // Utilisation de l'état pour gérer le required
+                  onFocus={() => setIsTimeRequired(false)} // Désactive le required lorsque l'input est en focus
+                  onBlur={() => setIsTimeRequired(true)} // Réactive le required lorsque l'input perd le focus
+                />
+              </label> */}
+              <label htmlFor="hour">
+                <p>Hour</p>
+                <div className="timePicker-CreateGame">
+                  <TimePicker
+                    onChange={(timeValue) => {
+                      setGameHourToFormat(timeValue)
+                    }}
+                    value={gameHourToFormat}
+                    className="timepicker"
+                    required={isTimeRequired}
+                    onFocus={() => setIsTimeRequired(false)} // Désactive le required lorsque l'input est en focus
+                    onBlur={() => setIsTimeRequired(true)} // Réactive le required lorsque l'input perd le focus
+                  />
+                  <img src={hour} />
+                </div>
+              </label>
+              <div />
             </div>
           </div>
           <div id="createGameButton">
-            <button type="submit">
+            <button type="submit" onClick={handleCreateUser}>
               <span>VALIDATE</span>
             </button>
           </div>

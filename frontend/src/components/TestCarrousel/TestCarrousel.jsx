@@ -21,34 +21,55 @@ function TestCarousel() {
     <div className="carrousel-container">
       <div className="title-carrousel">
         <p>
-          They <span style={{ color: "#e2d07c" }}>Tested</span>, They{" "}
-          <span style={{ color: "#e2d07c" }}>Find</span> Their Guild <br />
+          They{" "}
+          <span
+            style={{ color: "#A4945E", fontStyle: "italic", fontWeight: "400" }}
+          >
+            Tested
+          </span>
+          , They{" "}
+          <span
+            style={{ color: "#A4945E", fontStyle: "italic", fontWeight: "400" }}
+          >
+            Find
+          </span>{" "}
+          Their Guild <br />
           And They{" "}
-          <span style={{ color: "#e2d07c", fontWeight: "bold" }}>Liked It</span>
+          <span
+            style={{ color: "#A4945E", fontStyle: "italic", fontWeight: "400" }}
+          >
+            Liked It
+          </span>
         </p>
       </div>
       <div className="carousel-content">
         <Carousel
-          autoPlay // Active le mode de lecture automatique
+          autoPlay={true} // Active le mode de lecture automatique
           interval={4000} // Définit l'intervalle entre les slides (en millisecondes)
           showArrows={false} // Masque les flèches de navigation
           showThumbs={false} // Masque les miniatures de navigation
-          infiniteLoop // Boucle infinie du carousel
+          infiniteLoop={true} // Boucle infinie du carousel
           showStatus={false} // Masque le statut
-          itemsToShow={1} // Définissez le nombre de slides à afficher
+          centerMode={true} // Activer le mode centre pour afficher le nombre d'éléments souhaité
+          centerSlidePercentage={33.33} // Définir la largeur des éléments centraux
+          className="my-carousel"
         >
           {testimonials.map((test) => (
             <div className="testimonialCard" key={test.id}>
               <div className="jeSaisPas">
-                <img
-                  src={`${import.meta.env.VITE_BACKEND_URL}/${
-                    test.profil_picture
-                  }`}
-                  alt="Profil_picture"
-                />
+                <div className="testimonialImg">
+                  <img
+                    src={`${import.meta.env.VITE_BACKEND_URL}/${
+                      test.profil_picture
+                    }`}
+                    alt="Profil_picture"
+                  />
+                </div>
+                <div className="testimonialUsername">
+                  <h3>{test.username}</h3>
+                </div>
               </div>
               <div className="jeSaisPasContenu">
-                <h3>{test.username}</h3>
                 <p className="textTestimonial">"{test.content}"</p>
               </div>
             </div>
