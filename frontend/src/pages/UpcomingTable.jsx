@@ -325,7 +325,7 @@ function UpcomingTable() {
                 game.schedule.toLowerCase().includes(dateFilter.toLowerCase())
               )
               .filter((game) =>
-                game.name.toLowerCase().includes(nameFilter.toLowerCase())
+                game.guild_name.toLowerCase().includes(nameFilter.toLowerCase())
               )
               .filter(
                 (game) =>

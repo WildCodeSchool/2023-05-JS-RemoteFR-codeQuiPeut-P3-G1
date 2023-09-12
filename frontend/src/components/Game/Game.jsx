@@ -20,7 +20,7 @@ export default function Game({ games, users, rpg }) {
   return (
     <>
       <div className="globalContainerCard">
-        <div className="boxGameCard">{games.name}</div>
+        <div className="boxGameCard">{games.guild_name}</div>
         <div className="boxGameCard">{games.gm_username}</div>
         <div className="boxGameCard">{formattedDate}</div>
         <div className="boxGameCard">{games.city}</div>
