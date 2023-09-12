@@ -109,13 +109,13 @@ CREATE TABLE `game_registrations` (
   `id` int NOT NULL AUTO_INCREMENT,
   `games_id` int NOT NULL,
   `status` enum('pending','accepted','rejected') NOT NULL,
-  `users_id` int NOT NULL,
+  `requester_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `ID_party` (`games_id`),
-  KEY `fk_party_registrations_users1_idx` (`users_id`),
-  CONSTRAINT `fk_party_registrations_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`),
+  KEY `fk_party_registrations_users1_idx` (`requester_id`),
+  CONSTRAINT `fk_party_registrations_users1` FOREIGN KEY (`requester_id`) REFERENCES `users` (`id`),
   CONSTRAINT `party_registrations_ibfk_1` FOREIGN KEY (`games_id`) REFERENCES `games` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,7 +124,7 @@ CREATE TABLE `game_registrations` (
 
 LOCK TABLES `game_registrations` WRITE;
 /*!40000 ALTER TABLE `game_registrations` DISABLE KEYS */;
-INSERT INTO `game_registrations` VALUES (1,1,'pending',1),(2,1,'accepted',2),(3,2,'pending',3),(4,3,'accepted',4),(5,4,'pending',5);
+INSERT INTO `game_registrations` VALUES (1,1,'rejected',2),(2,5,'pending',2),(3,2,'accepted',3),(4,3,'accepted',4),(5,4,'pending',5),(6,1,'accepted',3),(7,4,'pending',1),(8,4,'pending',3);
 /*!40000 ALTER TABLE `game_registrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,11 +142,12 @@ CREATE TABLE `games` (
   `max_players_capacity` tinyint DEFAULT NULL,
   `description` text,
   `type` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
+  `guild_name` varchar(255) DEFAULT NULL,
   `city` varchar(255) DEFAULT NULL,
   `is_remote` tinyint NOT NULL DEFAULT '0',
   `is_campaign` tinyint NOT NULL DEFAULT '0',
   `gm_username` varchar(45) NOT NULL,
+  `gm_id` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `ID_role_playing_game` (`role_playing_game_id`),
   CONSTRAINT `parties_ibfk_1` FOREIGN KEY (`role_playing_game_id`) REFERENCES `role_playing_games` (`id`)
@@ -159,7 +160,7 @@ CREATE TABLE `games` (
 
 LOCK TABLES `games` WRITE;
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
-INSERT INTO `games` VALUES (1,1,'2023-09-15 19:00:00',5,'Join us for an epic fantasy adventure!','Campaign','Rise of Heroes','Avalon',0,1,'user1'),(2,2,'2023-09-20 18:30:00',4,'Explore the galaxy in this Star Wars RPG.','One-shot','Galactic Explorations','Coruscant',1,0,'user2'),(3,3,'2023-09-18 20:00:00',6,'Uncover the secrets of the ancient city.','One-shot','Cthulhu Chronicles','Arkham',0,0,'user3'),(4,4,'2023-09-16 15:00:00',3,'Solve puzzles and mysteries in Victorian London.','Campaign','Sherlock Adventures','London',0,1,'user4'),(5,5,'2023-09-19 14:00:00',5,'Embark on a journey in a high-fantasy world.','Campaign','Epic Odyssey','Narnia',1,1,'user5');
+INSERT INTO `games` VALUES (1,1,'2023-09-15 19:00:00',5,'Join us for an epic fantasy adventure!','Campaign','Rise of Heroes','Avalon',0,1,'user1','1'),(2,2,'2023-09-20 18:30:00',4,'Explore the galaxy in this Star Wars RPG.','One-shot','Galactic Explorations','Coruscant',1,0,'user2','2'),(3,3,'2023-09-18 20:00:00',6,'Uncover the secrets of the ancient city.','One-shot','Cthulhu Chronicles','Arkham',0,0,'user3','3'),(4,4,'2023-09-16 15:00:00',3,'Solve puzzles and mysteries in Victorian London.','Campaign','Sherlock Adventures','London',0,1,'user4','4'),(5,5,'2023-09-19 14:00:00',5,'Embark on a journey in a high-fantasy world.','Campaign','Epic Odyssey','Narnia',1,1,'user5','5');
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -528,4 +529,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-01 16:23:34
+-- Dump completed on 2023-09-12  9:24:12
