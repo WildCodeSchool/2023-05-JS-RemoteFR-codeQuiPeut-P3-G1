@@ -57,7 +57,8 @@
         #gameIsCampaign {
           border-radius: 4px;
           background: #4d194d;
-          padding: 5px 20px 5px 20px;
+          padding: 5px 50px 5px 50px;
+          margin-left: 5%;
           span {
             text-align: center;
             font-family: $content-font;
@@ -65,7 +66,7 @@
             font-style: italic;
             font-weight: 800;
             line-height: normal;
-            color: #a4945e;
+            color: #e2d07c;
           }
         }
       }
@@ -157,6 +158,7 @@
         align-items: center;
         width: 100%;
         gap: 10px;
+        margin-top: 5%;
         span {
           font-family: $content-font;
           font-size: 1vw;
@@ -168,6 +170,13 @@
       .underlinePlayersResume {
         width: 100%;
         border-bottom: 1px solid #180b23;
+      }
+      .playersProfilsResume {
+        display: flex;
+        gap: 2%;
+        padding-left: 2%;
+        // border: 2px solid red;
+        width: 100%;
       }
     }
     .contentRightResumeCreateGame {
@@ -298,6 +307,10 @@
             line-height: 24px; /* 171.429% */
           }
         }
+        .hourSchedule {
+          color: #a4945e;
+          font-size: 1vw;
+        }
       }
     }
   }
@@ -318,8 +331,8 @@
       color: #fff;
       padding: 13px;
       width: 80%;
-      // height: 54px;
       font-size: 1vw;
+      font-family: $content-font;
     }
 
     #editResume {
@@ -328,8 +341,8 @@
       color: #180b23;
       padding: 13px;
       width: 80%;
-      // height: 54px;
       font-size: 1vw;
+      font-family: $content-font;
     }
 
     #sendInvitation {
@@ -339,8 +352,8 @@
       color: #fff;
       padding: 13px;
       width: 80%;
-      // height: 54px;
       font-size: 1vw;
+      font-family: $content-font;
     }
   }
 }

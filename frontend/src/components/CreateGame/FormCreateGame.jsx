@@ -41,6 +41,7 @@ function FormCreateGame({
   setGameIsRemote,
   handleChange,
   handleCreateGame,
+  // headers,
 }) {
   return (
     <>

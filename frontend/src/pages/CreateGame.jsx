@@ -105,7 +105,7 @@ export default function CreateGame() {
           max_players_capacity: gamePlayersCapacity,
           description: gameDesc,
           type: gameType,
-          name: gameName,
+          guild_name: gameName,
           city: gamePlace,
           is_remote: gameIsRemote,
           is_campaign: gameIsCampaign,
@@ -167,7 +167,7 @@ export default function CreateGame() {
         </div>
         <div className="underlineCreateGame"></div>
       </div>
-      {createOrResume === 1 ? (
+      {createOrResume === 0 ? (
         <div className="formCreateGame">
           <FormCreateGame
             isTimeRequired={isTimeRequired}
