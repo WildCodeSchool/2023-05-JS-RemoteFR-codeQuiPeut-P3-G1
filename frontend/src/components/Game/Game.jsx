@@ -9,7 +9,7 @@ export default function Game({ games, users, rpg }) {
     month: "numeric",
     year: "numeric",
     hour: "2-digit",
-    minute: "2-digit",
+    minute: "2-digit"
   })
 
   // jointure à faire pour chopper l'info directement en Back

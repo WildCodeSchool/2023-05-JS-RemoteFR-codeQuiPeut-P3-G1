@@ -45,7 +45,7 @@ function UpcomingTable() {
   const tokenFromCookie = Cookies.get("authToken")
 
   const headers = {
-    Authorization: `Bearer ${tokenFromCookie}`,
+    Authorization: `Bearer ${tokenFromCookie}`
   }
 
   const handleUsernameFilterChange = (event) => {

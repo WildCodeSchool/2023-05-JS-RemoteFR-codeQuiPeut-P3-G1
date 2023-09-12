@@ -21,7 +21,7 @@ const GmCards = ({ onClose }) => {
   const options = {
     year: "numeric",
     month: "2-digit",
-    day: "2-digit",
+    day: "2-digit"
   }
   const formattedSchedule = scheduleDate.toLocaleDateString("fr-FR", options)
 
@@ -29,7 +29,7 @@ const GmCards = ({ onClose }) => {
   const idUser = Cookies.get("idUser")
 
   const headers = {
-    Authorization: `Bearer ${tokenFromCookie}`,
+    Authorization: `Bearer ${tokenFromCookie}`
   }
 
   console.info(gamesData)
@@ -50,7 +50,7 @@ const GmCards = ({ onClose }) => {
     isLoading &&
       axios
         .get(`http://localhost:4242/playersForThisGame/${gamesData.id}`, {
-          headers,
+          headers
         })
         .then((response) => {
           setPlayersProfil(response.data)

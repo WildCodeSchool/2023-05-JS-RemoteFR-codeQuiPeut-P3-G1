@@ -45,7 +45,7 @@ function App() {
             users,
             setUsers,
             user,
-            setUser,
+            setUser
           }}
         >
           <Router>
