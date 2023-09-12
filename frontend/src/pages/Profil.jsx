@@ -28,13 +28,11 @@ const Profil = () => {
     social: false,
   })
 
-  console.info(rpgPicture)
-
   const tokenFromCookie = Cookies.get("authToken")
   const headers = {
     Authorization: `Bearer ${tokenFromCookie}`,
   }
-  console.info(headers)
+
   useEffect(() => {
     axios
       .get(`http://localhost:4242/users`, { headers })
@@ -61,15 +59,15 @@ const Profil = () => {
     setImageUrl(`${import.meta.env.VITE_BACKEND_URL}/${user.profil_picture}`)
   }, [user.profil_picture])
 
-  if (rpgPicture === null) {
-    useEffect(() => {
-      axios
-        .get(`http://localhost:4242/pictureRPG/${idUser}`, { headers })
-        .then((res) => setRpgPicture(res.data))
-    }, [user, isEditing])
-    console.info(idUser)
-  }
+  useEffect(() => {
+    axios
+      .get(`http://localhost:4242/pictureRPG/${idUser}`, { headers })
+      .then((res) => setRpgPicture(res.data))
+  }, [user, isEditing])
 
+  console.info(rpgPicture)
+  // console.info(idUser)
+  // console.info(headers)
   const updateProfilPictureOnServer = async (userId, formData) => {
     try {
       const response = await axios.put(
@@ -110,6 +108,7 @@ const Profil = () => {
     .split("-")
     .reverse()
     .join("-")
+
   return (
     <div className="mainContainerProfil">
       <div className="questionMark">
@@ -246,15 +245,19 @@ const Profil = () => {
                 <hr />
               </div>
 
-              <div className="gameBoxGamesList">
-                <img src="http://localhost:4242/assets/images/rpgPictures/dndIcon.png" />
-                {/* <img src={caca}/> */}
-                {/* {rpgPicture.map((rpgPicture) => (
-                  <option key={rpgPicture.id} value={rpgPicture.id}>
-                    {rpgPicture.myGames}
-                  </option>
-                ))} */}
-              </div>
+              {/* <img src={`${import.meta.env.VITE_BACKEND_URL}/pictureRPG/${idUser}`} /> */}
+              {/* <img src="http://localhost:4242/assets/images/rpgPictures/dndIcon.png"/> */}
+
+              {/* <img src={caca}/> */}
+              {rpgPicture.map((rpgPicture) => (
+                <div className="gameBoxGamesList" key={rpgPicture.id}>
+                  <img
+                    src={`${import.meta.env.VITE_BACKEND_URL}/${
+                      rpgPicture.rpg_icon
+                    }`}
+                  />
+                </div>
+              ))}
             </div>
             <div className="hrDiv">
               <hr />
