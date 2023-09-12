@@ -1,158 +1,30 @@
 .privateMessagesBackground {
-  width: auto;
+  border: 2px solid red;
   height: 100%;
-  background-color: none;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  .headerMessage {
-    border: 2px solid red;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
+  width: 20%;
+  .titreSearch {
+    border: 2px solid purple;
     width: 100%;
-    height: 14vh;
-    position: absolute;
-    top: 0;
-    background-color: #4d194d;
-    z-index: 1;
-    .profilPictureMessages {
-      border-radius: 50%;
-      height: 50px;
-      width: 50px;
-      background-size: cover;
-      border: 3px solid #a4945e;
-    }
-    .messageReceiverName {
-      display: flex;
-      flex-direction: column;
-      h2 {
-        color: #fff;
-        font-family: $ponctual-font;
-        font-size: 25px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-      }
-      h3 {
-        color: $third-font-color;
-        font-size: 15px;
-        font-family: $ponctual-font;
-      }
-    }
-  }
-  .messageBulle {
-    height: fit-content;
-    width: 100%;
-    height: 72vh;
-    position: relative;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    overflow-y: auto;
-    scroll-behavior: smooth;
-    border: 2px solid rgb(11, 255, 11);
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    background: none;
-    #contentConnected {
-      margin: 20px 10px 10px 0;
-      display: flex;
-      flex-direction: row;
-      justify-content: end;
-      .divBulles {
-        background-color: #5f325f;
-        padding: 15px;
-        border-radius: 12px;
-        width: 80vw;
-        p {
-          color: $secondary-font-color;
-          font-family: $content-font;
-        }
-      }
-      img {
-        display: none;
-      }
-    }
-    #contentDisconnected {
-      margin: 20px 10px 10px 10px;
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: start;
-      align-items: end;
-      gap: 10px;
-      .divBulles {
-        width: 80vw;
-        padding: 15px;
-        background-color: #fff;
-        border-radius: 12px;
-        p {
-          list-style: none;
-          color: black;
-          font-family: $content-font;
-        }
-      }
-      img {
-        height: 30px;
-        width: 30px;
-        border-radius: 50%;
-        background-size: cover;
-        border: 2px solid #a4945e;
-      }
-    }
-  }
-
-  .inputMessages {
+    height: 15vh;
     display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 10px;
-    width: 100%;
-    height: 14vh;
-    position: absolute;
-    background-color: #4d194d;
-    bottom: 0;
-    z-index: 1;
-    border: 2px solid orange;
-    .validateButton {
-      width: 30px;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+    h2 {
+      width: 100%;
+      color: $third-font-color;
+    }
+    .searchConversation {
+      background: white;
+      width: 300px;
       height: 30px;
-      fill: $third-font-color;
-      transform: rotate(-90deg);
-      &:active {
-        fill: rgb(237, 127, 127);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      input {
       }
     }
-    .contenu {
-      width: 80%;
-      height: 40px;
-      border-radius: 12px;
-      background-color: #6d386dcf;
-      border: 2px solid $third-font-color;
-      outline: none;
-      padding: 5px;
-      &:focus {
-        background-color: rgb(255, 255, 255);
-        &::placeholder {
-          color: transparent;
-        }
-      }
-    }
-  }
-}
-.toDelete {
-  position: absolute;
-  bottom: 90px;
-  border: 2px solid orange;
-  height: fit-content;
-  opacity: 0.5;
-  .sender {
-    width: 50px;
-  }
-  .recipient {
-    width: 50px;
   }
 }
