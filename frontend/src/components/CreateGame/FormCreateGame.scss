@@ -1,0 +1,520 @@
+#contentCreateGame {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  // border: 2px solid red;
+  // margin-left: 3%;
+  // height: 100%;
+  align-items: center;
+  // border: 1px solid yellow;
+  #createGameForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+    height: 90%;
+    padding: 60px 35px 0 35px;
+    border: 1px solid #a4945e;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    input {
+      height: 4.73vh;
+      padding: 0 0 0 8px;
+      border: none;
+      border-radius: 6px;
+      background: #fff;
+      font-size: 15px;
+      width: 50%;
+      &:focus {
+        outline: 2px solid #a4945e;
+      }
+    }
+    #createGameGuildName {
+      width: 100%;
+    }
+    p {
+      font-family: $content-font;
+      color: $third-font-color;
+      font-size: 1vw;
+    }
+    textarea {
+      border: none;
+      padding: 8px;
+      border-radius: 6px;
+      font-size: 15px;
+      font-family: $content-font;
+      &:focus {
+        outline: 2px solid #a4945e;
+      }
+    }
+    #createGameColumns {
+      display: flex;
+      gap: 10%;
+      width: 100%;
+      height: 100%;
+
+      #createGameFirstGroup,
+      #createGameSecondGroup,
+      #createGameThirdGroup {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        gap: 20px;
+
+        label {
+          display: flex;
+          flex-direction: column;
+          font-size: 1vw;
+          p {
+            margin: 0 0 10px 0;
+          }
+          // #createGameHour {
+          //   margin: 10px 0 0 0;
+          // }
+        }
+        textarea {
+          width: 100%;
+          min-width: 100%;
+          max-width: 100%;
+          height: 20vw;
+        }
+        #createGameSwitchGlobal {
+          display: flex;
+          gap: 10px;
+          border: 1px solid #a4945e;
+          border-radius: 6px;
+          height: 4.73vh;
+          justify-content: center;
+          align-items: center;
+          /* The switch - the box around the slider */
+          #createGameSwitch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 20px;
+          }
+
+          /* Hide default HTML checkbox */
+          #createGameSwitch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+          }
+
+          /* The slider */
+          .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border: 1px solid #a4945e;
+            -webkit-transition: 0.4s;
+            transition: 0.4s;
+          }
+
+          .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            // left: 4px;
+            // bottom: 4px;
+            background: linear-gradient(#a4945e, #e2d07c);
+            -webkit-transition: 0.4s;
+            transition: 0.4s;
+          }
+
+          input:checked + .slider:before {
+            -webkit-transform: translateX(30px);
+            -ms-transform: translateX(30px);
+            transform: translateX(30px);
+          }
+
+          /* Rounded sliders */
+          .slider.round {
+            border-radius: 20px;
+          }
+
+          .slider.round:before {
+            border-radius: 50%;
+          }
+          /* End of the switch - the box around the slider */
+        }
+        .formTypeNumber {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          border: 1px solid #a4945e;
+          border-radius: 6px;
+          padding: 0 10px 0 10px;
+
+          input {
+            appearance: none; /* Initialize the appearance */
+            width: 100%;
+            height: 4.73vh;
+            padding: 0 50px;
+            text-align: center;
+            font-size: 1vw;
+            color: $third-font-color;
+            background: none;
+            outline: none;
+            &::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+            }
+            &::-webkit-outer-spin-button {
+              -webkit-appearance: none;
+            }
+          }
+          .btn-minus,
+          .btn-plus {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $third-font-color;
+            border: none;
+            background: none;
+            text-align: center;
+            font-size: 2vw;
+          }
+          .btn-minus {
+            left: 10px;
+          }
+          .btn-plus {
+            right: 10px;
+          }
+        }
+
+        .checkbox-CreateGame-Remote {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 0 0 25px 0;
+          gap: 10px;
+          font-size: 1vw;
+          font-family: $content-font;
+          color: $button-gold;
+
+          input[type="radio"].demo1 {
+            display: none;
+          }
+          input[type="radio"].demo1 + label {
+            padding: 0.3rem 0.5rem;
+            border: 1px dashed $button-gold;
+            border-radius: 4px;
+          }
+          input[type="radio"].demo1:checked + label {
+            border: 1px solid $button-gold;
+            color: #fff;
+            background-color: $button-gold;
+          }
+        }
+
+        #createGameHour[type="time"] {
+          display: flex;
+          border: none;
+          color: #2a2c2d;
+          font-size: 14px;
+          font-family: helvetica;
+          width: 40%;
+          height: 100%;
+          background: none;
+        }
+
+        /* Wrapper around the hour, minute, second, and am/pm fields as well as 
+          the up and down buttons and the 'X' button */
+        #createGameHour[type="time"]::-webkit-datetime-edit-fields-wrapper {
+          display: flex;
+        }
+
+        /* The space between the fields - between hour and minute, the minute and 
+          second, second and am/pm */
+        #createGameHour[type="time"]::-webkit-datetime-edit-text {
+          padding: 19px 4px;
+        }
+
+        /* The naming convention for the hour, minute, second, and am/pm field is
+          `-webkit-datetime-edit-{field}-field` */
+
+        /* Hour */
+        #createGameHour[type="time"]::-webkit-datetime-edit-hour-field {
+          background-color: #f2f4f5;
+          border-radius: 15%;
+          padding: 19px 13px;
+        }
+
+        /* Minute */
+        #createGameHour[type="time"]::-webkit-datetime-edit-minute-field {
+          background-color: #f2f4f5;
+          border-radius: 15%;
+          padding: 19px 13px;
+        }
+      }
+
+      .jdiNPu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        --moedim-primary: #180b23;
+        border: 1px solid #180b23;
+        border-radius: 4px;
+        background: rgb(255, 255, 255);
+        font-family: $content-font;
+        font-size: 1.11vw;
+        line-height: 28px;
+        color: rgb(23, 23, 23);
+        width: 100%;
+        // height: 100%;
+        padding: 20px 12px 16px 12px;
+      }
+      .bwNdeo {
+        width: 100%;
+        display: flex;
+        margin-bottom: 10%;
+        gap: 8px;
+        -webkit-box-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+      }
+      .kJIOyz {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .iNTkPl {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .YPIdN {
+        line-height: 24px;
+        font-size: 0.8vw;
+        display: table-cell;
+        font-weight: 400;
+        vertical-align: middle;
+        cursor: pointer;
+        outline: none;
+        position: relative;
+        border: 1px solid rgb(255, 255, 255);
+        border-radius: 50%;
+        background: transparent;
+        box-sizing: border-box;
+        font-family: $content-font;
+      }
+      .YPIdN[aria-pressed="true"] {
+        border-radius: 50%;
+        background: linear-gradient(180deg, #180b23 0%, #752b75 100%);
+        color: rgb(255, 255, 255);
+      }
+      .hsZXZs {
+        color: var(--gray-100, #666);
+        text-align: center;
+        font-feature-settings: "clig" off, "liga" off;
+        /* Android/Subtitle 2 */
+        font-family: Balsamiq Sans;
+        font-size: 1vw;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px; /* 171.429% */
+      }
+      .dHWzoH {
+        color: #180b23;
+        font-feature-settings: "clig" off, "liga" off;
+        font-family: $content-font;
+        font-size: 0.9vw;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px; /* 171.429% */
+      }
+      .createGameSelect {
+        position: relative;
+        display: flex;
+        line-height: 3;
+        // background: #5c6664;
+        overflow: hidden;
+        border-radius: 6px;
+        select {
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          -ms-appearance: none;
+          appearance: none;
+          box-shadow: none;
+          background-image: none;
+          // flex: 1;
+          height: 4.73vh;
+          width: 100%;
+          padding: 0 0.5em;
+          color: #666;
+          cursor: pointer;
+          // height: 36px;
+          font-family: $content-font;
+          font-size: 0.8vw;
+          border-radius: 6px;
+          border: none;
+        }
+        select::-ms-expand {
+          display: none;
+        }
+        &::after {
+          content: url("../src/assets/icon-create-game/arrow-select.svg");
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          position: absolute;
+          top: 0;
+          right: 0;
+          background: $navbar-color;
+          cursor: pointer;
+          pointer-events: none;
+          transition: 0.25s all ease;
+          width: 25%;
+          height: 100%;
+        }
+      }
+      #createGameDepartmentCity {
+        gap: 20px;
+        width: 100%;
+        display: flex;
+      }
+
+      #createGameDepartment {
+        gap: 20px;
+        width: 100%;
+      }
+    }
+  }
+  #createGameButton {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    // transform: translateY(45%);
+    // margin-left: 3%;
+
+    button {
+      background: $navbar-color;
+      // width: 15vw;
+      // height: 3.87vh;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      padding: 11px 12px 11px 12px;
+      span {
+        font-family: $content-font;
+        color: $button-gold;
+        font-size: 1.5vw;
+        text-align: center;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+      }
+    }
+  }
+}
+
+.timePicker-CreateGame {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+
+  img {
+    width: 50px;
+  }
+}
+
+.react-ios-time-picker-popup {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99998;
+
+  .react-ios-time-picker {
+    width: 30%;
+    margin-bottom: 30%;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 11px 15px #0005;
+  }
+  .react-ios-time-picker-btn-cancel {
+    font-size: 1vw;
+    font-weight: 300;
+  }
+  .react-ios-time-picker-cell-inner-hour:hover,
+  .react-ios-time-picker-cell-inner-minute:hover,
+  .react-ios-time-picker-cell-inner-hour-format:hover {
+    background-color: #180b23;
+    color: white;
+    width: 100%;
+  }
+  .react-ios-time-picker-cell-inner-selected {
+    /* font-weight: 500; */
+    color: #180b23;
+    font-size: 1vw;
+    width: 100%;
+  }
+  .react-ios-time-picker-colon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    color: #180b23;
+    position: relative;
+    z-index: 100;
+    font-weight: 600;
+  }
+  .react-ios-time-picker-btn-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    background-color: #180b23;
+    border-bottom: 1px solid #333;
+    z-index: 100;
+  }
+  .react-ios-time-picker-btn {
+    padding: 10px 15px;
+    font-size: 1vw;
+    color: #fff;
+    transition: all 150ms linear;
+    font-weight: 500;
+    z-index: 1;
+  }
+  .react-ios-time-picker-selected-overlay {
+    position: absolute;
+    border-radius: 6px;
+    background-color: #fff;
+    pointer-events: none;
+    margin: 0 10px;
+    left: 0;
+    right: 0;
+    z-index: 1;
+  }
+
+  .react-ios-time-picker-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    background-color: $button-gold;
+    width: 100%;
+    overflow: hidden;
+    padding: 20px 0;
+  }
+}
