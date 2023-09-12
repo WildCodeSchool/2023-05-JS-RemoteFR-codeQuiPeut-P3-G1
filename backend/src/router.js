@@ -28,7 +28,7 @@ router.get(
   "/testimonialsCarrousel",
   TestimonialsControllers.getTestimonialsCarrousel
 )
-
+// tout ce qui est en bas de ce bout de code demandera d'être log avec un compte
 router.use(verifyToken)
 
 router.put(
