@@ -20,10 +20,11 @@ class GamesManager extends AbstractManager {
         games.max_players_capacity,
         games.description,
         games.type,
-        games.name,
+        games.guild_name,
         games.city,
         games.is_remote,
         games.is_campaign,
+        games.gm_id,
       ]
     )
   }
@@ -38,7 +39,7 @@ class GamesManager extends AbstractManager {
         games.city,
         games.max_players_capacity,
         games.description,
-        games.name,
+        games.guild_name,
         games.type,
       ]
     )

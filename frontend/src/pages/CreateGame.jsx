@@ -26,6 +26,7 @@ export default function CreateGame() {
   const [cityList, setCityList] = useState([])
   const [gameRPGID, setGameRPGID] = useState("")
   const [gamemasterUsername, setGamemasterUsername] = useState("")
+  const [gamemasterId, setGamemasterId] = useState()
   const [gameDateToFormat, setGameDateToFormat] = useState(new Date())
   const [gameHourToFormat, setGameHourToFormat] = useState("00:00")
   const [gameDate, setGameDate] = useState("")
@@ -46,6 +47,7 @@ export default function CreateGame() {
   }
 
   console.info(gamemasterUsername)
+  console.info("bonjour", gamemasterId)
 
   useEffect(() => {
     axios
@@ -56,8 +58,11 @@ export default function CreateGame() {
   useEffect(() => {
     axios
       .get(`http://localhost:4242/users/${idUser}`, { headers })
-      .then((res) => setGamemasterUsername(res.data.username))
-  }, [])
+      .then((res) => {
+        setGamemasterUsername(res.data.username)
+        setGamemasterId(res.data.id)
+      })
+  }, [idUser])
 
   useEffect(() => {
     axios
@@ -105,6 +110,7 @@ export default function CreateGame() {
           is_remote: gameIsRemote,
           is_campaign: gameIsCampaign,
           gm_username: gamemasterUsername,
+          gm_id: gamemasterId,
         },
         { headers }
       )
