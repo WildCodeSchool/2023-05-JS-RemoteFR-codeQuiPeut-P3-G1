@@ -17,14 +17,8 @@ class GamesManager extends AbstractManager {
         games.role_playing_games_id,
         games.gm_username,
         games.schedule,
-        games.city,
         games.max_players_capacity,
         games.description,
-        games.guild_name,
-        games.type,
-        games.gm_id,
-        games.is_remote,
-        games.is_campaign,
       ]
     )
   }
