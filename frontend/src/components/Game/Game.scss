@@ -1,22 +1,37 @@
+@import "../../Variable.scss";
+
 .boxGameCard {
-  color: white;
-  height: 50px;
+  height: 5vh;
   width: 100%;
   // border: 1px solid red;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  font-family: $content-font;
+  font-size: 0.92vw;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  &:hover {
+    color: #180b23 ;
+  }
 }
 
 .globalContainerCard {
-  border: 3px solid rgb(194 177 108);
+  border: 1px solid #e2d07c;
   display: flex;
-  // width: 100%;
+  width: 100%;
+  color: #d9d9d9;
   justify-content: center;
   justify-content: space-around;
   align-items: center;
   margin-top: 20px;
-  margin-bottom: 20px;
+  // margin-bottom: 20px;
   gap: 30px;
-  margin: 20px;
+  // margin: 20px;
+  &:hover {
+    background-color: #fff;
+    color: #180b23;
+  }
 }
