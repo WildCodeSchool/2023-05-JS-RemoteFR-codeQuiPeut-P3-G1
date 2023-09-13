@@ -61,7 +61,7 @@ export default function FutureGames() {
                     <img id="logoAdd" src={Add} alt="logo of a cross" />
                   </button>
                 </Link>
-                <Link to="/UpcomingTable">
+                <Link to="/upcoming-table">
                   <button type="button" className="sideButton">
                     <img
                       id="logoSearch"
@@ -74,17 +74,17 @@ export default function FutureGames() {
               <div className="infoGames_FG_Container">
                 <div className="infoGames_FG">
                   <div className="infoGames_FG_Text">
-                    <div>
+                    <div className="infoGames_FG_TextContent">
                       <span id="goldenText_FG">WITH </span>
                       <span id="future-GM">{gameGMData.gm_username}</span>{" "}
                     </div>
                     <span id="lineSeparator_FG"></span>
-                    <div>
+                    <div className="infoGames_FG_TextContent">
                       <span id="goldenText_FG">ON </span>
-                      {gameGMData.name}
+                      {gameGMData.guild_name}
                     </div>
                     <span id="lineSeparator_FG"></span>
-                    <div>
+                    <div className="infoGames_FG_TextContent">
                       <span id="goldenText_FG">ON </span>
                       {formattedSchedule}
                     </div>
@@ -107,7 +107,7 @@ export default function FutureGames() {
                     <img id="logoAdd" src={Add} alt="logo of a cross" />
                   </button>
                 </Link>
-                <Link to="/UpcomingTable">
+                <Link to="/upcoming-table">
                   <button type="button" className="sideButton">
                     <img
                       id="logoSearch"
@@ -123,7 +123,7 @@ export default function FutureGames() {
                   upcoming games or click on the "FIND YOUR PARTY" button.
                 </p>
               </div>
-              <Link to="/UpcomingTable">
+              <Link to="/upcoming-table">
                 <button id="partyFinder" type="button">
                   FIND YOUR PARTY
                 </button>

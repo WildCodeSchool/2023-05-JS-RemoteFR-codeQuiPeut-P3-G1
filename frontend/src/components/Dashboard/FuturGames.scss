@@ -68,17 +68,28 @@
           align-items: center;
           width: 100%;
           gap: 10px;
+          font-size: 1vw;
+          text-align: center;
 
-          #goldenText_FG {
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-            background: linear-gradient(180deg, #e2d07c 0%, #a4945e 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+          .infoGames_FG_TextContent {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 5px;
+            #goldenText_FG {
+              font-size: 1vw;
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;
+              background: linear-gradient(180deg, #e2d07c 0%, #a4945e 100%);
+              background-clip: text;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+            }
           }
+
+          
           #lineSeparator_FG {
             width: 1px;
             height: 35px;

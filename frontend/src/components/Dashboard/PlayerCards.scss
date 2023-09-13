@@ -50,6 +50,13 @@
       gap: 11px;
       margin-right: 74px;
       margin-left: 25px;
+      .PlayerCards_Inside_SecondElement_ImgProfil {
+        img {
+          width: 80%;
+          border-radius: 50%;
+          border: 2px solid #A4945E;
+        }
+      }
       .PlayerCards_Inside_SecondElement_LineSeparator {
         width: 100%;
         border-bottom: 1px solid #180b23;

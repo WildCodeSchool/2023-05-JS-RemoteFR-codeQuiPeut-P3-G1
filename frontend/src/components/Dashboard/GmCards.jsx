@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 import Cookies from "js-cookie"
 
-import gmProfilePic from "../../assets/GmCards-assets/GMProfilePic.png"
+// import gmProfilePic from "../../assets/GmCards-assets/GMProfilePic.png"
 import closeModal from "../../assets/GmCards-assets/closeModal.png"
 import gameLogo from "../../assets/GmCards-assets/gameLogo.png"
 import Schedule from "../../assets/GmCards-assets/scheduleGMProfil.svg"
@@ -79,7 +79,12 @@ const GmCards = ({ onClose }) => {
         <div className="GmCards-container">
           <div className="GmCards-header">
             <div className="profile-picture">
-              <img src={gmProfilePic} alt="" />
+              <img
+                src={`${import.meta.env.VITE_BACKEND_URL}/${
+                  gamesData.profil_picture
+                }`}
+                alt="image player profil"
+              />
             </div>
             <div className="GM-Name">
               <span>{gamesData.gm_username} - AS GM</span>
@@ -137,15 +142,15 @@ const GmCards = ({ onClose }) => {
           </div>
           <span id="underline-GMParticipants"></span>
           <div className="participants-pictures">
-            {playersProfil.map((userId) => (
-              <div key={userId.id}>
-                <img
-                  src={`${import.meta.env.VITE_BACKEND_URL}/${
-                    userId.profil_picture
-                  }`}
-                  onClick={() => handleProfileClick(userId)}
-                />
-              </div>
+            {playersProfil.map((user) => (
+              <img
+                key={user.id}
+                src={`${import.meta.env.VITE_BACKEND_URL}/${
+                  user.profil_picture
+                }`}
+                alt={`${user.id}-profil`}
+                onClick={() => handleProfileClick(user)}
+              />
             ))}
           </div>
           <div className="iframe-GmCards">
