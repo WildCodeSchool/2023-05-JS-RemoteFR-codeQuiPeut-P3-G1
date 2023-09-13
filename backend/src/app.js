@@ -9,11 +9,29 @@ const express = require("express")
 
 const app = express()
 
-// use some application-level middlewares
+const cors = require("cors")
+// const http = require("http");
+
+// const server = http.createServer(app)
+
+// Socket.io
+// const { Server } = require("socket.io");
+
+// const io = new Server(server, {
+//   cors: {
+//     origin: process.env.FRONTEND_URL ?? "http://localhost:3000",
+//     methods: ["GET", "POST"],
+//   }
+// })
+// // use some application-level middlewares
+
+// io.on("connection", (socket) => {
+//   socket.on("send_message", (data) => {
+//     socket.broadcast.emit("receive_message", data)
+//   })
+// })
 
 app.use(express.json())
-
-const cors = require("cors")
 
 app.use(
   cors({

@@ -12,6 +12,7 @@ export default function PrivateMessages() {
   }
 
   const [messagePreview, setMessagePreview] = useState([])
+  const [selectedUser, setSelectUser] = useState(null)
 
   useEffect(() => {
     axios
@@ -26,6 +27,10 @@ export default function PrivateMessages() {
       })
   }, [])
 
+  const handleSelectedUser = (message) => {
+    setSelectUser(message)
+  }
+
   return (
     <div className="privateMessagesBackground">
       <div className="selectConversation">
@@ -38,7 +43,11 @@ export default function PrivateMessages() {
         </div>
         <div className="displayMessages">
           {messagePreview.map((message) => (
-            <div className="messageContent" key={message.date}>
+            <div
+              className="messageContent"
+              key={message.date}
+              onClick={() => handleSelectedUser(message)}
+            >
               <div className="msgProfilPicture">
                 <img
                   src={`${import.meta.env.VITE_BACKEND_URL}/${
@@ -58,7 +67,11 @@ export default function PrivateMessages() {
         </div>
       </div>
       <div className="conversation">
-        <Conversation />
+        <Conversation
+          senderId={selectedUser?.users_id_sender}
+          senderName={selectedUser?.username}
+          senderProfilPicture={selectedUser?.profil_picture}
+        />
       </div>
     </div>
   )

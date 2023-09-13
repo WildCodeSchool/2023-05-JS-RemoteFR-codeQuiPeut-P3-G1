@@ -1,7 +1,7 @@
 .divConversation {
   width: 100%;
   height: 100%;
-  padding: 50px;
+  padding: 100px;
   .conversationHeader {
     border-bottom: 2px solid $third-font-color;
     height: 15%;
@@ -35,6 +35,38 @@
         font-size: 3vh;
         font-family: $ponctual-font;
       }
+    }
+  }
+  .convContents {
+    height: 80%;
+    width: 100%;
+  }
+  .convInput {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    input {
+      background: none;
+      border: 2px solid $third-font-color;
+      border-radius: 4px;
+      width: 100%;
+      height: 50%;
+      color: aliceblue;
+      cursor: text;
+      transition: 0.5s;
+      font-size: 15px;
+      padding: 5px;
+      &:focus {
+        width: 100%;
+        transition: 0.5s;
+      }
+    }
+    #sendingArrow {
+      width: 40px;
+      cursor: pointer;
     }
   }
 }
