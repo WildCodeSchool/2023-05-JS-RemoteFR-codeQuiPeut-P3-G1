@@ -140,6 +140,17 @@ const rpgAdder = (req, res) => {
       res.sendStatus(500)
     })
 }
+const rpgLesser = (req, res) => {
+  models.users
+    .rpgLesser(req.params.userId, req.params.rpgId)
+    .then(() => {
+      res.status(201).send("Successfully Deleted")
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
 
 const updateProfilPicture = async (req, res) => {
   const users = req.body
@@ -191,4 +202,5 @@ module.exports = {
   verifyUser,
   display,
   rpgAdder,
+  rpgLesser,
 }

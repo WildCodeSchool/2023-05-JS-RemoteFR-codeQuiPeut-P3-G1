@@ -9,6 +9,7 @@ import questionMark from "../assets/Profil/questionMark.png.png"
 import Add2 from "../assets/icon-dashboard/Add2.png"
 import iconSettings from "../assets/Profil/iconSettings.png.png"
 import pinPointer from "../assets/Profil/pinPointer.png.png"
+import deleteCross from "../assets/Profil/deleteCross.png"
 
 const Profil = () => {
   const [isEditing, setIsEditing] = useState(false)
@@ -17,6 +18,7 @@ const Profil = () => {
   const [imageUrl, setImageUrl] = useState(null)
   const [rpgPictures, setRpgPictures] = useState(null)
   const [onAddRpg, setOnAddRpg] = useState(false)
+  const [refreshPictures, setRefreshPictures] = useState(false)
 
   const [buttonStates, setButtonStates] = useState({
     profil: false,
@@ -59,11 +61,28 @@ const Profil = () => {
     axios
       .get(`http://localhost:4242/pictureRPG/${idUser}`, { headers })
       .then((res) => setRpgPictures(res.data))
-  }, [user, isEditing, onAddRpg])
+  }, [user, isEditing, onAddRpg, refreshPictures])
 
   // console.info(rpgPictures)
   // console.info(idUser)
   // console.info(headers)
+
+  const handleDeleteRpg = (rpgID) => {
+    axios
+      .delete(
+        `${import.meta.env.VITE_BACKEND_URL}/rpgLesser/${idUser}/${rpgID}`,
+        {},
+        { headers }
+      )
+      .then((res) => {
+        console.info("RPG delete successfully", res.data)
+        setRefreshPictures(!refreshPictures)
+      })
+      .catch((err) => {
+        console.error("A problem occured", err)
+      })
+  }
+
   const updateProfilPictureOnServer = async (userId, formData) => {
     try {
       const response = await axios.put(
@@ -240,15 +259,17 @@ const Profil = () => {
               <div className="hrDiv">
                 <hr />
               </div>
-              {/* <img src={`${import.meta.env.VITE_BACKEND_URL}/${rpgPictures[0].rpg_icon}`}/>
-              <img src={`${import.meta.env.VITE_BACKEND_URL}/assets/images/profilPictures/dndIcon.png`} />
-              <img src="http://localhost:4242/assets/images/profilPictures/dndIcon.png"/> */}
-
               <div className="compoAndMap">
                 <RpgAdding onAddRpg={() => setOnAddRpg(!onAddRpg)} />
                 <div className="gameBoxGamesList">
                   {rpgPictures.map((rpgPicture, index) => (
                     <div className="boxRpgPicture" key={index}>
+                      <div className="delete">
+                        <img
+                          src={deleteCross}
+                          onClick={() => handleDeleteRpg(rpgPicture.id)}
+                        />
+                      </div>
                       <img
                         src={`${import.meta.env.VITE_BACKEND_URL}/${
                           rpgPicture.rpg_icon
@@ -385,8 +406,20 @@ const Profil = () => {
               <div className="hrDiv">
                 <hr />
               </div>
-
-              <div className="gameBoxGamesList">composant gamelist</div>
+              <div className="compoAndMap">
+                <div className="gameBoxGamesList">
+                  {rpgPictures.map((rpgPicture, index) => (
+                    <div className="boxRpgPicture" key={index}>
+                      <img
+                        src={`${import.meta.env.VITE_BACKEND_URL}/${
+                          rpgPicture.rpg_icon
+                        }`}
+                        alt={`Image for game with ID ${rpgPicture.rpg_icon}`}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
             <div className="hrDiv">
               <hr />

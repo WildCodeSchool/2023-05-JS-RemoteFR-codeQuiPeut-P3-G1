@@ -268,15 +268,18 @@
         flex-direction: row-reverse;
         justify-content: center;
         align-items: center;
+        margin-top: 10px;
+        height: 18vh;
+        gap: 20px;
         .gameBoxGamesList {
           display: flex;
           flex-wrap: wrap;
           justify-content: center;
           align-items: center;
           width: 100%;
-          height: 18vh;
+          height: 100%;
           gap: 20px;
-          margin-top: 10px;
+
           .boxRpgPicture {
             display: flex;
             justify-content: center;
@@ -285,6 +288,20 @@
             width: 117px;
             height: 73px;
             border-radius: 11px;
+            position: relative;
+            .delete {
+              position: absolute;
+              top: 0;
+              right: 0;
+              width: 20px;
+              height: 20px;
+              cursor: pointer;
+              img {
+                width: 20px;
+                height: 20px;
+              }
+            }
+
             img {
               width: 94px;
               height: 30.73px;

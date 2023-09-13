@@ -21,7 +21,7 @@ class UsersManager extends AbstractManager {
 
   rpgDisplay(id) {
     return this.database.query(
-      `select r.rpg_icon
+      `select r.rpg_icon, r.id
       FROM role_playing_games AS r
       INNER JOIN users_has_role_playing_games AS uhr ON r.id = uhr.role_playing_games_id
       WHERE uhr.users_id = ?`,
@@ -32,6 +32,13 @@ class UsersManager extends AbstractManager {
   rpgAdder(usersId, rolePlayingGamesId) {
     return this.database.query(
       "INSERT INTO users_has_role_playing_games (users_id, role_playing_games_id) VALUES (? ,?)",
+      [usersId, rolePlayingGamesId]
+    )
+  }
+
+  rpgLesser(usersId, rolePlayingGamesId) {
+    return this.database.query(
+      "DELETE FROM users_has_role_playing_games WHERE users_id = ? AND role_playing_games_id = ?",
       [usersId, rolePlayingGamesId]
     )
   }

@@ -30,6 +30,7 @@ router.get(
 )
 
 router.post("/rpgAdder/:userId/:rpgId", UsersControllers.rpgAdder)
+router.delete("/rpgLesser/:userId/:rpgId", UsersControllers.rpgLesser)
 
 router.use(verifyToken)
 

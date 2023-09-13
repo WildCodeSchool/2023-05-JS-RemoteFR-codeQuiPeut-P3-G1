@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `guilden` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `guilden`;
 -- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: guilden
@@ -327,7 +325,7 @@ CREATE TABLE `role_playing_games` (
   `description` text,
   `rpg_icon` varchar(255) NOT NULL DEFAULT 'url_icon',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -336,7 +334,7 @@ CREATE TABLE `role_playing_games` (
 
 LOCK TABLES `role_playing_games` WRITE;
 /*!40000 ALTER TABLE `role_playing_games` DISABLE KEYS */;
-INSERT INTO `role_playing_games` VALUES (1,'Dungeons & Dragons','Fantasy role-playing game','assets/images/profilPictures/dndIcon.png'),(2,'Star Wars RPG','Science fiction role-playing game','assets/images/profilPictures/chill.png'),(3,'Call of Cthulhu','Horror role-playing game','assets/images/profilPictures/callOfCthulhu.png'),(4,'Mysteries of Sherlock Holmes','Mystery role-playing game','assets/images/profilPictures/cyberpunk.png'),(5,'Pathfinder','Fantasy role-playing game','assets/images/profilPictures/kuff.png');
+INSERT INTO `role_playing_games` VALUES (1,'Dungeons & Dragons','Fantasy role-playing game','assets/images/profilPictures/dndIcon.png'),(2,'Star Wars RPG','Science fiction role-playing game','assets/images/profilPictures/chill.png'),(3,'Call of Cthulhu','Horror role-playing game','assets/images/profilPictures/callOfCthulhu.png'),(4,'Mysteries of Sherlock Holmes','Mystery role-playing game','assets/images/profilPictures/cyberpunk.png'),(5,'Pathfinder','Fantasy role-playing game','assets/images/profilPictures/kuff.png'),(6,'Dungeons & Dragons','Fantasy role-playing game','assets/images/profilPictures/dndIcon.png'),(7,'Dungeons & Dragons','Fantasy role-playing game','assets/images/profilPictures/dndIcon.png'),(8,'Dungeons & Dragons','Fantasy role-playing game','assets/images/profilPictures/dndIcon.png'),(9,'Dungeons & Dragons','Fantasy role-playing game','assets/images/profilPictures/dndIcon.png');
 /*!40000 ALTER TABLE `role_playing_games` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -516,7 +514,7 @@ CREATE TABLE `users_has_role_playing_games` (
 
 LOCK TABLES `users_has_role_playing_games` WRITE;
 /*!40000 ALTER TABLE `users_has_role_playing_games` DISABLE KEYS */;
-INSERT INTO `users_has_role_playing_games` VALUES (1,1),(2,2),(3,3),(4,4),(5,5);
+INSERT INTO `users_has_role_playing_games` VALUES (1,1),(2,2),(1,3),(3,3),(4,4),(5,5);
 /*!40000 ALTER TABLE `users_has_role_playing_games` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -529,4 +527,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-12 12:42:51
+-- Dump completed on 2023-09-13 15:03:02
