@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import axios from "axios"
 import Cookies from "js-cookie"
 import AuthContext from "../components/AuthContext/AuthContext"
@@ -18,6 +18,8 @@ const Dashboard = () => {
   const headers = {
     Authorization: `Bearer ${tokenFromCookie}`
   }
+
+  const [hasFriendRequest, setHasFriendRequest] = useState(false)
 
   useEffect(() => {
     axios
@@ -41,6 +43,19 @@ const Dashboard = () => {
       })
   }, [])
 
+  useEffect(() => {
+    axios
+      .get(`http://localhost:4242/joiningRequests/${idUser}`, { headers })
+      .then((res) => {
+        if (res.data.length > 0) {
+          setHasFriendRequest(true)
+        }
+      })
+      .catch((err) => {
+        console.error("Problème lors du chargement des friend requests", err)
+      })
+  }, [])
+
   return (
     <>
       <div className="mainDivDashboard">
@@ -60,13 +75,12 @@ const Dashboard = () => {
         <div className="dashboardAllComponents">
           <div className="friends-games-container">
             <FuturGames />
-            <FriendRequest />
+            {hasFriendRequest && <FriendRequest />}
           </div>
           <div className="dashboardComponents">
             <MyProfil idUser={idUser} />
           </div>
         </div>
-        {/* <NavBar /> */}
       </div>
     </>
   )

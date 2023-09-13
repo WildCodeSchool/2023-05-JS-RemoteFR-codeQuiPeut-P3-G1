@@ -12,6 +12,7 @@ import Cookies from "js-cookie"
 export default function FutureGames() {
   const [isGmCardsOpen, setIsGmCardsOpen] = useState(false)
   const [gameGMData, setGameGMData] = useState({})
+  const isEmpty = (obj) => Object.keys(obj).length === 0
 
   const tokenFromCookie = Cookies.get("authToken")
   const idUser = Cookies.get("idUser")
@@ -53,7 +54,7 @@ export default function FutureGames() {
           <h2>MY FUTURE GAMES</h2>
         </div>
         <div className="inside_myFutureGames_Container">
-          {gameGMData ? (
+          {!isEmpty(gameGMData) ? (
             <div className="display_myfutureGames">
               <div className="logoContentFG">
                 <Link to="/create-game">
@@ -117,17 +118,18 @@ export default function FutureGames() {
                   </button>
                 </Link>
               </div>
-              <div>
+              <div className="messsageNoData">
                 <p>
                   You are not registered for any games yet. Check the list of
                   upcoming games or click on the "FIND YOUR PARTY" button.
                 </p>
+
+                <Link to="/upcoming-table">
+                  <button id="partyFinder" type="button">
+                    FIND YOUR PARTY
+                  </button>
+                </Link>
               </div>
-              <Link to="/upcoming-table">
-                <button id="partyFinder" type="button">
-                  FIND YOUR PARTY
-                </button>
-              </Link>
             </div>
           )}
         </div>

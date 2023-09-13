@@ -33,14 +33,18 @@
   }
   .Friends-content {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 
     .friends {
       display: flex;
       align-items: center;
       justify-content: start;
       flex-direction: column;
-      width: 30vw;
-      height: 20vh;
+      width: 60%;
+      height: 100%;
       border-radius: 8px;
       border: 4px solid #4d194d;
       background: rgba(217, 217, 217, 0.22);
@@ -50,16 +54,19 @@
         padding-bottom: 5px;
         border-bottom: 2px solid $third-font-color;
         width: 100%;
-        height: 30%;
+        // height: 30%;
         display: flex;
         justify-content: space-between;
         .requesterProfilPicture {
-          width: fit-content;
+          // width: fit-content;
+          display: flex;
+          justify-content: center;
+          width: 10%;
           img {
-            aspect-ratio: 1/1;
+            // aspect-ratio: 1/1;
             border-radius: 50%;
-            width: auto;
-            height: 100%;
+            width: 100%;
+            // height: 100%;
             border: 2px solid $third-font-color;
           }
         }
@@ -67,7 +74,7 @@
           display: flex;
           justify-content: start;
           align-items: center;
-          height: 100%;
+          // height: 100%;
           width: fit-content;
           p {
             margin: 0 5px 0 5px;
@@ -80,8 +87,8 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          height: 100%;
-          width: 70%;
+          // height: 100%;
+          // width: 70%;
           span {
             display: inline;
             font-size: 1vw;
@@ -96,8 +103,8 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          height: 100%;
-          width: 80%;
+          // height: 100%;
+          // width: 80%;
           p {
             color: $secondary-font-color;
             font-family: $content-font;
@@ -105,14 +112,15 @@
           }
         }
         .requesterButton {
-          height: 100%;
-          width: fit-content;
+          // height: 100%;
+          // width: fit-content;
           display: flex;
           justify-content: center;
           align-items: center;
           gap: 5px;
           #validateButton {
-            border: 2px solid $third-font-color;
+            border: 1px solid $third-font-color;
+            padding: 4px;
             aspect-ratio: 1/1;
             height: 80%;
             background: $background-gradient-home-page;
@@ -123,7 +131,7 @@
             }
           }
           #refuseButton {
-            border: 2px solid $secondary-font-color;
+            border: 1px solid $secondary-font-color;
             aspect-ratio: 1/1;
             object-fit: cover;
             height: 80%;
