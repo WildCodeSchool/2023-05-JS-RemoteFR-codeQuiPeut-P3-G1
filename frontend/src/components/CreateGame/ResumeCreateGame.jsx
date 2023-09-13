@@ -14,6 +14,15 @@ function ResumeCreateGame({
   setCreateOrResume,
   gameDateToFormat,
   headers,
+  setGameRPGID,
+  setGamePlayersCapacity,
+  setGameDesc,
+  setGameHourToFormat,
+  setGameType,
+  setGameName,
+  setGamePlace,
+  setGameIsRemote,
+  setGameIsCampaign,
 }) {
   const usernameGm = Cookies.get("usernameGm")
   let username = usernameGm
@@ -39,6 +48,19 @@ function ResumeCreateGame({
   console.info("username please", username)
   console.info(gamemasterPicture)
   console.info("url", `http://localhost:4242/games/${username}`)
+
+  const handleReset = () => {
+    setCreateOrResume(1)
+    setGameRPGID("")
+    setGamePlayersCapacity(1)
+    setGameDesc("")
+    setGameHourToFormat("00:00")
+    setGameType("")
+    setGameName("")
+    setGamePlace("")
+    setGameIsRemote(0)
+    setGameIsCampaign(0)
+  }
 
   return (
     <>
@@ -143,11 +165,15 @@ function ResumeCreateGame({
             <button
               type="submit"
               id="createNewGame"
-              onClick={() => setCreateOrResume(1)}
+              onClick={() => handleReset()}
             >
               CREATE NEW GAME
             </button>
-            <button type="button" id="editResume">
+            <button
+              type="button"
+              id="editResume"
+              onClick={() => setCreateOrResume(2)}
+            >
               EDIT
             </button>
             <button type="button" id="sendInvitation">

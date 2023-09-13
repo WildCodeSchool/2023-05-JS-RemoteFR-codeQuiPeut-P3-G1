@@ -45,7 +45,10 @@ router.put("/users/:id", hashPassword, UsersControllers.edit)
 router.get("/users", UsersControllers.browse)
 router.delete("/users/:id", UsersControllers.destroy)
 
-router.get("/games/:username", GamesControllers.selectGamesByGameMasterUsername)
+router.get(
+  "/games/user/:username",
+  GamesControllers.selectGamesByGameMasterUsername
+)
 router.get("/games", GamesControllers.browse)
 router.get("/games/:id", GamesControllers.read)
 router.put("/games/:id", GamesControllers.edit)

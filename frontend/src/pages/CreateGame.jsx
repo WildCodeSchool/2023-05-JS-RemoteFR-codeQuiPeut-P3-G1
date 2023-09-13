@@ -2,6 +2,7 @@ import axios from "axios"
 import React, { useEffect, useState } from "react"
 import FormCreateGame from "../components/CreateGame/FormCreateGame"
 import ResumeCreateGame from "../components/CreateGame/ResumeCreateGame"
+import EditCreateGame from "../components/CreateGame/EditCreateGame"
 
 import Cookies from "js-cookie"
 
@@ -24,7 +25,7 @@ export default function CreateGame() {
   const [departmentList, setDepartementList] = useState([])
   const [departmentId, setDepartementId] = useState("")
   const [cityList, setCityList] = useState([])
-  const [gameRPGID, setGameRPGID] = useState("")
+  const [gameRPGID, setGameRPGID] = useState()
   const [gamemasterUsername, setGamemasterUsername] = useState("")
   const [gamemasterId, setGamemasterId] = useState()
   const [gameDateToFormat, setGameDateToFormat] = useState(new Date())
@@ -117,9 +118,16 @@ export default function CreateGame() {
       .then((res) => {
         if (res.status === 201) {
           console.info("Partie créée avec succès !")
-          setCreateOrResume(0)
+          setGameRPGID("")
           setGamePlayersCapacity(1)
+          setGameDesc("")
           setGameHourToFormat("00:00")
+          setGameHourToFormat("00:00")
+          setGameType("")
+          setGameName("")
+          setGamePlace("")
+          setGameIsRemote(0)
+          setGameIsCampaign(0)
           document.getElementById("createGameForm").reset()
         }
         // document.getElementById("createGameSelecter").selectedIndex = 0
@@ -141,17 +149,18 @@ export default function CreateGame() {
   }, [gameHourToFormat, gameDateToFormat])
 
   console.info(
-    "finalTest",
-    gamemasterUsername,
+    "createTest",
     gameName,
     gameType,
     gameRPGID,
+    typeof gameRPGID,
     gameIsCampaign,
-    gameIsRemote,
     gamePlayersCapacity,
     gameDesc,
+    gameIsRemote,
     gamePlace,
-    gameDate
+    gameDate,
+    gameRPGList
   )
 
   return (
@@ -162,12 +171,16 @@ export default function CreateGame() {
             <img src={createGameDice} />
           </div>
           <div id="createGameTitle-Title">
-            <span>CREATE GAME</span>
+            {createOrResume === 2 ? (
+              <span>EDIT GAME</span>
+            ) : (
+              <span>CREATE GAME</span>
+            )}
           </div>
         </div>
         <div className="underlineCreateGame"></div>
       </div>
-      {createOrResume === 0 ? (
+      {createOrResume === 2 ? (
         <div className="formCreateGame">
           <FormCreateGame
             isTimeRequired={isTimeRequired}
@@ -211,24 +224,68 @@ export default function CreateGame() {
             setCreateOrResume={setCreateOrResume}
           />
         </div>
-      ) : (
+      ) : createOrResume === 0 ? (
         <div className="ResumeCreateGame">
           <ResumeCreateGame
             gameName={gameName}
+            setGameName={setGameName}
             gameIsCampaign={gameIsCampaign}
+            setGameIsCampaign={setGameIsCampaign}
+            gameIsRemote={gameIsRemote}
+            setGameIsRemote={setGameIsRemote}
             gamemasterUsername={gamemasterUsername}
             idUser={idUser}
             headers={headers}
             gameType={gameType}
+            setGameType={setGameType}
             gamePlace={gamePlace}
+            setGamePlace={setGamePlace}
             setCreateOrResume={setCreateOrResume}
             gameDate={gameDate}
             gameDesc={gameDesc}
             gameDateToFormat={gameDateToFormat}
             gamePlayersCapacity={gamePlayersCapacity}
-            gameIsRemote={gameIsRemote}
+            setGameRPGID={setGameRPGID}
+            setGameHourToFormat={setGameHourToFormat}
           />
         </div>
+      ) : (
+        <EditCreateGame
+          headers={headers}
+          gameRPGList={gameRPGList}
+          departmentList={departmentList}
+          cityList={cityList}
+          gameIsCampaign={gameIsCampaign}
+          setGameIsCampaign={setGameIsCampaign}
+          setGameIsRemote={setGameIsRemote}
+          setGameDate={setGameDate}
+          gameName={gameName}
+          setGameName={setGameName}
+          gameIsRemote={gameIsRemote}
+          gameDateToFormat={gameDateToFormat}
+          setGameDateToFormat={setGameDateToFormat}
+          gameHourToFormat={gameHourToFormat}
+          setGameHourToFormat={setGameHourToFormat}
+          departmentId={departmentId}
+          setDepartementId={setDepartementId}
+          handleChange={handleChange}
+          handleDecrement={handleDecrement}
+          handleIncrement={handleIncrement}
+          gamePlayersCapacity={gamePlayersCapacity}
+          setGamePlayersCapacity={setGamePlayersCapacity}
+          gameType={gameType}
+          setGameType={setGameType}
+          gameRPGID={gameRPGID}
+          setGameRPGID={setGameRPGID}
+          gameDesc={gameDesc}
+          setGameDesc={setGameDesc}
+          isTimeRequired={isTimeRequired}
+          setIsTimeRequired={setIsTimeRequired}
+          gameDate={gameDate}
+          gamePlace={gamePlace}
+          setGamePlace={setGamePlace}
+          setCreateOrResume={setCreateOrResume}
+        />
       )}
     </main>
   )

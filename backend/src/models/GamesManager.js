@@ -31,23 +31,25 @@ class GamesManager extends AbstractManager {
 
   update(games) {
     return this.database.query(
-      `UPDATE ${this.table} SET role_playing_game_id = ?, gm_username = ?, schedule = DATE_FORMAT(?, '%Y-%m-%d %H:%i'), city = ?, max_players_capacity = ?, description = ? WHERE id = ?`,
+      `UPDATE ${this.table} SET guild_name = ?, type = ?, role_playing_game_id = ?, is_campaign = ?, max_players_capacity = ?, description = ?, is_remote = ?, city = ?, schedule = DATE_FORMAT(?, '%Y-%m-%d %H:%i') WHERE id = ?`,
       [
-        games.role_playing_games_id,
-        games.gm_username,
-        games.schedule,
-        games.city,
-        games.max_players_capacity,
-        games.description,
         games.guild_name,
         games.type,
+        games.role_playing_game_id,
+        games.is_campaign,
+        games.max_players_capacity,
+        games.description,
+        games.is_remote,
+        games.city,
+        games.schedule,
+        games.id,
       ]
     )
   }
 
   getGamesByGameMasterUsername(username) {
     return this.database.query(
-      `SELECT g.id, g.guild_name, u.profil_picture, g.type, g.is_campaign, g.is_remote, g.max_players_capacity, g.description, g.city, g.schedule, g.gm_username, rpg.name as rpg_name, rpg.rpg_icon as rpg_icon
+      `SELECT g.id, g.guild_name, u.profil_picture, g.type, g.is_campaign, g.is_remote, g.max_players_capacity, g.description, g.city, g.schedule, g.gm_username, rpg.name as rpg_name, rpg.id as rpg_id, rpg.rpg_icon as rpg_icon
     FROM ${this.table} as g
     inner join users as u
     on u.username = g.gm_username
