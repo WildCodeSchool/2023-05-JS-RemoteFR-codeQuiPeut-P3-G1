@@ -184,7 +184,7 @@
       justify-content: space-around;
       align-items: center;
       flex-direction: column;
-      // width: 20%;
+      width: 20%;
       // height: 100%;
       // border: 2px solid blue;
       // gap: 20px;
@@ -321,8 +321,9 @@
           }
         }
         .hourSchedule {
+          width: 100%;
           color: #a4945e;
-          font-size: 1vw;
+          font-size: 0.85vw;
         }
       }
     }
