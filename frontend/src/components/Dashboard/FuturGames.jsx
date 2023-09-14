@@ -17,7 +17,7 @@ export default function FutureGames() {
   const idUser = Cookies.get("idUser")
 
   const headers = {
-    Authorization: `Bearer ${tokenFromCookie}`,
+    Authorization: `Bearer ${tokenFromCookie}`
   }
 
   const toggleGmCards = () => {
@@ -27,7 +27,7 @@ export default function FutureGames() {
   const options = {
     year: "numeric",
     month: "2-digit",
-    day: "2-digit",
+    day: "2-digit"
   }
   const formattedSchedule = scheduleDate.toLocaleDateString("en-Us", options)
 

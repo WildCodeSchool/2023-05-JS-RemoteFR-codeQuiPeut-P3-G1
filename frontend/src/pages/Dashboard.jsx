@@ -3,8 +3,6 @@ import axios from "axios"
 import Cookies from "js-cookie"
 import AuthContext from "../components/AuthContext/AuthContext"
 
-// import NavBar from "../components/NavBar/Navbar"
-
 import questionMark from "../assets/icon-dashboard/questionMark.png"
 import Notepad from "../assets/icon-dashboard/Notepad.png"
 
@@ -16,10 +14,9 @@ const Dashboard = () => {
   const { setUser, setUsers } = useContext(AuthContext)
   const tokenFromCookie = Cookies.get("authToken")
   const idUser = Cookies.get("idUser")
-  // const storedUser = JSON.parse(Cookies.get("loggedInUser"))
 
   const headers = {
-    Authorization: `Bearer ${tokenFromCookie}`,
+    Authorization: `Bearer ${tokenFromCookie}`
   }
 
   useEffect(() => {

@@ -4,15 +4,15 @@ function FAQ() {
   const faqs = [
     {
       title: "Is there a minimum age to register ?",
-      content: <p>Réponse à la question 1</p>,
+      content: <p>Réponse à la question 1</p>
     },
     {
       title: "Is GUILD free to access ?",
-      content: <p>Réponse à la question 2</p>,
+      content: <p>Réponse à la question 2</p>
     },
     {
       title: "Can write feedback and rating after session ?",
-      content: <p>Réponse à la question 3</p>,
+      content: <p>Réponse à la question 3</p>
     },
     {
       title: "Can I create a table to play with my friends",
@@ -21,8 +21,8 @@ function FAQ() {
           YES ! Every registered member can create a table with his own rules,
           share the link to his friends and play with them as GM or Player.
         </p>
-      ),
-    },
+      )
+    }
   ]
 
   const [expandedIndex, setExpandedIndex] = useState(-1)

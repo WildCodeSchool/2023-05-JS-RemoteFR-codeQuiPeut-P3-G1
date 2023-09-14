@@ -15,7 +15,7 @@ function SignUp() {
         username: signUpUsername,
         email_adress: signUpEmail,
         password: signUpPassword,
-        location: signUpCity,
+        location: signUpCity
       })
       .then((res) => {
         if (res.status === 201) {
