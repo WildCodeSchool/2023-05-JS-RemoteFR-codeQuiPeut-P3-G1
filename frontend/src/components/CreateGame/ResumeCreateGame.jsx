@@ -134,12 +134,14 @@ function ResumeCreateGame({
             </div>
             <div className="contentRightResumeCreateGame">
               <span className="titleRPG">Based on RPG</span>
-              <img
-                src={`${import.meta.env.VITE_BACKEND_URL}/${
-                  gamesList[0].rpg_icon
-                }`}
-                alt="logo of RPG"
-              />
+              <div id="boxRpgPicture">
+                <img
+                  src={`${import.meta.env.VITE_BACKEND_URL}/${
+                    gamesList[0].rpg_icon
+                  }`}
+                  alt="logo of RPG"
+                />
+              </div>
               <div className="gameDateResume">
                 <div id="gameDate">
                   <img src={Schedule} alt="icon of schedule" />
