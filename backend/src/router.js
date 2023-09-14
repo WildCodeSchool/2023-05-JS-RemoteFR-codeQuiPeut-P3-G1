@@ -20,6 +20,7 @@ const UsersFiltersControllers = require("./controllers/UsersFiltersControllers")
 const RolePlayingGamesControllers = require("./controllers/RolePlayingGamesController")
 const PrivateMessagesControllers = require("./controllers/PrivateMessagesControllers")
 const GamesHasUsersControllers = require("./controllers/GamesHasUsersControllers.js")
+// const { default: PrivateMessages } = require("../../frontend/src/components/PrivateMessages/PrivateMessages.jsx")
 
 router.post("/login", UsersControllers.verifyUser, verifyPassword)
 router.post("/users", hashPassword, UsersControllers.add)
@@ -43,6 +44,11 @@ router.put(
 router.post(
   "/dispatchPlayer/:requesterId/:gameId",
   GamesHasUsersControllers.add
+)
+
+router.get(
+  "/messagePreview/:idReceiver",
+  PrivateMessagesControllers.messagesPreview
 )
 
 router.post("/rpgAdder/:userId/:rpgId", UsersControllers.rpgAdder)

@@ -157,7 +157,7 @@ function ResumeCreateGame({
                 </div>
                 <div className="hourSchedule">
                   Game Time :{" "}
-                  {new Date(gamesList[0].schedule).toLocaleString("en-EN", {
+                  {new Date(gamesList[0].schedule).toLocaleString("fr-FR", {
                     hour: "2-digit",
                     minute: "2-digit"
                   })}

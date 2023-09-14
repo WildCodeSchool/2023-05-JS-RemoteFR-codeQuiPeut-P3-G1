@@ -53,14 +53,18 @@ const verifyPassword = (req, res) => {
 const verifyToken = (req, res, next) => {
   try {
     const authorizationHeader = req.get("Authorization")
-
-    if (req.url.startsWith("/assets/images/profilPictures")) {
+    // const authorizationHeader2 = req.headers
+    if (req.url.startsWith("/assets/images")) {
       return next()
     }
+    // if (req.url.startsWith("/assets/images/profilPictures")) {
+    //   return next()
+    // }
 
     // if (req.url.startsWith("/login")) {
     //   return next()
     // }
+    // console.log(authorizationHeader2, "poulet")
 
     if (authorizationHeader == null) {
       throw new Error("Authorization header is missing")

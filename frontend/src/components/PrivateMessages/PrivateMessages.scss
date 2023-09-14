@@ -1,154 +1,133 @@
 .privateMessagesBackground {
-  width: auto;
   height: 100%;
-  background-color: none;
-  position: relative;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  .headerMessage {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
-    height: 14vh;
-    top: 0;
-    position: fixed;
-    background-color: #4d194d;
-    z-index: 1;
-    .profilPictureMessages {
-      border-radius: 50%;
-      height: 50px;
-      width: 50px;
-      background-size: cover;
-      border: 3px solid #a4945e;
-    }
-    .messageReceiverName {
+  .selectConversation {
+    height: 100%;
+    width: 500px;
+    .titreSearch {
+      width: 100%;
+      height: 15vh;
       display: flex;
+      justify-content: center;
+      align-items: center;
       flex-direction: column;
+      text-align: center;
+      gap: 15px;
       h2 {
-        color: #fff;
-        font-family: $ponctual-font;
-        font-size: 25px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-      }
-      h3 {
+        width: 100%;
         color: $third-font-color;
-        font-size: 15px;
-        font-family: $ponctual-font;
+        font-family: $content-font;
+        font-weight: 500;
+        font-size: 30px;
       }
-    }
-  }
-  .messageBulle {
-    height: fit-content;
-    width: 100%;
-    height: 72vh;
-    position: relative;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    overflow-y: auto;
-    scroll-behavior: smooth;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    background: none;
-    #contentConnected {
-      margin: 20px 10px 10px 0;
-      display: flex;
-      flex-direction: row;
-      justify-content: end;
-      .divBulles {
-        background-color: #5f325f;
-        padding: 15px;
-        border-radius: 12px;
-        width: 80vw;
-        p {
-          color: $secondary-font-color;
-          font-family: $content-font;
-        }
-      }
-      img {
-        display: none;
-      }
-    }
-    #contentDisconnected {
-      margin: 20px 10px 10px 10px;
-      display: flex;
-      flex-direction: row-reverse;
-      justify-content: start;
-      align-items: end;
-      gap: 10px;
-      .divBulles {
-        width: 80vw;
-        padding: 15px;
-        background-color: #fff;
-        border-radius: 12px;
-        p {
-          list-style: none;
-          color: black;
-          font-family: $content-font;
-        }
-      }
-      img {
+      .searchConversation {
+        background: white;
+        width: 300px;
         height: 30px;
-        width: 30px;
-        border-radius: 50%;
-        background-size: cover;
-        border: 2px solid #a4945e;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 4px;
+        input {
+          height: 100%;
+          width: 100%;
+          padding: 4px;
+          cursor: text;
+          background: none;
+          &:focus {
+            background: rgba(211, 211, 211, 0.709);
+            border-radius: 4px 0 0 4px;
+          }
+        }
+        img {
+          height: 100%;
+          width: auto;
+          aspect-ratio: auto;
+          padding: 2px;
+          cursor: pointer;
+          transform: translateY(3px);
+        }
       }
     }
-  }
-
-  .inputMessages {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
-    height: 14vh;
-    position: fixed;
-    background-color: #4d194d;
-    bottom: 0;
-    z-index: 1;
-    .validateButton {
-      width: 30px;
-      height: 30px;
-      fill: $third-font-color;
-      transform: rotate(-90deg);
-      &:active {
-        fill: rgb(237, 127, 127);
+    .displayMessages {
+      width: 100%;
+      height: 84vh;
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      flex-direction: column;
+      overflow-y: scroll;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
       }
-    }
-    .contenu {
-      width: 80%;
-      height: 40px;
-      border-radius: 12px;
-      background-color: #6d386dcf;
-      border: 2px solid $third-font-color;
-      outline: none;
-      padding: 5px;
-      &:focus {
-        background-color: rgb(255, 255, 255);
-        &::placeholder {
-          color: transparent;
+      element::-webkit-scrollbar-track {
+        background: transparent; /* Cache le fond par défaut */
+      }
+      element::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.2); /* Couleur semi-transparente */
+        border-radius: 4px; /* Coins arrondis */
+        transition: background-color 0.3s; /* Transition douce lors du survol */
+      }
+      element::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.5
+        ); /* Couleur plus foncée lors du survol */
+      }
+      .messageContent {
+        width: 350px;
+        height: 80px;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 10px 0 10px;
+        border-bottom: 2px solid $third-font-color;
+        cursor: pointer;
+        &:hover {
+          opacity: 0.5;
+        }
+        .msgProfilPicture {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          img {
+            aspect-ratio: 1/1;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid $third-font-color;
+          }
+        }
+        .msgName {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          p {
+            color: white;
+            font-size: 20px;
+            font-family: $ponctual-font;
+          }
+        }
+        .msgdate {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          p {
+            color: grey;
+            font-size: 10px;
+            font-family: $content-font;
+          }
         }
       }
     }
   }
-}
-.toDelete {
-  position: absolute;
-  bottom: 90px;
-  border: 2px solid orange;
-  height: fit-content;
-  opacity: 0.5;
-  .sender {
-    width: 50px;
-  }
-  .recipient {
-    width: 50px;
+  .conversation {
+    border-left: 2px solid grey;
+    height: 100%;
+    width: 100%;
   }
 }

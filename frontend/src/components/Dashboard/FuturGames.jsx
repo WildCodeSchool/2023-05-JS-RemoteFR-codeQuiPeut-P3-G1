@@ -83,7 +83,7 @@ export default function FutureGames() {
                     <div className="infoGames_FG">
                       <div className="infoGames_FG_Text">
                         <div className="infoGames_FG_TextContent">
-                          <span id="goldenText_FG">WITH </span>
+                          <span id="goldenText_FG">GM</span>
                           <span id="future-GM">{game.gm_username}</span>
                         </div>
                         <span id="lineSeparator_FG"></span>
