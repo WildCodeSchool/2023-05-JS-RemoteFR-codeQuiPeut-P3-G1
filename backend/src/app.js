@@ -10,26 +10,9 @@ const express = require("express")
 const app = express()
 
 const cors = require("cors")
-// const http = require("http");
+const http = require("http")
 
-// const server = http.createServer(app)
-
-// Socket.io
-// const { Server } = require("socket.io");
-
-// const io = new Server(server, {
-//   cors: {
-//     origin: process.env.FRONTEND_URL ?? "http://localhost:3000",
-//     methods: ["GET", "POST"],
-//   }
-// })
-// // use some application-level middlewares
-
-// io.on("connection", (socket) => {
-//   socket.on("send_message", (data) => {
-//     socket.broadcast.emit("receive_message", data)
-//   })
-// })
+const server = http.createServer(app)
 
 app.use(express.json())
 
@@ -39,7 +22,37 @@ app.use(
     optionsSuccessStatus: 200,
   })
 )
+// Socket.io
 
+const { Server } = require("socket.io")
+
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-type", "Authorization"],
+    credentials: true,
+  },
+})
+// use some application-level middlewares
+
+io.on("connection", (socket) => {
+  console.info("Client connected")
+  const token = socket.handshake.headers.authorization
+  console.info("===============================", token)
+
+  // if (!isValidToken(token)) {
+  //   console.info("Invalid token, disconnecting client")
+  //   socket.disconnect();
+  // }
+
+  socket.on("send_message", (data) => {
+    console.info("************** poulet ***********", data)
+    socket.broadcast.emit("receive_message", data)
+  })
+})
+
+// server.listen(4221, () => console.log("je suis un poulet");)
 // import and mount the API routes
 
 const router = require("./router")
@@ -78,6 +91,4 @@ if (fs.existsSync(reactIndexFile)) {
   })
 }
 
-// ready to export
-
-module.exports = app
+module.exports = { app, server }
