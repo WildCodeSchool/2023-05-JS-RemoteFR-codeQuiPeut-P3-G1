@@ -96,12 +96,11 @@ function EditCreateGame({
         { headers }
       )
       .then((res) => {
-        if (res.status === 201) {
-          console.info("Partie créée avec succès !")
+        if (res.status === 204) {
+          console.info("Partie modifiée avec succès !")
           setGameRPGID("")
           setGamePlayersCapacity(1)
           setGameDesc("")
-          setGameHourToFormat("00:00")
           setGameHourToFormat("00:00")
           setGameType("")
           setGameName("")
@@ -137,7 +136,6 @@ function EditCreateGame({
     <>
       {gamesList.length > 0 && (
         <>
-          <p>je suis dans edit</p>
           <div id="contentCreateGame">
             <form
               id="createGameForm"

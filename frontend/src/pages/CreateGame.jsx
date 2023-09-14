@@ -128,6 +128,7 @@ export default function CreateGame() {
           setGamePlace("")
           setGameIsRemote(0)
           setGameIsCampaign(0)
+          setCreateOrResume(0)
           document.getElementById("createGameForm").reset()
         }
         // document.getElementById("createGameSelecter").selectedIndex = 0

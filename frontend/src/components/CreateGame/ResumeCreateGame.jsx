@@ -32,11 +32,11 @@ function ResumeCreateGame({
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4242/games/${username}`, { headers })
+      .get(`http://localhost:4242/games/user/${username}`, { headers })
       .then((res) => setGamesList(res.data))
   }, [usernameGm])
 
-  console.info(gamesList)
+  console.info("la liste des jeux", gamesList)
 
   const [gamemasterPicture, setGamemasterPicture] = useState([])
   useEffect(() => {
@@ -108,9 +108,7 @@ function ResumeCreateGame({
                   </span>
                 )}
               </div>
-              <div className="titlePresentationResume">
-                Presentation of Game
-              </div>
+              <div className="titlePresentationResume">Game Presentation</div>
               <div className="presentationGameResumeContainer">
                 <div className="presentationGameResume">
                   {gamesList[0].description}
@@ -145,7 +143,7 @@ function ResumeCreateGame({
               <div className="gameDateResume">
                 <div id="gameDate">
                   <img src={Schedule} alt="icon of schedule" />
-                  <span>Game date</span>
+                  <span>Game Date</span>
                 </div>
                 <div className="underlineGameDateResume"></div>
                 <div className="calendarResume">
@@ -156,7 +154,7 @@ function ResumeCreateGame({
                   />
                 </div>
                 <div className="hourSchedule">
-                  Game hours : {gamesList[0].schedule.substring(11, 16)}
+                  Game Time : {gamesList[0].schedule.substring(11, 16)}
                 </div>
               </div>
             </div>
@@ -176,9 +174,9 @@ function ResumeCreateGame({
             >
               EDIT
             </button>
-            <button type="button" id="sendInvitation">
+            {/* <button type="button" id="sendInvitation">
               SEND INVITATION
-            </button>
+            </button> */}
           </div>
         </div>
       )}
