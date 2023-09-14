@@ -188,6 +188,19 @@
       // height: 100%;
       // border: 2px solid blue;
       // gap: 20px;
+
+      #boxRpgPicture {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #180b23;
+        width: 150px;
+        height: 100px;
+        border-radius: 11px;
+        img {
+          width: 130px;
+        }
+      }
       .titleRPG {
         color: #180b23;
         font-family: $content-font;
