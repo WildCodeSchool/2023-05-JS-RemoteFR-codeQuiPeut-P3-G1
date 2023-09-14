@@ -1,0 +1,75 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.Global-GuildPhone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+
+  .CreateGuildText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 3rem 0;
+    width: 100vw;
+    height: 100vh;
+
+    .letscreate {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-family: $title-font;
+      color: $third-font-color;
+      align-items: center;
+      margin: 2rem;
+
+      h2 {
+        text-align: center;
+        color: $third-font-color;
+        font-family: $title-font;
+        font-size: 3.24vw;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+      hr {
+        border: 1px solid $third-font-color;
+        width: 100%;
+        margin: 2rem;
+      }
+    }
+
+    .createParagraph {
+      color: $third-font-color;
+      font-size: 1.45vw;
+      margin: 0 3rem;
+      font-family: $content-font;
+      height: 100vh;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+  }
+  .bg-wave-landingPage {
+    position: absolute;
+    display: flex;
+    top: 40%;
+    width: 100%;
+    height: 100%;
+    svg {
+      width: 100vw;
+      height: 100%;
+      fill: linear-gradient(180deg, #4d194d 0%, rgba(77, 25, 77, 0) 100%);
+    }
+  }
+
+  .GuildPhone {
+    width: 70vw;
+    height: 100vh;
+  }
+}

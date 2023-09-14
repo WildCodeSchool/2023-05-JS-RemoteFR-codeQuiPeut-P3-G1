@@ -1,19 +1,16 @@
-@import "../../Variable.scss";
-
 .container-FAQ {
-  width: 100vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 30px;
+
   .title-FAQ {
     span {
       text-align: center;
       color: $third-font-color;
       font-family: $title-font;
-      font-size: 3.063em;
+      font-size: 3.24vw;
       font-style: normal;
       font-weight: 400;
       line-height: normal;
@@ -32,11 +29,16 @@
       align-items: center;
       flex-direction: column;
       width: 80vw;
+      height: 6vh;
       border-radius: 20px;
       background: rgba(217, 217, 217, 0.1);
       margin-bottom: 10px;
+      &.expanded {
+        height: 15vh;
+        justify-content: space-around;
+      }
       h2 {
-        font-size: 2.188em;
+        font-size: 2.31vw;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -62,7 +64,7 @@
       }
       .card-content {
         p {
-          font-size: 1.875em;
+          font-size: 1.98vw;
           font-style: normal;
           font-weight: 400;
           line-height: normal;

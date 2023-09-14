@@ -1,5 +1,3 @@
-import "./Footer.scss"
-
 import LogoFooter from "../../assets/logo/logo-footer-guild.png"
 
 function Footer() {

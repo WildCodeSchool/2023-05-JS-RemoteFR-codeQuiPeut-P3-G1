@@ -1,38 +1,34 @@
-@import "../../../Variable.scss";
 .LogIn-Container {
+  width: 100%;
+  height: auto;
+  .button-LogIn {
+    button {
+      width: 124px;
+      height: 38px;
+      border-radius: 5px;
+      border: none;
+      background: #f6f6e9;
+      color: #4d194d;
+      text-align: center;
+      font-size: 1.05vw;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      font-family: $title-font;
+      cursor: pointer;
+    }
+  }
+  .card-LogIn-container {
     width: 100%;
-    height: auto;
-    .button-LogIn {
-        button {
-            width: 124px;
-            height: 38px;
-            border-radius: 5px;
-            border: none;
-            background: #F6F6E9;
-            color: #4D194D;
-            text-align: center;
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: normal;
-            font-family: $title-font;
-            cursor: pointer;
-        }
+    height: fit-content;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    .card-LogIn {
+      display: flex;
+      justify-content: center;
     }
-    .card-LogIn-container {
-        width: 100%;
-        height: fit-content;
-        position: absolute;
-        top: 0;
-        left: 0;
-        display: flex;
-        justify-content: center;
-        .card-LogIn {
-            display: flex;
-            justify-content: center;
-            width: 50%;
-            height: 100%;
-        }
-    }
+  }
 }
-

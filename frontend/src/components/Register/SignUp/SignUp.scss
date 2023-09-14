@@ -1,140 +1,124 @@
-@import "../../../Variable.scss";
-
-.cardLogUpcontainer2 {
-    // Mise en page en colonne, centrage vertical et horizontal
+.cardLogIn-container2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 512px;
+  height: 800px;
+  position: relative;
+  padding: 30% 2em;
+  box-sizing: border-box;
+  $border: 5px;
+  color: black;
+  background: #fff;
+  background-clip: padding-box; /* !importanté */
+  border: solid $border transparent; /* !importanté */
+  border-radius: 1em;
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    margin: -$border; /* !importanté */
+    padding: 0;
+    border-radius: inherit; /* !importanté */
+    background: linear-gradient(to bottom, #e2d07c, #a4945e);
+  }
+  span {
+    color: #4d194d;
+    text-align: center;
+    font-family: $ponctual-font;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+  }
+  #title-card-logIn2 {
+    margin-bottom: 25px;
+  }
+  #cardLogIn-Input2 {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    align-items: flex-start;
     flex-direction: column;
     width: 100%;
-    height: auto;
-    margin: auto;
-    top: 100px;
-    left: 0;
-    padding: 10%;
-    position: relative;
-    box-sizing: border-box;
-    
-    // Définition des variables pour les bordures et la couleur
-    $border: 5px;
-    color: black;
-    background: #FFF;
-    background-clip: padding-box; /* Fond de l'élément affiché dans la boîte de débordement */
-    border: solid $border transparent; /* Bordure avec un décalage de $border pour garder le fond visible */
-    border-radius: 1em; // Coins arrondis
-
-    // Arrière-plan avec un dégradé linéaire
-    &:before {
-        content: '';
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        z-index: -1;
-        margin: -$border; // Marge négative pour que le dégradé couvre également la bordure
-        border-radius: inherit; // Utilise le même rayon de bordure que l'élément parent
-        background: linear-gradient(to bottom, #E2D07C, #A4945E); // Dégradé de couleur
-    }
-
-    // Style pour les balises <span>
     span {
-        color: #4D194D; // Couleur du texte
-        text-align: center; // Centrage horizontal du texte
-        font-family: $ponctual-font; // Utilisation d'une variable pour la police de caractères
-        font-size: 2.18em; // Taille de police
-        font-style: normal; // Style normal
-        font-weight: 700; // Gras
-        line-height: normal; // Hauteur de ligne normale
+      text-align: justify;
+      font-family: $content-font;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      text-transform: capitalize;
+      margin: 0;
     }
-
-    // Style pour l'élément avec l'id "title-card-logIn"
-    #titlecardlogUp2 {
-        margin-bottom: 25px;
+    input {
+      width: 361px;
+      height: 42px;
+      border-radius: 5px;
+      border: 1px solid #180b23;
+      background: rgba(246, 246, 233, 0);
+      margin-bottom: 25px;
     }
-    .cardLogUpInput2 {
-        display: flex; // Affichage en ligne (flex)
-        align-items: center; // Alignement vertical en haut
-        flex-direction: column; // Disposition en colonne
-        width: 100%; // Largeur de 100%
-        span {
-            width: 100%;
-            text-align: left; // Justification du texte
-            font-family: $content-font; // Utilisation d'une variable pour la police de caractères
-            font-size: 1.5em; // Taille de police
-            font-style: normal; // Style normal
-            font-weight: 400; // Poids normal
-            line-height: normal; // Hauteur de ligne normale
-            text-transform: capitalize; // Conversion de la première lettre en majuscule
-            
-        }
-        input {
-            width: 100%; // Largeur de l'input
-            height: 2.62em; // Hauteur de l'input
-            border-radius: 5px; // Coins arrondis
-            border: 1px solid #180B23; // Bordure d'1 pixel solide avec une couleur spécifiée
-            background: rgba(246, 246, 233, 0.00); // Fond transparent
-            margin-bottom: 25px; // Marge inférieure de 25 pixels
-        }
-        #input-password-LogUp2 {
-            margin-bottom: 8px;
-        }
+    #input-password-LogIn2 {
+      margin-bottom: 8px;
     }
-    .buttonSignUpContainer2 {
-        display: flex;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        margin-bottom: 10%;
-        .buttonSignUp2 {
-            width: 161px;
-            height: 49px;
-            display: flex;
-            justify-content: center;
-            background: linear-gradient(180deg, #752B75 0%, #180B23 100%);
-            border-radius: 5px;
-            button {
-                width: 161px;
-                height: 49px;
-                text-align: center;
-                font-family: $content-font;
-                font-size: 24px;
-                font-style: normal;
-                font-weight: 400;
-                line-height: normal;
-                border-radius: 5px;
-                border: none;
-                background: -webkit-linear-gradient(#A4945E, #E2D07C);
-                background-clip: text;
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                cursor: pointer;
-            }
-        }
-    }
-    #socialaccountlogUp2 {
+  }
+  .button-SignIn-Container2 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 40px;
+    .button-SignIn2 {
+      width: 161px;
+      height: 49px;
+      display: flex;
+      justify-content: center;
+      background: linear-gradient(180deg, #752b75 0%, #180b23 100%);
+      border-radius: 5px;
+      button {
+        width: 161px;
+        height: 49px;
         text-align: center;
         font-family: $content-font;
-        font-size: 18px;
+        font-size: 24px;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
-    }
-    .linehrLogUp2 {
-        display: flex;
-        gap: 30%;
-        width: 100%;
-        hr {
-            width: 100%;
-            height: 1px;
-            border: none;
-            background: linear-gradient(0deg, #180B23 0%, #180B23 100%), #180B23;
-        }
-    }
-    .logosocialAccountLogUp2 {
-        display: flex;
-        gap: 40px;
+        border-radius: 5px;
+        border: none;
+        background: -webkit-linear-gradient(#a4945e, #e2d07c);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
         cursor: pointer;
+      }
     }
+  }
+  #social-account-logIn2 {
+    text-align: center;
+    font-family: $content-font;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+  .line-hr-LogIn2 {
+    display: flex;
+    gap: 150px;
+    hr {
+      width: 100px;
+      height: 1px;
+      border: none;
+      background: linear-gradient(0deg, #180b23 0%, #180b23 100%), #180b23;
+    }
+  }
+  .logo-socialAccountLogIn2 {
+    display: flex;
+    gap: 40px;
+    cursor: pointer;
+  }
 }
