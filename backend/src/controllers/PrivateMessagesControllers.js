@@ -82,10 +82,25 @@ const destroy = (req, res) => {
     })
 }
 
+const messagesPreview = (req, res) => {
+  // console.log("pouelt oooooooerzioerj");
+  models.private_messages
+    .getMessagesPreview(req.params.idReceiver)
+    .then(([rows]) => {
+      // console.log(rows, "test Rows ---------------------")
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 module.exports = {
   browse,
   read,
   edit,
   add,
   destroy,
+  messagesPreview,
 }

@@ -52,7 +52,7 @@
       gap: 22px;
       transform: translateX(-50%);
       width: 100%;
-      
+
       .sideButton {
         background: none;
         border: none;
@@ -143,8 +143,6 @@
           }
         }
       }
-
-     
     }
     .noDataMessage {
       display: flex;
@@ -198,7 +196,6 @@
           font-family: $content-font;
           padding: 15px;
           border-radius: 5px;
-
         }
       }
     }
