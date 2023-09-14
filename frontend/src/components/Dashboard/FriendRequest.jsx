@@ -96,7 +96,7 @@ const FriendRequest = () => {
                 <p>{request.username}</p>
               </div>
               <div className="wantsToJoin">
-                <span>requests to join :</span>
+                <span>WANT TO JOIN :</span>
               </div>
               <div className="requesterGame">
                 <p>{request.guild_name}</p>

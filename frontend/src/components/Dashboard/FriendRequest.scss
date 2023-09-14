@@ -5,11 +5,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  // border: 2px solid red;
+  width: 100%;
+  height: 100%;
   .Global-friendRequest {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    // border: 2px solid red;
 
     .sword-logo {
       width: 25%;
@@ -19,7 +23,7 @@
     .Request-Title {
       text-align: center;
       font-family: $content-font;
-      font-size: 2.5vh;
+      font-size: clamp(16px, 2.11vw, 30px);
       font-style: normal;
       font-weight: 700;
       line-height: normal;
@@ -29,6 +33,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-top: 1rem;
+      margin-bottom: 5px;
     }
   }
   .Friends-content {
@@ -43,22 +48,25 @@
       align-items: center;
       justify-content: start;
       flex-direction: column;
-      width: 60%;
+      width: 80%;
       height: 100%;
       border-radius: 8px;
       border: 4px solid #4d194d;
       background: rgba(217, 217, 217, 0.22);
       gap: 5px;
-      padding: 5px;
+      padding: 1%;
+      
       .rawFriendRequest {
         padding-bottom: 5px;
-        border-bottom: 2px solid $third-font-color;
+        border-bottom: 1px solid $third-font-color;
         width: 100%;
         // height: 30%;
+        margin: 3%;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
+        // border: 2px solid red;
         .requesterProfilPicture {
-          // width: fit-content;
+          width: fit-content;
           display: flex;
           justify-content: center;
           width: 10%;
@@ -80,7 +88,7 @@
             margin: 0 5px 0 5px;
             color: $secondary-font-color;
             font-family: $content-font;
-            font-size: 1vw;
+            font-size: clamp(16px, 1vw, 32px);
           }
         }
         .wantsToJoin {
@@ -91,7 +99,7 @@
           // width: 70%;
           span {
             display: inline;
-            font-size: 1vw;
+            font-size: clamp(16px, 1vw, 32px);
             font-style: normal;
             background: linear-gradient(180deg, #e2d07c 0%, #a4945e 100%);
             line-height: normal;
@@ -108,7 +116,7 @@
           p {
             color: $secondary-font-color;
             font-family: $content-font;
-            font-size: 1vw;
+            font-size: clamp(16px, 1vw, 32px);
           }
         }
         .requesterButton {

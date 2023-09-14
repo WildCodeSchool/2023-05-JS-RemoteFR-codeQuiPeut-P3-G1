@@ -5,8 +5,9 @@
   justify-content: space-around;
   align-items: center;
   flex-direction: column;
-  width: 100%;
+  width: 80%;
   height: 100%;
+  // border: 5px solid brown;
 
   #logoFutureGames {
     margin-bottom: 9px;
@@ -22,7 +23,7 @@
     h2 {
       font-family: $content-font;
       text-align: center;
-      font-size: 30px;
+      font-size: clamp(16px, 2.11vw, 30px);
       font-style: normal;
       font-weight: 700;
       line-height: normal;
@@ -34,22 +35,43 @@
   }
   .inside_myFutureGames_Container {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding-top: 15%;
-    width: 60%;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    // padding-top: 15%;
+    width: 100%;
     height: 100%;
-    // border: 2px solid red;
+    gap: 10px;
     border-radius: 8px;
     border: 4px solid #4d194d;
     background: rgba(217, 217, 217, 0.22);
+    // border: 2px solid red;
+    .logoContentFG {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      transform: translateX(-50%);
+      width: 100%;
+      
+      .sideButton {
+        background: none;
+        border: none;
+        width: 100%;
+        img {
+          width: 10%;
+        }
+      }
+    }
     .display_myfutureGames {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-direction: row;
+      flex-direction: column;
       width: 100%;
+      // height: 50%;
       color: #d9d9d9;
+      // border: 2px solid red;
+      padding: 10px;
 
       .infoGames_FG_Container {
         display: flex;
@@ -58,7 +80,7 @@
         align-items: center;
         width: 100%;
         gap: 7px;
-        margin-right: 44px;
+        // margin-right: 44px;
         .infoGames_FG {
           display: flex;
           flex-direction: column;
@@ -66,6 +88,7 @@
           justify-content: space-between;
           align-items: center;
           text-align: center;
+          gap: 5px;
 
           .infoGames_FG_Text {
             display: flex;
@@ -74,8 +97,9 @@
             align-items: center;
             width: 100%;
             gap: 10px;
-            font-size: 1vw;
+            font-size: clamp(16px, 1vw, 32px);
             text-align: center;
+            font-family: $content-font;
 
             .infoGames_FG_TextContent {
               display: flex;
@@ -83,8 +107,9 @@
               align-items: center;
               flex-direction: column;
               gap: 5px;
+              font-family: $content-font;
               #goldenText_FG {
-                font-size: 1vw;
+                font-size: clamp(16px, 1vw, 32px);
                 font-style: normal;
                 font-weight: 400;
                 line-height: normal;
@@ -92,6 +117,10 @@
                 background-clip: text;
                 -webkit-background-clip: text;
                 -webkit-text-fill-color: transparent;
+              }
+              #future-GM {
+                font-family: $content-font;
+                font-size: clamp(16px, 1vw, 32px);
               }
             }
 
@@ -115,16 +144,7 @@
         }
       }
 
-      .logoContentFG {
-        display: flex;
-        flex-direction: column;
-        gap: 22px;
-        transform: translateX(-50%);
-        button {
-          background: none;
-          border: none;
-        }
-      }
+     
     }
     .noDataMessage {
       display: flex;
@@ -132,17 +152,21 @@
       align-items: center;
       flex-direction: column;
       width: 100%;
-      height: 80%;
+      height: 100%;
       // border: 2px solid blue;
       color: #d9d9d9;
       .logoContentFG {
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
+        justify-content: center;
         // border: 1px solid yellow;
         width: 100%;
+        height: 60%;
         gap: 22px;
         transform: translateX(-5%);
+        img {
+          width: 10%;
+        }
         button {
           background: none;
           border: none;
@@ -151,11 +175,31 @@
       .messsageNoData {
         display: flex;
         flex-direction: column;
-        justify-content: center;
+        justify-content: flex-start;
         align-items: center;
-        width: 100%;
+        width: 80%;
         height: 100%;
-        text-align: center;
+        gap: 40px;
+        text-align: justify;
+        // border: 2px solid red;
+
+        p {
+          font-size: 1.25rem;
+        }
+
+        #goldenTextFuturGames {
+          text-decoration: underline;
+          color: #a4945e;
+        }
+
+        button {
+          background-color: #fff;
+          font-size: clamp(16px, 1vw, 32px);
+          font-family: $content-font;
+          padding: 15px;
+          border-radius: 5px;
+
+        }
       }
     }
   }

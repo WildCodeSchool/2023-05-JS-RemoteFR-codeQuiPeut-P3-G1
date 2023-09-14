@@ -61,7 +61,7 @@ const Dashboard = () => {
       <div className="mainDivDashboard">
         <div className="Icon-Title-Dashboard">
           <div className="dashboardTitle">
-            <h1>DASHBOARD</h1>
+            <h1>Dashboard</h1>
           </div>
           <div className="iconRight">
             <img id="logoNotepad" src={Notepad} alt="logo of notepad" />

@@ -45,10 +45,13 @@ class GameRegistrationsManager extends AbstractManager {
   getGameRegistrationsWithDetails(id) {
     return this.database.query(
       `
-      select g.*, u.profil_picture from game_registrations as gr
-      join games as g on gr.games_id = g.id
-      join users as u on gr.requester_id = u.id
-      where gr.status = "accepted" and u.id = ?;
+      select *
+      from games
+      join games_has_users as ghu
+      on ghu.games_id = games.id
+      join users
+      on ghu.users_id = users.id
+      where users.id = ?;
     `,
       [id]
     )
@@ -67,11 +70,13 @@ class GameRegistrationsManager extends AbstractManager {
 
   gameJoiningRequests(id) {
     return this.database.query(
-      `SELECT gr.id, u.profil_picture, u.username, ga.guild_name, gr.status, ga.gm_id, gr.games_id, gr.requester_id 
-      FROM ${this.table} AS gr
-      JOIN users AS u ON gr.requester_id = u.id
-      JOIN games AS ga ON gr.games_id = ga.id 
-      WHERE gm_id = ? AND status = "pending";`,
+      `select users.username, users.profil_picture, games.guild_name
+      from users
+      join game_registrations as gr
+      on gr.requester_id = users.id
+      join games
+      on gr.games_id = games.id
+      where gm_username = ? and status = "pending"`,
       [id]
     )
   }

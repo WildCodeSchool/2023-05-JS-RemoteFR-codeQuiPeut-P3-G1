@@ -1,7 +1,7 @@
 import axios from "axios"
 import React, { useState, useContext, useEffect } from "react"
 import Add2 from "../../assets/icon-dashboard/Add2.png"
-import Edit from "../../assets/icon-dashboard/Edit.png"
+import Edit from "../../assets/icon-dashboard/Edit.svg"
 import Location from "../../assets/icon-dashboard/Location.png"
 import AuthContext from "../AuthContext/AuthContext"
 import profilePictureLogo from "../../assets/icon-dashboard/profilePictureLogo.svg"
@@ -62,7 +62,7 @@ const MyProfil = () => {
 
   return (
     <div className="myProfil">
-      <div className="titleProfil">
+      <div className="titleMyProfil">
         <div className="profilePic-container">
           <img
             id="logoProfile"
@@ -107,7 +107,7 @@ const MyProfil = () => {
           <div className="centralDiv">
             <div className="userInfoProfile">
               <p>{user.username}</p>
-              <h2>{shortDate}</h2>
+              <h2>registered since {shortDate}</h2>
             </div>
             <div className="locationProfile">
               <img
