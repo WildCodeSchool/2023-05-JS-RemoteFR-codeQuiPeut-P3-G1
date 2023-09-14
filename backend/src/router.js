@@ -45,6 +45,10 @@ router.post(
   GamesHasUsersControllers.add
 )
 
+router.post("/rpgAdder/:userId/:rpgId", UsersControllers.rpgAdder)
+router.delete("/rpgLesser/:userId/:rpgId", UsersControllers.rpgLesser)
+// router.put("/modifyProfil/:userId",UsersControllers.modifyProfil)
+
 router.use(verifyToken)
 
 router.put(
@@ -59,6 +63,10 @@ router.put("/users/:id", hashPassword, UsersControllers.edit)
 router.get("/users", UsersControllers.browse)
 router.delete("/users/:id", UsersControllers.destroy)
 
+router.get(
+  "/games/user/:username",
+  GamesControllers.selectGamesByGameMasterUsername
+)
 router.get("/games", GamesControllers.browse)
 router.get("/games/:id", GamesControllers.read)
 router.put("/games/:id", GamesControllers.edit)
@@ -72,6 +80,7 @@ router.get(
   "/playersForThisGame/:id",
   GameRegistrationsControllers.allPlayersForThisGame
 )
+router.get("/pictureRPG/:id", UsersControllers.display)
 router.get("/gamesRegistrations", GameRegistrationsControllers.browse)
 router.get("/gamesRegistrations/:id", GameRegistrationsControllers.read)
 router.put("/gamesRegistrations/:id", GameRegistrationsControllers.edit)
