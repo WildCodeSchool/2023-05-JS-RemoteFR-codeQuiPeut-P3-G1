@@ -13,7 +13,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    // border: 2px solid red;
 
     .sword-logo {
       width: 25%;
@@ -49,12 +48,25 @@
       justify-content: start;
       flex-direction: column;
       width: 80%;
-      height: 100%;
+      height: 20vh;
       border-radius: 8px;
       border: 4px solid #4d194d;
       background: rgba(217, 217, 217, 0.22);
       gap: 5px;
-      padding: 1%;
+      padding: 2%;
+      overflow-x: scroll;
+      overflow-x: hidden;
+      -ms-overflow-style: scrollbar; /* Internet Explorer 10+ */
+      scrollbar-width: thin; /* Firefox */
+      /* Pour Chrome, Safari et Opera */
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: darkgrey;
+        // outline: 1px solid slategrey;
+        border-radius: 5px;
+      }
 
       .rawFriendRequest {
         padding-bottom: 5px;
