@@ -10,6 +10,7 @@ export default function NewTopic({ onClose }) {
     Authorization: `Bearer ${tokenFromCookie}`
   }
 
+  const [message, setMessage] = useState("")
   const [nom, setNom] = useState("")
   const [categorie, setCategorie] = useState("") // État pour la catégorie sélectionnée
 
@@ -29,6 +30,7 @@ export default function NewTopic({ onClose }) {
         {
           title: nom,
           categories_id: categorie, // Utilisez la valeur sélectionnée
+          content: message,
           users_id: idUser
         },
         { headers }
@@ -43,11 +45,12 @@ export default function NewTopic({ onClose }) {
         console.error("Erreur lors de la création du Topic :", error)
       })
   }
-
+  console.info("message", message)
   return (
     <div className="modal">
       <div className="modal-content">
         <input
+          className="nomTopic"
           type="text"
           placeholder="Nom du Topic"
           onChange={(e) => setNom(e.target.value)}
@@ -68,7 +71,12 @@ export default function NewTopic({ onClose }) {
             ))}
           </select>
         </label>
-
+        <input
+          className="messageTopic"
+          type="text"
+          placeholder="Description du topic"
+          onChange={(e) => setMessage(e.target.value)}
+        />
         <button
           className="buttonCreateTopic"
           type="reset"

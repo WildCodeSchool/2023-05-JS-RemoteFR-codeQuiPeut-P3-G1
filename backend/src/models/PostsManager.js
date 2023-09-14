@@ -7,8 +7,8 @@ class PostsManager extends AbstractManager {
 
   insert(posts) {
     return this.database.query(
-      `insert into ${this.table} (topics_id, users_id, content, date) values ("?", "?", "?", NOW(), "?")`,
-      [posts.topics_id, posts.users_id, posts.content, posts.date]
+      `insert into ${this.table} (topics_id, users_id, content, date) values (?, ?, ?, NOW())`,
+      [posts.topics_id, posts.users_id, posts.content]
     )
   }
 

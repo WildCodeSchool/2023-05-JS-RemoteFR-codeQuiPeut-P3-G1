@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import axios from "axios"
 import Game from "../components/Game/Game"
 import Player from "../components/Player/playerCard"
-import "./UpcomingTable.scss"
+
 import BladeIcon from "../assets/logo/BladeIcon.png"
 import BookVector from "../assets/logo/BookVector.png"
 import CalandarIcon from "../assets/logo/CalandarIcon.png"

@@ -51,14 +51,23 @@ const edit = (req, res) => {
 }
 
 const add = (req, res) => {
-  const topics = req.body
+  const infos = req.body
 
   // TODO validations (length, format...)
 
   models.topics
-    .insert(topics)
+    .insert(infos)
     .then(([result]) => {
-      res.location(`/topics/${result.insertId}`).sendStatus(201)
+      infos.topics_id = result.insertId
+      models.posts
+        .insert(infos)
+        .then(([result]) => {
+          res.location(`/topics/${result.insertId}`).sendStatus(201)
+        })
+        .catch((err) => {
+          console.error(err)
+          res.sendStatus(500)
+        })
     })
     .catch((err) => {
       console.error(err)
