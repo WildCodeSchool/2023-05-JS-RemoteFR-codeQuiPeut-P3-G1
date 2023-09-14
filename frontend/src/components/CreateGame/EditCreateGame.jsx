@@ -45,7 +45,7 @@ function EditCreateGame({
   handleChange,
   handleCreateGame,
   headers,
-  setCreateOrResume,
+  setCreateOrResume
 }) {
   const usernameGm = Cookies.get("usernameGm")
   let username = usernameGm
@@ -91,7 +91,7 @@ function EditCreateGame({
           guild_name: gameName,
           city: gamePlace,
           is_remote: gameIsRemote,
-          is_campaign: gameIsCampaign,
+          is_campaign: gameIsCampaign
         },
         { headers }
       )

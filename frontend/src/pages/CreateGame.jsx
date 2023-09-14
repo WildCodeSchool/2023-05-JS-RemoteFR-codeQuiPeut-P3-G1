@@ -44,7 +44,7 @@ export default function CreateGame() {
   const idUser = Cookies.get("idUser")
 
   const headers = {
-    Authorization: `Bearer ${tokenFromCookie}`,
+    Authorization: `Bearer ${tokenFromCookie}`
   }
 
   console.info(gamemasterUsername)
@@ -111,7 +111,7 @@ export default function CreateGame() {
           is_remote: gameIsRemote,
           is_campaign: gameIsCampaign,
           gm_username: gamemasterUsername,
-          gm_id: gamemasterId,
+          gm_id: gamemasterId
         },
         { headers }
       )
@@ -248,6 +248,7 @@ export default function CreateGame() {
             gamePlayersCapacity={gamePlayersCapacity}
             setGameRPGID={setGameRPGID}
             setGameHourToFormat={setGameHourToFormat}
+            setGamePlayersCapacity={setGamePlayersCapacity}
           />
         </div>
       ) : (

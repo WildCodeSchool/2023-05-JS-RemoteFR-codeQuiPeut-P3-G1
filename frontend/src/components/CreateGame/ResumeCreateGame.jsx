@@ -22,7 +22,7 @@ function ResumeCreateGame({
   setGameName,
   setGamePlace,
   setGameIsRemote,
-  setGameIsCampaign,
+  setGameIsCampaign
 }) {
   const usernameGm = Cookies.get("usernameGm")
   let username = usernameGm

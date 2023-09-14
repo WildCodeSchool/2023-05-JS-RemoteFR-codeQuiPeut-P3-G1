@@ -19,6 +19,7 @@ const FriendRequestControllers = require("./controllers/FriendRequestControllers
 const UsersFiltersControllers = require("./controllers/UsersFiltersControllers")
 const RolePlayingGamesControllers = require("./controllers/RolePlayingGamesController")
 const PrivateMessagesControllers = require("./controllers/PrivateMessagesControllers")
+const GamesHasUsersControllers = require("./controllers/GamesHasUsersControllers.js")
 
 router.post("/login", UsersControllers.verifyUser, verifyPassword)
 router.post("/users", hashPassword, UsersControllers.add)
@@ -30,6 +31,23 @@ router.get(
 )
 
 router.get("/joiningRequests/:id", GameRegistrationsControllers.joiningRequests)
+router.put(
+  "/joiningRequestsRejected/:requesterId/:gameId",
+  GameRegistrationsControllers.joiningRequestsRejected
+)
+router.put(
+  "/joiningRequestsAccepted/:requesterId/:gameId",
+  GameRegistrationsControllers.joiningRequestsAccepted
+)
+
+router.post(
+  "/dispatchPlayer/:requesterId/:gameId",
+  GamesHasUsersControllers.add
+)
+
+router.post("/rpgAdder/:userId/:rpgId", UsersControllers.rpgAdder)
+router.delete("/rpgLesser/:userId/:rpgId", UsersControllers.rpgLesser)
+// router.put("/modifyProfil/:userId",UsersControllers.modifyProfil)
 
 router.use(verifyToken)
 
@@ -62,6 +80,7 @@ router.get(
   "/playersForThisGame/:id",
   GameRegistrationsControllers.allPlayersForThisGame
 )
+router.get("/pictureRPG/:id", UsersControllers.display)
 router.get("/gamesRegistrations", GameRegistrationsControllers.browse)
 router.get("/gamesRegistrations/:id", GameRegistrationsControllers.read)
 router.put("/gamesRegistrations/:id", GameRegistrationsControllers.edit)

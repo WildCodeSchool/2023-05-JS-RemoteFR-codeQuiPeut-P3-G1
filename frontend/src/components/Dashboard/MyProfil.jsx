@@ -33,8 +33,8 @@ const MyProfil = () => {
         {
           headers: {
             "Content-Type": "multipart/form-data", // Important for sending files,
-            Authorization: `Bearer ${tokenFromCookie}`,
-          },
+            Authorization: `Bearer ${tokenFromCookie}`
+          }
         }
       )
       return response.data

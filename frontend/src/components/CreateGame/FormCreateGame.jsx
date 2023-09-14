@@ -40,7 +40,7 @@ function FormCreateGame({
   gameIsRemote,
   setGameIsRemote,
   handleChange,
-  handleCreateGame,
+  handleCreateGame
   // headers,
 }) {
   return (
