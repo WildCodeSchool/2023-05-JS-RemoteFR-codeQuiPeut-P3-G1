@@ -325,7 +325,7 @@ CREATE TABLE `role_playing_games` (
   `description` text,
   `rpg_icon` varchar(255) NOT NULL DEFAULT 'url_icon',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -334,7 +334,7 @@ CREATE TABLE `role_playing_games` (
 
 LOCK TABLES `role_playing_games` WRITE;
 /*!40000 ALTER TABLE `role_playing_games` DISABLE KEYS */;
-INSERT INTO `role_playing_games` VALUES (1,'Dungeons & Dragons','Fantasy role-playing game','dnd_icon'),(2,'Star Wars RPG','Science fiction role-playing game','starwars_icon'),(3,'Call of Cthulhu','Horror role-playing game','cthulhu_icon'),(4,'Mysteries of Sherlock Holmes','Mystery role-playing game','sherlock_icon'),(5,'Pathfinder','Fantasy role-playing game','pathfinder_icon');
+INSERT INTO `role_playing_games` VALUES (1,'Dungeons & Dragons','Fantasy role-playing game','assets/images/profilPictures/dndIcon.png'),(2,'Star Wars RPG','Science fiction role-playing game','assets/images/profilPictures/chill.png'),(3,'Call of Cthulhu','Horror role-playing game','assets/images/profilPictures/callOfCthulhu.png'),(4,'Mysteries of Sherlock Holmes','Mystery role-playing game','assets/images/profilPictures/cyberpunk.png'),(5,'Pathfinder','Fantasy role-playing game','assets/images/profilPictures/kuff.png'),(6,'Dungeons & Dragons','Fantasy role-playing game','assets/images/profilPictures/dndIcon.png'),(7,'Dungeons & Dragons','Fantasy role-playing game','assets/images/profilPictures/dndIcon.png'),(8,'Dungeons & Dragons','Fantasy role-playing game','assets/images/profilPictures/dndIcon.png'),(9,'Dungeons & Dragons','Fantasy role-playing game','assets/images/profilPictures/dndIcon.png');
 /*!40000 ALTER TABLE `role_playing_games` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -514,7 +514,7 @@ CREATE TABLE `users_has_role_playing_games` (
 
 LOCK TABLES `users_has_role_playing_games` WRITE;
 /*!40000 ALTER TABLE `users_has_role_playing_games` DISABLE KEYS */;
-INSERT INTO `users_has_role_playing_games` VALUES (1,1),(2,2),(3,3),(4,4),(5,5);
+INSERT INTO `users_has_role_playing_games` VALUES (1,1),(2,2),(1,3),(3,3),(4,4),(5,5);
 /*!40000 ALTER TABLE `users_has_role_playing_games` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
