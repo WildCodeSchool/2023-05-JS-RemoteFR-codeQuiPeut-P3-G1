@@ -28,6 +28,16 @@ class PrivateMessagesManager extends AbstractManager {
       ]
     )
   }
+
+  getMessagesPreview(id) {
+    return this.database.query(
+      `SELECT DISTINCT u.profil_picture, u.username, pm.users_id_sender
+      FROM ${this.table} AS pm
+      JOIN users u ON pm.users_id_sender = u.id
+      WHERE pm.users_id_recipient = ?`,
+      [id]
+    )
+  }
 }
 
 module.exports = PrivateMessagesManager
