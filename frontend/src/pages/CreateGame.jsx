@@ -1,11 +1,12 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
-import { TimePicker } from "react-ios-time-picker"
+import FormCreateGame from "../components/CreateGame/FormCreateGame"
+import ResumeCreateGame from "../components/CreateGame/ResumeCreateGame"
+import EditCreateGame from "../components/CreateGame/EditCreateGame"
+
 import Cookies from "js-cookie"
-import Calendar from "moedim"
 
 import createGameDice from "../assets/icon-create-game/dice.svg"
-import hour from "../assets/icon-create-game/horaire.png"
 
 export default function CreateGame() {
   const [isTimeRequired, setIsTimeRequired] = useState(true)
@@ -24,8 +25,9 @@ export default function CreateGame() {
   const [departmentList, setDepartementList] = useState([])
   const [departmentId, setDepartementId] = useState("")
   const [cityList, setCityList] = useState([])
-  const [gameRPGID, setGameRPGID] = useState("")
+  const [gameRPGID, setGameRPGID] = useState()
   const [gamemasterUsername, setGamemasterUsername] = useState("")
+  const [gamemasterId, setGamemasterId] = useState()
   const [gameDateToFormat, setGameDateToFormat] = useState(new Date())
   const [gameHourToFormat, setGameHourToFormat] = useState("00:00")
   const [gameDate, setGameDate] = useState("")
@@ -36,6 +38,7 @@ export default function CreateGame() {
   const [gameName, setGameName] = useState("")
   const [gameIsCampaign, setGameIsCampaign] = useState(0)
   const [gameIsRemote, setGameIsRemote] = useState(0)
+  const [createOrResume, setCreateOrResume] = useState(1)
 
   const tokenFromCookie = Cookies.get("authToken")
   const idUser = Cookies.get("idUser")
@@ -43,6 +46,9 @@ export default function CreateGame() {
   const headers = {
     Authorization: `Bearer ${tokenFromCookie}`
   }
+
+  console.info(gamemasterUsername)
+  console.info("bonjour", gamemasterId)
 
   useEffect(() => {
     axios
@@ -53,8 +59,11 @@ export default function CreateGame() {
   useEffect(() => {
     axios
       .get(`http://localhost:4242/users/${idUser}`, { headers })
-      .then((res) => setGamemasterUsername(res.data.username))
-  }, [])
+      .then((res) => {
+        setGamemasterUsername(res.data.username)
+        setGamemasterId(res.data.id)
+      })
+  }, [idUser])
 
   useEffect(() => {
     axios
@@ -86,7 +95,7 @@ export default function CreateGame() {
     }
   }
 
-  const handleCreateUser = (e) => {
+  const handleCreateGame = (e) => {
     e.preventDefault()
     axios
       .post(
@@ -97,21 +106,31 @@ export default function CreateGame() {
           max_players_capacity: gamePlayersCapacity,
           description: gameDesc,
           type: gameType,
-          name: gameName,
+          guild_name: gameName,
           city: gamePlace,
           is_remote: gameIsRemote,
           is_campaign: gameIsCampaign,
-          gm_username: gamemasterUsername
+          gm_username: gamemasterUsername,
+          gm_id: gamemasterId
         },
         { headers }
       )
       .then((res) => {
         if (res.status === 201) {
           console.info("Partie créée avec succès !")
+          setGameRPGID("")
+          setGamePlayersCapacity(1)
+          setGameDesc("")
+          setGameHourToFormat("00:00")
+          setGameHourToFormat("00:00")
+          setGameType("")
+          setGameName("")
+          setGamePlace("")
+          setGameIsRemote(0)
+          setGameIsCampaign(0)
+          setCreateOrResume(0)
+          document.getElementById("createGameForm").reset()
         }
-        setGamePlayersCapacity(1)
-        setGameHourToFormat("00:00")
-        document.getElementById("createGameForm").reset()
         // document.getElementById("createGameSelecter").selectedIndex = 0
       })
       .catch((error) => {
@@ -131,17 +150,18 @@ export default function CreateGame() {
   }, [gameHourToFormat, gameDateToFormat])
 
   console.info(
-    "finalTest",
-    gamemasterUsername,
+    "createTest",
     gameName,
     gameType,
     gameRPGID,
+    typeof gameRPGID,
     gameIsCampaign,
-    gameIsRemote,
     gamePlayersCapacity,
     gameDesc,
+    gameIsRemote,
     gamePlace,
-    gameDate
+    gameDate,
+    gameRPGList
   )
 
   return (
@@ -152,223 +172,123 @@ export default function CreateGame() {
             <img src={createGameDice} />
           </div>
           <div id="createGameTitle-Title">
-            <span>CREATE GAME</span>
+            {createOrResume === 2 ? (
+              <span>EDIT GAME</span>
+            ) : (
+              <span>CREATE GAME</span>
+            )}
           </div>
         </div>
+        <div className="underlineCreateGame"></div>
       </div>
-      <div id="contentCreateGame">
-        <form id="createGameForm" onSubmit={handleCreateUser}>
-          <div id="createGameColumns">
-            <div id="createGameFirstGroup">
-              <label htmlFor="guildName">
-                <p>Guild's Name</p>
-                <input
-                  type="text"
-                  onChange={(e) => setGameName(e.target.value)}
-                  name="guildName"
-                  id="createGameGuildName"
-                />
-              </label>
-              <label htmlFor="gameTypeSelecter">
-                <p>Game Type</p>
-                <div className="createGameSelect">
-                  <select
-                    onChange={(event) => setGameType(event.target.value)}
-                    name="format"
-                    id="gameTypeSelecter"
-                    defaultValue=""
-                  >
-                    <option value="" disabled>
-                      Select your categorie
-                    </option>
-                    <option value="Horror">Horror</option>
-                    <option value="Adventure">Adventure</option>
-                    <option value="Sci-Fi">Sci-Fi</option>
-                  </select>
-                </div>
-              </label>
-              <label htmlFor="rpgNameSelecter">
-                <p>Based on RPG</p>
-                <div className="createGameSelect">
-                  <select
-                    onChange={(event) => setGameRPGID(event.target.value)}
-                    id="rpgNameSelecter"
-                    defaultValue=""
-                  >
-                    <option value="" disabled>
-                      Select your game
-                    </option>
-                    {gameRPGList.map((rpg) => (
-                      <option key={rpg.id} value={rpg.id}>
-                        {rpg.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </label>
-              <div id="createGameSwitchGlobal">
-                <p>One Shot</p>
-                <label id="createGameSwitch">
-                  <input type="checkbox" onClick={handleChange} />
-                  <span className="slider round"></span>
-                </label>
-                <p>Campaign</p>
-              </div>
-              <label htmlFor="maxCapacity">
-                <p>Number of Players</p>
-                <div className="formTypeNumber">
-                  <button
-                    type="button"
-                    className="btn-minus"
-                    onClick={handleDecrement}
-                  >
-                    -
-                  </button>
-                  <input
-                    id="createGameQuantity"
-                    max="99"
-                    min="1"
-                    name="maxCapacity"
-                    value={gamePlayersCapacity}
-                    readOnly
-                    onChange={(e) => setGamePlayersCapacity(e.target.value)}
-                  />
-
-                  <button
-                    type="button"
-                    onClick={handleIncrement}
-                    className="btn-plus"
-                  >
-                    +
-                  </button>
-                </div>
-              </label>
-            </div>
-            <div id="createGameSecondGroup">
-              <label htmlFor="description">
-                <p>Quick description of the game</p>
-                <textarea
-                  type="textarea"
-                  name="description"
-                  onChange={(e) => setGameDesc(e.target.value)}
-                />
-              </label>
-              <div className="checkbox-CreateGame-Remote">
-                <input
-                  type="radio"
-                  name="gameLocation"
-                  className="demo1"
-                  id="radio-Remote"
-                  checked={gameIsRemote === 1}
-                  onChange={() => setGameIsRemote(1)}
-                />
-                <label htmlFor="radio-Remote">Remote</label>
-
-                <input
-                  type="radio"
-                  name="gameLocation"
-                  className="demo1"
-                  id="radio-OnPlace"
-                  checked={gameIsRemote === 0}
-                  onChange={() => setGameIsRemote(0)}
-                />
-                <label htmlFor="radio-OnPlace">On Place</label>
-              </div>
-            </div>
-            <div id="createGameThirdGroup">
-              {gameIsRemote === 1 ? (
-                ""
-              ) : (
-                <label htmlFor="Department">
-                  <p>Department</p>
-                  <div className="createGameSelect">
-                    <select
-                      id="departmentNameSelecter"
-                      defaultValue=""
-                      onChange={(event) => setDepartementId(event.target.value)}
-                    >
-                      <option value="" disabled>
-                        Select your department
-                      </option>
-                      {departmentList.map((department) => (
-                        <option key={department.code} value={department.code}>
-                          {department.nom}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </label>
-              )}
-              {departmentId !== "" && gameIsRemote !== 1 ? (
-                <label htmlFor="city">
-                  <p>City</p>
-                  <div className="createGameSelect">
-                    <select
-                      onChange={(event) => setGamePlace(event.target.value)}
-                      id="cityNameSelecter"
-                      defaultValue=""
-                    >
-                      <option value="" disabled>
-                        Select your city
-                      </option>
-                      {cityList.map((city) => (
-                        <option key={city.code} value={city.nom}>
-                          {city.nom}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </label>
-              ) : (
-                ""
-              )}
-              <label htmlFor="date">
-                <p>Date</p>
-                <Calendar
-                  value={gameDateToFormat}
-                  onChange={(e) => setGameDateToFormat(e)}
-                  id="createGameCalendar"
-                  required
-                />
-              </label>
-              {/* <label htmlFor="heure">
-                <p>Hour</p>
-                <input
-                  id="createGameHour"
-                  type="time"
-                  placeholder="00:00"
-                  maxLength="5"
-                  required={isTimeRequired} // Utilisation de l'état pour gérer le required
-                  onFocus={() => setIsTimeRequired(false)} // Désactive le required lorsque l'input est en focus
-                  onBlur={() => setIsTimeRequired(true)} // Réactive le required lorsque l'input perd le focus
-                />
-              </label> */}
-              <label htmlFor="hour">
-                <p>Hour</p>
-                <div className="timePicker-CreateGame">
-                  <TimePicker
-                    onChange={(timeValue) => {
-                      setGameHourToFormat(timeValue)
-                    }}
-                    value={gameHourToFormat}
-                    className="timepicker"
-                    required={isTimeRequired}
-                    onFocus={() => setIsTimeRequired(false)} // Désactive le required lorsque l'input est en focus
-                    onBlur={() => setIsTimeRequired(true)} // Réactive le required lorsque l'input perd le focus
-                  />
-                  <img src={hour} />
-                </div>
-              </label>
-              <div />
-            </div>
-          </div>
-          <div id="createGameButton">
-            <button type="submit" onClick={handleCreateUser}>
-              <span>VALIDATE</span>
-            </button>
-          </div>
-        </form>
-      </div>
+      {createOrResume === 1 ? (
+        <div className="formCreateGame">
+          <FormCreateGame
+            isTimeRequired={isTimeRequired}
+            setIsTimeRequired={setIsTimeRequired}
+            handleDecrement={handleDecrement}
+            handleIncrement={handleIncrement}
+            gameRPGList={gameRPGList}
+            setGameRPGList={setGameRPGList}
+            departmentList={departmentList}
+            setDepartementList={setDepartementList}
+            departmentId={departmentId}
+            setDepartementId={setDepartementId}
+            cityList={cityList}
+            setCityList={setCityList}
+            gameRPGID={gameRPGID}
+            setGameRPGID={setGameRPGID}
+            gamemasterUsername={gamemasterUsername}
+            setGamemasterUsername={setGamemasterUsername}
+            gameDateToFormat={gameDateToFormat}
+            setGameDateToFormat={setGameDateToFormat}
+            gameHourToFormat={gameHourToFormat}
+            setGameHourToFormat={setGameHourToFormat}
+            gameDate={gameDate}
+            setGameDate={setGameDate}
+            gamePlace={gamePlace}
+            setGamePlace={setGamePlace}
+            gamePlayersCapacity={gamePlayersCapacity}
+            setGamePlayersCapacity={setGamePlayersCapacity}
+            gameDesc={gameDesc}
+            setGameDesc={setGameDesc}
+            gameType={gameType}
+            setGameType={setGameType}
+            gameName={gameName}
+            setGameName={setGameName}
+            gameIsCampaign={gameIsCampaign}
+            setGameIsCampaign={setGameIsCampaign}
+            gameIsRemote={gameIsRemote}
+            setGameIsRemote={setGameIsRemote}
+            handleChange={handleChange}
+            handleCreateGame={handleCreateGame}
+            setCreateOrResume={setCreateOrResume}
+          />
+        </div>
+      ) : createOrResume === 0 ? (
+        <div className="ResumeCreateGame">
+          <ResumeCreateGame
+            gameName={gameName}
+            setGameName={setGameName}
+            gameIsCampaign={gameIsCampaign}
+            setGameIsCampaign={setGameIsCampaign}
+            gameIsRemote={gameIsRemote}
+            setGameIsRemote={setGameIsRemote}
+            gamemasterUsername={gamemasterUsername}
+            idUser={idUser}
+            headers={headers}
+            gameType={gameType}
+            setGameType={setGameType}
+            gamePlace={gamePlace}
+            setGamePlace={setGamePlace}
+            setCreateOrResume={setCreateOrResume}
+            gameDate={gameDate}
+            gameDesc={gameDesc}
+            gameDateToFormat={gameDateToFormat}
+            gamePlayersCapacity={gamePlayersCapacity}
+            setGameRPGID={setGameRPGID}
+            setGameHourToFormat={setGameHourToFormat}
+            setGamePlayersCapacity={setGamePlayersCapacity}
+          />
+        </div>
+      ) : (
+        <EditCreateGame
+          headers={headers}
+          gameRPGList={gameRPGList}
+          departmentList={departmentList}
+          cityList={cityList}
+          gameIsCampaign={gameIsCampaign}
+          setGameIsCampaign={setGameIsCampaign}
+          setGameIsRemote={setGameIsRemote}
+          setGameDate={setGameDate}
+          gameName={gameName}
+          setGameName={setGameName}
+          gameIsRemote={gameIsRemote}
+          gameDateToFormat={gameDateToFormat}
+          setGameDateToFormat={setGameDateToFormat}
+          gameHourToFormat={gameHourToFormat}
+          setGameHourToFormat={setGameHourToFormat}
+          departmentId={departmentId}
+          setDepartementId={setDepartementId}
+          handleChange={handleChange}
+          handleDecrement={handleDecrement}
+          handleIncrement={handleIncrement}
+          gamePlayersCapacity={gamePlayersCapacity}
+          setGamePlayersCapacity={setGamePlayersCapacity}
+          gameType={gameType}
+          setGameType={setGameType}
+          gameRPGID={gameRPGID}
+          setGameRPGID={setGameRPGID}
+          gameDesc={gameDesc}
+          setGameDesc={setGameDesc}
+          isTimeRequired={isTimeRequired}
+          setIsTimeRequired={setIsTimeRequired}
+          gameDate={gameDate}
+          gamePlace={gamePlace}
+          setGamePlace={setGamePlace}
+          setCreateOrResume={setCreateOrResume}
+        />
+      )}
     </main>
   )
 }
