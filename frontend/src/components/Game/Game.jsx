@@ -4,7 +4,7 @@ import "./Game.scss"
 
 export default function Game({ games, users, rpg }) {
   // Convertir la date au format souhaité
-  const formattedDate = new Date(games.schedule).toLocaleString("fr-FR", {
+  const formattedDate = new Date(games.schedule).toLocaleString("en-EN", {
     day: "numeric",
     month: "numeric",
     year: "numeric",
@@ -23,7 +23,9 @@ export default function Game({ games, users, rpg }) {
         <div className="boxGameCard">{games.guild_name}</div>
         <div className="boxGameCard">{games.gm_username}</div>
         <div className="boxGameCard">{formattedDate}</div>
-        <div className="boxGameCard">{games.city}</div>
+        <div className="boxGameCard">
+          {games.city !== "" ? games.city : "Remote"}
+        </div>
         <div className="boxGameCard">
           {/* {games.role_playing_game_id} */}
           {nameOfRpg ? `${nameOfRpg.name}` : "N/A"}
