@@ -338,7 +338,13 @@ function EditCreateGame({
                         onChange={(timeValue) => {
                           setGameHourToFormat(timeValue)
                         }}
-                        value={gamesList[0].schedule.substring(11, 16)}
+                        value={new Date(gamesList[0].schedule).toLocaleString(
+                          "fr-FR",
+                          {
+                            hour: "2-digit",
+                            minute: "2-digit"
+                          }
+                        )}
                         className="timepicker"
                         required={isTimeRequired}
                         onFocus={() => setIsTimeRequired(false)} // Désactive le required lorsque l'input est en focus
