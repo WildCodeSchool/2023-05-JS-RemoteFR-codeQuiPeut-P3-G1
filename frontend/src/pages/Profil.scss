@@ -2,21 +2,17 @@
   display: flex;
   height: 100vh;
   width: 95%;
-  position: absolute;
-  right: 0;
-  // border: solid 2px red;
   justify-content: space-evenly;
   align-items: center;
-  // color: yellow;
-  color: #e2d07c;
-  font-family: "Petrona", serif;
+  color: $third-font-color;
+  font-family: $content-font;
 
   .leftBoxMain {
     display: flex;
     flex-direction: column;
     align-items: center;
     border-radius: 10px;
-    height: 50%;
+    height: 60%;
     width: 15%;
     gap: 15px;
     .settingsTitle {
@@ -42,24 +38,23 @@
         button {
           width: 100%;
           height: 100%;
-          border: 2px solid blue;
           justify-content: center;
           align-items: center;
           display: flex;
           background: none;
           cursor: pointer;
-          color: #e2d07c;
-          font-family: "Petrona", serif;
+          color: $third-font-color;
+          font-family: $content-font;
         }
         button:hover {
-          background: #e74c3c;
+          background: #4d194d;
         }
       }
       .settingsButton {
         background: #180b23;
       }
       .Cliked {
-        background: #e74c3c;
+        background: #4d194d;
       }
     }
   }
@@ -70,21 +65,23 @@
   }
 
   .rightBoxMain {
-    border: solid 2px red;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
-    width: 60%;
-    // background-color:#e2d07c;
+    height: 88%;
+    width: 45%;
+    // gap:10px;
     .mainTitleProfil {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 100%;
+      width: 50%;
       height: 10%;
-      border: 2px solid lime;
+      gap: 15px;
+      font-size: 28px;
+      border-bottom: 1px solid #e2d07c;
+      margin-bottom: 3vh;
     }
     .bigBoxRight {
       display: flex;
@@ -94,63 +91,138 @@
       height: 100%;
       background: #8b8b8b39;
       border-radius: 12px;
-      gap: 30px;
+      border: 2px solid #a4945e;
+      gap: 10px;
       .titleProfil {
         color: #fff;
         display: flex;
         font-size: 30px;
         margin-bottom: 20px;
+        border-bottom: 1px solid white;
+        width: fit-content;
       }
       .topBoxProfil {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        .boxPhoto {
+
+        .boxDateAndBoxPhoto {
           display: flex;
           flex-direction: column;
           align-items: center;
+          img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid $third-font-color;
+          }
+          span {
+            font-size: 10px;
+          }
+        }
+        .boxName {
+          display: flex;
+          flex-direction: column;
+          span {
+            font-size: 12px;
+          }
+          .displayUsername {
+            display: flex;
+            align-items: center;
+            p {
+              font-family: $content-font;
+              font-size: 25px;
+              color: black;
+            }
+            width: 13vw;
+            height: 4vh;
+
+            background-color: #fff;
+            border-radius: 4px;
+          }
+          input {
+            width: 13vw;
+            height: 4vh;
+            font-family: $content-font;
+            font-size: 25px;
+            background-color: #fff;
+            border-radius: 4px;
+          }
         }
         .userNameDiv {
           display: flex;
           flex-direction: column;
-          #userNameButton {
-            width: 210px;
-            height: 39px;
-            font-family: $content-font;
-            font-size: 25px;
-            background-color: #fff;
-            cursor: pointer;
+        }
+        .countryCityNameBox {
+          display: flex;
+          transform: translateX(-10%);
+          gap: 5px;
+          margin-top: 10px;
+          img {
+            width: 17px;
+            height: 22px;
           }
         }
-        .editNameDiv {
+        .countryCityP {
           display: flex;
-          flex-direction: column;
-          .inputNewName {
-            width: 210px;
-            height: 39px;
+          align-items: center;
+          width: 10vw;
+          height: 3vh;
+          background-color: #fff;
+          border-radius: 5px;
+          p {
             font-family: $content-font;
-            font-size: 25px;
-            background-color: #fff;
+            font-size: 20px;
+            color: black;
           }
         }
         .inputCountryCity {
-          width: 161px;
-          height: 30px;
+          width: 10vw;
+          height: 3vh;
+          font-family: $content-font;
+          font-size: 20px;
+          background-color: #fff;
           border-radius: 4px;
         }
 
         .localisationBox {
           display: flex;
           flex-direction: column;
-          border: 2px solid red;
+          gap: 5px;
         }
       }
       .bioBoxProfil {
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 10px;
+        // margin-top: 20px;
+        .bioBoxProfilTitle {
+          display: flex;
+          width: 90%;
+          align-self: center;
+          // margin-bottom: 10px;
+        }
+        .bioBoxProfilText {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: black;
+          width: 90%;
+          height: 11.42vh;
+          background-color: #fff;
+          border-radius: 8px;
+          // margin-bottom: 20px;
+          textarea {
+            width: 47vw;
+            height: 11.42vh;
+            outline: none;
+            border-radius: 6px;
+            resize: none;
+          }
+        }
         #userNameDescription {
-          width: 1000px;
+          width: 46vw;
           height: 111px;
           font-family: $content-font;
           font-size: 18px;
@@ -176,34 +248,90 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      .gameBoxGamesList {
+      .gameBoxProfilTitle {
+        width: 100%;
+        align-self: baseline;
+        h2 {
+          font-size: 22px;
+          font-family: $title-font;
+          color: $secondary-font-color;
+          padding-left: 75px;
+        }
+        hr {
+          margin-left: 55px;
+          width: 45vw;
+          border-color: #e2d07c;
+        }
+      }
+      .compoAndMap {
         display: flex;
+        flex-direction: row-reverse;
         justify-content: center;
         align-items: center;
+        margin-top: 10px;
+        height: 18vh;
+        gap: 20px;
+        .gameBoxGamesList {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          gap: 20px;
+
+          .boxRpgPicture {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #180b23;
+            width: 117px;
+            height: 73px;
+            border-radius: 11px;
+            position: relative;
+            .delete {
+              position: absolute;
+              top: 0;
+              right: 0;
+              width: 20px;
+              height: 20px;
+              cursor: pointer;
+              img {
+                width: 20px;
+                height: 20px;
+              }
+            }
+
+            img {
+              width: 94px;
+              height: 30.73px;
+            }
+          }
+        }
       }
     }
-    .gameBoxProfilTitle hr {
-      width: 15vw;
-      border-color: #e2d07c;
-    }
 
-    #hrDiv {
+    .hrDiv {
       display: flex;
       justify-content: center;
       hr {
-        width: 762px;
+        width: 35vw;
         border-color: #e2d07c;
       }
     }
 
     .bottomBoxProfil {
       display: flex;
-      justify-content: space-between;
+      justify-content: space-evenly;
+      // justify-content: center;
       align-items: center;
       align-content: center;
       justify-items: center;
+      // padding-right: 60px;
+      // padding-left: 60px;
+      // gap:40px;
       hr {
-        height: 20vh;
+        height: 10vh;
         border-color: #e2d07c;
       }
 
@@ -211,27 +339,74 @@
         width: 237px;
         height: 27px;
         border-radius: 4px;
+        background-color: #fff;
       }
       .privateInfoBox {
         display: flex;
+        flex-direction: column;
+        align-items: center;
+        h3 {
+          font-size: 20px;
+          font-family: $content-font;
+          color: $secondary-font-color;
+          border-bottom: solid 1px #fff;
+        }
       }
 
       .mailBox {
         display: flex;
         flex-direction: column;
       }
-      .passwordBox {
+    }
+    .bottomBoxProfilEdit {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      align-content: center;
+      justify-items: center;
+      padding-left: 15px;
+      gap: 20px;
+      hr {
+        height: 10vh;
+        border-color: #e2d07c;
+      }
+
+      .inputBottomProfil {
+        width: 237px;
+        height: 27px;
+        border-radius: 4px;
+        background-color: #fff;
+      }
+      .privateInfoBox {
         display: flex;
         flex-direction: column;
-        .oldPassword {
-          display: flex;
-          flex-direction: column;
-        }
-        .newPassword {
-          display: flex;
-          flex-direction: column;
+        align-items: center;
+        h3 {
+          font-size: 20px;
+          font-family: $content-font;
+          color: $secondary-font-color;
+          border-bottom: solid 1px #fff;
         }
       }
+
+      .mailBox {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+  .divButtonSwitchEdit,
+  .divButtonSwitchValidate {
+    -webkit-box-shadow: 1px 1px 23px 12px rgba(77, 25, 77, 0.7);
+    box-shadow: 1px 1px 23px 12px rgba(77, 25, 77, 0.7);
+    transform: translateY(-50%);
+    button {
+      font-size: 20px;
+      color: #e2d07c;
+      width: 191px;
+      height: 54px;
+      border-radius: 4px;
+      background-color: #180b23;
     }
   }
 }

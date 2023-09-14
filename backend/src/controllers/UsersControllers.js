@@ -117,6 +117,41 @@ const verifyUser = (req, res, next) => {
     })
 }
 
+const display = (req, res) => {
+  models.users
+    .rpgDisplay(req.params.id, 10)
+    .then(([users]) => {
+      res.send(users)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
+const rpgAdder = (req, res) => {
+  models.users
+    .rpgAdder(req.params.userId, req.params.rpgId)
+    .then(() => {
+      res.status(201).send("Successfully inserted")
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+const rpgLesser = (req, res) => {
+  models.users
+    .rpgLesser(req.params.userId, req.params.rpgId)
+    .then(() => {
+      res.status(201).send("Successfully Deleted")
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 const updateProfilPicture = async (req, res) => {
   const users = req.body
 
@@ -165,4 +200,7 @@ module.exports = {
   destroy,
   updateProfilPicture,
   verifyUser,
+  display,
+  rpgAdder,
+  rpgLesser,
 }
