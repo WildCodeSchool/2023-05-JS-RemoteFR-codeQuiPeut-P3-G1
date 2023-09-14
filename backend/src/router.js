@@ -31,6 +31,12 @@ router.get(
 )
 
 router.get("/joiningRequests/:id", GameRegistrationsControllers.joiningRequests)
+router.get(
+  "/validateRequests/:id",
+  GameRegistrationsControllers.validateRequests
+)
+router.get("/pendingRequests/:id", GameRegistrationsControllers.pendingRequests)
+
 router.put(
   "/joiningRequestsRejected/:requesterId/:gameId",
   GameRegistrationsControllers.joiningRequestsRejected
@@ -47,7 +53,12 @@ router.post(
 
 router.post("/rpgAdder/:userId/:rpgId", UsersControllers.rpgAdder)
 router.delete("/rpgLesser/:userId/:rpgId", UsersControllers.rpgLesser)
-// router.put("/modifyProfil/:userId",UsersControllers.modifyProfil)
+router.put(
+  "/modifyProfil/:userId",
+  verifyPassword,
+  hashPassword,
+  UsersControllers.edit
+)
 
 router.use(verifyToken)
 

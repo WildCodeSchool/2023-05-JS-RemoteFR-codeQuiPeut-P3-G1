@@ -76,6 +76,24 @@ class GameRegistrationsManager extends AbstractManager {
       [id]
     )
   }
+
+  gameValidateRequests(id) {
+    return this.database.query(
+      `SELECT g.schedule, g.guild_name, g.type, gr.games_id, gr.requester_id, gr.status FROM ${this.table} AS gr
+      JOIN games g ON gr.games_id = g.id
+      WHERE gr.requester_id = ? AND gr.status = "accepted";`,
+      [id]
+    )
+  }
+
+  gamePendingRequests(id) {
+    return this.database.query(
+      `SELECT g.schedule, g.guild_name, g.type, gr.games_id, gr.requester_id, gr.status FROM ${this.table} AS gr
+      JOIN games g ON gr.games_id = g.id
+      WHERE gr.requester_id = ? AND gr.status = "pending";`,
+      [id]
+    )
+  }
 }
 
 module.exports = GameRegistrationsManager
