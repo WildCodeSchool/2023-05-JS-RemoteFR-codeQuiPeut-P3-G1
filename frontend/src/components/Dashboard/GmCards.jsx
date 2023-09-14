@@ -11,13 +11,13 @@ import GamesType from "../../assets/GmCards-assets/gamesType.svg"
 import participantsLogo from "../../assets/GmCards-assets/participantsLogo.svg"
 import PlayerCards from "./PlayerCards"
 
-const GmCards = ({ onClose }) => {
-  const [gamesData, setGamesData] = useState({})
+const GmCards = ({ onClose, gameData }) => {
+  // const [gamesData, setGamesData] = useState([])
   const [playersProfil, setPlayersProfil] = useState([])
   const [isPlayerCardsOpen, setIsPlayerCardsOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [userData, setUserData] = useState(null)
-  const scheduleDate = new Date(gamesData.schedule)
+  const scheduleDate = new Date(gameData.schedule)
   const options = {
     year: "numeric",
     month: "2-digit",
@@ -32,13 +32,14 @@ const GmCards = ({ onClose }) => {
     Authorization: `Bearer ${tokenFromCookie}`
   }
 
-  console.info(gamesData)
+  console.info(gameData, "OUIUO")
+  console.info(playersProfil, "OU")
 
   useEffect(() => {
     axios
       .get(`http://localhost:4242/usernameGMFutureGames/${idUser}`, { headers })
       .then((response) => {
-        setGamesData(response.data)
+        // setGamesData(response.data)
         setIsLoading(true)
       })
       .catch((error) => {
@@ -49,7 +50,7 @@ const GmCards = ({ onClose }) => {
   useEffect(() => {
     isLoading &&
       axios
-        .get(`http://localhost:4242/playersForThisGame/${gamesData.id}`, {
+        .get(`http://localhost:4242/playersForThisGame/${gameData.id}`, {
           headers
         })
         .then((response) => {
@@ -81,13 +82,13 @@ const GmCards = ({ onClose }) => {
             <div className="profile-picture">
               <img
                 src={`${import.meta.env.VITE_BACKEND_URL}/${
-                  gamesData.profil_picture
+                  gameData.profil_picture
                 }`}
                 alt="image player profil"
               />
             </div>
             <div className="GM-Name">
-              <span>{gamesData.gm_username} - AS GM</span>
+              <span>{gameData.gm_username} - AS GM</span>
               <div id="underline-GMUsername"></div>
               <div className="Btn-send">
                 <button>SEND A MESSAGE</button>
@@ -123,18 +124,18 @@ const GmCards = ({ onClose }) => {
               </div>
               <div className="location-city-container">
                 <h3 className="location-city">IN</h3>
-                <span className="city">{gamesData.city}</span>
+                <span className="city">{gameData.city}</span>
               </div>
               <div className="Particpants-nb">
                 <h3 className="Participants-nb">
-                  {playersProfil.length}/{gamesData.max_players_capacity}{" "}
+                  {playersProfil.length}/{gameData.max_players_capacity}{" "}
                   participants
                 </h3>
               </div>
             </div>
             <div className="GmCards-Middle-Middle_Right">
               <img src={GamesType} alt="icon of the type of games" />
-              <h3 className="game-type">{gamesData.type}</h3>
+              <h3 className="game-type">{gameData.type}</h3>
             </div>
             <div className="GmCards-Middle-Right">
               <img className="game-black-logo" src={gameLogo} alt="" />

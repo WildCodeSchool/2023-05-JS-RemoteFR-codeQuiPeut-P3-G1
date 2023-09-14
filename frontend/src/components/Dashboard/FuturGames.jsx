@@ -11,10 +11,16 @@ import Cookies from "js-cookie"
 export default function FutureGames() {
   const [isGmCardsOpen, setIsGmCardsOpen] = useState(false)
   const [gameGMData, setGameGMData] = useState([])
+  const [gameData, setGameData] = useState(null)
+  // const [gameChildrenData, setGameChildrenData] = useState([])
   const isEmpty = (obj) => Array.isArray(obj) && obj.length === 0
 
   const tokenFromCookie = Cookies.get("authToken")
   const idUser = Cookies.get("idUser")
+
+  const handleGameClick = (gameData) => {
+    setGameData(gameData)
+  }
 
   const headers = {
     Authorization: `Bearer ${tokenFromCookie}`
@@ -40,7 +46,7 @@ export default function FutureGames() {
         console.error("An error occurred:", error)
       })
   }, [])
-
+  console.info(gameGMData, "test")
   return (
     <>
       <div className="myFutureGames_Container">
@@ -71,7 +77,6 @@ export default function FutureGames() {
                 "en-Us",
                 options
               )
-
               return (
                 <div className="display_myfutureGames" key={index}>
                   <div className="infoGames_FG_Container">
@@ -96,8 +101,18 @@ export default function FutureGames() {
                         <span></span>
                       </div>
                     </div>
-                    <div className="eyeBtnContainer" onClick={toggleGmCards}>
-                      <img className="eyeBtn" src={eyeBtn} alt="Eye Icon" />
+                    <div
+                      className="eyeBtnContainer"
+                      onClick={() => {
+                        toggleGmCards()
+                        handleGameClick(game)
+                      }}
+                    >
+                      <img
+                        className="eyeBtn"
+                        src={eyeBtn}
+                        alt="Icône de l'œil"
+                      />
                     </div>
                   </div>
                 </div>
@@ -138,7 +153,9 @@ export default function FutureGames() {
             </div>
           )}
         </div>
-        {isGmCardsOpen && <GmCards onClose={toggleGmCards} />}
+        {isGmCardsOpen && (
+          <GmCards onClose={toggleGmCards} gameData={gameData} />
+        )}
       </div>
     </>
   )
