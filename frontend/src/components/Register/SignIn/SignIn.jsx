@@ -60,9 +60,6 @@ function SignIn() {
           <div className="forgot-Input">
             <span>Forgot Password ?</span>
           </div>
-          <Link to="/privatemessages">
-            <button type="button">Messages</button>
-          </Link>
         </form>
         <div className="button-SignIn-Container">
           <div className="button-SignIn">
