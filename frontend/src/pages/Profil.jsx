@@ -2,54 +2,135 @@ import React, { useContext, useEffect, useState } from "react"
 import Cookies from "js-cookie"
 import axios from "axios"
 import AuthContext from "../components/AuthContext/AuthContext"
+import RpgAdding from "../components/profilPage/RpgAdding"
+
 import iconProfil from "../assets/Profil/iconProfil.png.png"
 import questionMark from "../assets/Profil/questionMark.png.png"
+import Add2 from "../assets/icon-dashboard/Add2.png"
+import iconSettings from "../assets/Profil/iconSettings.png.png"
+import pinPointer from "../assets/Profil/pinPointer.png.png"
+import deleteCross from "../assets/Profil/deleteCross.png"
 
 const Profil = () => {
-  const { user } = useContext(AuthContext)
-  const tokenFromCookie = Cookies.get("authToken")
-  const [gameData, setGameData] = useState({})
-  // const [isClicked, setIsClicked] = useState(false)
   const [isEditing, setIsEditing] = useState(false)
-  const [newUsername, setNewUsername] = useState(user.username)
-  const [isEditingBioBox, setIsEditingBioBox] = useState(false)
-  const [newDescription, setNewDescription] = useState(
-    user.description_as_player
-  )
+  const { user, setUser, setUsers } = useContext(AuthContext)
+  const idUser = Cookies.get("idUser")
+  const [imageUrl, setImageUrl] = useState(null)
+  const [rpgPictures, setRpgPictures] = useState([])
+  const [onAddRpg, setOnAddRpg] = useState(false)
+  const [refreshPictures, setRefreshPictures] = useState(false)
+
   const [buttonStates, setButtonStates] = useState({
     profil: false,
     myGames: false,
     social: false
   })
 
+  const tokenFromCookie = Cookies.get("authToken")
   const headers = {
     Authorization: `Bearer ${tokenFromCookie}`
   }
 
   useEffect(() => {
     axios
-      .get("http://localhost:4242/role-playing-games", { headers })
-      .then((response) => {
-        setGameData(response.data[1])
-        console.info(gameData)
+      .get(`http://localhost:4242/users`, { headers })
+      .then((res) => {
+        setUsers(res.data)
       })
-      .catch((error) => {
-        console.error("An error occurred:", error)
+      .catch((err) => {
+        console.error("Problème lors du chargement des users", err)
       })
   }, [])
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:4242/users/${idUser}`, { headers })
+      .then((res) => {
+        setUser(res.data)
+      })
+      .catch((err) => {
+        console.error("Problème lors du chargement des users", err)
+      })
+  }, [])
+
+  useEffect(() => {
+    setImageUrl(`${import.meta.env.VITE_BACKEND_URL}/${user.profil_picture}`)
+  }, [user.profil_picture])
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:4242/pictureRPG/${idUser}`, { headers })
+      .then((res) => setRpgPictures(res.data))
+  }, [user, isEditing, onAddRpg, refreshPictures])
+
+  // console.info(rpgPictures)
+  // console.info(idUser)
+  // console.info(headers)
+
+  const handleDeleteRpg = (rpgID) => {
+    axios
+      .delete(
+        `${import.meta.env.VITE_BACKEND_URL}/rpgLesser/${idUser}/${rpgID}`,
+        {},
+        { headers }
+      )
+      .then((res) => {
+        console.info("RPG delete successfully", res.data)
+        setRefreshPictures(!refreshPictures)
+      })
+      .catch((err) => {
+        console.error("A problem occured", err)
+      })
+  }
+
+  const updateProfilPictureOnServer = async (userId, formData) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:4242/users/${userId}/upload`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", // Important for sending files,
+            Authorization: `Bearer ${tokenFromCookie}`
+          }
+        }
+      )
+      return response.data
+    } catch (error) {
+      console.error(
+        "Erreur lors de la mise à jour de la photo de profil :",
+        error
+      )
+      throw error
+    }
+  }
+
+  const handlePictureChange = (e) => {
+    const picture = e.target.files[0]
+
+    // Créez un objet FormData pour envoyer la photo
+    const formData = new FormData()
+    formData.append("myFile", picture)
+
+    setImageUrl(URL.createObjectURL(picture))
+
+    // Appel de la fonction pour mettre à jour la photo de profil sur le serveur
+    updateProfilPictureOnServer(user.id, formData)
+  }
 
   const shortDate = String(user.registration_date)
     .substring(0, 10)
     .split("-")
     .reverse()
     .join("-")
-
+  // console.info(`${import.meta.env.VITE_BACKEND_URL}/${rpgPictures[0].rpg_icon}`)
   return (
     <div className="mainContainerProfil">
       <div className="questionMark">
         <img src={questionMark} />
       </div>
       <div className="leftBoxMain">
+        <img src={iconSettings} />
         <div className="settingsTitle">
           <h1>SETTINGS</h1>
         </div>
@@ -96,142 +177,273 @@ const Profil = () => {
         </div>
       </div>
 
-      <div className="rightBoxMain">
-        <div className="mainTitleProfil">
-          <img src={iconProfil} />
-          <h1>PROFILE</h1>
-        </div>
-
-        <div className="bigBoxRight">
-          <div className="titleProfil">PUBLIC INFORMATION</div>
-          <div className="topBoxProfil">
-            <div className="boxPhoto">
-              <img
-                src={`${import.meta.env.VITE_BACKEND_URL}/${
-                  user.profil_picture
-                }`}
-              />
-              <span>{shortDate}</span>
-            </div>
-
-            <div className="boxName">
-              {isEditing ? (
-                <div className="editNameDiv">
-                  <input
-                    className="inputNewName"
-                    type="text"
-                    value={newUsername}
-                    onChange={(e) => setNewUsername(e.target.value)}
-                  />
-                  <button
-                    id="buttonNewName"
-                    onClick={() => setIsEditing(false)}
-                  >
-                    Save
-                  </button>
-                </div>
-              ) : (
-                <div className="userNameDiv">
-                  UserName
-                  <button
-                    id="userNameButton"
-                    onClick={() => setIsEditing(true)}
-                  >
-                    {user.username}
-                  </button>
-                </div>
-              )}
-            </div>
-            <div className="localisationBox">
-              <span>Country</span>
-              <input
-                type="text"
-                className="inputCountryCity"
-                placeholder="Enter your country"
-              />
-              <span>City</span>
-              <input
-                type="text"
-                className="inputCountryCity"
-                placeholder="Enter Your City"
-              />
-            </div>
+      {isEditing === true ? (
+        <div className="rightBoxMain">
+          <div className="mainTitleProfil">
+            <img src={iconProfil} />
+            <h1>PROFILE</h1>
           </div>
-          <div className="bioBoxProfil">
-            <div className="bioBoxProfilTitle">Bio on Profil</div>
-            <div className="bioBoxProfilText">
-              {isEditingBioBox ? (
-                <div className="editDescriptionBox">
+          <div className="bigBoxRight">
+            <div className="titleProfil">PUBLIC INFORMATIONS</div>
+            <div className="topBoxProfil">
+              <div className="boxDateAndBoxPhoto">
+                <div className="boxPhoto">
+                  <label htmlFor="buttonPicture">
+                    {user.profil_picture !== null ? (
+                      <img
+                        src={imageUrl}
+                        alt="userPicture"
+                        name="myFile"
+                        className="userPicture"
+                        id="profilPictureForm"
+                      />
+                    ) : (
+                      <img
+                        className="userPicture"
+                        src={Add2}
+                        alt="logo of a cross"
+                      />
+                    )}
+                  </label>
                   <input
-                    className="inputNewDescription"
-                    type="text"
-                    value={newDescription}
-                    onChange={(e) => setNewDescription(e.target.value)}
+                    type="file"
+                    id="buttonPicture"
+                    accept="image/*"
+                    onChange={(e) => {
+                      handlePictureChange(e)
+                    }}
+                    style={{ display: "none" }}
                   />
-                  <button
-                    type="button"
-                    id="buttonNewDescription"
-                    onClick={() => setIsEditingBioBox(false)}
-                  >
-                    Save
-                  </button>
                 </div>
-              ) : (
-                <div className="userDescriptionDiv">
-                  <button
-                    id="userNameDescription"
-                    onClick={() => setIsEditingBioBox(true)}
-                  >
-                    {user.description_as_player}
-                  </button>
+                <span>Register since {shortDate}</span>
+              </div>
+              <div className="boxName">
+                <div>
+                  <span>Username</span>
                 </div>
-              )}
+                <div>
+                  <input type="text" placeholder={user.username}></input>
+                </div>
+              </div>
+              <div className="localisationBox">
+                <div className="countryCityNameBox">
+                  <img src={pinPointer} />
+                  <span>Country</span>
+                </div>
+                <input
+                  type="text"
+                  className="inputCountryCity"
+                  placeholder={user.country}
+                />
+                <div className="countryCityNameBox">
+                  <img src={pinPointer} />
+                  <span>City</span>
+                </div>
+                <input
+                  type="text"
+                  className="inputCountryCity"
+                  placeholder={user.location}
+                />
+              </div>
             </div>
-          </div>
-          <div className="gameBoxProfil">
-            <div className="gameBoxProfilTitle">
-              SEARCH TO PLAY ON
+            <div className="bioBoxProfil">
+              <div className="bioBoxProfilTitle">Bio on Profil</div>
+              <div className="bioBoxProfilText">
+                <textarea placeholder={user.description_as_player}></textarea>
+              </div>
+            </div>
+            <div className="gameBoxProfil">
+              <div className="gameBoxProfilTitle">
+                <h2>SEARCH TO PLAY ON</h2>
+              </div>
+              <div className="hrDiv">
+                <hr />
+              </div>
+              <div className="compoAndMap">
+                <RpgAdding onAddRpg={() => setOnAddRpg(!onAddRpg)} />
+                <div className="gameBoxGamesList">
+                  {rpgPictures.map((rpgPicture, index) => (
+                    <div className="boxRpgPicture" key={index}>
+                      <div className="delete">
+                        <img
+                          src={deleteCross}
+                          onClick={() => handleDeleteRpg(rpgPicture.id)}
+                        />
+                      </div>
+                      <img
+                        src={`${import.meta.env.VITE_BACKEND_URL}/${
+                          rpgPicture.rpg_icon
+                        }`}
+                        alt={`Image for game with ID ${rpgPicture.rpg_icon}`}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="hrDiv">
               <hr />
             </div>
+            <div className="bottomBoxProfilEdit">
+              <div className="privateInfoBox">
+                <h3>PERSONAL</h3>
+                <h3>INFORMATIONS</h3>
+              </div>
 
-            <div className="gameBoxGamesList">composant gamelist</div>
-          </div>
-          <div id="hrDiv">
-            <hr />
-          </div>
-          <div className="bottomBoxProfil">
-            <div className="privateInfoBox">PERSONAL INFORMATIONS</div>
-
-            <hr />
-            <div className="mailBox">
-              Email adress
-              <input
-                type="email"
-                className="inputBottomProfil"
-                placeholder="Enter Your Email"
-              />
-            </div>
-            <div className="passwordBox">
-              <div className="oldPassword">
-                Current Password
+              <hr />
+              <div className="mailBox">
+                Email adress
                 <input
-                  type="password"
+                  type="email"
                   className="inputBottomProfil"
-                  placeholder="Current password"
+                  placeholder="Enter Your Email"
                 />
               </div>
-              <div className="newPassword">
-                New Password
-                <input
-                  type="password"
-                  className="inputBottomProfil"
-                  placeholder="New password"
-                />
+              <div className="changePassword">
+                <div className="oldPassword">
+                  Current Password
+                  <input
+                    type="password"
+                    className="inputBottomProfil"
+                    placeholder="Current password"
+                  />
+                </div>
+                <div className="newPassword">
+                  New Password
+                  <input
+                    type="password"
+                    className="inputBottomProfil"
+                    placeholder="New password"
+                  />
+                </div>
+                <div />
               </div>
             </div>
+          </div>
+          <div className="divButtonSwitchValidate">
+            <button type="button" onClick={() => setIsEditing(!isEditing)}>
+              VALIDATE
+            </button>
           </div>
         </div>
-      </div>
+      ) : (
+        <div className="rightBoxMain">
+          <div className="mainTitleProfil">
+            <img src={iconProfil} />
+            <h1>PROFILE</h1>
+          </div>
+
+          <div className="bigBoxRight">
+            <div className="titleProfil">PUBLIC INFORMATIONS</div>
+            <div className="topBoxProfil">
+              <div className="boxDateAndBoxPhoto">
+                <div className="boxPhoto">
+                  <label htmlFor="buttonPicture">
+                    {user.profil_picture !== null ? (
+                      <img
+                        src={imageUrl}
+                        alt="userPicture"
+                        name="myFile"
+                        className="userPicture"
+                        id="profilPictureForm"
+                      />
+                    ) : (
+                      <img
+                        className="userPicture"
+                        src={Add2}
+                        alt="logo of a cross"
+                      />
+                    )}
+                  </label>
+                  <input
+                    type="file"
+                    id="buttonPicture"
+                    accept="image/*"
+                    onChange={(e) => {
+                      handlePictureChange(e)
+                    }}
+                    style={{ display: "none" }}
+                  />
+                </div>
+                <span>Register since {shortDate}</span>
+              </div>
+              <div className="boxName">
+                <div>
+                  <span>Username</span>
+                </div>
+                <div className="displayUsername">
+                  <p>{user.username}</p>
+                </div>
+              </div>
+              <div className="localisationBox">
+                <div className="countryCityNameBox">
+                  <img src={pinPointer} />
+                  <span>Country</span>
+                </div>
+                <div className="countryCityP">
+                  <p>{user.country}</p>
+                </div>
+
+                <div className="countryCityNameBox">
+                  <img src={pinPointer} />
+                  <span>City</span>
+                </div>
+                <div className="countryCityP">
+                  <p>{user.location}</p>
+                </div>
+              </div>
+            </div>
+            <div className="bioBoxProfil">
+              <div className="bioBoxProfilTitle">Bio on Profil</div>
+              <div className="bioBoxProfilText">
+                {user.description_as_player}
+              </div>
+            </div>
+            <div className="gameBoxProfil">
+              <div className="gameBoxProfilTitle">
+                <h2>SEARCH TO PLAY ON</h2>
+              </div>
+              <div className="hrDiv">
+                <hr />
+              </div>
+              <div className="compoAndMap">
+                <div className="gameBoxGamesList">
+                  {rpgPictures.map((rpgPicture, index) => (
+                    <div className="boxRpgPicture" key={index}>
+                      <img
+                        src={`${import.meta.env.VITE_BACKEND_URL}/${
+                          rpgPicture.rpg_icon
+                        }`}
+                        alt={`Image for game with ID ${rpgPicture.rpg_icon}`}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div className="hrDiv">
+              <hr />
+            </div>
+            <div className="bottomBoxProfil">
+              <div className="privateInfoBox">
+                <h3>PERSONAL</h3>
+                <h3>INFORMATIONS</h3>
+              </div>
+              <hr />
+
+              <div className="mailBox">
+                Email adress
+                <p>{user.email_adress}</p>
+              </div>
+            </div>
+          </div>
+          <div className="divButtonSwitchEdit">
+            <button type="button" onClick={() => setIsEditing(!isEditing)}>
+              EDIT PROFILE
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

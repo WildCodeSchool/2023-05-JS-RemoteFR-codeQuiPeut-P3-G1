@@ -6,6 +6,7 @@
 @import "./pages/LandingPage.scss";
 @import "./pages/Topics.scss";
 @import "./pages/Profil.scss";
+@import "./pages/UpcomingTable.scss";
 
 @import "./components/3DGuildPhone/GuildPhone.scss";
 @import "./components/Dashboard/FuturGames.scss";
@@ -26,3 +27,7 @@
 @import "./components/TestCarrousel/TestCarrousel.scss";
 @import "./components/UserProfil/OnlineStatus.scss";
 @import "./components/PrivateMessages/Conversation.scss";
+
+@import "./components/profilPage/RpgAdding.scss";
+@import "./components/CreateGame/FormCreateGame.scss";
+@import "./components/CreateGame/ResumeCreateGame.scss";

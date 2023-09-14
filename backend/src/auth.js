@@ -54,7 +54,7 @@ const verifyToken = (req, res, next) => {
   try {
     const authorizationHeader = req.get("Authorization")
     // const authorizationHeader2 = req.headers
-    if (req.url.startsWith("/assets/images/profilPictures")) {
+    if (req.url.startsWith("/assets/images")) {
       return next()
     }
     // if (req.url.startsWith("/assets/images/profilPictures")) {

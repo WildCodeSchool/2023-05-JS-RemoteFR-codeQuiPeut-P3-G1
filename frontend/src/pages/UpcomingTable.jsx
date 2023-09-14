@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
-import Game from "../components/Game/Game"
-import Player from "../components/Player/playerCard"
-import "./UpcomingTable.scss"
-import BladeIcon from "../assets/logo/BladeIcon.png"
-import BookVector from "../assets/logo/BookVector.png"
-import CalandarIcon from "../assets/logo/CalandarIcon.png"
-import GroupDiscussionIcon from "../assets/logo/GroupDiscussionIcon.png"
-import PlaceIconVector from "../assets/logo/PlaceIconVector.png"
-import ProfilIcon from "../assets/logo/ProfilIcon.png"
-import HexagonDiceIcon from "../assets/logo/HexagonDiceIcon.png"
 // import AuthContext from "../components/AuthContext/AuthContext"
 import Cookies from "js-cookie"
+
+import Game from "../components/Game/Game"
+import Player from "../components/Player/playerCard"
+
+import BladeIcon from "../assets/logo/bladeIcon.svg"
+import BookVector from "../assets/logo/bookVector.svg"
+import CalandarIcon from "../assets/logo/calendarIcon.svg"
+import GroupDiscussionIcon from "../assets/logo/groupDiscussionIcon.svg"
+import PlaceIconVector from "../assets/logo/placeIconVector.svg"
+import ProfilIcon from "../assets/logo/profilIcon.svg"
+import HexagonDiceIcon from "../assets/logo/hexagonDiceIcon.svg"
 
 function UpcomingTable() {
   const [games, setGames] = useState([])
@@ -105,7 +106,7 @@ function UpcomingTable() {
           style={{ display: showPlayerContainer ? "flex" : "none" }}
         >
           <div className="bigBoxPlayer flip-in-hor-top">
-            <h1 className="titleUpcommingTable"> Upcoming Table</h1>
+            <h1 className="titleUpcommingTable">Players</h1>
             <div className="BoxTitle">
               <div className="boxTitlePlayer">
                 <img
@@ -157,100 +158,105 @@ function UpcomingTable() {
                 ))}
             </div>
           </div>
-          <div className="bigBoxFilterPlayer">
-            <h1 className="titleUpcommingTable">"Find your Players"</h1>
-            <input
-              className="inputUT"
-              type="text"
-              placeholder="Filter by username"
-              value={usernameFilter}
-              onChange={handleUsernameFilterChange}
-            />
+          <div className="filterContainerMajorPlayer">
+            <div className="bigBoxFilterPlayer">
+              <h1 className="titleUpcommingTableFilter">Find your Players</h1>
+              <input
+                className="inputUT"
+                type="text"
+                placeholder="Filter by username"
+                value={usernameFilter}
+                onChange={handleUsernameFilterChange}
+              />
 
-            <input
-              className="inputUT"
-              type="text"
-              placeholder="Filter by city"
-              value={locationFilter}
-              onChange={handleLocationFilterChange}
-            />
+              <input
+                className="inputUT"
+                type="text"
+                placeholder="Filter by city"
+                value={locationFilter}
+                onChange={handleLocationFilterChange}
+              />
 
-            <button type="buttonGame" onClick={toggleContainer}>
-              Find a Game
-            </button>
+              <button type="buttonGame" onClick={toggleContainer}>
+                Find a Game
+              </button>
+            </div>
           </div>
         </div>
         <div
           className="containerFilterAndCardsGames flip-in-hor-top"
           style={{ display: showPlayerContainer ? "none" : "flex" }}
         >
-          <div className="filterContainer">
-            <div className="titleUpcommingTable">
-              <h1> "Find your Game" </h1>
+          <div className="filterContainerMajor">
+            <div className="filterContainer">
+              <div className="titleUpcommingTableFilter">
+                <h1>Find your Game</h1>
+              </div>
+
+              <input
+                className="inputUT"
+                type="text"
+                placeholder="Filtrer par nombre de joueurs max"
+                value={maxPlayersFilter}
+                onChange={handleMaxPlayersFilterChange}
+              />
+
+              <input
+                className="inputUT"
+                type="text"
+                placeholder="Filtrer par type de partie"
+                value={typeFilter}
+                onChange={handleTypeFilterChange}
+              />
+
+              <input
+                className="inputUT"
+                type="text"
+                placeholder="Filtrer par date"
+                value={dateFilter}
+                onChange={handleDateFilterChange}
+              />
+
+              <input
+                className="inputUT"
+                type="text"
+                placeholder="Filtrer par nom de partie"
+                value={nameFilter}
+                onChange={handleNameFilterChange}
+              />
+
+              <input
+                className="inputUT"
+                type="text"
+                placeholder="Filtrer par gm"
+                value={gmFilter}
+                onChange={handleGmFilterChange}
+              />
+
+              <input
+                className="inputUT"
+                type="text"
+                placeholder="Filtrer par ville"
+                value={cityFilter}
+                onChange={(event) => {
+                  setCityFilter(event.target.value)
+                }}
+              />
+
+              <input
+                className="inputUT"
+                type="text"
+                placeholder="Filtrer par type de RPG"
+                value={rpgFilter}
+                onChange={handleRpgFilterChange}
+              />
+
+              <button type="button" onClick={toggleContainer}>
+                Find a Player
+              </button>
             </div>
-
-            <input
-              className="inputUT"
-              type="text"
-              placeholder="Filtrer par nombre de joueurs max"
-              value={maxPlayersFilter}
-              onChange={handleMaxPlayersFilterChange}
-            />
-
-            <input
-              className="inputUT"
-              type="text"
-              placeholder="Filtrer par type de partie"
-              value={typeFilter}
-              onChange={handleTypeFilterChange}
-            />
-
-            <input
-              className="inputUT"
-              type="text"
-              placeholder="Filtrer par date"
-              value={dateFilter}
-              onChange={handleDateFilterChange}
-            />
-
-            <input
-              className="inputUT"
-              type="text"
-              placeholder="Filtrer par nom de partie"
-              value={nameFilter}
-              onChange={handleNameFilterChange}
-            />
-
-            <input
-              className="inputUT"
-              type="text"
-              placeholder="Filtrer par gm"
-              value={gmFilter}
-              onChange={handleGmFilterChange}
-            />
-
-            <input
-              className="inputUT"
-              type="text"
-              placeholder="Filtrer par ville"
-              value={cityFilter}
-              onChange={(event) => {
-                setCityFilter(event.target.value)
-              }}
-            />
-
-            <input
-              className="inputUT"
-              type="text"
-              placeholder="Filtrer par type de RPG"
-              value={rpgFilter}
-              onChange={handleRpgFilterChange}
-            />
-
-            <button type="button" onClick={toggleContainer}>
-              Find a Player
-            </button>
           </div>
+
           <div className="gamecard">
             <h1 className="titleUpcommingTable"> Upcoming Table</h1>
             <div className="containerMenuGame">
@@ -325,7 +331,7 @@ function UpcomingTable() {
                 game.schedule.toLowerCase().includes(dateFilter.toLowerCase())
               )
               .filter((game) =>
-                game.name.toLowerCase().includes(nameFilter.toLowerCase())
+                game.guild_name.toLowerCase().includes(nameFilter.toLowerCase())
               )
               .filter(
                 (game) =>
