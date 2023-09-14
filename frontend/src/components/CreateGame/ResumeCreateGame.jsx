@@ -36,7 +36,7 @@ function ResumeCreateGame({
       .then((res) => setGamesList(res.data))
   }, [usernameGm])
 
-  console.info("la liste des jeux", gamesList)
+  console.info("la liste des jeux", gamesList, "le nom du GM", usernameGm)
 
   const [gamemasterPicture, setGamemasterPicture] = useState([])
   useEffect(() => {
@@ -156,7 +156,11 @@ function ResumeCreateGame({
                   />
                 </div>
                 <div className="hourSchedule">
-                  Game Time : {gamesList[0].schedule.substring(11, 16)}
+                  Game Time :{" "}
+                  {new Date(gamesList[0].schedule).toLocaleString("en-EN", {
+                    hour: "2-digit",
+                    minute: "2-digit"
+                  })}
                 </div>
               </div>
             </div>
