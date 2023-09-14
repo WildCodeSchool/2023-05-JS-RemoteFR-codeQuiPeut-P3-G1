@@ -38,7 +38,7 @@ export default function CreateGame() {
   const [gameName, setGameName] = useState("")
   const [gameIsCampaign, setGameIsCampaign] = useState(0)
   const [gameIsRemote, setGameIsRemote] = useState(0)
-  const [createOrResume, setCreateOrResume] = useState(0)
+  const [createOrResume, setCreateOrResume] = useState(1)
 
   const tokenFromCookie = Cookies.get("authToken")
   const idUser = Cookies.get("idUser")
