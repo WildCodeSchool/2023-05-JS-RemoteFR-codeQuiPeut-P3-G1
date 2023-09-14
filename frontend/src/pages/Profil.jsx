@@ -16,7 +16,7 @@ const Profil = () => {
   const { user, setUser, setUsers } = useContext(AuthContext)
   const idUser = Cookies.get("idUser")
   const [imageUrl, setImageUrl] = useState(null)
-  const [rpgPictures, setRpgPictures] = useState(null)
+  const [rpgPictures, setRpgPictures] = useState([])
   const [onAddRpg, setOnAddRpg] = useState(false)
   const [refreshPictures, setRefreshPictures] = useState(false)
 
