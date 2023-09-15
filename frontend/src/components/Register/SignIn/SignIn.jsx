@@ -7,6 +7,13 @@ function SignIn() {
   const [signInUsername, setSignInUsername] = useState()
   const [signInPassword, setSignInPassword] = useState()
 
+  const handleKeyDown = (e) => {
+    console.info("Key down event triggered")
+    if (e.code === "Enter" || (e.key === "Enter" && signInPassword !== "")) {
+      handleLogin(e)
+    }
+  }
+
   const navigate = useNavigate()
 
   const handleLogin = (e) => {
@@ -56,6 +63,7 @@ function SignIn() {
             id="input-password-LogIn"
             type="password"
             onChange={(e) => setSignInPassword(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
           <div className="forgot-Input">
             <span>Forgot Password ?</span>

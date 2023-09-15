@@ -51,14 +51,23 @@ const edit = (req, res) => {
 }
 
 const add = (req, res) => {
-  const topics = req.body
+  const infos = req.body
 
   // TODO validations (length, format...)
 
   models.topics
-    .insert(topics)
+    .insert(infos)
     .then(([result]) => {
-      res.location(`/topics/${result.insertId}`).sendStatus(201)
+      infos.topics_id = result.insertId
+      models.posts
+        .insert(infos)
+        .then(([result]) => {
+          res.location(`/topics/${result.insertId}`).sendStatus(201)
+        })
+        .catch((err) => {
+          console.error(err)
+          res.sendStatus(500)
+        })
     })
     .catch((err) => {
       console.error(err)
@@ -82,10 +91,23 @@ const destroy = (req, res) => {
     })
 }
 
+const topicsAndUsers = (req, res) => {
+  models.topics
+    .getTopicsAndUsers()
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 module.exports = {
   browse,
   read,
   edit,
   add,
   destroy,
+  topicsAndUsers,
 }

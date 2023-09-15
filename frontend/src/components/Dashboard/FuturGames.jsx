@@ -70,88 +70,90 @@ export default function FutureGames() {
               </button>
             </Link>
           </div>
-          {!isEmpty(gameGMData) ? (
-            gameGMData.map((game, index) => {
-              const scheduleDate = new Date(game.schedule)
-              const formattedSchedule = scheduleDate.toLocaleDateString(
-                "en-Us",
-                options
-              )
-              return (
-                <div className="display_myfutureGames" key={index}>
-                  <div className="infoGames_FG_Container">
-                    <div className="infoGames_FG">
-                      <div className="infoGames_FG_Text">
-                        <div className="infoGames_FG_TextContent">
-                          <span id="goldenText_FG">GM</span>
-                          <span id="future-GM">{game.gm_username}</span>
+          <div>
+            {!isEmpty(gameGMData) ? (
+              gameGMData.map((game, index) => {
+                const scheduleDate = new Date(game.schedule)
+                const formattedSchedule = scheduleDate.toLocaleDateString(
+                  "en-Us",
+                  options
+                )
+                return (
+                  <div className="display_myfutureGames" key={index}>
+                    <div className="infoGames_FG_Container">
+                      <div className="infoGames_FG">
+                        <div className="infoGames_FG_Text">
+                          <div className="infoGames_FG_TextContent">
+                            <span id="goldenText_FG">GM</span>
+                            <span id="future-GM">{game.gm_username}</span>
+                          </div>
+                          <span id="lineSeparator_FG"></span>
+                          <div className="infoGames_FG_TextContent">
+                            <span id="goldenText_FG">ON </span>
+                            {game.guild_name}
+                          </div>
+                          <span id="lineSeparator_FG"></span>
+                          <div className="infoGames_FG_TextContent">
+                            <span id="goldenText_FG">ON </span>
+                            {formattedSchedule}
+                          </div>
                         </div>
-                        <span id="lineSeparator_FG"></span>
-                        <div className="infoGames_FG_TextContent">
-                          <span id="goldenText_FG">ON </span>
-                          {game.guild_name}
-                        </div>
-                        <span id="lineSeparator_FG"></span>
-                        <div className="infoGames_FG_TextContent">
-                          <span id="goldenText_FG">ON </span>
-                          {formattedSchedule}
+                        <div id="underlineInfo_FG">
+                          <span></span>
                         </div>
                       </div>
-                      <div id="underlineInfo_FG">
-                        <span></span>
+                      <div
+                        className="eyeBtnContainer"
+                        onClick={() => {
+                          toggleGmCards()
+                          handleGameClick(game)
+                        }}
+                      >
+                        <img
+                          className="eyeBtn"
+                          src={eyeBtn}
+                          alt="Icône de l'œil"
+                        />
                       </div>
-                    </div>
-                    <div
-                      className="eyeBtnContainer"
-                      onClick={() => {
-                        toggleGmCards()
-                        handleGameClick(game)
-                      }}
-                    >
-                      <img
-                        className="eyeBtn"
-                        src={eyeBtn}
-                        alt="Icône de l'œil"
-                      />
                     </div>
                   </div>
+                )
+              })
+            ) : (
+              <div className="noDataMessage">
+                <div className="logoContentFG">
+                  <Link to="/create-game">
+                    <button type="button" className="sideButton">
+                      <img id="logoAdd" src={Add} alt="logo of a cross" />
+                    </button>
+                  </Link>
+                  <Link to="/upcoming-table">
+                    <button type="button" className="sideButton">
+                      <img
+                        id="logoSearch"
+                        src={Search}
+                        alt="logo of a magnifier"
+                      />
+                    </button>
+                  </Link>
                 </div>
-              )
-            })
-          ) : (
-            <div className="noDataMessage">
-              <div className="logoContentFG">
-                <Link to="/create-game">
-                  <button type="button" className="sideButton">
-                    <img id="logoAdd" src={Add} alt="logo of a cross" />
-                  </button>
-                </Link>
-                <Link to="/upcoming-table">
-                  <button type="button" className="sideButton">
-                    <img
-                      id="logoSearch"
-                      src={Search}
-                      alt="logo of a magnifier"
-                    />
-                  </button>
-                </Link>
+                <div className="messsageNoData">
+                  <p>
+                    You are not registered for any games yet. Check the{" "}
+                    <span id="goldenTextFuturGames">
+                      list of upcoming games or click on the button to find your
+                      party
+                    </span>
+                  </p>
+                  <Link to="/upcoming-table">
+                    <button id="partyFinder" type="button">
+                      FIND YOUR PARTY
+                    </button>
+                  </Link>
+                </div>
               </div>
-              <div className="messsageNoData">
-                <p>
-                  You are not registered for any games yet. Check the{" "}
-                  <span id="goldenTextFuturGames">
-                    list of upcoming games or click on the button to find your
-                    party
-                  </span>
-                </p>
-                <Link to="/upcoming-table">
-                  <button id="partyFinder" type="button">
-                    FIND YOUR PARTY
-                  </button>
-                </Link>
-              </div>
-            </div>
-          )}
+            )}
+          </div>
         </div>
         {isGmCardsOpen && (
           <GmCards onClose={toggleGmCards} gameData={gameData} />
