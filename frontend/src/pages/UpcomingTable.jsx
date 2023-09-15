@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
-// import AuthContext from "../components/AuthContext/AuthContext"
-import Cookies from "js-cookie"
-
 import Game from "../components/Game/Game"
 import Player from "../components/Player/playerCard"
-
+import "./UpcomingTable.scss"
 import BladeIcon from "../assets/logo/bladeIcon.svg"
 import BookVector from "../assets/logo/bookVector.svg"
 import CalandarIcon from "../assets/logo/calendarIcon.svg"
@@ -13,6 +10,8 @@ import GroupDiscussionIcon from "../assets/logo/groupDiscussionIcon.svg"
 import PlaceIconVector from "../assets/logo/placeIconVector.svg"
 import ProfilIcon from "../assets/logo/profilIcon.svg"
 import HexagonDiceIcon from "../assets/logo/hexagonDiceIcon.svg"
+// import AuthContext from "../components/AuthContext/AuthContext"
+import Cookies from "js-cookie"
 
 function UpcomingTable() {
   const [games, setGames] = useState([])

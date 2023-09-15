@@ -12,8 +12,8 @@
 
 .modal-content {
   background-color: white;
-  height: 200px;
-  width: 300px;
+  height: 500px;
+  width: 900px;
   padding: 20px;
   border-radius: 5px;
   display: flex;
@@ -31,4 +31,18 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.nomTopic {
+  height: 30px;
+  width: 300px;
+  border: 0.1px solid;
+  background-color: azure;
+}
+
+.messageTopic {
+  height: 80px;
+  width: 300px;
+  border: 0.1px solid;
+  background-color: azure;
 }

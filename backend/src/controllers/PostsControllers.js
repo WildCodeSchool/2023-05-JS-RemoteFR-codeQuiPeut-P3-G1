@@ -12,6 +12,18 @@ const browse = (req, res) => {
     })
 }
 
+const getPostsByTopicsId = (req, res) => {
+  models.posts
+    .getPostsById(req.params.id)
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 const read = (req, res) => {
   models.posts
     .find(req.params.id)
@@ -88,4 +100,5 @@ module.exports = {
   edit,
   add,
   destroy,
+  getPostsByTopicsId,
 }
