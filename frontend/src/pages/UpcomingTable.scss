@@ -130,8 +130,12 @@
       width: 100%;
       height: auto;
       margin: 20px;
-      overflow: scroll;
+      // overflow: scroll;
       // border: 2px solid yellow;
+
+      #upComingGamesCards {
+        overflow-y: auto;
+      }
 
       .containerMenuGame {
         display: flex;
@@ -276,7 +280,7 @@
       color: white;
       width: 100%;
       margin: 20px;
-      overflow: scroll;
+      // overflow: scroll;
       // border: 2px solid yellow;
 
       .BoxTitle {
@@ -314,6 +318,10 @@
             line-height: normal;
           }
         }
+      }
+
+      #upComingTablePlayersCards {
+        overflow-y: auto;
       }
     }
   }
