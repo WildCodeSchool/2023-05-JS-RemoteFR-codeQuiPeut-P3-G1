@@ -5,6 +5,7 @@ import Cookies from "js-cookie"
 import SendArrow from "../../../src/assets/privateMessages/send-4008.svg"
 import { getCurrentTime } from "./utils"
 import axios from "axios"
+import moment from "moment"
 
 export default function Conversation(props) {
   const { senderId, senderName, senderProfilPicture } = props
@@ -54,10 +55,10 @@ export default function Conversation(props) {
   }
 
   useEffect(() => {
-    if (messageHistoryRef.current) {
-      messageHistoryRef.current.scrollTop =
-        messageHistoryRef.current.scrollHeight
-    }
+    // if (messageHistoryRef.current) {
+    //   messageHistoryRef.current.scrollTop =
+    //     messageHistoryRef.current.scrollHeight
+    // }
 
     const receiveMessageHandler = (data) => {
       setMessageHistory((prevMessages) => [...prevMessages, data])
@@ -90,6 +91,7 @@ export default function Conversation(props) {
       })
   }, [senderId])
 
+  console.info(messageHistory)
   return (
     <div className="divConversation">
       <div className="conversationHeader">
@@ -110,13 +112,18 @@ export default function Conversation(props) {
         {messageHistory.map((message) => (
           <div
             className={
-              // message.users_id_recipient != idUser
-                ? "wrapMessageLeft"
-                : "wrapMessageRight"
+              message.users_id_recipient !== idUser
+                ? "wrapMessageRight"
+                : "wrapMessageLeft"
             }
+            key={message.date}
           >
-            <p>{message.content}</p>
-            <div className="messageTime">{message.time}</div>
+            <div className="msgBackground">
+              <p>{message.content}</p>
+            </div>
+            <div className="messageTime">
+              {moment(message.date).format("HH:mm")}
+            </div>
           </div>
         ))}
       </div>

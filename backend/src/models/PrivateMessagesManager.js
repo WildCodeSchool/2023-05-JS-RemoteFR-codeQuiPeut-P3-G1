@@ -8,11 +8,7 @@ class PrivateMessagesManager extends AbstractManager {
   insert(privateMessages) {
     return this.database.query(
       `INSERT INTO ${this.table} (users_id_sender, users_id_recipient, content, date, seen) VALUES (?, ?, ?, NOW(), 0)`,
-      [
-        privateMessages.from,
-        privateMessages.to,
-        privateMessages.content
-      ]
+      [privateMessages.from, privateMessages.to, privateMessages.content]
     )
   }
 
@@ -41,7 +37,7 @@ class PrivateMessagesManager extends AbstractManager {
     return this.database.query(
       `SELECT * FROM ${this.table} 
       WHERE users_id_recipient = ? AND users_id_sender = ? OR users_id_sender = ? AND users_id_recipient = ?
-      ORDER BY date ASC`, 
+      ORDER BY date ASC`,
       [userConnectedId, senderId, userConnectedId, senderId]
     )
   }

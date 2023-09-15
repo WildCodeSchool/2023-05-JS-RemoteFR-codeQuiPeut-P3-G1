@@ -112,5 +112,5 @@ module.exports = {
   add,
   destroy,
   messagesPreview,
-  getMessagesFromUsers
+  getMessagesFromUsers,
 }

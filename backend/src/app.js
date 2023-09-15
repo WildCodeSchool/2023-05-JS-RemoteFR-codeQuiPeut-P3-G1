@@ -41,23 +41,15 @@ io.on("connection", (socket) => {
   const token = socket.handshake.headers.authorization
   console.info("===============================", token)
 
-
-
-
   socket.on("send_message", (data) => {
-    
-  
-  const recipientId = data.to;
-  socket.join(recipientId);
+    const recipientId = data.to
+    socket.join(recipientId)
 
-  io.to(recipientId).emit("receive_message", data)
-
+    io.to(recipientId).emit("receive_message", data)
 
     console.info("************** poulet ***********", data)
-
   })
 })
-
 
 // server.listen(4221, () => console.log("je suis un poulet");)
 // import and mount the API routes
