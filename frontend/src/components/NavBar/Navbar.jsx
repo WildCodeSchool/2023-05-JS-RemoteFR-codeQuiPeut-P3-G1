@@ -70,7 +70,11 @@ function NavBar() {
                 src={isActive("/home") ? HomeWhite : Home}
                 alt="logo of home in the navbar"
               />
-              <span className={hoveredLink === "home" ? "slide-in" : ""}>
+              <span
+                className={
+                  hoveredLink === "home" || isActive("/home") ? "slide-in" : ""
+                }
+              >
                 HOME
               </span>
             </div>
@@ -87,7 +91,13 @@ function NavBar() {
                 src={isActive("/upcoming-table") ? PartyWhite : Party}
                 alt="logo of party in the navbar"
               />
-              <span className={hoveredLink === "home" ? "slide-in" : ""}>
+              <span
+                className={
+                  hoveredLink === "home" || isActive("/upcoming-table")
+                    ? "slide-in"
+                    : ""
+                }
+              >
                 PARTY
               </span>
             </div>
@@ -104,7 +114,13 @@ function NavBar() {
                 src={isActive("/profil") ? ProfilWhite : Profil}
                 alt="logo of profil in the navbar"
               />
-              <span className={hoveredLink === "home" ? "slide-in" : ""}>
+              <span
+                className={
+                  hoveredLink === "home" || isActive("/profil")
+                    ? "slide-in"
+                    : ""
+                }
+              >
                 PROFIL
               </span>
             </div>
@@ -121,7 +137,13 @@ function NavBar() {
                 src={isActive("/create-game") ? CreateGameWhite : CreateGame}
                 alt="logo of Create Game in the navbar"
               />
-              <span className={hoveredLink === "home" ? "slide-in" : ""}>
+              <span
+                className={
+                  hoveredLink === "home" || isActive("/create-game")
+                    ? "slide-in"
+                    : ""
+                }
+              >
                 CREATE GAME
               </span>
             </div>
@@ -140,7 +162,13 @@ function NavBar() {
                 }
                 alt="logo of messagerie in the navbar"
               />
-              <span className={hoveredLink === "home" ? "slide-in" : ""}>
+              <span
+                className={
+                  hoveredLink === "home" || isActive("/privateMessages")
+                    ? "slide-in"
+                    : ""
+                }
+              >
                 MESSAGE
               </span>
             </div>
@@ -157,7 +185,13 @@ function NavBar() {
                 src={isActive("/topics") ? ForumWhite : Forum}
                 alt="logo of forum in the navbar"
               />
-              <span className={hoveredLink === "home" ? "slide-in" : ""}>
+              <span
+                className={
+                  hoveredLink === "home" || isActive("/topics")
+                    ? "slide-in"
+                    : ""
+                }
+              >
                 FORUM
               </span>
             </div>
@@ -173,7 +207,11 @@ function NavBar() {
               src={isActive("/") ? SettingWhite : Setting}
               alt="logo of forum in the navbar"
             />
-            <span className={hoveredLink === "home" ? "slide-in" : ""}>
+            <span
+              className={
+                hoveredLink === "home" || isActive("/") ? "slide-in" : ""
+              }
+            >
               SETTING
             </span>
           </div>
@@ -187,7 +225,11 @@ function NavBar() {
               onClick={handleLogout}
               alt="logo of forum in the navbar"
             />
-            <span className={hoveredLink === "home" ? "slide-in" : ""}>
+            <span
+              className={
+                hoveredLink === "home" || isActive("/") ? "slide-in" : ""
+              }
+            >
               LOG OUT
             </span>
           </div>
