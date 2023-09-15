@@ -34,18 +34,27 @@ class TopicsManager extends AbstractManager {
   getTopicsAndUsers() {
     return this.database.query(`
     SELECT
-      u.profil_picture,
-      u.username,
-      t.title,
-      t.id,
-      DATE_FORMAT(p.date, '%Y-%m-%d %H:%i:%s') AS date,
-      t.id AS topics_id
-    FROM
-      posts p
-    JOIN
-      topics t ON p.topics_id = t.id
-    JOIN
-      users u ON p.users_id = u.id;
+  u.profil_picture,
+  u.username,
+  t.title,
+  t.id,
+  DATE_FORMAT(p.date, '%Y-%m-%d %H:%i:%s') AS date,
+  t.id AS topics_id,
+  (
+    SELECT p1.content
+    FROM posts p1
+    WHERE p1.topics_id = t.id
+    ORDER BY p1.date ASC
+    LIMIT 1
+  ) AS first_content
+FROM
+  topics t
+JOIN
+  posts p ON t.id = p.topics_id
+JOIN
+  users u ON p.users_id = u.id
+ORDER BY p.date DESC; -- Tri des sujets par date décroissante
+
   `)
   }
 }

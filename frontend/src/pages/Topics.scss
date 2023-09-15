@@ -77,8 +77,33 @@
             border: 1px solid rgba(194, 177, 108, 0.5);
             border-radius: 5px;
             padding: 10px;
-            margin: 10px;
-            // width: 90%;
+            margin: 50px;
+            overflow: hidden;
+
+            h3 {
+              margin: 15px;
+            }
+
+            .buttonInCard {
+              display: flex;
+              justify-content: flex-end;
+
+              button {
+                color: rgb(194, 177, 108);
+                height: 40px;
+                width: 180px;
+                border-radius: 7px;
+                background-color: black;
+              }
+            }
+
+            .topicTitleInCard {
+              margin: 15px;
+            }
+
+            .firstContentInCard {
+              margin: 15px;
+            }
 
             .headerCardTopic {
               background-color: rgba(24, 11, 35, 1);
@@ -97,7 +122,7 @@
                   height: 50px;
                   border-radius: 50px;
                   margin: 7px;
-                  border: solid rgba(194, 177, 108, 0.5);
+                  border: solid rgb(194, 177, 108);
                 }
               }
 

@@ -159,10 +159,7 @@ export default function Topics() {
                       }
                     })
                     .map((topic) => (
-                      <div
-                        key={topic.id}
-                        onClick={() => handlePostClick(topic)}
-                      >
+                      <div key={topic.id}>
                         <div className="topicbox">
                           <div className="headerCardTopic">
                             <div className="photoAndName">
@@ -179,8 +176,18 @@ export default function Topics() {
                               {formatDateDistance(topic.date)}
                             </div>
                           </div>
-                          <div> Sujet : {topic.title}</div>
+                          <h3>Sujet :</h3>
+                          <div className="topicTitleInCard"> {topic.title}</div>
                           <div>{topic.categories_id}</div>
+                          <h3>Message:</h3>
+                          <div className="firstContentInCard">
+                            {topic.first_content}
+                          </div>
+                          <div className="buttonInCard">
+                            <button onClick={() => handlePostClick(topic)}>
+                              reply to the guilder
+                            </button>
+                          </div>
                         </div>
                       </div>
                     ))}

@@ -12,9 +12,8 @@ export default function NewTopic({ onClose }) {
 
   const [message, setMessage] = useState("")
   const [nom, setNom] = useState("")
-  const [categorie, setCategorie] = useState("") // État pour la catégorie sélectionnée
+  const [categorie, setCategorie] = useState("")
 
-  // Liste des choix pour la liste déroulante
   const choices = [
     { id: 1, name: "Fantasy" },
     { id: 2, name: "Science Fiction" },
@@ -29,7 +28,7 @@ export default function NewTopic({ onClose }) {
         `${import.meta.env.VITE_BACKEND_URL}/topics`,
         {
           title: nom,
-          categories_id: categorie, // Utilisez la valeur sélectionnée
+          categories_id: categorie,
           content: message,
           users_id: idUser
         },
@@ -38,14 +37,14 @@ export default function NewTopic({ onClose }) {
       .then((res) => {
         if (res.status === 200) {
           console.info("NewTopic créée avec succès !")
-          onClose() // Ferme la fenêtre modale après la création
+          onClose(true) // Ferme la fenêtre modale après la création
         }
       })
       .catch((error) => {
         console.error("Erreur lors de la création du Topic :", error)
       })
   }
-  console.info("message", message)
+
   return (
     <div className="modal">
       <div className="modal-content">
@@ -60,8 +59,8 @@ export default function NewTopic({ onClose }) {
           Catégorie du Topic:
           <select
             id="catégorieSelect"
-            value={categorie} // Utilisez la valeur d'état pour la sélection
-            onChange={(e) => setCategorie(e.target.value)} // Mettez à jour l'état lors de la sélection
+            value={categorie}
+            onChange={(e) => setCategorie(e.target.value)}
           >
             <option value="">---</option>
             {choices.map((choice) => (
@@ -80,11 +79,14 @@ export default function NewTopic({ onClose }) {
         <button
           className="buttonCreateTopic"
           type="reset"
-          onClick={handleCreateTopic}
+          onClick={() => {
+            handleCreateTopic()
+            onClose(true) // Ferme la fenêtre modale après la création
+          }}
         >
           Créer mon Topic
         </button>
-        <button onClick={onClose}>Fermer</button>
+        <button onClick={() => onClose(false)}>Fermer</button>
       </div>
     </div>
   )
