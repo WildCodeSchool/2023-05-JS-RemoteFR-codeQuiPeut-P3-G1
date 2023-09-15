@@ -133,6 +133,10 @@
       // overflow: scroll;
       // border: 2px solid yellow;
 
+      #upComingGamesCards {
+        overflow-y: scroll;
+      }
+
       .containerMenuGame {
         display: flex;
         justify-content: space-between; /* Espace équivalent entre les éléments */
@@ -314,6 +318,11 @@
             line-height: normal;
           }
         }
+      }
+
+      #upComingTablePlayersCards {
+        overflow-y: scroll;
+        height: 10vh;
       }
     }
   }
