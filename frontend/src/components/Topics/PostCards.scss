@@ -1,0 +1,55 @@
+.topics-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  gap: 20px;
+
+  .topic-title {
+    color: rgb(194, 177, 108);
+    font-family: $title-font;
+    font-size: 4.5vw;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    font-variant: small-caps;
+    text-align: center;
+  }
+
+  .post-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: rgba(77, 25, 77, 0.44);
+    border: 1px solid #e2d07c;
+    border-radius: 8px;
+    padding: 10px;
+    width: 80%;
+    max-width: 400px;
+
+    img {
+      max-width: 50px;
+      max-height: 50px;
+      border-radius: 50%;
+    }
+
+    .post-details {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+
+      .username {
+        color: #e2d07c;
+        font-family: $content-font;
+        font-size: 0.85vw;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+      }
+
+      .content {
+        color: white;
+      }
+    }
+  }
+}

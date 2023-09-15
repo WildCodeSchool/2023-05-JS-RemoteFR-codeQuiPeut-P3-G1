@@ -22,17 +22,21 @@ export default function Topics({ postData, headers }) {
   console.info("postcards", postData)
 
   return (
-    <>
+    <div className="topics-container">
+      {" "}
+      {/* Utilisez la classe CSS du fichier Topics.scss */}
       {allPosts.map((post) => (
-        <div key={post.id}>
+        <div className="post-card" key={post.id}>
           <img
             src={`${import.meta.env.VITE_BACKEND_URL}/${post.profil_picture}`}
-            alt="photo de profils de l'utilisateur"
+            alt="photo de profil de l'utilisateur"
           />
-          <div>{post.username}</div>
-          <div>{post.content}</div>
+          <div className="post-details">
+            <div className="username">{post.username}</div>
+            <div className="content">{post.content}</div>
+          </div>
         </div>
       ))}
-    </>
+    </div>
   )
 }
