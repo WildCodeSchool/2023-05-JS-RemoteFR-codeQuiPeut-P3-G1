@@ -23,6 +23,8 @@ function PlayerCards({ isOpen, onClose, userData, formattedSchedule }) {
   if (!isPlayerOpen) {
     return null
   }
+
+  console.info("userdata", userData)
   return (
     <div className="major_Container_PlayerCards">
       <div className="PlayerCards_Main_Container">

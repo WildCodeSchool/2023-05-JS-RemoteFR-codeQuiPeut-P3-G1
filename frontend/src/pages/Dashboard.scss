@@ -1,272 +1,74 @@
+// * {
+//   border: 1px solid blue;
+// }
+
 .mainDivDashboard {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
+  // border: 3px solid green;
 
   .Icon-Title-Dashboard {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 10vh;
+    // height: 20%;
+    // border: 3px solid cyan;
     .iconRight {
       display: flex;
       flex-direction: column;
       gap: 10px;
       padding: 1rem;
     }
-  }
-  .dashboardTitle {
-    display: flex;
-    align-self: center;
-    justify-content: center;
-    width: 100%;
-    h1 {
-      color: $third-font-color;
-      font-family: $title-font;
-      font-family: Lekton;
-      font-size: 64px;
-      font-weight: 400;
-      line-height: normal;
-      font-variant: small-caps;
-    }
-
-    .myFutureGames {
+    .dashboardTitle {
       display: flex;
-      flex-direction: column;
+      align-self: center;
+      justify-content: center;
       align-items: center;
-      img {
-        width: 80px;
-        height: auto;
-        border-bottom: 1px solid #a4945e;
-      }
-      .contentFutureGames {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 503px;
-        height: 560px;
-        border-radius: 8px;
-        border: 4px solid #4d194d;
-        background: rgba(217, 217, 217, 0.22);
-        .contentWindow {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          box-sizing: border-box;
-          position: relative;
-          top: -100px;
-          .divButtonsss {
-            width: 100%;
-          }
-          .logoContentFG {
-            display: flex;
-            flex-direction: column;
-            width: fit-content;
-            box-sizing: border-box;
-            position: relative;
-            left: -35px;
-            gap: 20px;
-
-            img {
-              width: 60px;
-              height: 60px;
-              border: none;
-            }
-          }
-          p {
-            color: white;
-            font-family: $content-font;
-            padding-right: 80px;
-            padding-left: 80px;
-            font-size: 18px;
-            font-weight: 300;
-          }
-          #partyFinder {
-            display: flex;
-            width: 143px;
-            height: 37.895px;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            flex-shrink: 0;
-            margin-top: 20px;
-            color: #180b23;
-            font-family: $content-font;
-            font-size: 13px;
-            font-weight: 400;
-            line-height: normal;
-            cursor: pointer;
-          }
-        }
-      }
-    }
-    .myProfil {
-      display: flex;
-      flex-direction: column;
-      .titleProfil {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        border-bottom: 1px solid #a4945e;
-        gap: 10px;
-        width: fit-content;
-        height: 40px;
-        margin-bottom: 20px;
-        img {
-          width: 40px;
-          height: 40px;
-        }
-      }
-      .contentMyProfil {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        width: 624px;
-        height: 682px;
-        border-radius: 8px;
-        border: 4px solid #4d194d;
-        background: rgba(217, 217, 217, 0.22);
-        gap: 30px;
-        .editProfile {
-          display: flex;
-          width: 100%;
-          justify-content: flex-end;
-          align-items: center;
-          flex-direction: row;
-          color: #fff;
-          font-family: $content-font;
-          font-size: 12px;
-          font-weight: 700;
-          img {
-            width: 30px;
-            height: 30px;
-          }
-        }
-        .topProfile {
-          display: flex;
-          flex-direction: row;
-          gap: 30px;
-          .centralDiv {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            .userInfoProfile {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              margin: 0;
-              padding: 0;
-              p {
-                color: #fff;
-                font-family: $content-font;
-                font-size: 27px;
-                font-weight: 400;
-                margin: 0;
-              }
-              h2 {
-                color: #e2d07c;
-                font-family: $content-font;
-                font-size: 10px;
-                font-weight: 300;
-              }
-            }
-            .locationProfile {
-              display: flex;
-              align-items: center;
-              gap: 10px;
-              p {
-                color: #fff;
-                font-family: $content-font;
-                font-size: 16px;
-                font-weight: 400;
-                line-height: normal;
-              }
-            }
-          }
-          .profileButton {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            button {
-              color: #fff;
-              font-family: $content-font;
-              font-size: 15px;
-              font-weight: 700;
-              background: none;
-              cursor: pointer;
-              border-radius: 4px;
-              border: 1px solid #fff;
-              box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-            }
-          }
-        }
-        .middleProfile {
-          width: 80%;
-          height: 200px;
-          background-color: #fff;
-          border-radius: 8px;
-          p {
-            color: #000;
-            padding: 30px;
-            font-family: $content-font;
-            font-size: 15px;
-            font-weight: 400;
-          }
-        }
-        .bottomProfile {
-          color: #fff;
-          font-family: $content-font;
-          font-size: 15px;
-          font-weight: 400;
-          border-bottom: 1px solid #a4945e;
-        }
+      width: 100%;
+      height: 100%;
+      // border: 3px solid yellow;
+      h1 {
+        color: $third-font-color;
+        font-family: $title-font;
+        font-size: clamp(32px, 4.5vw, 128px);
+        font-weight: 400;
+        line-height: normal;
+        font-variant: small-caps;
       }
     }
   }
+
   .dashboardAllComponents {
     display: flex;
     justify-content: center;
-
-    // width: 100vw;
-    // height: 100vh;
+    // border: 4px solid yellow;
+    width: 100%;
+    height: 80%;
     .friends-games-container {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      // border: 2px solid pink;
+      align-items: center;
+      width: 50%;
+      height: 100%;
+      // padding: 5%;
+      // border: 4px solid pink;
     }
-  }
-  .dashboardComponents {
-    display: flex;
-    justify-content: center;
-    gap: 100px;
-
-    h2 {
-      font-family: $title-font;
-      color: $third-font-color;
-      font-size: 30px;
-      font-weight: 700;
-      line-height: normal;
-      text-transform: uppercase;
-    }
-    .iconRight {
+    .dashboardComponents {
       display: flex;
-      flex-direction: column;
-      margin-right: 20px;
-      margin-top: 20px;
-      gap: 20px;
-
-      img {
-        width: 40px;
-        height: auto;
-      }
+      justify-content: center;
+      align-items: center;
+      // gap: 100px;
+      width: 60%;
+      // padding: 5%;
+      height: 100%;
+      // border: 4px solid blue;
     }
   }
 }
