@@ -65,15 +65,62 @@
         0.5
       ); /* Couleur plus foncée lors du survol */
     }
-    .wrapMessage {
-      width: fit-content;
-      max-width: 50%;
-      color: white;
-      background-color: rgb(93, 34, 93);
-      border-radius: 6px;
+    .wrapMessageLeft {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: flex-start;
+      width: 100%;
       height: fit-content;
-      padding: 10px 15px 10px 15px;
-      margin: 10px;
+      p {
+        width: fit-content;
+        max-width: 50%;
+        color: rgb(93, 34, 93);
+        background-color: rgb(232, 230, 232);
+        border-radius: 6px;
+        height: fit-content;
+        padding: 10px 15px 10px 15px;
+        margin: 10px;
+        font-size: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: flex-start;
+      }
+      .messageTime {
+        margin-top: 5px;
+        color: rgba(211, 211, 211, 0.758);
+        font-size: 10px;
+      }
+    }
+
+    .wrapMessageRight {
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      align-items: flex-end;
+      width: 100%;
+      height: fit-content;
+      p {
+        width: fit-content;
+        max-width: 50%;
+        color: rgb(232, 232, 232);
+        background-color: rgb(93, 34, 93);
+        border-radius: 6px;
+        height: fit-content;
+        padding: 10px 15px 10px 15px;
+        margin: 10px;
+        font-size: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: flex-start;
+      }
+      .messageTime {
+        margin-top: 5px;
+        color: rgba(211, 211, 211, 0.758);
+        font-size: 10px;
+      }
     }
   }
   .convInput {

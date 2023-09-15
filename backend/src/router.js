@@ -55,6 +55,10 @@ router.post("/rpgAdder/:userId/:rpgId", UsersControllers.rpgAdder)
 router.delete("/rpgLesser/:userId/:rpgId", UsersControllers.rpgLesser)
 // router.put("/modifyProfil/:userId",UsersControllers.modifyProfil)
 
+
+router.get("/getMessagesFromUsers/:userConnectedId/:senderId", PrivateMessagesControllers.getMessagesFromUsers)
+
+
 router.use(verifyToken)
 
 router.put(
