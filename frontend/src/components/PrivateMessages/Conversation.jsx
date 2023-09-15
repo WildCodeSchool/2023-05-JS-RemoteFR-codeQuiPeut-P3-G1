@@ -4,23 +4,20 @@ import { io } from "socket.io-client"
 import Cookies from "js-cookie"
 import SendArrow from "../../../src/assets/privateMessages/send-4008.svg"
 import { getCurrentTime } from "./utils"
+import axios from "axios"
+import moment from "moment"
 
 export default function Conversation(props) {
-  const { senderName, senderProfilPicture } = props
-  // senderId,
-  const messageHistoryRef = useRef(null)
-  const [messageContent, setMessageContent] = useState(null)
-  const [setTmpMessage] = useState("")
-  // tmpMessage,
-  const [messageHistory, setMessageHistory] = useState([])
-  const [setTime] = useState(null)
-  // time,
-  // const idUser = Cookies.get("idUser")
+  const { senderId, senderName, senderProfilPicture } = props
 
+  const messageHistoryRef = useRef(null)
+  const [messageContent, setMessageContent] = useState("")
+  const [messageHistory, setMessageHistory] = useState([])
+
+  const idUser = Cookies.get("idUser")
   const tokenFromCookie = Cookies.get("authToken")
   const headers = {
-    Authorization: `Bearer ${tokenFromCookie}`,
-    "Content-Type": "application/json"
+    Authorization: `Bearer ${tokenFromCookie}`
   }
 
   const socket = io.connect("http://localhost:4242", {
@@ -33,42 +30,68 @@ export default function Conversation(props) {
     }
   })
 
-  console.info(headers, "headers")
-
   const sendMessage = () => {
-    socket.emit("send_message", { message: messageContent })
-    setMessageHistory([
-      ...messageHistory,
-      { text: messageContent, type: "send" }
-    ])
-    setMessageContent("")
+    const messageData = {
+      from: idUser,
+      to: senderId,
+      content: messageContent,
+      time: getCurrentTime()
+    }
+
+    socket.emit("send_message", messageData)
+
+    setMessageHistory((prevMessages) => [...prevMessages, messageData])
+    setMessageContent("") // Réinitialise le contenu de l'input
+
+    axios
+      .post(
+        `${import.meta.env.VITE_BACKEND_URL}/PrivateMessages`,
+        messageData,
+        { headers }
+      )
+      .catch((err) => {
+        console.info("Erreur Post dans Private Messages", err)
+      })
   }
 
   useEffect(() => {
-    if (messageHistoryRef.current) {
-      messageHistoryRef.current.scrollTop =
-        messageHistoryRef.current.scrollHeight
-    }
-    if (messageHistory) {
-      setTime(getCurrentTime)
-    }
-  }, [messageHistory])
+    // if (messageHistoryRef.current) {
+    //   messageHistoryRef.current.scrollTop =
+    //     messageHistoryRef.current.scrollHeight
+    // }
 
-  useEffect(() => {
     const receiveMessageHandler = (data) => {
-      setTmpMessage(data)
+      setMessageHistory((prevMessages) => [...prevMessages, data])
     }
 
     socket.on("receive_message", receiveMessageHandler)
 
     // Nettoyez l'écouteur lorsque le composant est démonté
-    // return () => {
-    //   socket.off("receive_message", receiveMessageHandler)
-    // }
-  }, [socket])
+    return () => {
+      socket.off("receive_message", receiveMessageHandler)
+    }
+  }, [messageHistory, socket])
 
-  // console.info(messageContent)
+  useEffect(() => {
+    axios
+      .get(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/getMessagesFromUsers/${idUser}/${senderId}`,
+        {
+          headers
+        }
+      )
+      .then((res) => {
+        setMessageHistory(res.data)
+        console.info(res.data)
+      })
+      .catch((err) => {
+        console.info("ca marche pas", err)
+      })
+  }, [senderId])
 
+  console.info(messageHistory)
   return (
     <div className="divConversation">
       <div className="conversationHeader">
@@ -86,11 +109,21 @@ export default function Conversation(props) {
         </div>
       </div>
       <div className="convContents" ref={messageHistoryRef}>
-        {/* {JSON.stringify(tmpMessage)} */}
-        {messageHistory.map((message, index) => (
-          <div key={index} className="wrapMessage">
-            {message.text}
-            <div className="messageTime">{message.time}</div>
+        {messageHistory.map((message) => (
+          <div
+            className={
+              message.users_id_recipient !== idUser
+                ? "wrapMessageRight"
+                : "wrapMessageLeft"
+            }
+            key={message.date}
+          >
+            <div className="msgBackground">
+              <p>{message.content}</p>
+            </div>
+            <div className="messageTime">
+              {moment(message.date).format("HH:mm")}
+            </div>
           </div>
         ))}
       </div>

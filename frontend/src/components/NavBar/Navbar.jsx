@@ -21,7 +21,7 @@ import SettingWhite from "../../assets/icon-navbar/settingWhite.svg"
 import LogOutWhite from "../../assets/icon-navbar/logOutWhite.svg"
 
 function NavBar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  // const [isMenuOpen, setIsMenuOpen] = useState(false)
   const navigate = useNavigate()
   const [hoveredLink, setHoveredLink] = useState(null)
 
@@ -35,9 +35,9 @@ function NavBar() {
     return null
   }
 
-  const handleMenuToggle = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
+  // const handleMenuToggle = () => {
+  //   setIsMenuOpen(!isMenuOpen)
+  // }
 
   const handleLogout = () => {
     Cookies.remove("authToken")
@@ -235,7 +235,7 @@ function NavBar() {
           </div>
         </div>
       </div>
-      <div className="footerNavbarMobile">
+      {/* <div className="footerNavbarMobile">
         <div className="logoFooter">
           <div>
             <img src={CreateGame} alt="" />
@@ -270,7 +270,7 @@ function NavBar() {
             )}
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   )
 }

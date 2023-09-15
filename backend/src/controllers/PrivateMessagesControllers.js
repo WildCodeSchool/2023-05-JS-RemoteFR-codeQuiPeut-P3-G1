@@ -53,8 +53,6 @@ const edit = (req, res) => {
 const add = (req, res) => {
   const privateMessages = req.body
 
-  // TODO validations (length, format...)
-
   models.private_messages
     .insert(privateMessages)
     .then(([result]) => {
@@ -87,7 +85,18 @@ const messagesPreview = (req, res) => {
   models.private_messages
     .getMessagesPreview(req.params.idReceiver)
     .then(([rows]) => {
-      // console.log(rows, "test Rows ---------------------")
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
+const getMessagesFromUsers = (req, res) => {
+  models.private_messages
+    .getMessagesFromUsers(req.params.userConnectedId, req.params.senderId)
+    .then(([rows]) => {
       res.send(rows)
     })
     .catch((err) => {
@@ -103,4 +112,5 @@ module.exports = {
   add,
   destroy,
   messagesPreview,
+  getMessagesFromUsers,
 }

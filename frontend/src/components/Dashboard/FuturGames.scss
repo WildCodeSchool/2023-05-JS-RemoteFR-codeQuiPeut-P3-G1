@@ -46,7 +46,8 @@
     // border: 2px solid red;
     border: double 4px transparent;
     border-radius: 8px;
-    background-image: linear-gradient(#563e5b, #563e5b), linear-gradient(180deg, #4D1A4D 10%, rgba(164,147,94,1) 100%);
+    background-image: linear-gradient(#563e5b, #563e5b),
+      linear-gradient(180deg, #4d1a4d 10%, rgba(164, 147, 94, 1) 100%);
     background-origin: border-box;
     background-clip: padding-box, border-box;
 
@@ -67,7 +68,7 @@
         }
       }
     }
-    
+
     .display_myfutureGames {
       display: flex;
       justify-content: space-between;
