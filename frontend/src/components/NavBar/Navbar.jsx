@@ -2,30 +2,34 @@ import React, { useState } from "react"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import Cookies from "js-cookie"
 
-import Logo from "../../assets/logo/logoNavBar.png"
-import Home from "../../assets/icon-navbar/home.png"
-import Party from "../../assets/icon-navbar/party.png"
-import Profil from "../../assets/icon-navbar/profile.png"
-import CreateGame from "../../assets/icon-navbar/newGame.png"
-import Messagerie from "../../assets/icon-navbar/message.png"
-import Forum from "../../assets/icon-navbar/forum.png"
-import Setting from "../../assets/icon-navbar/setting.png"
-import LogOut from "../../assets/icon-navbar/logOut.png"
+import Logo from "../../assets/logo/logoNavBar.svg"
+import Home from "../../assets/icon-navbar/home.svg"
+import Party from "../../assets/icon-navbar/party.svg"
+import Profil from "../../assets/icon-navbar/profile.svg"
+import CreateGame from "../../assets/icon-navbar/newGame.svg"
+import Messagerie from "../../assets/icon-navbar/message.svg"
+import Forum from "../../assets/icon-navbar/forum.svg"
+import Setting from "../../assets/icon-navbar/setting.svg"
+import LogOut from "../../assets/icon-navbar/logOut.svg"
+import HomeWhite from "../../assets/icon-navbar/homeWhite.svg"
+import PartyWhite from "../../assets/icon-navbar/partyWhite.svg"
+import ProfilWhite from "../../assets/icon-navbar/profileWhite.svg"
+import CreateGameWhite from "../../assets/icon-navbar/newGameWhite.svg"
+import MessagerieWhite from "../../assets/icon-navbar/messageWhite.svg"
+import ForumWhite from "../../assets/icon-navbar/forumWhite.svg"
+import SettingWhite from "../../assets/icon-navbar/settingWhite.svg"
+import LogOutWhite from "../../assets/icon-navbar/logOutWhite.svg"
 
 function NavBar() {
-  const [isHovering1, setIsHovering1] = useState(false)
-  const [isHovering2, setIsHovering2] = useState(false)
-  const [isHovering3, setIsHovering3] = useState(false)
-  const [isHovering4, setIsHovering4] = useState(false)
-  const [isHovering5, setIsHovering5] = useState(false)
-  const [isHovering6, setIsHovering6] = useState(false)
-  const [isHovering7, setIsHovering7] = useState(false)
-  const [isHovering8, setIsHovering8] = useState(false)
-
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const navigate = useNavigate()
+  const [hoveredLink, setHoveredLink] = useState(null)
 
   const location = useLocation()
+
+  const isActive = (path) => {
+    return location.pathname === path
+  }
 
   if (location.pathname === "/") {
     return null
@@ -33,68 +37,6 @@ function NavBar() {
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen)
-  }
-
-  const handleMouseEnter1 = () => {
-    setIsHovering1(true)
-  }
-
-  const handleMouseLeave1 = () => {
-    setIsHovering1(false)
-  }
-
-  const handleMouseEnter2 = () => {
-    setIsHovering2(true)
-  }
-
-  const handleMouseLeave2 = () => {
-    setIsHovering2(false)
-  }
-
-  const handleMouseEnter3 = () => {
-    setIsHovering3(true)
-  }
-
-  const handleMouseLeave3 = () => {
-    setIsHovering3(false)
-  }
-
-  const handleMouseEnter4 = () => {
-    setIsHovering4(true)
-  }
-
-  const handleMouseLeave4 = () => {
-    setIsHovering4(false)
-  }
-
-  const handleMouseEnter5 = () => {
-    setIsHovering5(true)
-  }
-
-  const handleMouseLeave5 = () => {
-    setIsHovering5(false)
-  }
-
-  const handleMouseEnter6 = () => {
-    setIsHovering6(true)
-  }
-
-  const handleMouseLeave6 = () => {
-    setIsHovering6(false)
-  }
-  const handleMouseEnter7 = () => {
-    setIsHovering7(true)
-  }
-
-  const handleMouseLeave7 = () => {
-    setIsHovering7(false)
-  }
-  const handleMouseEnter8 = () => {
-    setIsHovering8(true)
-  }
-
-  const handleMouseLeave8 = () => {
-    setIsHovering8(false)
   }
 
   const handleLogout = () => {
@@ -120,117 +62,134 @@ function NavBar() {
         <div className="mainButtonsNavBar">
           <Link to="/home">
             <div
-              className="homeNavBar"
-              onMouseEnter={handleMouseEnter1}
-              onMouseLeave={handleMouseLeave1}
+              className={`homeNavBar ${isActive("/home") ? "activeLink" : ""}`}
+              onMouseEnter={() => setHoveredLink("home")}
+              onMouseLeave={() => setHoveredLink(null)}
             >
-              <img src={Home} alt="logo of home in the navbar" />
-              {isHovering1 && (
-                <div className="hiddenHomeNavBar">
-                  <span>HOME</span>
-                </div>
-              )}
+              <img
+                src={isActive("/home") ? HomeWhite : Home}
+                alt="logo of home in the navbar"
+              />
+              <span className={hoveredLink === "home" ? "slide-in" : ""}>
+                HOME
+              </span>
             </div>
           </Link>
           <Link to="/upcoming-table">
             <div
-              className="partyNavBar"
-              onMouseEnter={handleMouseEnter2}
-              onMouseLeave={handleMouseLeave2}
+              className={`partyNavBar ${
+                isActive("/upcoming-table") ? "activeLink" : ""
+              }`}
+              onMouseEnter={() => setHoveredLink("home")}
+              onMouseLeave={() => setHoveredLink(null)}
             >
-              <img src={Party} alt="logo of party in the navbar" />
-              {isHovering2 && (
-                <div className="hiddenPartyNavBar">
-                  <span>PARTY</span>
-                </div>
-              )}
+              <img
+                src={isActive("/upcoming-table") ? PartyWhite : Party}
+                alt="logo of party in the navbar"
+              />
+              <span className={hoveredLink === "home" ? "slide-in" : ""}>
+                PARTY
+              </span>
             </div>
           </Link>
           <Link to="/profil">
             <div
-              className="profilNavBar"
-              onMouseEnter={handleMouseEnter3}
-              onMouseLeave={handleMouseLeave3}
+              className={`profilNavBar ${
+                isActive("/profil") ? "activeLink" : ""
+              }`}
+              onMouseEnter={() => setHoveredLink("home")}
+              onMouseLeave={() => setHoveredLink(null)}
             >
-              <img src={Profil} alt="logo of profil in the navbar" />
-              {isHovering3 && (
-                <div className="hiddenProfilNavBar">
-                  <span>PROFIL</span>
-                </div>
-              )}
+              <img
+                src={isActive("/profil") ? ProfilWhite : Profil}
+                alt="logo of profil in the navbar"
+              />
+              <span className={hoveredLink === "home" ? "slide-in" : ""}>
+                PROFIL
+              </span>
             </div>
           </Link>
           <Link to="/create-game">
             <div
-              className="createGameNavBar"
-              onMouseEnter={handleMouseEnter4}
-              onMouseLeave={handleMouseLeave4}
+              className={`createGameNavBar ${
+                isActive("/create-game") ? "activeLink" : ""
+              }`}
+              onMouseEnter={() => setHoveredLink("home")}
+              onMouseLeave={() => setHoveredLink(null)}
             >
-              <img src={CreateGame} alt="logo of Create Game in the navbar" />
-              {isHovering4 && (
-                <div className="hiddenCreateGameNavBar">
-                  <span>CREATE GAME</span>
-                </div>
-              )}
+              <img
+                src={isActive("/create-game") ? CreateGameWhite : CreateGame}
+                alt="logo of Create Game in the navbar"
+              />
+              <span className={hoveredLink === "home" ? "slide-in" : ""}>
+                CREATE GAME
+              </span>
             </div>
           </Link>
           <Link to="/privateMessages">
             <div
-              className="messageNavBar"
-              onMouseEnter={handleMouseEnter5}
-              onMouseLeave={handleMouseLeave5}
+              className={`messageNavBar ${
+                isActive("/privateMessages") ? "activeLink" : ""
+              }`}
+              onMouseEnter={() => setHoveredLink("home")}
+              onMouseLeave={() => setHoveredLink(null)}
             >
-              <img src={Messagerie} alt="logo of messagerie in the navbar" />
-              {isHovering5 && (
-                <div className="hiddenMessageNavBar">
-                  <span>MESSAGE</span>
-                </div>
-              )}
+              <img
+                src={
+                  isActive("/privateMessages") ? MessagerieWhite : Messagerie
+                }
+                alt="logo of messagerie in the navbar"
+              />
+              <span className={hoveredLink === "home" ? "slide-in" : ""}>
+                MESSAGE
+              </span>
             </div>
           </Link>
           <Link to="/topics">
             <div
-              className="forumNavBar"
-              onMouseEnter={handleMouseEnter6}
-              onMouseLeave={handleMouseLeave6}
+              className={`forumNavBar ${
+                isActive("/topics") ? "activeLink" : ""
+              }`}
+              onMouseEnter={() => setHoveredLink("home")}
+              onMouseLeave={() => setHoveredLink(null)}
             >
-              <img src={Forum} alt="logo of forum in the navbar" />
-              {isHovering6 && (
-                <div className="hiddenForumNavBar">
-                  <span>FORUM</span>
-                </div>
-              )}
+              <img
+                src={isActive("/topics") ? ForumWhite : Forum}
+                alt="logo of forum in the navbar"
+              />
+              <span className={hoveredLink === "home" ? "slide-in" : ""}>
+                FORUM
+              </span>
             </div>
           </Link>
         </div>
         <div className="bottomButtonNavBar">
           <div
-            className="settingNavBar"
-            onMouseEnter={handleMouseEnter7}
-            onMouseLeave={handleMouseLeave7}
-          >
-            <img src={Setting} alt="logo of forum in the navbar" />
-            {isHovering7 && (
-              <div className="hiddenSettingNavBar">
-                <span>SETTING</span>
-              </div>
-            )}
-          </div>
-          <div
-            className="logOutNavBar"
-            onMouseEnter={handleMouseEnter8}
-            onMouseLeave={handleMouseLeave8}
+            className={`settingNavBar ${isActive("/") ? "activeLink" : ""}`}
+            onMouseEnter={() => setHoveredLink("home")}
+            onMouseLeave={() => setHoveredLink(null)}
           >
             <img
-              src={LogOut}
+              src={isActive("/") ? SettingWhite : Setting}
+              alt="logo of forum in the navbar"
+            />
+            <span className={hoveredLink === "home" ? "slide-in" : ""}>
+              SETTING
+            </span>
+          </div>
+          <div
+            className={`logOutNavBar ${isActive("/") ? "activeLink" : ""}`}
+            onMouseEnter={() => setHoveredLink("home")}
+            onMouseLeave={() => setHoveredLink(null)}
+          >
+            <img
+              src={isActive("/") ? LogOutWhite : LogOut}
               onClick={handleLogout}
               alt="logo of forum in the navbar"
             />
-            {isHovering8 && (
-              <div className="hiddenLogOutNavBar">
-                <span>LOG OUT</span>
-              </div>
-            )}
+            <span className={hoveredLink === "home" ? "slide-in" : ""}>
+              LOG OUT
+            </span>
           </div>
         </div>
       </div>
