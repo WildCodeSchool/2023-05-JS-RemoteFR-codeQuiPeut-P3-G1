@@ -6,6 +6,18 @@ function ButtonSignIn() {
   const [showSignIn, setShowSignIn] = useState(false)
   const signInRef = useRef(null)
 
+  const handleCloseEscape = (event) => {
+    if (event.key === "Escape") {
+      setShowSignIn(false)
+    }
+  }
+  useEffect(() => {
+    document.addEventListener("keydown", handleCloseEscape)
+    return () => {
+      document.removeEventListener("keydown", handleCloseEscape)
+    }
+  }, [])
+
   useEffect(() => {
     // Ajoute un gestionnaire d'événements pour les clics sur le document
     const handleClickOutside = (event) => {
