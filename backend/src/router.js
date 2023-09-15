@@ -100,6 +100,7 @@ router.delete("/testimonials/:id", TestimonialsControllers.destroy)
 router.get("/topics", TopicsControllers.browse)
 router.get("/topicsAndUsers", TopicsControllers.topicsAndUsers)
 router.get("/topics/:id", TopicsControllers.read)
+router.get("/topics/:id", TopicsControllers.read)
 router.put("/topics/:id", TopicsControllers.edit)
 router.post("/topics", TopicsControllers.add)
 
@@ -115,6 +116,7 @@ router.post("/categories", CategoriesControllers.add)
 
 router.get("/posts", PostsControllers.browse)
 router.get("/posts/:id", PostsControllers.read)
+router.get("/posts/topics/:id", PostsControllers.getPostsByTopicsId)
 router.put("/posts/:id", PostsControllers.edit)
 router.post("/posts", PostsControllers.add)
 
