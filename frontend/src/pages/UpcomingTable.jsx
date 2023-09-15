@@ -140,7 +140,7 @@ function UpcomingTable() {
                 <div className="containeurTitlePlayer">Description</div>
               </div>
             </div>
-            <div>
+            <div id="upComingTablePlayersCards">
               {users
                 .filter((user) =>
                   user.username
@@ -316,39 +316,47 @@ function UpcomingTable() {
                 <div className="containerTitleUP">Player</div>
               </div>
             </div>
-            {games
-              .filter((game) =>
-                game.city.toLowerCase().includes(cityFilter.toLowerCase())
-              )
-              .filter((game) =>
-                game.max_players_capacity.toString().includes(maxPlayersFilter)
-              )
-              .filter((game) =>
-                game.type.toLowerCase().includes(typeFilter.toLowerCase())
-              )
-              .filter((game) =>
-                game.schedule.toLowerCase().includes(dateFilter.toLowerCase())
-              )
-              .filter((game) =>
-                game.guild_name.toLowerCase().includes(nameFilter.toLowerCase())
-              )
-              .filter(
-                (game) =>
-                  gmFilter === "" ||
-                  users.some((user) =>
-                    user.username.toLowerCase().includes(gmFilter.toLowerCase())
-                  )
-              )
-              .filter(
-                (game) =>
-                  rpgFilter === "" ||
-                  rpg.some((r) =>
-                    r.name.toLowerCase().includes(rpgFilter.toLowerCase())
-                  )
-              )
-              .map((game) => (
-                <Game key={game.id} games={game} users={users} rpg={rpg} />
-              ))}
+            <div id="upComingGamesCards">
+              {games
+                .filter((game) =>
+                  game.city.toLowerCase().includes(cityFilter.toLowerCase())
+                )
+                .filter((game) =>
+                  game.max_players_capacity
+                    .toString()
+                    .includes(maxPlayersFilter)
+                )
+                .filter((game) =>
+                  game.type.toLowerCase().includes(typeFilter.toLowerCase())
+                )
+                .filter((game) =>
+                  game.schedule.toLowerCase().includes(dateFilter.toLowerCase())
+                )
+                .filter((game) =>
+                  game.guild_name
+                    .toLowerCase()
+                    .includes(nameFilter.toLowerCase())
+                )
+                .filter(
+                  (game) =>
+                    gmFilter === "" ||
+                    users.some((user) =>
+                      user.username
+                        .toLowerCase()
+                        .includes(gmFilter.toLowerCase())
+                    )
+                )
+                .filter(
+                  (game) =>
+                    rpgFilter === "" ||
+                    rpg.some((r) =>
+                      r.name.toLowerCase().includes(rpgFilter.toLowerCase())
+                    )
+                )
+                .map((game) => (
+                  <Game key={game.id} games={game} users={users} rpg={rpg} />
+                ))}
+            </div>
           </div>
         </div>
       </div>
