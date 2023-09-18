@@ -187,6 +187,22 @@ const pendingRequests = (req, res) => {
     })
 }
 
+const gameHistoryPlayer = (req, res) => {
+  models.gameRegistrationsManager
+    .gameHistoryPlayer(req.params.id)
+    .then(([rows]) => {
+      if (rows == null) {
+        res.sendStatus(404)
+      } else {
+        res.send(rows)
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 module.exports = {
   browse,
   read,
@@ -200,4 +216,5 @@ module.exports = {
   joiningRequestsAccepted,
   pendingRequests,
   validateRequests,
+  gameHistoryPlayer,
 }

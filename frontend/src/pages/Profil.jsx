@@ -3,6 +3,7 @@ import Cookies from "js-cookie"
 import axios from "axios"
 import AuthContext from "../components/AuthContext/AuthContext"
 import RpgAdding from "../components/profilPage/RpgAdding"
+import RequestGM from "../components/profilPage/RequestGM"
 
 import iconProfil from "../assets/Profil/iconProfil.png.png"
 import questionMark from "../assets/Profil/questionMark.png.png"
@@ -10,6 +11,7 @@ import Add2 from "../assets/icon-dashboard/Add2.png"
 import iconSettings from "../assets/Profil/iconSettings.png.png"
 import pinPointer from "../assets/Profil/pinPointer.png.png"
 import deleteCross from "../assets/Profil/deleteCross.png"
+import calendar from "../assets/Profil/calendar.png"
 
 const Profil = () => {
   const [isEditing, setIsEditing] = useState(false)
@@ -23,6 +25,10 @@ const Profil = () => {
   const [newPassword, setNewPassword] = useState("")
   const [validateRequestData, setValidateRequestData] = useState([])
   const [pendingRequestData, setPendingRequestData] = useState([])
+  const [gameHistoryPlayerData, setGameHistoryPlayerData] = useState([])
+  const [upcommingGameGMData, setUpcommingGameGMData] = useState([])
+  const [historyGameGMData, setHistoryGameGMData] = useState([])
+  const [isPlayer, setIsPlayer] = useState(true)
 
   const [buttonStates, setButtonStates] = useState({
     mainDiv: true,
@@ -123,8 +129,48 @@ const Profil = () => {
         console.error("An error occurred:", error)
       })
   }, [])
-  console.info(pendingRequestData)
-  console.info(validateRequestData)
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/gameHistoryPlayer/${idUser}`, {
+        headers
+      })
+      .then((response) => {
+        setGameHistoryPlayerData(response.data)
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error)
+      })
+  }, [])
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/upcommingGameGM/${idUser}`, {
+        headers
+      })
+      .then((response) => {
+        setUpcommingGameGMData(response.data)
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error)
+      })
+  }, [])
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/historyGameGM/${idUser}`, {
+        headers
+      })
+      .then((response) => {
+        setHistoryGameGMData(response.data)
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error)
+      })
+  }, [])
+
+  // console.info(pendingRequestData)
+  // console.info(validateRequestData)
 
   // const modifyProfil = () => {
   //   if (newPassword !== user.currentPassword) {
@@ -188,6 +234,8 @@ const Profil = () => {
     .reverse()
     .join("-")
 
+  console.info("caca", upcommingGameGMData)
+
   return (
     <div className="mainContainerProfil">
       <div className="questionMark">
@@ -248,45 +296,197 @@ const Profil = () => {
           </div>
           <div className="bigBoxRight">
             <div className="topDivMyGames">
-              <div className="middleTopDiv">PLAYER</div>
-              <div className="leftTopDiv">TOGGLE PLAYER GM</div>
+              <div className="middleTopDiv">
+                <span>{isPlayer === true ? "PLAYER" : "GAMEMASTER"}</span>
+              </div>
+              <div className="leftTopDiv">
+                PLAYER
+                <input
+                  type="checkbox"
+                  id="switch"
+                  onClick={() => setIsPlayer(!isPlayer)}
+                />
+                <label htmlFor="switch">
+                  <p></p>
+                </label>
+                GM
+              </div>
             </div>
-            <div className="validateDiv">
-              <div className="titleValidate">VALIDATE</div>
-              <div className="displayValidate">
-                {validateRequestData.map((valid, index) => (
-                  <div className="boxValidateGame" key={index}>
-                    {valid.schedule}
-                    {valid.guild_name}
-                    {valid.type}
-                    {valid.id}
+
+            {isPlayer === false && (
+              <>
+                <div className="validateDiv">
+                  <div className="titleValidate">UPCOMMING GAMES</div>
+                  <div className="displayValidate">
+                    {upcommingGameGMData.map((validated, index) => {
+                      const date = new Date(validated.schedule)
+                      const formatedDate = date.toISOString().split("T")[0]
+                      return (
+                        <div className="boxValidatedGame" key={index}>
+                          <div className="scheduleDiv">
+                            <div className="pictureCalendar">
+                              <img src={calendar} />
+                            </div>
+                            <div className="dateCalendar">{formatedDate}</div>
+                            <hr className="hrBoxMyGames"></hr>
+                          </div>
+                          <div className="guildNameDiv">
+                            GUILD : {validated.guild_name}
+                          </div>
+                          <div className="typeDiv">
+                            <p>
+                              {validated.is_campaign === 1
+                                ? "Campaign"
+                                : "One Shot"}
+                            </p>
+                          </div>
+                        </div>
+                      )
+                    })}
                   </div>
-                ))}
-              </div>
-            </div>
-            <div className="waitingValidationDiv">
-              <div className="titlewaiting">WAITING FOR VALIDATION</div>
-              <div className="displayWaiting">
-                {pendingRequestData.map((pending, index) => (
-                  <div className="boxPendingateGame" key={index}>
-                    {pending.schedule}
-                    {pending.guild_name}
-                    {pending.type}
-                    {pending.id}
+                </div>
+                <div className="waitingValidationDiv">
+                  <RequestGM />
+                </div>
+                <div className="invitationDiv">
+                  <div className="titleInvitation">INVITATION FOR GAMES</div>
+                  <div className="displayInvitation">
+                    .map invitation à faire ici
                   </div>
-                ))}
-              </div>
-            </div>
-            <div className="invitationDiv">
-              <div className="titleInvitation">INVITATION FOR GAMES</div>
-              <div className="displayInvitation">
-                .map invitation à faire ici
-              </div>
-            </div>
-            <div className="historyDiv">
-              <div className="titleHistory">HISTORY</div>
-              <div className="displayHistory">.map history à faire ici</div>
-            </div>
+                </div>
+                <div className="historyDiv">
+                  <div className="titleHistory">HISTORY</div>
+                  <div className="displayHistory">
+                    {historyGameGMData.map((history, index) => {
+                      const date = new Date(history.schedule)
+                      const formatedDate = date.toISOString().split("T")[0]
+                      return (
+                        <div className="boxHistoryGame" key={index}>
+                          <div className="scheduleDiv">
+                            <div className="pictureCalendar">
+                              <img src={calendar} />
+                            </div>
+                            <div className="dateCalendar">{formatedDate}</div>
+                            <hr className="hrBoxMyGames"></hr>
+                          </div>
+                          <div className="guildNameDiv">
+                            GUILD : {history.guild_name}
+                          </div>
+                          <div className="typeDiv">
+                            <p>
+                              {history.is_campaign === 1
+                                ? "Campaign"
+                                : "One Shot"}
+                            </p>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              </>
+            )}
+
+            {isPlayer === true && (
+              <>
+                <div className="validateDiv">
+                  <div className="titleValidate">VALIDATED</div>
+                  <div className="displayValidate">
+                    {validateRequestData.map((validated, index) => {
+                      const date = new Date(validated.schedule)
+                      const formatedDate = date.toISOString().split("T")[0]
+                      return (
+                        <div className="boxValidatedGame" key={index}>
+                          <div className="scheduleDiv">
+                            <div className="pictureCalendar">
+                              <img src={calendar} />
+                            </div>
+                            <div className="dateCalendar">{formatedDate}</div>
+                            <hr className="hrBoxMyGames"></hr>
+                          </div>
+                          <div className="guildNameDiv">
+                            GUILD : {validated.guild_name}
+                          </div>
+                          <div className="typeDiv">
+                            <p>
+                              {validated.is_campaign === 1
+                                ? "Campaign"
+                                : "One Shot"}
+                            </p>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+                <div className="waitingValidationDiv">
+                  <div className="titlewaiting">WAITING FOR VALIDATION</div>
+                  <div className="displayWaiting">
+                    {pendingRequestData.map((pending, index) => {
+                      const date = new Date(pending.schedule)
+                      const formatedDate = date.toISOString().split("T")[0]
+                      return (
+                        <div className="boxPendingateGame" key={index}>
+                          <div className="scheduleDiv">
+                            <div className="pictureCalendar">
+                              <img src={calendar} />
+                            </div>
+                            <div className="dateCalendar">{formatedDate}</div>
+                            <hr className="hrBoxMyGames"></hr>
+                          </div>
+                          <div className="guildNameDiv">
+                            GUILD : {pending.guild_name}
+                          </div>
+                          <div className="typeDiv">
+                            <p>
+                              {pending.is_campaign === 1
+                                ? "Campaign"
+                                : "One Shot"}
+                            </p>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+                <div className="invitationDiv">
+                  <div className="titleInvitation">INVITATION FOR GAMES</div>
+                  <div className="displayInvitation">
+                    .map invitation à faire ici
+                  </div>
+                </div>
+                <div className="historyDiv">
+                  <div className="titleHistory">HISTORY</div>
+                  <div className="displayHistory">
+                    {gameHistoryPlayerData.map((history, index) => {
+                      const date = new Date(history.schedule)
+                      const formatedDate = date.toISOString().split("T")[0]
+                      return (
+                        <div className="boxHistoryGame" key={index}>
+                          <div className="scheduleDiv">
+                            <div className="pictureCalendar">
+                              <img src={calendar} />
+                            </div>
+                            <div className="dateCalendar">{formatedDate}</div>
+                            <hr className="hrBoxMyGames"></hr>
+                          </div>
+                          <div className="guildNameDiv">
+                            GUILD : {history.guild_name}
+                          </div>
+                          <div className="typeDiv">
+                            <p>
+                              {history.is_campaign === 1
+                                ? "Campaign"
+                                : "One Shot"}
+                            </p>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       )}

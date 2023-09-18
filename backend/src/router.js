@@ -37,6 +37,13 @@ router.get(
 )
 router.get("/pendingRequests/:id", GameRegistrationsControllers.pendingRequests)
 
+router.get(
+  "/gameHistoryPlayer/:id",
+  GameRegistrationsControllers.gameHistoryPlayer
+)
+router.get("/upcommingGameGM/:id", GamesControllers.upcommingGameGM)
+router.get("/historyGameGM/:id", GamesControllers.historyGameGM)
+
 router.put(
   "/joiningRequestsRejected/:requesterId/:gameId",
   GameRegistrationsControllers.joiningRequestsRejected

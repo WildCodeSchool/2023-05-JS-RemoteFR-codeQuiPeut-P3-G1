@@ -43,6 +43,20 @@ class GamesManager extends AbstractManager {
       ]
     )
   }
+
+  upcommingGameGM(id) {
+    return this.database.query(
+      `select * from  ${this.table} where gm_id = ? AND schedule > NOW()`,
+      [id]
+    )
+  }
+
+  historyGameGM(id) {
+    return this.database.query(
+      `select * from  ${this.table} where gm_id = ? AND schedule < NOW()`,
+      [id]
+    )
+  }
 }
 
 module.exports = GamesManager

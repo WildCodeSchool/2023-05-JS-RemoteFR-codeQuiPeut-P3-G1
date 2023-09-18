@@ -68,7 +68,7 @@ class GameRegistrationsManager extends AbstractManager {
 
   gameJoiningRequests(id) {
     return this.database.query(
-      `SELECT gr.id, u.profil_picture, u.username, ga.guild_name, gr.status, ga.gm_id, gr.games_id, gr.requester_id 
+      `SELECT gr.id, u.profil_picture, u.username, ga.guild_name, ga.schedule, ga.is_campaign, gr.status, ga.gm_id, gr.games_id, gr.requester_id 
       FROM ${this.table} AS gr
       JOIN users AS u ON gr.requester_id = u.id
       JOIN games AS ga ON gr.games_id = ga.id 
@@ -79,18 +79,27 @@ class GameRegistrationsManager extends AbstractManager {
 
   gameValidateRequests(id) {
     return this.database.query(
-      `SELECT g.schedule, g.guild_name, g.type, gr.games_id, gr.requester_id, gr.status FROM ${this.table} AS gr
+      `SELECT g.schedule, g.guild_name, g.is_campaign, gr.games_id, gr.requester_id, gr.status FROM ${this.table} AS gr
       JOIN games g ON gr.games_id = g.id
-      WHERE gr.requester_id = ? AND gr.status = "accepted";`,
+      WHERE gr.requester_id = ? AND gr.status = "accepted" AND g.schedule > NOW();`,
       [id]
     )
   }
 
   gamePendingRequests(id) {
     return this.database.query(
-      `SELECT g.schedule, g.guild_name, g.type, gr.games_id, gr.requester_id, gr.status FROM ${this.table} AS gr
+      `SELECT g.schedule, g.guild_name, g.is_campaign, gr.games_id, gr.requester_id, gr.status FROM ${this.table} AS gr
       JOIN games g ON gr.games_id = g.id
       WHERE gr.requester_id = ? AND gr.status = "pending";`,
+      [id]
+    )
+  }
+
+  gameHistoryPlayer(id) {
+    return this.database.query(
+      `SELECT g.schedule, g.guild_name, g.is_campaign, gr.games_id, gr.requester_id, gr.status FROM ${this.table} AS gr
+      JOIN games g ON gr.games_id = g.id
+      WHERE gr.requester_id = ? AND g.schedule < NOW();`,
       [id]
     )
   }
