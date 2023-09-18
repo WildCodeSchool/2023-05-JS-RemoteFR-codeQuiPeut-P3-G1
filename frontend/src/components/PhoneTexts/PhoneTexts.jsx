@@ -8,6 +8,12 @@ const PhoneTexts = () => {
     setShowModal(true)
   }
 
+  const closeOnOutsideClick = (e) => {
+    if (e.target.className === "modal") {
+      setShowModal(false)
+    }
+  }
+
   return (
     <>
       <div className="PhoneText-Global">
@@ -37,9 +43,8 @@ const PhoneTexts = () => {
             </button>
           </div>
           {showModal && (
-            <div className="modal">
-              <SignIn />
-              <button onClick={() => setShowModal(false)}>Close</button>
+            <div className="modal" onClick={closeOnOutsideClick}>
+              <SignIn onClick={() => setShowModal(false)} />
             </div>
           )}
         </div>

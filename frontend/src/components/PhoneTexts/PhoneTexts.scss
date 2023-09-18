@@ -1,9 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .PhoneText-Global {
   display: flex;
   align-items: center;
@@ -39,6 +33,19 @@
       margin: 2rem;
     }
 
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1500;
+      background-color: rgba(185, 178, 178, 0.315);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
     .p-phoneTexts {
       color: $third-font-color;
       text-align: justify;
@@ -49,6 +56,7 @@
       line-height: normal;
       margin: 2rem;
     }
+
     .Btn-container-phone {
       display: flex;
       justify-content: center;

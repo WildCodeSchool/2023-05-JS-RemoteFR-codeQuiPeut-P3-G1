@@ -11,16 +11,17 @@ function LandingPage() {
   return (
     <>
       <div className="main-landingPage">
-        <img
-          src="src/assets/landing-assets/iconGuildHeader.svg"
-          className="logoGuild-Header"
-        />
         <div className="button-register-container">
+          <img
+            src="src/assets/landing-assets/iconGuildHeader.svg"
+            className="logoGuild-Header"
+          />
           <div className="Button-Register-LandingPage">
             <ButtonSignIn />
             <ButtonSignUp />
           </div>
         </div>
+
         <div className="Scene">
           <GuildPhone />
         </div>

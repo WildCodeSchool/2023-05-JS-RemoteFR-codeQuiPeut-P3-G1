@@ -1,3 +1,15 @@
+// .modalBlur {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   z-index: 1500;
+//   background-color: rgba(185, 178, 178, 0.315);
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
 .cardLogIn-container {
   display: flex;
   align-items: center;
@@ -130,6 +142,11 @@
     cursor: pointer;
   }
   .signUpButton-LogInForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
     span {
       text-align: center;
       font-family: $content-font;
