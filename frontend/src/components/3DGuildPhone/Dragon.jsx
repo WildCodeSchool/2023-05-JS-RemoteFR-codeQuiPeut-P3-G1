@@ -19,19 +19,19 @@ export default function Dragon() {
       "/src/components/3DGuildPhone/Dragon1/textures/material_0_diffuse.png",
       "/src/components/3DGuildPhone/Dragon1/textures/material_0_normal.png",
       "/src/components/3DGuildPhone/Dragon1/textures/material_0_occlusion.png",
-      "/src/components/3DGuildPhone/Dragon1/textures/material_0_specularGlossiness.png",
+      "/src/components/3DGuildPhone/Dragon1/textures/material_0_specularGlossiness.png"
     ])
 
   const goldMaterial = new MeshStandardMaterial({
     color: new THREE.Color("burlyWood"),
     roughness: 0.5,
-    metalness: 1.2,
+    metalness: 1.2
   })
 
   const animations = useAnimations(dragon.animations, dragon.scene)
 
   const { animationName } = useControls({
-    animationName: { options: animations.names },
+    animationName: { options: animations.names }
   })
 
   useEffect(() => {
