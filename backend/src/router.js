@@ -55,11 +55,6 @@ router.post("/rpgAdder/:userId/:rpgId", UsersControllers.rpgAdder)
 router.delete("/rpgLesser/:userId/:rpgId", UsersControllers.rpgLesser)
 // router.put("/modifyProfil/:userId",UsersControllers.modifyProfil)
 
-router.get(
-  "/getMessagesFromUsers/:userConnectedId/:senderId",
-  PrivateMessagesControllers.getMessagesFromUsers
-)
-
 router.use(verifyToken)
 
 router.put(
@@ -68,10 +63,10 @@ router.put(
   UsersControllers.updateProfilPicture
 )
 
+router.get("/users", UsersControllers.browse)
 router.get("/users/:id", UsersControllers.read)
 router.put("/users/:id", hashPassword, UsersControllers.edit)
 
-router.get("/users", UsersControllers.browse)
 router.delete("/users/:id", UsersControllers.destroy)
 
 router.get(
@@ -149,6 +144,10 @@ router.get("/PrivateMessages", PrivateMessagesControllers.browse)
 router.get("/PrivateMessages/:id", PrivateMessagesControllers.read)
 router.put("/PrivateMessages/:id", PrivateMessagesControllers.edit)
 router.post("/PrivateMessages", PrivateMessagesControllers.add)
+router.get(
+  "/getMessagesFromUsers/:userConnectedId/:senderId",
+  PrivateMessagesControllers.getMessagesFromUsers
+)
 
 router.delete("/categories/:id", CategoriesControllers.destroy)
 router.delete("/topics_subscription/:id", TopicsSubscriptionControllers.destroy)

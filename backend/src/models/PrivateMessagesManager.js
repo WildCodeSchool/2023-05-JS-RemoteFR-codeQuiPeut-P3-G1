@@ -25,11 +25,18 @@ class PrivateMessagesManager extends AbstractManager {
 
   getMessagesPreview(id) {
     return this.database.query(
-      `SELECT DISTINCT u.profil_picture, u.username, pm.users_id_sender
-      FROM ${this.table} AS pm
-      JOIN users u ON pm.users_id_sender = u.id
-      WHERE pm.users_id_recipient = ?`,
-      [id]
+      `SELECT u.profil_picture, u.username, u.id AS user_id
+    FROM (
+    SELECT DISTINCT users_id_sender AS user_id
+    FROM ${this.table}
+    WHERE users_id_recipient = ?
+    UNION
+    SELECT DISTINCT users_id_recipient
+    FROM ${this.table}
+    WHERE users_id_sender = ?
+    ) AS distinctUsers
+    JOIN users u ON distinctUsers.user_id = u.id`,
+      [id, id]
     )
   }
 
