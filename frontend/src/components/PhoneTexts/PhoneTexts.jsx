@@ -1,6 +1,5 @@
-import React, { useState } from "react"
-import Spline from "@splinetool/react-spline"
 import SignIn from "../Register/SignIn/SignIn"
+import { useState } from "react"
 
 const PhoneTexts = () => {
   const [showModal, setShowModal] = useState(false)
@@ -22,10 +21,9 @@ const PhoneTexts = () => {
               physical) for your epic quests.
               <br />
               <br />
-              Initiate conversations with potential partners via GUILD's
-              integrated messaging system. Plan your role-playing sessions,
-              choosing the perfect date, time, and platform (virtual or
-              physical) for your epic quests.
+              Join GUILD today and embark on unforgettable journeys filled with
+              extraordinary characters, captivating quests, and moments of
+              camaraderie that will stay etched in your memories forever.
             </p>
             <p className="p-phoneTexts"></p>
           </div>
@@ -45,9 +43,10 @@ const PhoneTexts = () => {
             </div>
           )}
         </div>
-        <div className="scene-PhoneTexts">
-          <Spline scene="https://prod.spline.design/Hm-EQFsFWBdKeM48/scene.splinecode" />
-        </div>
+        <img
+          src="src/assets/landing-assets/phoneTexts.png"
+          className="scene-PhoneTexts"
+        ></img>
       </div>
     </>
   )
