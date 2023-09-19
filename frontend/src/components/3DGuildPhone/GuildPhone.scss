@@ -8,16 +8,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
 
   .CreateGuildText {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 3rem 0;
-    width: 100vw;
-    height: 100vh;
+    width: 25%;
 
     .letscreate {
       display: flex;
@@ -26,7 +22,6 @@
       font-family: $title-font;
       color: $third-font-color;
       align-items: center;
-      margin: 2rem;
 
       h2 {
         text-align: center;
@@ -45,14 +40,16 @@
     }
 
     .createParagraph {
+      display: flex;
+      justify-content: center;
       color: $third-font-color;
       font-size: 1.45vw;
-      margin: 0 3rem;
+      margin: 0 2rem;
       font-family: $content-font;
       height: 100vh;
+      width: 80%;
       font-style: normal;
       font-weight: 400;
-      line-height: normal;
     }
   }
   .bg-wave-landingPage {
@@ -69,7 +66,7 @@
   }
 
   .GuildPhone {
-    width: 70vw;
+    width: 70%;
     height: 100vh;
   }
 }

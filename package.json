@@ -34,12 +34,15 @@
   "dependencies": {
     "@splinetool/react-spline": "^2.2.6",
     "esbuild": "^0.16.17",
+    "moment": "^2.29.4",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.5.2",
     "react-ios-time-picker": "^0.2.2",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.15.0",
     "react-slick": "^0.29.0",
-    "sass": "^1.64.1"
+    "sass": "^1.64.1",
+    "socket.io": "^4.7.2",
+    "socket.io-client": "^4.7.2"
   }
 }

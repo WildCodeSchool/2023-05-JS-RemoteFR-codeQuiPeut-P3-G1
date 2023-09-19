@@ -158,7 +158,7 @@ CREATE TABLE `games` (
 
 LOCK TABLES `games` WRITE;
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
-INSERT INTO `games` VALUES (1,1,'2023-09-15 19:00:00',5,'Join us for an epic fantasy adventure!','Campaign','Rise of Heroes','Avalon',0,1,'user1','1'),(2,2,'2023-09-20 18:30:00',4,'Explore the galaxy in this Star Wars RPG.','One-shot','Galactic Explorations','Coruscant',1,0,'user2','2'),(3,3,'2023-09-18 20:00:00',6,'Uncover the secrets of the ancient city.','One-shot','Cthulhu Chronicles','Arkham',0,0,'user3','3'),(4,4,'2023-09-16 15:00:00',3,'Solve puzzles and mysteries in Victorian London.','Campaign','Sherlock Adventures','London',0,1,'user4','4'),(5,5,'2023-09-19 14:00:00',5,'Embark on a journey in a high-fantasy world.','Campaign','Epic Odyssey','Narnia',1,1,'user5','5');
+INSERT INTO `games` VALUES (1,1,'2023-09-15 19:00:00',5,'Join us for an epic fantasy adventure!','Adventure','Rise of Heroes','Avalon',0,1,'user1','1'),(2,2,'2023-09-20 18:30:00',4,'Explore the galaxy in this Star Wars RPG.','Adventure','Galactic Explorations','Coruscant',1,0,'user2','2'),(3,3,'2023-09-18 20:00:00',6,'Uncover the secrets of the ancient city.','Horror','Cthulhu Chronicles','Arkham',0,0,'user3','3'),(4,4,'2023-09-16 15:00:00',3,'Solve puzzles and mysteries in Victorian London.','Sci-Fi','Sherlock Adventures','London',0,1,'user4','4'),(5,5,'2023-09-19 14:00:00',5,'Embark on a journey in a high-fantasy world.','Horror','Epic Odyssey','Narnia',1,1,'user5','5');
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -334,7 +334,7 @@ CREATE TABLE `role_playing_games` (
 
 LOCK TABLES `role_playing_games` WRITE;
 /*!40000 ALTER TABLE `role_playing_games` DISABLE KEYS */;
-INSERT INTO `role_playing_games` VALUES (1,'Dungeons & Dragons','Fantasy role-playing game','assets/images/profilPictures/dndIcon.png'),(2,'Star Wars RPG','Science fiction role-playing game','assets/images/profilPictures/chill.png'),(3,'Call of Cthulhu','Horror role-playing game','assets/images/profilPictures/callOfCthulhu.png'),(4,'Mysteries of Sherlock Holmes','Mystery role-playing game','assets/images/profilPictures/cyberpunk.png'),(5,'Pathfinder','Fantasy role-playing game','assets/images/profilPictures/kuff.png'),(6,'Dungeons & Dragons','Fantasy role-playing game','assets/images/profilPictures/dndIcon.png'),(7,'Dungeons & Dragons','Fantasy role-playing game','assets/images/profilPictures/dndIcon.png'),(8,'Dungeons & Dragons','Fantasy role-playing game','assets/images/profilPictures/dndIcon.png'),(9,'Dungeons & Dragons','Fantasy role-playing game','assets/images/profilPictures/dndIcon.png');
+INSERT INTO `role_playing_games` VALUES (1,'Dungeons & Dragons','Fantasy role-playing game','assets/images/rpgPictures/dndIcon.png'),(2,'Star Wars RPG','Science fiction role-playing game','assets/images/rpgPictures/chill.png'),(3,'Call of Cthulhu','Horror role-playing game','assets/images/rpgPictures/callOfCthulhu.png'),(4,'Mysteries of Sherlock Holmes','Mystery role-playing game','assets/images/rpgPictures/cyberpunk.png'),(5,'Pathfinder','Fantasy role-playing game','assets/images/rpgPictures/kuff.png'),(6,'Dungeons & Dragons','Fantasy role-playing game','assets/images/rpgPictures/dndIcon.png'),(7,'Dungeons & Dragons','Fantasy role-playing game','assets/images/rpgPictures/dndIcon.png'),(8,'Dungeons & Dragons','Fantasy role-playing game','assets/images/rpgPictures/dndIcon.png'),(9,'Dungeons & Dragons','Fantasy role-playing game','assets/images/rpgPictures/dndIcon.png');
 /*!40000 ALTER TABLE `role_playing_games` ENABLE KEYS */;
 UNLOCK TABLES;
 

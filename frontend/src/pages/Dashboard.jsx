@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import axios from "axios"
 import Cookies from "js-cookie"
 import AuthContext from "../components/AuthContext/AuthContext"
@@ -19,6 +19,8 @@ const Dashboard = () => {
     Authorization: `Bearer ${tokenFromCookie}`
   }
 
+  const [hasFriendRequest, setHasFriendRequest] = useState(false)
+
   useEffect(() => {
     axios
       .get(`http://localhost:4242/users`, { headers })
@@ -31,14 +33,29 @@ const Dashboard = () => {
   }, [])
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:4242/users/${idUser}`, { headers })
-      .then((res) => {
-        setUser(res.data)
-      })
-      .catch((err) => {
-        console.error("Problème lors du chargement des users", err)
-      })
+    idUser !== null &&
+      axios
+        .get(`http://localhost:4242/users/${idUser}`, { headers })
+        .then((res) => {
+          setUser(res.data)
+        })
+        .catch((err) => {
+          console.error("Problème lors du chargement des users", err)
+        })
+  }, [])
+
+  useEffect(() => {
+    idUser !== null &&
+      axios
+        .get(`http://localhost:4242/joiningRequests/${idUser}`, { headers })
+        .then((res) => {
+          if (res.data.length > 0) {
+            setHasFriendRequest(true)
+          }
+        })
+        .catch((err) => {
+          console.error("Problème lors du chargement des friend requests", err)
+        })
   }, [])
 
   return (
@@ -46,7 +63,7 @@ const Dashboard = () => {
       <div className="mainDivDashboard">
         <div className="Icon-Title-Dashboard">
           <div className="dashboardTitle">
-            <h1>DASHBOARD</h1>
+            <h1>Dashboard</h1>
           </div>
           <div className="iconRight">
             <img id="logoNotepad" src={Notepad} alt="logo of notepad" />
@@ -60,13 +77,12 @@ const Dashboard = () => {
         <div className="dashboardAllComponents">
           <div className="friends-games-container">
             <FuturGames />
-            <FriendRequest />
+            {hasFriendRequest && <FriendRequest />}
           </div>
           <div className="dashboardComponents">
             <MyProfil idUser={idUser} />
           </div>
         </div>
-        {/* <NavBar /> */}
       </div>
     </>
   )

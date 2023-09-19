@@ -1,22 +1,35 @@
 import axios from "axios"
 import React, { useState, useContext, useEffect } from "react"
+import { Link } from "react-router-dom"
+import Cookies from "js-cookie"
+
 import Add2 from "../../assets/icon-dashboard/Add2.png"
-import Edit from "../../assets/icon-dashboard/Edit.png"
+import Edit from "../../assets/icon-dashboard/Edit.svg"
 import Location from "../../assets/icon-dashboard/Location.png"
 import AuthContext from "../AuthContext/AuthContext"
 import profilePictureLogo from "../../assets/icon-dashboard/profilePictureLogo.svg"
-import gameLogo from "../../assets/icon-dashboard/gameLogo.png"
-import Cookies from "js-cookie"
+// import gameLogo from "../../assets/icon-dashboard/gameLogo.png"
 
 const MyProfil = () => {
   const { user } = useContext(AuthContext)
   const [imageUrl, setImageUrl] = useState(null)
+  const [rpgPictures, setRpgPictures] = useState([])
+  const idUser = Cookies.get("idUser")
 
   useEffect(() => {
     setImageUrl(`${import.meta.env.VITE_BACKEND_URL}/${user.profil_picture}`)
   }, [user.profil_picture])
 
+  useEffect(() => {
+    axios
+      .get(`http://localhost:4242/pictureRPG/${idUser}`, { headers })
+      .then((res) => setRpgPictures(res.data))
+  }, [user])
+
   const tokenFromCookie = Cookies.get("authToken")
+  const headers = {
+    Authorization: `Bearer ${tokenFromCookie}`
+  }
 
   const shortDate = String(user.registration_date)
     .substring(0, 10)
@@ -62,7 +75,7 @@ const MyProfil = () => {
 
   return (
     <div className="myProfil">
-      <div className="titleProfil">
+      <div className="titleMyProfil">
         <div className="profilePic-container">
           <img
             id="logoProfile"
@@ -74,10 +87,12 @@ const MyProfil = () => {
       </div>
       <div className="contentMyProfil">
         <div className="editProfile">
-          <button type="button" id="editButton">
-            <img id="logoEdit" src={Edit} alt="logo of a pen" />
-            <p>Edit Profile</p>
-          </button>
+          <Link to="/profil">
+            <button type="button" id="editButton">
+              <img id="logoEdit" src={Edit} alt="logo of a pen" />
+              <p>Edit Profile</p>
+            </button>
+          </Link>
         </div>
         <div className="topProfile">
           <div className="logoAdd2">
@@ -107,7 +122,7 @@ const MyProfil = () => {
           <div className="centralDiv">
             <div className="userInfoProfile">
               <p>{user.username}</p>
-              <h2>{shortDate}</h2>
+              <h2>registered since {shortDate}</h2>
             </div>
             <div className="locationProfile">
               <img
@@ -124,17 +139,24 @@ const MyProfil = () => {
         </div>
         <div className="middleProfile">
           <p>
-            {user.description === "null"
+            {user.description_as_player === "null"
               ? "Warning: No bio founded on this profile. Dear user, please consider adding a bio to let others know more about you !"
-              : user.description}
+              : user.description_as_player}
           </p>
         </div>
         <div className="bottomProfile">
           <h1>MY GAMES / SEARCH TO PLAY ON</h1>
           <div className="gamesContainer">
-            <img className="blackLogoGame" src={gameLogo} alt="game logo" />
-            <img className="blackLogoGame" src={gameLogo} alt="game logo" />
-            <img className="blackLogoGame" src={gameLogo} alt="game logo" />
+            {rpgPictures.map((rpgPicture, index) => (
+              <div className="boxRpgPicture" key={index}>
+                <img
+                  src={`${import.meta.env.VITE_BACKEND_URL}/${
+                    rpgPicture.rpg_icon
+                  }`}
+                  alt={`Image for game with ID ${rpgPicture.rpg_icon}`}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </div>

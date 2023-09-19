@@ -9,11 +9,12 @@ const express = require("express")
 
 const app = express()
 
-// use some application-level middlewares
+const cors = require("cors")
+const http = require("http")
+
+const server = http.createServer(app)
 
 app.use(express.json())
-
-const cors = require("cors")
 
 app.use(
   cors({
@@ -21,7 +22,36 @@ app.use(
     optionsSuccessStatus: 200,
   })
 )
+// Socket.io
 
+const { Server } = require("socket.io")
+
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-type", "Authorization"],
+    credentials: true,
+  },
+})
+// use some application-level middlewares
+
+io.on("connection", (socket) => {
+  console.info("Client connected")
+  const token = socket.handshake.headers.authorization
+  console.info("===============================", token)
+
+  socket.on("send_message", (data) => {
+    const recipientId = data.to
+    socket.join(recipientId)
+
+    io.to(recipientId).emit("receive_message", data)
+
+    console.info("************** poulet ***********", data)
+  })
+})
+
+// server.listen(4221, () => console.log("je suis un poulet");)
 // import and mount the API routes
 
 const router = require("./router")
@@ -60,6 +90,4 @@ if (fs.existsSync(reactIndexFile)) {
   })
 }
 
-// ready to export
-
-module.exports = app
+module.exports = { app, server }

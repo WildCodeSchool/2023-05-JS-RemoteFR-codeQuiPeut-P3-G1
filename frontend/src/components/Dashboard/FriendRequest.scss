@@ -1,10 +1,15 @@
 @import "../../Variable.scss";
-
+* {
+  // border: 1px solid cyan;
+}
 .Friends-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  // border: 2px solid red;
+  width: 100%;
+  height: 100%;
   .Global-friendRequest {
     display: flex;
     flex-direction: column;
@@ -19,7 +24,7 @@
     .Request-Title {
       text-align: center;
       font-family: $content-font;
-      font-size: 2.5vh;
+      font-size: clamp(16px, 2.11vw, 30px);
       font-style: normal;
       font-weight: 700;
       line-height: normal;
@@ -29,37 +34,64 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-top: 1rem;
+      margin-bottom: 5px;
     }
   }
   .Friends-content {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
 
     .friends {
       display: flex;
       align-items: center;
       justify-content: start;
       flex-direction: column;
-      width: 30vw;
+      width: 80%;
       height: 20vh;
+      border: double 4px transparent;
       border-radius: 8px;
-      border: 4px solid #4d194d;
-      background: rgba(217, 217, 217, 0.22);
+      background-image: linear-gradient(#563e5b, #563e5b),
+        linear-gradient(180deg, #4d1a4d 10%, rgba(164, 147, 94, 1) 100%);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
       gap: 5px;
-      padding: 5px;
+      padding: 2%;
+      overflow-x: scroll;
+      overflow-x: hidden;
+      -ms-overflow-style: scrollbar; /* Internet Explorer 10+ */
+      scrollbar-width: thin; /* Firefox */
+      /* Pour Chrome, Safari et Opera */
+      &::-webkit-scrollbar {
+        width: 5px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: darkgrey;
+        // outline: 1px solid slategrey;
+        border-radius: 5px;
+      }
+
       .rawFriendRequest {
         padding-bottom: 5px;
-        border-bottom: 2px solid $third-font-color;
+        border-bottom: 1px solid $third-font-color;
         width: 100%;
-        height: 30%;
+        // height: 30%;
+        margin: 3%;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
+        // border: 2px solid red;
         .requesterProfilPicture {
           width: fit-content;
+          display: flex;
+          justify-content: center;
+          width: 10%;
           img {
-            aspect-ratio: 1/1;
+            // aspect-ratio: 1/1;
             border-radius: 50%;
-            width: auto;
-            height: 100%;
+            width: 100%;
+            // height: 100%;
             border: 2px solid $third-font-color;
           }
         }
@@ -67,24 +99,24 @@
           display: flex;
           justify-content: start;
           align-items: center;
-          height: 100%;
+          // height: 100%;
           width: fit-content;
           p {
             margin: 0 5px 0 5px;
             color: $secondary-font-color;
             font-family: $content-font;
-            font-size: 1vw;
+            font-size: clamp(16px, 1vw, 32px);
           }
         }
         .wantsToJoin {
           display: flex;
           justify-content: center;
           align-items: center;
-          height: 100%;
-          width: 70%;
+          // height: 100%;
+          // width: 70%;
           span {
             display: inline;
-            font-size: 1vw;
+            font-size: clamp(16px, 1vw, 32px);
             font-style: normal;
             background: linear-gradient(180deg, #e2d07c 0%, #a4945e 100%);
             line-height: normal;
@@ -96,23 +128,24 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          height: 100%;
-          width: 80%;
+          // height: 100%;
+          // width: 80%;
           p {
             color: $secondary-font-color;
             font-family: $content-font;
-            font-size: 1vw;
+            font-size: clamp(16px, 1vw, 32px);
           }
         }
         .requesterButton {
-          height: 100%;
-          width: fit-content;
+          // height: 100%;
+          // width: fit-content;
           display: flex;
           justify-content: center;
           align-items: center;
           gap: 5px;
           #validateButton {
-            border: 2px solid $third-font-color;
+            border: 1px solid $third-font-color;
+            padding: 4px;
             aspect-ratio: 1/1;
             height: 80%;
             background: $background-gradient-home-page;
@@ -123,7 +156,7 @@
             }
           }
           #refuseButton {
-            border: 2px solid $secondary-font-color;
+            border: 1px solid $secondary-font-color;
             aspect-ratio: 1/1;
             object-fit: cover;
             height: 80%;

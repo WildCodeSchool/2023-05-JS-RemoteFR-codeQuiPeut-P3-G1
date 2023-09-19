@@ -12,6 +12,18 @@ const browse = (req, res) => {
     })
 }
 
+const browsewithrpgname = (req, res) => {
+  models.games
+    .getGamesWithRpgName()
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 const read = (req, res) => {
   models.games
     .find(req.params.id)
@@ -111,12 +123,26 @@ const historyGameGM = (req, res) => {
     })
 }
 
+const selectGamesByGameMasterUsername = (req, res) => {
+  models.games
+    .getGamesByGameMasterUsername(req.params.username)
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 module.exports = {
   browse,
+  browsewithrpgname,
   read,
   edit,
   add,
   destroy,
   upcommingGameGM,
   historyGameGM,
+  selectGamesByGameMasterUsername,
 }

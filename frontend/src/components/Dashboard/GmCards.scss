@@ -31,6 +31,13 @@
 
       .profile-picture {
         display: flex;
+        justify-content: center;
+        width: 20%;
+        img {
+          border-radius: 50%;
+          width: 100%;
+          border: 2px solid #a4945e;
+        }
       }
       .GM-Name {
         display: flex;
@@ -210,13 +217,17 @@
 
     .participants-pictures {
       display: flex;
+      justify-content: flex-start;
       width: 100%;
       gap: 20px;
       padding-left: 10%;
       img {
-        width: 50%;
+        width: 10%;
+        border-radius: 50%;
+        border: 2px solid #a4945e;
       }
     }
+
     .iframe-GmCards {
       width: 100%;
       height: 100%;

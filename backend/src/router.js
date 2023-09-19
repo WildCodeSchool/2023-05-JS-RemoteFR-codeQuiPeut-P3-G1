@@ -20,6 +20,7 @@ const UsersFiltersControllers = require("./controllers/UsersFiltersControllers")
 const RolePlayingGamesControllers = require("./controllers/RolePlayingGamesController")
 const PrivateMessagesControllers = require("./controllers/PrivateMessagesControllers")
 const GamesHasUsersControllers = require("./controllers/GamesHasUsersControllers.js")
+// const { default: PrivateMessages } = require("../../frontend/src/components/PrivateMessages/PrivateMessages.jsx")
 
 router.post("/login", UsersControllers.verifyUser, verifyPassword)
 router.post("/users", hashPassword, UsersControllers.add)
@@ -58,6 +59,11 @@ router.post(
   GamesHasUsersControllers.add
 )
 
+router.get(
+  "/messagePreview/:idReceiver",
+  PrivateMessagesControllers.messagesPreview
+)
+
 router.post("/rpgAdder/:userId/:rpgId", UsersControllers.rpgAdder)
 router.delete("/rpgLesser/:userId/:rpgId", UsersControllers.rpgLesser)
 router.put(
@@ -65,6 +71,11 @@ router.put(
   verifyPassword,
   hashPassword,
   UsersControllers.edit
+)
+
+router.get(
+  "/getMessagesFromUsers/:userConnectedId/:senderId",
+  PrivateMessagesControllers.getMessagesFromUsers
 )
 
 router.use(verifyToken)
@@ -81,6 +92,11 @@ router.put("/users/:id", hashPassword, UsersControllers.edit)
 router.get("/users", UsersControllers.browse)
 router.delete("/users/:id", UsersControllers.destroy)
 
+router.get(
+  "/games/user/:username",
+  GamesControllers.selectGamesByGameMasterUsername
+)
+router.get("/gameswithrpgname", GamesControllers.browsewithrpgname)
 router.get("/games", GamesControllers.browse)
 router.get("/games/:id", GamesControllers.read)
 router.put("/games/:id", GamesControllers.edit)
@@ -106,6 +122,8 @@ router.post("/testimonials", TestimonialsControllers.add)
 router.delete("/testimonials/:id", TestimonialsControllers.destroy)
 
 router.get("/topics", TopicsControllers.browse)
+router.get("/topicsAndUsers", TopicsControllers.topicsAndUsers)
+router.get("/topics/:id", TopicsControllers.read)
 router.get("/topics/:id", TopicsControllers.read)
 router.put("/topics/:id", TopicsControllers.edit)
 router.post("/topics", TopicsControllers.add)
@@ -122,6 +140,7 @@ router.post("/categories", CategoriesControllers.add)
 
 router.get("/posts", PostsControllers.browse)
 router.get("/posts/:id", PostsControllers.read)
+router.get("/posts/topics/:id", PostsControllers.getPostsByTopicsId)
 router.put("/posts/:id", PostsControllers.edit)
 router.post("/posts", PostsControllers.add)
 

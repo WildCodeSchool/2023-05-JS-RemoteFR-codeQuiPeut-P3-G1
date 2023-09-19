@@ -5,30 +5,48 @@ class TopicsManager extends AbstractManager {
     super({ table: "topics" })
   }
 
-  insert(topics) {
+  insert(topic) {
     return this.database.query(
-      `insert into ${this.table} (title, categories_id, users_id, creation_date, subscription_count ) values (?, ?, ?, NOW(), ?)`,
+      `INSERT INTO ${this.table} (title, categories_id, users_id, creation_date, subscription_count) VALUES (?, ?, ?, NOW(), 0)`,
       [
-        topics.title,
-        topics.categories_id,
-        topics.users_id,
-        topics.creation_date,
-        topics.subscription_count,
+        topic.title,
+        topic.categories_id,
+        topic.users_id,
+        // topic.subscription_count,
       ]
     )
   }
 
-  update(topics) {
+  update(topic) {
     return this.database.query(
-      `update ${this.table} set title = ?, categories_id = ?, users_id = ? creation_date = ?, subscription_count = ? WHERE id = ? `,
+      `UPDATE ${this.table} SET title = ?, categories_id = ?, users_id = ?, creation_date = ?, subscription_count = ? WHERE id = ?`,
       [
-        topics.title,
-        topics.categories_id,
-        topics.users_id,
-        topics.creation_date,
-        topics.subscription_count,
+        topic.title,
+        topic.categories_id,
+        topic.users_id,
+        topic.creation_date,
+        topic.subscription_count,
+        topic.id, // Ajout de l'ID pour la clause WHERE
       ]
     )
+  }
+
+  getTopicsAndUsers() {
+    return this.database.query(`
+    SELECT
+      u.profil_picture,
+      u.username,
+      t.title,
+      t.id,
+      DATE_FORMAT(p.date, '%Y-%m-%d %H:%i:%s') AS date,
+      t.id AS topics_id
+    FROM
+      posts p
+    JOIN
+      topics t ON p.topics_id = t.id
+    JOIN
+      users u ON p.users_id = u.id;
+  `)
   }
 }
 

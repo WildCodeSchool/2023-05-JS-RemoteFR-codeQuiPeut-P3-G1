@@ -7,6 +7,13 @@ function SignIn() {
   const [signInUsername, setSignInUsername] = useState()
   const [signInPassword, setSignInPassword] = useState()
 
+  const handleKeyDown = (e) => {
+    console.info("Key down event triggered")
+    if (e.code === "Enter" || (e.key === "Enter" && signInPassword !== "")) {
+      handleLogin(e)
+    }
+  }
+
   const navigate = useNavigate()
 
   const handleLogin = (e) => {
@@ -22,6 +29,9 @@ function SignIn() {
           document.getElementById("cardLogIn-Input").reset()
           const token = res.data.token
           Cookies.set("authToken", token, { expires: 0.5, sameSite: "strict" })
+          Cookies.set("usernameGm", res.data.user.username, {
+            sameSite: "strict"
+          })
           Cookies.set("loggedInUser", JSON.stringify(res.data.user), {
             sameSite: "strict"
           })
@@ -53,13 +63,11 @@ function SignIn() {
             id="input-password-LogIn"
             type="password"
             onChange={(e) => setSignInPassword(e.target.value)}
+            onKeyDown={handleKeyDown}
           />
           <div className="forgot-Input">
             <span>Forgot Password ?</span>
           </div>
-          <Link to="/privatemessages">
-            <button type="button">Messages</button>
-          </Link>
         </form>
         <div className="button-SignIn-Container">
           <div className="button-SignIn">

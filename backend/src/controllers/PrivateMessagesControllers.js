@@ -53,8 +53,6 @@ const edit = (req, res) => {
 const add = (req, res) => {
   const privateMessages = req.body
 
-  // TODO validations (length, format...)
-
   models.private_messages
     .insert(privateMessages)
     .then(([result]) => {
@@ -82,10 +80,37 @@ const destroy = (req, res) => {
     })
 }
 
+const messagesPreview = (req, res) => {
+  // console.log("pouelt oooooooerzioerj");
+  models.private_messages
+    .getMessagesPreview(req.params.idReceiver)
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
+const getMessagesFromUsers = (req, res) => {
+  models.private_messages
+    .getMessagesFromUsers(req.params.userConnectedId, req.params.senderId)
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 module.exports = {
   browse,
   read,
   edit,
   add,
   destroy,
+  messagesPreview,
+  getMessagesFromUsers,
 }
