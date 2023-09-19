@@ -29,6 +29,7 @@
 @import "./components/PrivateMessages/Conversation.scss";
 @import "./components//PrivateMessages/NewConversation.scss";
 
+@import "./components/Dashboard/PlayerCards.scss";
 @import "./components/profilPage/RpgAdding.scss";
 @import "./components/CreateGame/FormCreateGame.scss";
 @import "./components/CreateGame/ResumeCreateGame.scss";
@@ -37,4 +38,6 @@
 @import "./components/Game/CardGame.scss";
 @import "./components/Game/JoinGuild.scss";
 @import "./components/Game/JoinGuildValidation.scss";
+@import "./components/Player/UpComingTablePlayerCard.scss";
+
 @import "./components/profilPage/RequestGM.scss";

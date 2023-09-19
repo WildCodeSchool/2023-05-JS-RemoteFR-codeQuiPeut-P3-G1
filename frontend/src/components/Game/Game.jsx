@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react"
 import CardGame from "./CardGame"
 import JoinGuild from "./JoinGuild"
 import JoinGuildValidation from "./JoinGuildValidation"
-import eye from "../../assets/upcomingTable-assets/eye.svg"
 import "./Game.scss"
 
 export default function Game({ games, headers }) {
@@ -57,7 +56,7 @@ export default function Game({ games, headers }) {
   console.info(games)
   return (
     <>
-      <div className="globalContainerCard">
+      <div className="globalContainerCard" onClick={() => openCardGame(games)}>
         <div className="boxGameCard">{games.guild_name}</div>
         <div className="boxGameCard">
           <img
@@ -77,11 +76,6 @@ export default function Game({ games, headers }) {
         <div className="boxGameCard">
           {playersProfil.length}/{games.max_players_capacity}
         </div>
-        <div className="boxNewTopics">
-          <button onClick={() => openCardGame(games)}>
-            <img src={eye} />
-          </button>
-        </div>
       </div>
 
       {cardGame && (
@@ -92,6 +86,7 @@ export default function Game({ games, headers }) {
               gameData={gameData}
               playersProfil={playersProfil}
               openJoinGuild={openJoinGuild}
+              setCardGame={setCardGame}
             />
           </div>
         </div>
