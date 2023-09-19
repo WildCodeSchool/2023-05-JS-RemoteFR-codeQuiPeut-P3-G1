@@ -1,0 +1,70 @@
+.hrBoxMyGames {
+  width: 4px;
+  height: 200%;
+  background-color: black;
+}
+
+.firstBoxGM {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  .requesterName {
+    color: black;
+  }
+}
+.wantsToJoin {
+  color: black;
+}
+.boxGuildAndType {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.requesterProfilPicture {
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    border: 2px solid $third-font-color;
+  }
+}
+.requesterButton {
+  height: 100%;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  #validateButton {
+    border: 2px solid $third-font-color;
+    aspect-ratio: 1/1;
+    height: 30px;
+    background: $background-gradient-home-page;
+    border-radius: 50%;
+    cursor: pointer;
+    &:hover {
+      background: #a4945e;
+    }
+  }
+  #refuseButton {
+    border: 2px solid $secondary-font-color;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    height: 30px;
+    background: none;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: black;
+    &:hover {
+      background-color: rgb(149, 18, 18);
+    }
+  }
+}
