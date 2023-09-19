@@ -189,7 +189,7 @@ export default function Topics() {
             </div>
 
             {isNewTopicOpen && (
-              <div className="modal">
+              <div className="modalTopics">
                 <div className="modal-content">
                   <NewTopic onClose={closeNewTopicModal} />
                 </div>

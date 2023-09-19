@@ -47,7 +47,7 @@ export default function NewTopic({ onClose }) {
   }
   console.info("message", message)
   return (
-    <div className="modal">
+    <div className="modalNewTopics">
       <div className="modal-content">
         <input
           className="nomTopic"

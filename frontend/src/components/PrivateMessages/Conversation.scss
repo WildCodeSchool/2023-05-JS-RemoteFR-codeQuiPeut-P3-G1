@@ -160,5 +160,21 @@
       width: 40px;
       cursor: pointer;
     }
+      .animate {
+        animation: sendAnimation 1.3s ease-in-out forwards;
+      }
+}
+}
+
+@keyframes sendAnimation {
+  0% {
+    transform: rotate(0deg) translateX(0px);
+  }
+  50% {
+    transform: rotate(45deg);
+    
+  }
+  100% {
+    transform: translateX(200px);
   }
 }

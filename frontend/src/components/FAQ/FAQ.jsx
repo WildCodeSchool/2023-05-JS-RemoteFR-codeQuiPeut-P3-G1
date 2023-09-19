@@ -53,6 +53,9 @@ function FAQ() {
                 </div>
                 <div className="svg-card-header">
                   <svg
+                    className={
+                      expandedIndex === index ? "rotate-180" : "default-rotate"
+                    }
                     xmlns="http://www.w3.org/2000/svg"
                     width="39"
                     height="18"
@@ -67,7 +70,13 @@ function FAQ() {
                 </div>
               </div>
               {expandedIndex === index && (
-                <div className="card-content">{faq.content}</div>
+                <div
+                  className={`card-content ${
+                    expandedIndex === index ? "expanded" : ""
+                  }`}
+                >
+                  {faq.content}
+                </div>
               )}
             </div>
           ))}

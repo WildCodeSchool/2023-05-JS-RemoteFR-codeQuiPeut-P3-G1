@@ -37,6 +37,11 @@ export default function AnimGuild(props) {
     roughness: 0.5,
     metalness: 1.7
   })
+  const blackMaterial = new MeshStandardMaterial({
+    color: new THREE.Color("#1b0d49"),
+    roughness: 0.5,
+    metalness: 3.7
+  })
 
   let time = 0
   let rotationAngle = 0 // Define and initialize rotationAngle
@@ -105,7 +110,8 @@ export default function AnimGuild(props) {
               castShadow
               receiveShadow
               geometry={nodes.screen.geometry}
-              material={nodes.screen.material}
+              // material={nodes.screen.material}
+              material={blackMaterial}
               position={[0, 0, 9.887]}
             />
             <mesh
