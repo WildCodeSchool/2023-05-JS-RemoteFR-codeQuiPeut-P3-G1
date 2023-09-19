@@ -158,7 +158,7 @@ CREATE TABLE `games` (
 
 LOCK TABLES `games` WRITE;
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
-INSERT INTO `games` VALUES (1,1,'2023-09-15 19:00:00',5,'Join us for an epic fantasy adventure!','Campaign','Rise of Heroes','Avalon',0,1,'user1','1'),(2,2,'2023-09-20 18:30:00',4,'Explore the galaxy in this Star Wars RPG.','One-shot','Galactic Explorations','Coruscant',1,0,'user2','2'),(3,3,'2023-09-18 20:00:00',6,'Uncover the secrets of the ancient city.','One-shot','Cthulhu Chronicles','Arkham',0,0,'user3','3'),(4,4,'2023-09-16 15:00:00',3,'Solve puzzles and mysteries in Victorian London.','Campaign','Sherlock Adventures','London',0,1,'user4','4'),(5,5,'2023-09-19 14:00:00',5,'Embark on a journey in a high-fantasy world.','Campaign','Epic Odyssey','Narnia',1,1,'user5','5');
+INSERT INTO `games` VALUES (1,1,'2023-09-15 19:00:00',5,'Join us for an epic fantasy adventure!','Adventure','Rise of Heroes','Avalon',0,1,'user1','1'),(2,2,'2023-09-20 18:30:00',4,'Explore the galaxy in this Star Wars RPG.','Adventure','Galactic Explorations','Coruscant',1,0,'user2','2'),(3,3,'2023-09-18 20:00:00',6,'Uncover the secrets of the ancient city.','Horror','Cthulhu Chronicles','Arkham',0,0,'user3','3'),(4,4,'2023-09-16 15:00:00',3,'Solve puzzles and mysteries in Victorian London.','Sci-Fi','Sherlock Adventures','London',0,1,'user4','4'),(5,5,'2023-09-19 14:00:00',5,'Embark on a journey in a high-fantasy world.','Horror','Epic Odyssey','Narnia',1,1,'user5','5');
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 UNLOCK TABLES;
 

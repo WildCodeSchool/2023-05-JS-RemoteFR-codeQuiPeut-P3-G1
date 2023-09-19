@@ -78,6 +78,7 @@ router.get(
   "/games/user/:username",
   GamesControllers.selectGamesByGameMasterUsername
 )
+router.get("/gameswithrpgname", GamesControllers.browsewithrpgname)
 router.get("/games", GamesControllers.browse)
 router.get("/games/:id", GamesControllers.read)
 router.put("/games/:id", GamesControllers.edit)

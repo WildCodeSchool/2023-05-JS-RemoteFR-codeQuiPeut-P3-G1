@@ -88,7 +88,7 @@ function UpcomingTable() {
       .get("http://localhost:4242/users", { headers })
       .then((res) => setUsers(res.data))
     axios
-      .get("http://localhost:4242/games", { headers })
+      .get("http://localhost:4242/gameswithrpgname", { headers })
       .then((res) => setGames(res.data))
     axios
       .get("http://localhost:4242/role-playing-games", { headers })
@@ -354,7 +354,13 @@ function UpcomingTable() {
                     )
                 )
                 .map((game) => (
-                  <Game key={game.id} games={game} users={users} rpg={rpg} />
+                  <Game
+                    key={game.id}
+                    games={game}
+                    users={users}
+                    rpg={rpg}
+                    headers={headers}
+                  />
                 ))}
             </div>
           </div>

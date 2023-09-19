@@ -20,22 +20,22 @@ export default function AnimGuild(props) {
   const purpleMaterial = new MeshStandardMaterial({
     color: new THREE.Color("purple"),
     roughness: 0.5,
-    metalness: 0.5,
+    metalness: 0.5
   })
   const turquoiseMaterial = new MeshStandardMaterial({
     color: new THREE.Color("turquoise"),
     roughness: 0.5,
-    metalness: 1.3,
+    metalness: 1.3
   })
   const pinkMaterial = new MeshStandardMaterial({
     color: new THREE.Color("pink"),
     roughness: 0.5,
-    metalness: 1.3,
+    metalness: 1.3
   })
   const goldMaterial = new MeshStandardMaterial({
     color: new THREE.Color("burlyWood"),
     roughness: 0.5,
-    metalness: 1.7,
+    metalness: 1.7
   })
 
   let time = 0

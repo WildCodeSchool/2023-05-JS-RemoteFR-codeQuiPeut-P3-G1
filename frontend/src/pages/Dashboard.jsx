@@ -33,27 +33,29 @@ const Dashboard = () => {
   }, [])
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:4242/users/${idUser}`, { headers })
-      .then((res) => {
-        setUser(res.data)
-      })
-      .catch((err) => {
-        console.error("Problème lors du chargement des users", err)
-      })
+    idUser !== null &&
+      axios
+        .get(`http://localhost:4242/users/${idUser}`, { headers })
+        .then((res) => {
+          setUser(res.data)
+        })
+        .catch((err) => {
+          console.error("Problème lors du chargement des users", err)
+        })
   }, [])
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:4242/joiningRequests/${idUser}`, { headers })
-      .then((res) => {
-        if (res.data.length > 0) {
-          setHasFriendRequest(true)
-        }
-      })
-      .catch((err) => {
-        console.error("Problème lors du chargement des friend requests", err)
-      })
+    idUser !== null &&
+      axios
+        .get(`http://localhost:4242/joiningRequests/${idUser}`, { headers })
+        .then((res) => {
+          if (res.data.length > 0) {
+            setHasFriendRequest(true)
+          }
+        })
+        .catch((err) => {
+          console.error("Problème lors du chargement des friend requests", err)
+        })
   }, [])
 
   return (
