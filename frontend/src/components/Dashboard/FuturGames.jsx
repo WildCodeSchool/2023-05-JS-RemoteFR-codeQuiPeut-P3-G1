@@ -159,7 +159,11 @@ export default function FutureGames() {
           </div>
         </div>
         {isGmCardsOpen && (
-          <GmCards onClose={toggleGmCards} gameData={gameData} />
+          <GmCards
+            onClose={toggleGmCards}
+            gameData={gameData}
+            setIsGmCardsOpen={setIsGmCardsOpen}
+          />
         )}
       </div>
     </>

@@ -1,5 +1,7 @@
-import React from "react"
+import React, { useState } from "react"
 import Calendar from "moedim"
+
+import PlayerCards from "../Dashboard/PlayerCards"
 
 import Players from "../../assets/icon-create-game/players.svg"
 import Schedule from "../../assets/icon-create-game/schedule.svg"
@@ -12,7 +14,26 @@ export default function CardGame({
   gameData,
   playersProfil,
   openJoinGuild
+  // setCardGame
 }) {
+  const [cardGamePlayerCard, setCardGamePlayerCard] = useState(false)
+  const [userData, setUserData] = useState(null)
+
+  const scheduleDate = new Date(gameData.schedule)
+  const options = {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }
+  const formattedSchedule = scheduleDate.toLocaleDateString("en-EN", options)
+
+  const openPlayerCard = (AllPlayersData) => {
+    setCardGamePlayerCard(true)
+    setUserData(AllPlayersData)
+  }
+
+  console.info(formattedSchedule)
+
   return (
     <div id="globalCardGameContainer">
       <button id="buttonClose" onClick={onClose}>
@@ -92,7 +113,7 @@ export default function CardGame({
                     user.profil_picture
                   }`}
                   alt={`${user.id}-profil`}
-                  // onClick={() => handleProfileClick(user)}
+                  onClick={() => openPlayerCard(user)}
                 />
                 <p>{user.username}</p>
               </div>
@@ -127,6 +148,18 @@ export default function CardGame({
           </div>
         </div>
       </div>
+      {cardGamePlayerCard && (
+        <div className="gameJoinGuildModal">
+          <div className="gameJoinGuildContent">
+            <PlayerCards
+              userData={userData}
+              playersProfil={playersProfil}
+              setIsPlayerCardsOpen={setCardGamePlayerCard}
+              formattedSchedule={formattedSchedule}
+            />
+          </div>
+        </div>
+      )}
     </div>
   )
 }
