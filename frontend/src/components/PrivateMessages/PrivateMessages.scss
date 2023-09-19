@@ -95,6 +95,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
+          width: fit-content;
           img {
             aspect-ratio: 1/1;
             height: 50px;
@@ -106,9 +107,10 @@
           display: flex;
           justify-content: center;
           align-items: center;
+          width: 100%;
           p {
             color: white;
-            font-size: 20px;
+            font-size: 25px;
             font-family: $ponctual-font;
           }
         }
@@ -122,6 +124,26 @@
             font-family: $content-font;
           }
         }
+      }
+    }
+    .newConversation {
+      width: 100%;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      &:hover svg path {
+        fill: rgb(255, 255, 255);
+      }
+      &:hover p {
+        color: white;
+      }
+      p {
+        font-size: 20px;
+        color: $third-font-color;
+        font-family: $content-font;
       }
     }
   }

@@ -30,6 +30,23 @@ export default function Conversation(props) {
     }
   })
 
+  useEffect(() => {
+    axios
+      .get(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/getMessagesFromUsers/${idUser}/${senderId}`,
+        { headers }
+      )
+      .then((res) => {
+        setMessageHistory(res.data)
+        console.info(res.data)
+      })
+      .catch((err) => {
+        console.info("ca marche pas", err)
+      })
+  }, [senderId])
+
   const sendMessage = () => {
     const messageData = {
       from: idUser,
@@ -55,10 +72,10 @@ export default function Conversation(props) {
   }
 
   useEffect(() => {
-    // if (messageHistoryRef.current) {
-    //   messageHistoryRef.current.scrollTop =
-    //     messageHistoryRef.current.scrollHeight
-    // }
+    if (messageHistoryRef.current) {
+      messageHistoryRef.current.scrollTop =
+        messageHistoryRef.current.scrollHeight
+    }
 
     const receiveMessageHandler = (data) => {
       setMessageHistory((prevMessages) => [...prevMessages, data])
@@ -72,26 +89,6 @@ export default function Conversation(props) {
     }
   }, [messageHistory, socket])
 
-  useEffect(() => {
-    axios
-      .get(
-        `${
-          import.meta.env.VITE_BACKEND_URL
-        }/getMessagesFromUsers/${idUser}/${senderId}`,
-        {
-          headers
-        }
-      )
-      .then((res) => {
-        setMessageHistory(res.data)
-        console.info(res.data)
-      })
-      .catch((err) => {
-        console.info("ca marche pas", err)
-      })
-  }, [senderId])
-
-  console.info(messageHistory)
   return (
     <div className="divConversation">
       <div className="conversationHeader">

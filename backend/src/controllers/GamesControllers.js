@@ -12,6 +12,18 @@ const browse = (req, res) => {
     })
 }
 
+const browsewithrpgname = (req, res) => {
+  models.games
+    .getGamesWithRpgName()
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 const read = (req, res) => {
   models.games
     .find(req.params.id)
@@ -80,6 +92,37 @@ const destroy = (req, res) => {
     })
 }
 
+const upcommingGameGM = (req, res) => {
+  models.games
+    .upcommingGameGM(req.params.id)
+    .then(([rows]) => {
+      if (rows == null) {
+        res.sendStatus(404)
+      } else {
+        res.send(rows)
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+const historyGameGM = (req, res) => {
+  models.games
+    .historyGameGM(req.params.id)
+    .then(([rows]) => {
+      if (rows == null) {
+        res.sendStatus(404)
+      } else {
+        res.send(rows)
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 const selectGamesByGameMasterUsername = (req, res) => {
   models.games
     .getGamesByGameMasterUsername(req.params.username)
@@ -94,9 +137,12 @@ const selectGamesByGameMasterUsername = (req, res) => {
 
 module.exports = {
   browse,
+  browsewithrpgname,
   read,
   edit,
   add,
   destroy,
+  upcommingGameGM,
+  historyGameGM,
   selectGamesByGameMasterUsername,
 }

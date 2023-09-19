@@ -32,6 +32,19 @@ router.get(
 )
 
 router.get("/joiningRequests/:id", GameRegistrationsControllers.joiningRequests)
+router.get(
+  "/validateRequests/:id",
+  GameRegistrationsControllers.validateRequests
+)
+router.get("/pendingRequests/:id", GameRegistrationsControllers.pendingRequests)
+
+router.get(
+  "/gameHistoryPlayer/:id",
+  GameRegistrationsControllers.gameHistoryPlayer
+)
+router.get("/upcommingGameGM/:id", GamesControllers.upcommingGameGM)
+router.get("/historyGameGM/:id", GamesControllers.historyGameGM)
+
 router.put(
   "/joiningRequestsRejected/:requesterId/:gameId",
   GameRegistrationsControllers.joiningRequestsRejected
@@ -53,11 +66,11 @@ router.get(
 
 router.post("/rpgAdder/:userId/:rpgId", UsersControllers.rpgAdder)
 router.delete("/rpgLesser/:userId/:rpgId", UsersControllers.rpgLesser)
-// router.put("/modifyProfil/:userId",UsersControllers.modifyProfil)
-
-router.get(
-  "/getMessagesFromUsers/:userConnectedId/:senderId",
-  PrivateMessagesControllers.getMessagesFromUsers
+router.put(
+  "/modifyProfil/:userId",
+  verifyPassword,
+  hashPassword,
+  UsersControllers.edit
 )
 
 router.use(verifyToken)
@@ -68,16 +81,17 @@ router.put(
   UsersControllers.updateProfilPicture
 )
 
+router.get("/users", UsersControllers.browse)
 router.get("/users/:id", UsersControllers.read)
 router.put("/users/:id", hashPassword, UsersControllers.edit)
 
-router.get("/users", UsersControllers.browse)
 router.delete("/users/:id", UsersControllers.destroy)
 
 router.get(
   "/games/user/:username",
   GamesControllers.selectGamesByGameMasterUsername
 )
+router.get("/gameswithrpgname", GamesControllers.browsewithrpgname)
 router.get("/games", GamesControllers.browse)
 router.get("/games/:id", GamesControllers.read)
 router.put("/games/:id", GamesControllers.edit)
@@ -149,6 +163,10 @@ router.get("/PrivateMessages", PrivateMessagesControllers.browse)
 router.get("/PrivateMessages/:id", PrivateMessagesControllers.read)
 router.put("/PrivateMessages/:id", PrivateMessagesControllers.edit)
 router.post("/PrivateMessages", PrivateMessagesControllers.add)
+router.get(
+  "/getMessagesFromUsers/:userConnectedId/:senderId",
+  PrivateMessagesControllers.getMessagesFromUsers
+)
 
 router.delete("/categories/:id", CategoriesControllers.destroy)
 router.delete("/topics_subscription/:id", TopicsSubscriptionControllers.destroy)

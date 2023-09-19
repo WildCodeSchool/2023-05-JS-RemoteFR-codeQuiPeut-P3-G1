@@ -151,6 +151,53 @@ const joiningRequests = (req, res) => {
       res.sendStatus(500)
     })
 }
+const validateRequests = (req, res) => {
+  models.gameRegistrationsManager
+    .gameValidateRequests(req.params.id)
+    .then(([rows]) => {
+      if (rows == null) {
+        res.sendStatus(404)
+      } else {
+        res.send(rows)
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
+const pendingRequests = (req, res) => {
+  models.gameRegistrationsManager
+    .gamePendingRequests(req.params.id)
+    .then(([rows]) => {
+      if (rows == null) {
+        res.sendStatus(404)
+      } else {
+        res.send(rows)
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
+const gameHistoryPlayer = (req, res) => {
+  models.gameRegistrationsManager
+    .gameHistoryPlayer(req.params.id)
+    .then(([rows]) => {
+      if (rows == null) {
+        res.sendStatus(404)
+      } else {
+        res.send(rows)
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
 
 module.exports = {
   browse,
@@ -163,4 +210,7 @@ module.exports = {
   joiningRequests,
   joiningRequestsRejected,
   joiningRequestsAccepted,
+  pendingRequests,
+  validateRequests,
+  gameHistoryPlayer,
 }
