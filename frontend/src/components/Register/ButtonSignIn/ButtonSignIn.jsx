@@ -1,16 +1,27 @@
 import React, { useState, useEffect, useRef } from "react"
 
 import SignIn from "../SignIn/SignIn"
+import SignUp from "../SignUp/SignUp"
 
 function ButtonSignIn() {
   const [showSignIn, setShowSignIn] = useState(false)
+  const [showModal, setShowModal] = useState(false)
+
   const signInRef = useRef(null)
+  // const signUpRef = useRef(null)
 
   const handleCloseEscape = (event) => {
     if (event.key === "Escape") {
       setShowSignIn(false)
     }
   }
+
+  const closeOnOutsideClick = (e) => {
+    if (e.target.className === "modal") {
+      setShowModal(false)
+    }
+  }
+
   useEffect(() => {
     document.addEventListener("keydown", handleCloseEscape)
     return () => {
@@ -19,24 +30,21 @@ function ButtonSignIn() {
   }, [])
 
   useEffect(() => {
-    // Ajoute un gestionnaire d'événements pour les clics sur le document
     const handleClickOutside = (event) => {
       if (signInRef.current && !signInRef.current.contains(event.target)) {
-        // Ferme la carte SignIn si l'événement de clic se produit en dehors de la carte
         setShowSignIn(false)
       }
     }
 
     document.addEventListener("click", handleClickOutside)
 
-    // Supprime le gestionnaire d'événements lorsque le composant est démonté
     return () => {
       document.removeEventListener("click", handleClickOutside)
     }
   }, [])
 
   const handleButtonClick = (event) => {
-    event.stopPropagation() // Empêche la propagation du clic au document
+    event.stopPropagation()
     setShowSignIn(true)
   }
 
@@ -49,14 +57,25 @@ function ButtonSignIn() {
           </button>
         </div>
 
-        {showSignIn ? (
+        {showSignIn && (
           <div className="card-LogIn-container">
             <div className="card-LogIn" ref={signInRef}>
-              <SignIn />
+              <SignIn
+                setShowSignIn={setShowSignIn}
+                setShowModal={setShowModal}
+                showModal={showModal}
+                closeOnOutsideClick={closeOnOutsideClick}
+              />
             </div>
           </div>
-        ) : (
-          ""
+        )}
+
+        {showModal && (
+          <div className="modal" onClick={closeOnOutsideClick}>
+            <div>
+              <SignUp />
+            </div>
+          </div>
         )}
       </div>
     </>

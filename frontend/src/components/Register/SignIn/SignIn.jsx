@@ -3,24 +3,32 @@ import React, { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import Cookies from "js-cookie"
 import axios from "axios"
-import SignUp from "../SignUp/SignUp"
+// import SignUp from "../SignUp/SignUp"
 
 import Google from "../../../assets/logo/google.svg"
 import Twitter from "../../../assets/logo/twitter.svg"
 import Facebook from "../../../assets/logo/facebook.svg"
 
-function SignIn() {
+function SignIn({
+  setShowSignIn,
+  showModal,
+  setShowModal,
+  closeOnOutsideClick
+}) {
   const [signInUsername, setSignInUsername] = useState()
   const [signInPassword, setSignInPassword] = useState()
-  const [showSignUp1, setShowSignUp1] = useState(false)
-  const [showSignIn1, setShowSignIn1] = useState(true)
+  // const [showModal, setShowModal] = useState(false)
 
-  const handleShowSignUp1 = () => {
-    setShowSignIn1(false)
-    setShowSignUp1(true)
+  const handleJoinAdventure = () => {
+    setShowModal(true)
+    setShowSignIn(false)
   }
 
-  console.info(showSignUp1, "CC")
+  // const closeOnOutsideClick = (e) => {
+  //   if (e.target.className === "modal") {
+  //     setShowModal(false)
+  //   }
+  // }
   const handleKeyDown = (e) => {
     console.info("Key down event triggered")
     if (e.code === "Enter" || (e.key === "Enter" && signInPassword !== "")) {
@@ -62,62 +70,63 @@ function SignIn() {
       })
 
     // Close sign-up modal if open
-    setShowSignUp1(false)
+    setShowModal(false)
   }
 
   return (
     <div className="modalBlur">
-      {showSignIn1 ? (
-        <div className="cardLogIn-container">
-          <span id="title-card-logIn">LOGIN</span>
-          <div>
-            <form id="cardLogIn-Input">
-              <span>Username</span>
-              <input
-                type="text"
-                onChange={(e) => setSignInUsername(e.target.value)}
-              />
-              <span>Password</span>
-              <input
-                id="input-password-LogIn"
-                type="password"
-                onChange={(e) => setSignInPassword(e.target.value)}
-                onKeyDown={handleKeyDown}
-              />
-              <div className="forgot-Input">
-                <span>Forgot Password ?</span>
-              </div>
-            </form>
-            <div className="button-SignIn-Container">
-              <div className="button-SignIn">
-                <Link to="/home">
-                  <button type="button" onClick={handleLogin}>
-                    Sign In
-                  </button>
-                </Link>
-              </div>
+      <div className="cardLogIn-container">
+        <span id="title-card-logIn">LOGIN</span>
+        <div>
+          <form id="cardLogIn-Input">
+            <span>Username</span>
+            <input
+              type="text"
+              onChange={(e) => setSignInUsername(e.target.value)}
+            />
+            <span>Password</span>
+            <input
+              id="input-password-LogIn"
+              type="password"
+              onChange={(e) => setSignInPassword(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+            <div className="forgot-Input">
+              <span>Forgot Password ?</span>
+            </div>
+          </form>
+          <div className="button-SignIn-Container">
+            <div className="button-SignIn">
+              <Link to="/home">
+                <button type="button" onClick={handleLogin}>
+                  Sign In
+                </button>
+              </Link>
             </div>
           </div>
-          <span id="social-account-logIn">Login With Social Accounts</span>
-          <div className="line-hr-LogIn">
-            <hr />
-            <hr />
-          </div>
-          <div className="logo-socialAccountLogIn">
-            <img src={Google} alt="logo of google" />
-            <img src={Twitter} alt="logo of twitter" />
-            <img src={Facebook} alt="logo of facebook" />
-          </div>
-          <div className="signUpButton-LogInForm">
-            <span>Don't have an account ?</span>
-            <button type="button" onClick={handleShowSignUp1}>
-              Sign Up
-            </button>
-          </div>
         </div>
-      ) : (
-        <SignUp />
-      )}
+        <span id="social-account-logIn">Login With Social Accounts</span>
+        <div className="line-hr-LogIn">
+          <hr />
+          <hr />
+        </div>
+        <div className="logo-socialAccountLogIn">
+          <img src={Google} alt="logo of google" />
+          <img src={Twitter} alt="logo of twitter" />
+          <img src={Facebook} alt="logo of facebook" />
+        </div>
+        <div className="signUpButton-LogInForm">
+          <span>Don't have an account ?</span>
+          <button type="button" onClick={handleJoinAdventure}>
+            Sign Up
+          </button>
+        </div>
+      </div>
+      {/* {showModal && (
+        <div className="modal" onClick={closeOnOutsideClick}>
+          <SignUp onClick={() => setShowModal(true)} />
+        </div>
+      )} */}
     </div>
   )
 }

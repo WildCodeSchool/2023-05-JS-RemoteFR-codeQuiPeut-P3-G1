@@ -1,18 +1,30 @@
-import SignIn from "../Register/SignIn/SignIn"
-import { useState } from "react"
+import React, { useState, useEffect, useRef } from "react"
+import SignUp from "../Register/SignUp/SignUp"
+import PhoneText from "../../assets/landing-assets/phoneTexts.png"
 
 const PhoneTexts = () => {
+  const modalRef = useRef(null)
   const [showModal, setShowModal] = useState(false)
 
   const handleJoinAdventure = () => {
     setShowModal(true)
   }
 
-  const closeOnOutsideClick = (e) => {
-    if (e.target.className === "modal") {
+  const handleClickOutside = (event) => {
+    if (modalRef.current && !modalRef.current.contains(event.target)) {
       setShowModal(false)
     }
   }
+
+  useEffect(() => {
+    // Ajoute un écouteur d'événements quand le composant est monté
+    document.addEventListener("mousedown", handleClickOutside)
+
+    // Retire l'écouteur d'événements quand le composant est démonté
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside)
+    }
+  }, []) // Le tableau vide signifie que `useEffect` s'exécute une fois après le premier rendu
 
   return (
     <>
@@ -31,7 +43,6 @@ const PhoneTexts = () => {
               extraordinary characters, captivating quests, and moments of
               camaraderie that will stay etched in your memories forever.
             </p>
-            <p className="p-phoneTexts"></p>
           </div>
           <div className="Btn-container-phone">
             <button
@@ -42,17 +53,17 @@ const PhoneTexts = () => {
               JOIN ADVENTURE
             </button>
           </div>
-          {showModal && (
-            <div className="modal" onClick={closeOnOutsideClick}>
-              <SignIn onClick={() => setShowModal(false)} />
-            </div>
-          )}
         </div>
-        <img
-          src="src/assets/landing-assets/phoneTexts.png"
-          className="scene-PhoneTexts"
-        ></img>
+        <img src={PhoneText} alt="mockup phone text" />
       </div>
+
+      {showModal && (
+        <div className="modalPhoneText" onClick={handleClickOutside}>
+          <div ref={modalRef}>
+            <SignUp setShowModal={setShowModal} />
+          </div>
+        </div>
+      )}
     </>
   )
 }

@@ -8,8 +8,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 25%;
+    width: 40%;
     height: 40%;
+    
+    padding: 2%;
 
     .letscreate {
       display: flex;
@@ -42,26 +44,14 @@
       color: $third-font-color;
       font-size: 1.45vw;
       font-family: $content-font;
-      text-align: center;
+      text-align: justify;
       width: 100%;
       font-style: normal;
     }
   }
-  .bg-wave-landingPage {
-    position: absolute;
-    display: flex;
-    top: 40%;
-    width: 100%;
-    height: 100%;
-    svg {
-      width: 100vw;
-      height: 100%;
-      fill: linear-gradient(180deg, #4d194d 0%, rgba(77, 25, 77, 0) 100%);
-    }
-  }
-
   .GuildPhone {
-    width: 70%;
-    height: 100vh;
+    // width: 70%;
+    // height: 100vh;
+    width: 60%;
   }
 }
