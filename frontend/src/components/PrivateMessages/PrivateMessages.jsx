@@ -32,6 +32,9 @@ export default function PrivateMessages() {
       })
       .then((res) => {
         setMessagePreview(res.data)
+        if (res.data.length > 0) {
+          setSelectUser(res.data[0])
+        }
       })
       .catch((err) => {
         console.info("Erreur récuperation Messages Preview", err)
@@ -74,9 +77,6 @@ export default function PrivateMessages() {
               </div>
               <div className="msgName">
                 <p>{message.username}</p>
-              </div>
-              <div className="msgdate">
-                <p>date/h dernière màj Conversation</p>
               </div>
             </div>
           ))}
