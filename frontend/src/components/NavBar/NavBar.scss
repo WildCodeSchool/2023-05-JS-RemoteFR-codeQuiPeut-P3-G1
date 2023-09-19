@@ -14,6 +14,9 @@
     margin-left: 8px;
     cursor: pointer;
   }
+  a {
+    text-decoration: none;
+  }
 
   // Styles pour les boutons principaux de la barre de navigation
   .mainButtonsNavBar {
@@ -23,145 +26,124 @@
     justify-content: space-around;
     width: 100%;
     height: 70%;
+    .activeLink {
+      filter: drop-shadow(0px 0px 25px #fff);
+    }
 
     // Styles pour le bouton "Accueil"
     .homeNavBar {
-      position: relative;
       cursor: pointer;
-      // Styles pour les options cachées du bouton "Accueil"
-      .hiddenHomeNavBar {
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        bottom: 3%;
-        margin-left: 71px;
-        min-width: 145px;
-        text-align: center;
-        height: 39px;
-        color: $primary-font-color; // Utilisation de la variable $primary-font-color pour définir la couleur du texte
-        border-radius: 0 1rem 1rem 0;
-        background-color: #a4945e;
-        border-left: none;
-        text-align: center;
-        animation: scale-in-hor-left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-          both; // Utilisation de l'animation "scale-in-hor-left" définie ci-dessous
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      span {
+        margin-top: 5px;
+        transform: translateX(-300%);
+        transition: transform 0.3s ease-in-out;
+        font-size: 0.8rem;
+        font-family: $title-font;
+      
+      }
+      span.slide-in {
+        transform: translateX(0);
       }
     }
     // Styles similaires pour les autres boutons : "Partie", "Profil", "Créer un jeu", "Message" et "Forum"
     .partyNavBar {
-      position: relative;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      span {
+        margin-top: 5px;
+        transform: translateX(-300%);
+        transition: transform 0.3s ease-in-out;
+        font-size: 0.8rem;
+        font-family: $title-font;
+      }
 
-      .hiddenPartyNavBar {
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        bottom: 5%;
-        margin-left: 69px;
-        min-width: 145px;
-        text-align: center;
-        height: 39px;
-        color: $primary-font-color;
-        border-radius: 0 1rem 1rem 0;
-        background-color: #a4945e;
-        border-left: none;
-        text-align: center;
-        animation: scale-in-hor-left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-          both;
+      span.slide-in {
+        transform: translateX(0);
       }
     }
     .profilNavBar {
-      position: relative;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      span {
+        margin-top: 5px;
+        transform: translateX(-300%);
+        transition: transform 0.3s ease-in-out;
+        font-size: 0.8rem;
+        font-family: $title-font;
+      }
 
-      .hiddenProfilNavBar {
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        bottom: 5%;
-        margin-left: 69px;
-        min-width: 145px;
-        text-align: center;
-        height: 39px;
-        color: $primary-font-color;
-        border-radius: 0 1rem 1rem 0;
-        background-color: #a4945e;
-        border-left: none;
-        text-align: center;
-        animation: scale-in-hor-left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-          both;
+      span.slide-in {
+        transform: translateX(0);
       }
     }
     .createGameNavBar {
-      position: relative;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      span {
+        margin-top: 5px;
+        transform: translateX(-300%);
+        transition: transform 0.3s ease-in-out;
+        font-size: 0.8rem;
+        font-family: $title-font;
+      }
 
-      .hiddenCreateGameNavBar {
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        bottom: 7%;
-        margin-left: 71px;
-        min-width: 145px;
-        text-align: center;
-        height: 39px;
-        color: $primary-font-color;
-        border-radius: 0 1rem 1rem 0;
-        background-color: #a4945e;
-        border-left: none;
-        text-align: center;
-        animation: scale-in-hor-left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-          both;
+      span.slide-in {
+        transform: translateX(0);
       }
     }
     .messageNavBar {
-      position: relative;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      span {
+        margin-top: 5px;
+        transform: translateX(-300%);
+        transition: transform 0.3s ease-in-out;
+        font-size: 0.8rem;
+        font-family: $title-font;
+      }
 
-      .hiddenMessageNavBar {
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        bottom: 15%;
-        margin-left: 76px;
-        min-width: 145px;
-        text-align: center;
-        height: 39px;
-        color: $primary-font-color;
-        border-radius: 0 1rem 1rem 0;
-        background-color: #a4945e;
-        border-left: none;
-        text-align: center;
-        animation: scale-in-hor-left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-          both;
+      span.slide-in {
+        transform: translateX(0);
       }
     }
     .forumNavBar {
-      position: relative;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      span {
+        margin-top: 5px;
+        transform: translateX(-300%);
+        transition: transform 0.3s ease-in-out;
+        font-size: 0.8rem;
+        font-family: $title-font;
+      }
 
-      .hiddenForumNavBar {
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        bottom: 15%;
-        margin-left: 74px;
-        min-width: 145px;
-        text-align: center;
-        height: 39px;
-        color: $primary-font-color;
-        border-radius: 0 1rem 1rem 0;
-        background-color: #a4945e;
-        border-left: none;
-        text-align: center;
-        animation: scale-in-hor-left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-          both;
+      span.slide-in {
+        transform: translateX(0);
       }
     }
   }
@@ -176,66 +158,49 @@
     margin-top: 80%;
     gap: 15px;
     .settingNavBar {
-      position: relative;
       cursor: pointer;
-      .hiddenSettingNavBar {
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        bottom: 12%;
-        margin-left: 69px;
-        min-width: 145px;
-        text-align: center;
-        height: 39px;
-        color: $primary-font-color;
-        border-radius: 0 1rem 1rem 0;
-        background-color: #a4945e;
-        border-left: none;
-        text-align: center;
-        animation: scale-in-hor-left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-          both;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      span {
+        margin-top: 5px;
+        transform: translateX(-300%);
+        transition: transform 0.3s ease-in-out;
+        font-size: 0.8rem;
+        font-family: $title-font;
+      }
+
+      span.slide-in {
+        transform: translateX(0);
       }
     }
     .logOutNavBar {
-      position: relative;
-      margin-right: 14px;
+      img {
+        margin-right: 14px;
+      }
       cursor: pointer;
-      .hiddenLogOutNavBar {
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        bottom: 12%;
-        margin-left: 81px;
-        min-width: 145px;
-        text-align: center;
-        height: 39px;
-        color: $primary-font-color;
-        border-radius: 0 1rem 1rem 0;
-        background-color: #a4945e;
-        border-left: none;
-        text-align: center;
-        animation: scale-in-hor-left 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-          both;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      span {
+        margin-top: 5px;
+        transform: translateX(-300%);
+        transition: transform 0.3s ease-in-out;
+        font-size: 0.8rem;
+        font-family: $title-font;
+      }
+
+      span.slide-in {
+        transform: translateX(0);
       }
     }
   }
-}
-.footerNavbarMobile {
-  display: none;
-}
-
-@keyframes scale-in-hor-left {
-  0% {
-    transform: scaleX(0);
-    transform-origin: 0 0;
-    opacity: 1;
-  }
-  100% {
-    transform: scaleX(1);
-    transform-origin: 0 0;
-    opacity: 1;
+  .footerNavbarMobile {
+    display: none;
   }
 }
 

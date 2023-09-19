@@ -32,8 +32,8 @@ const GmCards = ({ onClose, gameData }) => {
     Authorization: `Bearer ${tokenFromCookie}`
   }
 
-  console.info(gameData, "OUIUO")
-  console.info(playersProfil, "OU")
+  // console.info(gameData, "OUIUO")
+  // console.info(playersProfil, "OU")
 
   useEffect(() => {
     axios

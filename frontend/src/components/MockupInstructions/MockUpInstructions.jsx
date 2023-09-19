@@ -1,5 +1,4 @@
 import React from "react"
-import Spline from "@splinetool/react-spline"
 
 const MockUpInstructions = () => {
   return (
@@ -9,9 +8,11 @@ const MockUpInstructions = () => {
           Embark on Epic Adventures with GUILD
         </div>
         <div className="Instruction-Scene-Text">
-          <div className="instruction3D">
-            <Spline scene="https://prod.spline.design/d-hpqZXZ4MkW3dFu/scene.splinecode" />
-          </div>
+          <img
+            src="src/assets/landing-assets/computerPhone.png"
+            className="instruction3D"
+          />
+
           <div className="InstructionText">
             <div className="Companions-Title">Find Your Companions</div>
             <div className="Companions-Text">

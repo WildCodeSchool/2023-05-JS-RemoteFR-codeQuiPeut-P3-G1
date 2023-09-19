@@ -41,14 +41,13 @@ io.on("connection", (socket) => {
   const token = socket.handshake.headers.authorization
   console.info("===============================", token)
 
-  // if (!isValidToken(token)) {
-  //   console.info("Invalid token, disconnecting client")
-  //   socket.disconnect();
-  // }
-
   socket.on("send_message", (data) => {
+    const recipientId = data.to
+    socket.join(recipientId)
+
+    io.to(recipientId).emit("receive_message", data)
+
     console.info("************** poulet ***********", data)
-    socket.broadcast.emit("receive_message", data)
   })
 })
 

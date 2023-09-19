@@ -1,4 +1,8 @@
-import Spline from "@splinetool/react-spline"
+import AnimGuild from "./AnimGuild"
+import Dragon from "./Dragon"
+import { OrbitControls } from "@react-three/drei"
+import { Canvas } from "@react-three/fiber"
+import { Suspense } from "react"
 
 const GuildPhone = () => {
   return (
@@ -18,8 +22,37 @@ const GuildPhone = () => {
           </p>
         </div>
         <div className="GuildPhone">
-          {/* <Spline scene="https://prod.spline.design/KGm3zLCbHu38cGRd/scene.splinecode" /> */}
-          <Spline scene="https://prod.spline.design/KGm3zLCbHu38cGRd/scene.splinecode" />
+          <Canvas
+            className="canvas"
+            style={{ width: "100%", height: "100vh" }}
+            width={window.innerWidth}
+            height={window.innerHeight}
+            gl={{ antialias: true }}
+          >
+            <Suspense>
+              <OrbitControls
+                enableZoom={false}
+                enablePan={false}
+                minAzimuthAngle={-Math.PI * 0.3}
+                maxAzimuthAngle={Math.PI * 0.1}
+                minPolarAngle={0}
+                maxPolarAngle={Math.PI * 0.45}
+              />
+
+              <directionalLight
+                castShadow
+                position={[1, 2, 3]}
+                intensity={1.5}
+                shadow-normalBias={0.04}
+              />
+              <ambientLight intensity={0.5} />
+
+              <AnimGuild />
+              {/* <Scene /> */}
+              <Dragon />
+              {/* <AnimSpline /> */}
+            </Suspense>
+          </Canvas>
         </div>
       </div>
     </div>

@@ -1,5 +1,7 @@
 @import "../../Variable.scss";
-
+* {
+  // border: 1px solid cyan;
+}
 .Friends-container {
   display: flex;
   flex-direction: column;
@@ -49,9 +51,12 @@
       flex-direction: column;
       width: 80%;
       height: 20vh;
+      border: double 4px transparent;
       border-radius: 8px;
-      border: 4px solid #4d194d;
-      background: rgba(217, 217, 217, 0.22);
+      background-image: linear-gradient(#563e5b, #563e5b),
+        linear-gradient(180deg, #4d1a4d 10%, rgba(164, 147, 94, 1) 100%);
+      background-origin: border-box;
+      background-clip: padding-box, border-box;
       gap: 5px;
       padding: 2%;
       overflow-x: scroll;

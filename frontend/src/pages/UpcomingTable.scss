@@ -134,7 +134,7 @@
       // border: 2px solid yellow;
 
       #upComingGamesCards {
-        overflow-y: scroll;
+        overflow-y: auto;
       }
 
       .containerMenuGame {
@@ -320,10 +320,9 @@
         }
       }
 
-      // #upComingTablePlayersCards {
-      //   overflow-y: scroll;
-
-      // }
+      #upComingTablePlayersCards {
+        overflow-y: auto;
+      }
     }
   }
 }
