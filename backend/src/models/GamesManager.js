@@ -60,6 +60,17 @@ class GamesManager extends AbstractManager {
       [username]
     )
   }
+
+  getGamesWithRpgName() {
+    return this.database.query(
+      `SELECT games.*, rpg.name AS rpg_name, users.profil_picture as gm_profil_picture, rpg.rpg_icon AS rpg_icon
+      FROM games
+      JOIN role_playing_games AS rpg ON rpg.id = games.role_playing_game_id
+      JOIN users ON users.id = games.gm_id
+      WHERE games.schedule > NOW()`,
+      []
+    )
+  }
 }
 
 module.exports = GamesManager

@@ -37,16 +37,19 @@ export default function FutureGames() {
   }
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:4242/usernameGMFutureGames/${idUser}`, { headers })
-      .then((response) => {
-        setGameGMData(response.data)
-      })
-      .catch((error) => {
-        console.error("An error occurred:", error)
-      })
-  }, [])
-  console.info(gameGMData, "test")
+    idUser !== null &&
+      axios
+        .get(`http://localhost:4242/usernameGMFutureGames/${idUser}`, {
+          headers
+        })
+        .then((response) => {
+          setGameGMData(response.data)
+        })
+        .catch((error) => {
+          console.error("An error occurred:", error)
+        })
+  }, [idUser])
+
   return (
     <>
       <div className="myFutureGames_Container">
