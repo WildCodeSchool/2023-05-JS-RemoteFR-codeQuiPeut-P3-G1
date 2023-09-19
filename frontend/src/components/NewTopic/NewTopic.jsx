@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import axios from "axios"
 import Cookies from "js-cookie"
 
-export default function NewTopic({ onClose }) {
+export default function NewTopic({ onClose, updateShouldRefreshTable }) {
   const tokenFromCookie = Cookies.get("authToken")
   const idUser = Cookies.get("idUser")
 
@@ -38,6 +38,7 @@ export default function NewTopic({ onClose }) {
         if (res.status === 200) {
           console.info("NewTopic créée avec succès !")
           onClose(true) // Ferme la fenêtre modale après la création
+          updateShouldRefreshTable(true) // Indique que la table doit être rafraîchie
         }
       })
       .catch((error) => {
@@ -46,17 +47,18 @@ export default function NewTopic({ onClose }) {
   }
 
   return (
-    <div className="modal">
-      <div className="modal-content">
+    <div className="modalNewTopic">
+      <div className="modalContent">
+        <h2 className="titleNewTopic">Nouveau sujet</h2>
+        <p>Titre de ton sujet :</p>
         <input
           className="nomTopic"
           type="text"
           placeholder="Nom du Topic"
           onChange={(e) => setNom(e.target.value)}
         />
-
-        <label htmlFor="Catégorie-select">
-          Catégorie du Topic:
+        <label className="modalContent" htmlFor="Catégorie-select">
+          Catégorie du Topic:{" "}
           <select
             id="catégorieSelect"
             value={categorie}
@@ -70,6 +72,7 @@ export default function NewTopic({ onClose }) {
             ))}
           </select>
         </label>
+        Description:
         <input
           className="messageTopic"
           type="text"
@@ -82,6 +85,7 @@ export default function NewTopic({ onClose }) {
           onClick={() => {
             handleCreateTopic()
             onClose(true) // Ferme la fenêtre modale après la création
+            updateShouldRefreshTable(true)
           }}
         >
           Créer mon Topic

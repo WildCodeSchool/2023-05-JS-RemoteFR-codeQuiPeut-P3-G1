@@ -19,12 +19,9 @@ export default function Topics({ postData, headers }) {
       })
   }, [postData])
 
-  console.info("postcards", postData)
-
   return (
     <div className="topics-container">
       {" "}
-      {/* Utilisez la classe CSS du fichier Topics.scss */}
       {allPosts.map((post) => (
         <div className="post-card" key={post.id}>
           <img

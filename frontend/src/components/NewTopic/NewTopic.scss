@@ -1,4 +1,4 @@
-.modal {
+.modalNewTopic {
   position: fixed;
   top: 0;
   left: 0;
@@ -31,6 +31,7 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin: 10px;
 }
 
 .nomTopic {
@@ -45,4 +46,22 @@
   width: 300px;
   border: 0.1px solid;
   background-color: azure;
+  width: 700px;
+  height: 180px;
+}
+
+.modalContent {
+  gap: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.messageTopic {
+  padding: 10px;
+}
+
+.titleNewTopic {
+  font-family: "Petrona", serif;
+  color: #e2d07c;
+  font-size: 50px;
 }
