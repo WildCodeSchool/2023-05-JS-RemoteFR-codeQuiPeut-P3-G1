@@ -46,7 +46,7 @@ function TestCarousel() {
         <Carousel
           autoPlay={true} // Active le mode de lecture automatique
           interval={4000} // Définit l'intervalle entre les slides (en millisecondes)
-          showArrows={false} // Masque les flèches de navigation
+          showArrows={true} // Masque les flèches de navigation
           showThumbs={false} // Masque les miniatures de navigation
           infiniteLoop={true} // Boucle infinie du carousel
           showStatus={false} // Masque le statut
