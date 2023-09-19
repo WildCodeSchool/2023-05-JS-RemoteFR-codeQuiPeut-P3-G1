@@ -1,0 +1,36 @@
+#joinGuildGlobal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  gap: 20px;
+
+  img {
+    width: 40%;
+  }
+
+  p {
+    color: black;
+    font-family: $content-font;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  #joinGuildNow {
+    background: $background-gradient-home-page;
+    color: white;
+    border-radius: 4px;
+    width: 178px;
+    height: 42px;
+  }
+
+  #joinGuildNotNow {
+    border: 1px solid $navbar-color;
+    color: $navbar-color;
+    border-radius: 4px;
+    width: 178px;
+    height: 42px;
+  }
+}

@@ -7,8 +7,12 @@ import TypeGame from "../../assets/icon-create-game/typeGame.svg"
 import PlaceGame from "../../assets/icon-create-game/placeGame.svg"
 import diceButton from "../../assets/upcomingTable-assets/join-button.svg"
 
-export default function CardGame({ onClose, gameData, playersProfil }) {
-  console.info(gameData.rpg_icon)
+export default function CardGame({
+  onClose,
+  gameData,
+  playersProfil,
+  openJoinGuild
+}) {
   return (
     <div id="globalCardGameContainer">
       <button id="buttonClose" onClick={onClose}>
@@ -98,7 +102,7 @@ export default function CardGame({ onClose, gameData, playersProfil }) {
         <div className="contentRightResumeCreateGame">
           <div id="buttonJoinGuild">
             <img src={diceButton} />
-            <button>JOIN THE GUILD</button>
+            <button onClick={openJoinGuild}>JOIN THE GUILD</button>
           </div>
           <div className="gameDateResume">
             <div id="gameDate">
