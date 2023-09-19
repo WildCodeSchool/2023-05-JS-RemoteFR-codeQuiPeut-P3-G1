@@ -38,16 +38,12 @@ const io = new Server(server, {
 
 io.on("connection", (socket) => {
   console.info("Client connected")
-  const token = socket.handshake.headers.authorization
-  console.info("===============================", token)
 
   socket.on("send_message", (data) => {
     const recipientId = data.to
     socket.join(recipientId)
 
     io.to(recipientId).emit("receive_message", data)
-
-    console.info("************** poulet ***********", data)
   })
 })
 
