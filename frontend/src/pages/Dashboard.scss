@@ -24,6 +24,42 @@
       flex-direction: column;
       gap: 10px;
       padding: 1rem;
+      img {
+        cursor: pointer;
+      }
+    }
+
+    .popupNotification {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      backdrop-filter: blur(3px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      .contentPopUpNotification {
+        display: flex;
+        // justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        background-color: #ffffff;
+        border-radius: 10px;
+        width: 50%;
+        height: 50%;
+        .buttonClosePopUpNotification {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          width: 98%;
+          padding-top: 1%;
+          img {
+            cursor: pointer;
+          }
+        }
+      }
     }
     .dashboardTitle {
       display: flex;
