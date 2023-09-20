@@ -35,8 +35,8 @@ export default function NewTopic({ onClose, updateShouldRefreshTable }) {
         { headers }
       )
       .then((res) => {
-        if (res.status === 200) {
-          console.info("NewTopic créée avec succès !")
+        console.info("NewTopic créée avec succès !", res.status)
+        if (res.status === 200 || res.status === 201) {
           onClose(true) // Ferme la fenêtre modale après la création
           updateShouldRefreshTable(true) // Indique que la table doit être rafraîchie
         }
@@ -85,7 +85,7 @@ export default function NewTopic({ onClose, updateShouldRefreshTable }) {
           onClick={() => {
             handleCreateTopic()
             onClose(true) // Ferme la fenêtre modale après la création
-            updateShouldRefreshTable(true)
+            // updateShouldRefreshTable(true)
           }}
         >
           Créer mon Topic

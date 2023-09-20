@@ -20,7 +20,7 @@ export default function Topics() {
     Authorization: `Bearer ${tokenFromCookie}`
   }
 
-  useEffect(() => {
+  const fetchTopics = () => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/topicsAndUsers`, { headers })
       .then((res) => setTopics(res.data))
@@ -29,34 +29,23 @@ export default function Topics() {
           "Une erreur s'est produite lors de la récupération des sujets.",
           error
         )
-        // Gérez l'erreur ici (peut-être un message à l'utilisateur)
       })
+  }
+
+  useEffect(() => {
+    fetchTopics()
   }, [])
 
   useEffect(() => {
     if (shouldRefreshTable) {
-      // Rafraîchir la table ici en rappelant l'API ou en rechargeant la page
-      // Par exemple, vous pouvez rappeler l'API qui récupère les données de la table ici
-      axios
-        .get(`${import.meta.env.VITE_BACKEND_URL}/topicsAndUsers`, { headers })
-        .then((res) => setTopics(res.data))
-        .catch((error) => {
-          console.error(
-            "Une erreur s'est produite lors de la récupération des sujets.",
-            error
-          )
-          // Gérez l'erreur ici (peut-être un message à l'utilisateur)
-        })
-
-      // Réinitialiser l'état shouldRefreshTable à false une fois que la table a été rafraîchie
+      fetchTopics()
       setShouldRefreshTable(false)
     }
+    console.info(shouldRefreshTable)
   }, [shouldRefreshTable])
 
-  console.info(shouldRefreshTable)
-
-  const openNewTopicModal = () => {
-    setIsNewTopicOpen(true)
+  const openNewTopicModal = (value) => {
+    setIsNewTopicOpen(value)
   }
 
   const closeNewTopicModal = () => {
