@@ -7,11 +7,11 @@ class GameRegistrationsManager extends AbstractManager {
 
   insert(gameRegistrations) {
     return this.database.query(
-      `INSERT INTO ${this.table} (games_id, status, users_id) VALUES (?, ?, ?)`,
+      `INSERT INTO ${this.table} (games_id, status, requester_id) VALUES (?, ?, ?)`,
       [
         gameRegistrations.games_id,
         gameRegistrations.status,
-        gameRegistrations.users_id,
+        gameRegistrations.requester_id,
       ]
     )
   }

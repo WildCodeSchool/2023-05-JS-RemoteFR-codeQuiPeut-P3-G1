@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.33, for macos13 (arm64)
+-- MySQL dump 10.13  Distrib 8.0.33, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: guilden
 -- ------------------------------------------------------
@@ -124,6 +124,36 @@ LOCK TABLES `game_registrations` WRITE;
 /*!40000 ALTER TABLE `game_registrations` DISABLE KEYS */;
 INSERT INTO `game_registrations` VALUES (1,1,'rejected',2),(2,5,'pending',2),(3,2,'accepted',3),(4,3,'accepted',4),(5,4,'pending',5),(6,1,'accepted',3),(7,4,'pending',1),(8,4,'pending',3);
 /*!40000 ALTER TABLE `game_registrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `game_registrations_as_player`
+--
+
+DROP TABLE IF EXISTS `game_registrations_as_player`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `game_registrations_as_player` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `player_id` int NOT NULL,
+  `games_id` int NOT NULL,
+  `status` enum('pending','accepted','rejected') NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_game_registrations_has_player_users1_idx` (`player_id`),
+  KEY `fk_game_registrations_has_player_games1_idx` (`games_id`),
+  CONSTRAINT `fk_game_registrations_has_player_games1` FOREIGN KEY (`games_id`) REFERENCES `games` (`id`),
+  CONSTRAINT `fk_game_registrations_has_player_users1` FOREIGN KEY (`player_id`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `game_registrations_as_player`
+--
+
+LOCK TABLES `game_registrations_as_player` WRITE;
+/*!40000 ALTER TABLE `game_registrations_as_player` DISABLE KEYS */;
+INSERT INTO `game_registrations_as_player` VALUES (1,1,1,'pending'),(2,2,2,'pending'),(3,3,3,'pending'),(4,4,4,'pending');
+/*!40000 ALTER TABLE `game_registrations_as_player` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -456,7 +486,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'user1','user1@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','OK','Bla bla bla','2023-08-31 14:24:53','Paris','assets/images/profilPictures/ADider_Bourdon.jpeg','Gm at 90%'),(2,'user2','user2@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','Ok2','Moi aussi bla bla bla','2023-08-31 14:24:53','Lyon','assets/images/profilPictures/AJackyMichel.jpeg','Gm at 0%'),(3,'user3','user3@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','ok3',':) # ?‍♂️','2023-08-31 14:24:53','Marseille','assets/images/profilPictures/AJacqueline_Dupond.jpeg','What\'s a GM ? '),(4,'user4','user4@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','ok4','?','2023-08-31 14:24:53','Tours','assets/images/profilPictures/ASandrine_Rousseau.jpeg','Only Dnd'),(5,'user5','user5@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','ok5','?','2023-08-31 14:24:53','Bordeau','assets/images/profilPictures/defaultUserPicture.png','Only Fan');
+INSERT INTO `users` VALUES (1,'user1','user1@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','OK','Bla bla bla','2023-08-31 14:24:53','Paris','assets/images/profilPictures/ADider_Bourdon.jpeg','Gm at 90%'),(2,'user2','user2@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','Ok2','Moi aussi bla bla bla','2023-08-31 14:24:53','Lyon','assets/images/profilPictures/AJackyMichel.jpeg','Gm at 0%'),(3,'user3','user3@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','ok3',':) # ?‍♂️','2023-08-31 14:24:53','Marseille','assets/images/profilPictures/AJacqueline_Dupond.jpeg','What\'s a GM ? '),(4,'user4','user4@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','ok4','?','2023-08-31 14:24:53','Tours','assets/images/profilPictures/ASandrine_Rousseau.jpeg','Only Dnd'),(5,'user5','user5@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','ok5','?','2023-08-31 14:24:53','Bordeaux','assets/images/profilPictures/defaultUserPicture.png','Only Fan');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -527,4 +557,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-12  9:24:12
+-- Dump completed on 2023-09-20  9:53:35

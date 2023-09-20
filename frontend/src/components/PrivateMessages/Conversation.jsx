@@ -13,6 +13,7 @@ export default function Conversation(props) {
   const messageHistoryRef = useRef(null)
   const [messageContent, setMessageContent] = useState("")
   const [messageHistory, setMessageHistory] = useState([])
+  const [animateSend, setAnimateSend] = useState(false)
 
   const idUser = Cookies.get("idUser")
   const tokenFromCookie = Cookies.get("authToken")
@@ -135,8 +136,13 @@ export default function Conversation(props) {
           src={SendArrow}
           alt="sending arrow"
           id="sendingArrow"
+          className={animateSend ? "animate" : ""}
           tabIndex="enter"
-          onClick={sendMessage}
+          onClick={() => {
+            setAnimateSend(true)
+            sendMessage()
+          }}
+          onAnimationEnd={() => setAnimateSend(false)}
         />
       </div>
     </div>
