@@ -12,23 +12,25 @@ import iconSettings from "../assets/Profil/iconSettings.png.png"
 import pinPointer from "../assets/Profil/pinPointer.png.png"
 import deleteCross from "../assets/Profil/deleteCross.png"
 import calendar from "../assets/Profil/calendar.png"
+import groupDiscutionIcon from "../assets/Profil/groupDiscutionIcon.png"
 
 const Profil = () => {
   const [isEditing, setIsEditing] = useState(false)
-  const { user, setUser, setUsers } = useContext(AuthContext)
+  const { user, setUser } = useContext(AuthContext)
   const idUser = Cookies.get("idUser")
   const [imageUrl, setImageUrl] = useState(null)
   const [rpgPictures, setRpgPictures] = useState([])
   const [onAddRpg, setOnAddRpg] = useState(false)
   const [refreshPictures, setRefreshPictures] = useState(false)
-  const [currentPassword, setCurrentPassword] = useState("")
-  const [newPassword, setNewPassword] = useState("")
+  // const [currentPassword, setCurrentPassword] = useState("")
+  // const [newPassword, setNewPassword] = useState("")
   const [validateRequestData, setValidateRequestData] = useState([])
   const [pendingRequestData, setPendingRequestData] = useState([])
   const [gameHistoryPlayerData, setGameHistoryPlayerData] = useState([])
   const [upcommingGameGMData, setUpcommingGameGMData] = useState([])
   const [historyGameGMData, setHistoryGameGMData] = useState([])
   const [isPlayer, setIsPlayer] = useState(true)
+  const [usersHistory, setUsersHistory] = useState([])
 
   const [buttonStates, setButtonStates] = useState({
     mainDiv: true,
@@ -41,44 +43,87 @@ const Profil = () => {
     Authorization: `Bearer ${tokenFromCookie}`
   }
 
+  // const openCardGame = (AllGamesData) => {
+  //   setCardGame(true)
+  //   setGameData(AllGamesData)
+  // }
+
   const [formData, setFormData] = useState({
     username: user.username || "",
     country: user.country || "",
-    city: user.city || "",
-    description_as_player: user.description_as_player || ""
+    city: user.location || "",
+    description_as_player: user.description_as_player || "",
+    email: user.email_adress || ""
   })
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:4242/users`, { headers })
-      .then((res) => {
-        setUsers(res.data)
-      })
-      .catch((err) => {
-        console.error("Problème lors du chargement des users", err)
-      })
-  }, [])
+    const fetchData = async () => {
+      try {
+        const [
+          userData,
+          rpgPicturesData,
+          validateRequestData,
+          pendingRequestData,
+          gameHistoryPlayerData,
+          upcommingGameGMData,
+          historyGameGMData,
+          usersHistory
+        ] = await Promise.all([
+          axios.get(`${import.meta.env.VITE_BACKEND_URL}/users/${idUser}`, {
+            headers
+          }),
+          axios.get(
+            `${import.meta.env.VITE_BACKEND_URL}/pictureRPG/${idUser}`,
+            { headers }
+          ),
+          axios.get(
+            `${import.meta.env.VITE_BACKEND_URL}/validateRequests/${idUser}`,
+            { headers }
+          ),
+          axios.get(
+            `${import.meta.env.VITE_BACKEND_URL}/pendingRequests/${idUser}`,
+            { headers }
+          ),
+          axios.get(
+            `${import.meta.env.VITE_BACKEND_URL}/gameHistoryPlayer/${idUser}`,
+            { headers }
+          ),
+          axios.get(
+            `${import.meta.env.VITE_BACKEND_URL}/upcommingGameGM/${idUser}`,
+            { headers }
+          ),
+          axios.get(
+            `${import.meta.env.VITE_BACKEND_URL}/historyGameGM/${idUser}`,
+            { headers }
+          ),
+          axios.get(
+            `${import.meta.env.VITE_BACKEND_URL}/usersHistory/${idUser}`,
+            { headers }
+          )
+        ])
 
-  useEffect(() => {
-    axios
-      .get(`http://localhost:4242/users/${idUser}`, { headers })
-      .then((res) => {
-        setUser(res.data)
-      })
-      .catch((err) => {
-        console.error("Problème lors du chargement des users", err)
-      })
-  }, [])
+        setUser(userData.data)
+        setRpgPictures(rpgPicturesData.data)
+        setValidateRequestData(validateRequestData.data)
+        setPendingRequestData(pendingRequestData.data)
+        setGameHistoryPlayerData(gameHistoryPlayerData.data)
+        setUpcommingGameGMData(upcommingGameGMData.data)
+        setHistoryGameGMData(historyGameGMData.data)
+        setUsersHistory(usersHistory.data)
+      } catch (error) {
+        console.error(
+          "Une erreur s'est produite lors de la récupération des données:",
+          error
+        )
+      }
+    }
+
+    fetchData()
+  }, [idUser, headers])
 
   useEffect(() => {
     setImageUrl(`${import.meta.env.VITE_BACKEND_URL}/${user.profil_picture}`)
   }, [user.profil_picture])
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:4242/pictureRPG/${idUser}`, { headers })
-      .then((res) => setRpgPictures(res.data))
-  }, [user, isEditing, onAddRpg, refreshPictures])
 
   const handleDeleteRpg = (rpgID) => {
     axios
@@ -104,94 +149,21 @@ const Profil = () => {
     })
   }
 
-  useEffect(() => {
+  const modifyProfil = () => {
+    formData.idUser = idUser
     axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/validateRequests/${idUser}`, {
+      .put(`${import.meta.env.VITE_BACKEND_URL}/modifyProfil`, formData, {
         headers
       })
-      .then((response) => {
-        setValidateRequestData(response.data)
+      .then((res) => {
+        console.info("data user successfully updated", res.data)
+        setUser(res.data)
+        setIsEditing(false)
       })
-      .catch((error) => {
-        console.error("An error occurred:", error)
+      .catch((err) => {
+        console.error("Problème lors du changement des données du user", err)
       })
-  }, [])
-
-  useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/pendingRequests/${idUser}`, {
-        headers
-      })
-      .then((response) => {
-        setPendingRequestData(response.data)
-      })
-      .catch((error) => {
-        console.error("An error occurred:", error)
-      })
-  }, [])
-
-  useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/gameHistoryPlayer/${idUser}`, {
-        headers
-      })
-      .then((response) => {
-        setGameHistoryPlayerData(response.data)
-      })
-      .catch((error) => {
-        console.error("An error occurred:", error)
-      })
-  }, [])
-
-  useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/upcommingGameGM/${idUser}`, {
-        headers
-      })
-      .then((response) => {
-        setUpcommingGameGMData(response.data)
-      })
-      .catch((error) => {
-        console.error("An error occurred:", error)
-      })
-  }, [])
-
-  useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/historyGameGM/${idUser}`, {
-        headers
-      })
-      .then((response) => {
-        setHistoryGameGMData(response.data)
-      })
-      .catch((error) => {
-        console.error("An error occurred:", error)
-      })
-  }, [])
-
-  // console.info(pendingRequestData)
-  // console.info(validateRequestData)
-
-  // const modifyProfil = () => {
-  //   if (newPassword !== user.currentPassword) {
-  //     if (currentPassword !== user.currentPassword) {
-  //       console.error("Mot de passe actuel incorrect");
-  //       return;
-  //     }
-  //   }
-  //   axios
-  //     .put(
-  //       `${import.meta.env.VITE_BACKEND_URL}/modifyProfil/${idUser}`, formData, { headers }
-  //     )
-  //     .then((res) => {
-  //       console.info("data user successfully updated", res.data)
-  //       setUser(res.data);
-  //       setIsEditing(false);
-  //     })
-  //     .catch((err) => {
-  //       console.error("Problème lors du changement des données du user", err)
-  //     })
-  // }
+  }
 
   const updateProfilPictureOnServer = async (userId, formData) => {
     try {
@@ -233,8 +205,6 @@ const Profil = () => {
     .split("-")
     .reverse()
     .join("-")
-
-  console.info("caca", upcommingGameGMData)
 
   return (
     <div className="mainContainerProfil">
@@ -288,6 +258,42 @@ const Profil = () => {
           </div>
         </div>
       </div>
+      {buttonStates.social === true && (
+        <div className="rightBoxMain">
+          <div className="mainTitleProfil">
+            <img src={iconProfil} />
+            <h1>SOCIAL</h1>
+          </div>
+          <div className="bigBoxRight">
+            <div className="topDivSocial">
+              <img src={groupDiscutionIcon} alt="icon d'un groupe" />
+              <p>GUILDERS WHO PLAYED WITH YOU</p>
+            </div>
+            <div className="mainContainerMapItems">
+              {usersHistory.map((users, index) => (
+                <div className="mapContainerSocial" key={index}>
+                  <div className="boxPictureAndName">
+                    <img
+                      src={`${import.meta.env.VITE_BACKEND_URL}/${
+                        users.profil_picture
+                      }`}
+                    />
+                    <p>{users.username}</p>
+                  </div>
+                  <hr className="socialBoxHR"></hr>
+                  <div className="boxLocation">
+                    <p>{users.is_remote === 0 ? users.city : "Remote"}</p>
+                  </div>
+                  <hr className="socialBoxHR"></hr>
+                  <div className="boxGameName">
+                    <p>On Guild : {users.guild_name}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
       {buttonStates.myGames === true && (
         <div className="rightBoxMain">
           <div className="mainTitleProfil">
@@ -347,12 +353,6 @@ const Profil = () => {
                 </div>
                 <div className="waitingValidationDiv">
                   <RequestGM />
-                </div>
-                <div className="invitationDiv">
-                  <div className="titleInvitation">INVITATION FOR GAMES</div>
-                  <div className="displayInvitation">
-                    .map invitation à faire ici
-                  </div>
                 </div>
                 <div className="historyDiv">
                   <div className="titleHistory">HISTORY</div>
@@ -447,12 +447,6 @@ const Profil = () => {
                         </div>
                       )
                     })}
-                  </div>
-                </div>
-                <div className="invitationDiv">
-                  <div className="titleInvitation">INVITATION FOR GAMES</div>
-                  <div className="displayInvitation">
-                    .map invitation à faire ici
                   </div>
                 </div>
                 <div className="historyDiv">
@@ -565,9 +559,9 @@ const Profil = () => {
                 <input
                   type="text"
                   className="inputCountryCity"
-                  placeholder={user.city}
+                  placeholder={user.location}
                   name="city"
-                  value={formData.city}
+                  value={formData.location}
                   onChange={handleFormChange}
                 />
               </div>
@@ -640,8 +634,8 @@ const Profil = () => {
                     type="password"
                     className="inputBottomProfil"
                     placeholder="Current password"
-                    value={currentPassword}
-                    onChange={(e) => setCurrentPassword(e.target.value)}
+                    // value={currentPassword}
+                    // onChange={(e) => setCurrentPassword(e.target.value)}
                   />
                 </div>
                 <div className="newPassword">
@@ -651,8 +645,8 @@ const Profil = () => {
                     className="inputBottomProfil"
                     placeholder="New password"
                     name="newPassword"
-                    value={newPassword}
-                    onChange={(e) => setNewPassword(e.target.value)}
+                    // value={newPassword}
+                    // onChange={(e) => setNewPassword(e.target.value)}
                   />
                 </div>
                 <div />
@@ -660,8 +654,8 @@ const Profil = () => {
             </div>
           </div>
           <div className="divButtonSwitchValidate">
-            <button type="button" onClick={() => setIsEditing(false)}>
-              {/* onClick={modifyProfil} */}
+            <button type="button" onClick={modifyProfil}>
+              {/* onClick={() => setIsEditing(false)} */}
               VALIDATE
             </button>
           </div>
@@ -731,7 +725,7 @@ const Profil = () => {
                   <span>City</span>
                 </div>
                 <div className="countryCityP">
-                  <p>{user.city}</p>
+                  <p>{user.location}</p>
                 </div>
               </div>
             </div>

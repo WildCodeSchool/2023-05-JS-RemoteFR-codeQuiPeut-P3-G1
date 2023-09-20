@@ -22,7 +22,21 @@ const add = (req, res) => {
       res.sendStatus(500)
     })
 }
+
+const getUsersHistory = (req, res) => {
+  models.gamesHasUsersManager
+    .getUsersHistory(req.params.id)
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 module.exports = {
   browse,
   add,
+  getUsersHistory,
 }

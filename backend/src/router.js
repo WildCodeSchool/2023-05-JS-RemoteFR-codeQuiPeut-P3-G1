@@ -66,12 +66,7 @@ router.get(
 
 router.post("/rpgAdder/:userId/:rpgId", UsersControllers.rpgAdder)
 router.delete("/rpgLesser/:userId/:rpgId", UsersControllers.rpgLesser)
-router.put(
-  "/modifyProfil/:userId",
-  verifyPassword,
-  hashPassword,
-  UsersControllers.edit
-)
+router.put("/modifyProfil", UsersControllers.modifyProfilUser)
 
 router.use(verifyToken)
 
@@ -80,6 +75,8 @@ router.put(
   upload.single("myFile"),
   UsersControllers.updateProfilPicture
 )
+
+router.get("/usersHistory/:id", GamesHasUsersControllers.getUsersHistory)
 
 router.get("/users", UsersControllers.browse)
 router.get("/users/:id", UsersControllers.read)
