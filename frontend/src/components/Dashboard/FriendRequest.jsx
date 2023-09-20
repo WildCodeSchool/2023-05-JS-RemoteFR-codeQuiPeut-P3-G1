@@ -8,6 +8,26 @@ import axios from "axios"
 const FriendRequest = () => {
   const [joiningRequestData, setJoiningRequestData] = useState([])
 
+  const [showConfirm, setShowConfirm] = useState(false)
+  const [currentRequest, setCurrentRequest] = useState(null)
+
+  const openConfirmation = (requesterId, gameId) => {
+    setShowConfirm(true)
+    setCurrentRequest({ requesterId, gameId })
+  }
+
+  const closeConfirmation = () => {
+    setShowConfirm(false)
+    setCurrentRequest(null)
+  }
+
+  const confirmReject = () => {
+    if (currentRequest) {
+      rejectRequest(currentRequest.requesterId, currentRequest.gameId)
+    }
+    closeConfirmation()
+  }
+
   const tokenFromCookie = Cookies.get("authToken")
   const idUser = Cookies.get("idUser")
 
@@ -115,13 +135,26 @@ const FriendRequest = () => {
                   src={crossDash}
                   alt="refuse"
                   onClick={() =>
-                    rejectRequest(request.requester_id, request.games_id)
+                    openConfirmation(request.requester_id, request.games_id)
                   }
                 />
               </div>
             </div>
           ))}
         </div>
+        {showConfirm && (
+          <div className="custom-confirmRequest">
+            <div className="modalCustomConfirmRequest">
+              <p>Are you sure you want to reject this request ?</p>
+              <div className="buttonCustomConfirmRequest">
+                <button id="buttonNo" onClick={closeConfirmation}>
+                  NO
+                </button>
+                <button onClick={confirmReject}>YES</button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
