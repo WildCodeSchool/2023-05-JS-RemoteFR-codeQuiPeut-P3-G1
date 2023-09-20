@@ -15,7 +15,7 @@ function FAQ() {
       content: <p>Réponse à la question 3</p>
     },
     {
-      title: "Can I create a table to play with my friends",
+      title: "Can I create a table to play with my friends ?",
       content: (
         <p>
           YES ! Every registered member can create a table with his own rules,
