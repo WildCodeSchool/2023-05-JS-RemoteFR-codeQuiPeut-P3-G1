@@ -124,22 +124,6 @@ export default function FutureGames() {
               })
             ) : (
               <div className="noDataMessage">
-                <div className="logoContentFG">
-                  <Link to="/create-game">
-                    <button type="button" className="sideButton">
-                      <img id="logoAdd" src={Add} alt="logo of a cross" />
-                    </button>
-                  </Link>
-                  <Link to="/upcoming-table">
-                    <button type="button" className="sideButton">
-                      <img
-                        id="logoSearch"
-                        src={Search}
-                        alt="logo of a magnifier"
-                      />
-                    </button>
-                  </Link>
-                </div>
                 <div className="messsageNoData">
                   <p>
                     You are not registered for any games yet. Check the{" "}
