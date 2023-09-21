@@ -1,5 +1,6 @@
 import axios from "axios"
 import React, { useState, useEffect } from "react"
+import Cookies from "js-cookie"
 import CardGame from "./CardGame"
 import JoinGuild from "./JoinGuild"
 import JoinGuildValidation from "./JoinGuildValidation"
@@ -10,6 +11,7 @@ export default function Game({ games, headers }) {
   const [joinGuildValidation, setJoinGuildValidation] = useState(false)
   const [playersProfil, setPlayersProfil] = useState([])
   const [gameData, setGameData] = useState(null)
+  const idUser = Cookies.get("idUser")
 
   const openCardGame = (AllGamesData) => {
     setCardGame(true)
@@ -55,30 +57,32 @@ export default function Game({ games, headers }) {
   console.info(games)
   return (
     <>
-      <div
-        className="globalContainerCardGame"
-        onClick={() => openCardGame(games)}
-      >
-        <div className="boxGameCardGame">{games.guild_name}</div>
-        <div className="boxGameCardGame">
-          <img
-            src={`${import.meta.env.VITE_BACKEND_URL}/${
-              games.gm_profil_picture
-            }`}
-            alt="GM profil picture"
-          />
-          <p>{games.gm_username}</p>
+      {games.gm_id !== idUser && (
+        <div
+          className="globalContainerCardGame"
+          onClick={() => openCardGame(games)}
+        >
+          <div className="boxGameCardGame">{games.guild_name}</div>
+          <div className="boxGameCardGame">
+            <img
+              src={`${import.meta.env.VITE_BACKEND_URL}/${
+                games.gm_profil_picture
+              }`}
+              alt="GM profil picture"
+            />
+            <p>{games.gm_username}</p>
+          </div>
+          <div className="boxGameCardGame">{formattedDate}</div>
+          <div className="boxGameCardGame">
+            {games.city !== "" ? games.city : "Remote"}
+          </div>
+          <div className="boxGameCardGame">{games.rpg_name}</div>
+          <div className="boxGameCardGame">{games.type}</div>
+          <div className="boxGameCardGame">
+            {playersProfil.length}/{games.max_players_capacity}
+          </div>
         </div>
-        <div className="boxGameCardGame">{formattedDate}</div>
-        <div className="boxGameCardGame">
-          {games.city !== "" ? games.city : "Remote"}
-        </div>
-        <div className="boxGameCardGame">{games.rpg_name}</div>
-        <div className="boxGameCardGame">{games.type}</div>
-        <div className="boxGameCardGame">
-          {playersProfil.length}/{games.max_players_capacity}
-        </div>
-      </div>
+      )}
 
       {cardGame && (
         <div className="gameModal">
@@ -89,6 +93,7 @@ export default function Game({ games, headers }) {
               playersProfil={playersProfil}
               openJoinGuild={openJoinGuild}
               setCardGame={setCardGame}
+              joinGuild={joinGuild}
             />
           </div>
         </div>

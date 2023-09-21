@@ -195,15 +195,15 @@
         height: 30%;
         // border: 2px solid red;
         border: double 4px transparent;
-      border-radius: 8px;
-      background-image: linear-gradient(#FFF, #FFF),
-        linear-gradient(180deg, #e2d07c 10%, rgba(164, 147, 94, 1) 100%);
-      background-origin: border-box;
-      background-clip: padding-box, border-box;
-      p {
-        font-family: $content-font;
-        font-size: clamp(16px, 1.5vw, 32px);
-      }
+        border-radius: 8px;
+        background-image: linear-gradient(#fff, #fff),
+          linear-gradient(180deg, #e2d07c 10%, rgba(164, 147, 94, 1) 100%);
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+        p {
+          font-family: $content-font;
+          font-size: clamp(16px, 1.5vw, 32px);
+        }
         .buttonCustomConfirmRequest {
           display: flex;
           flex-direction: row;
@@ -223,7 +223,6 @@
           }
         }
       }
-      
     }
   }
 }

@@ -9,15 +9,6 @@
   .Scene {
     position: relative;
     z-index: 50;
-    
-  }
-  .loader {
-    /* Vos styles de loader ici, par exemple : */
-    display: flex;
-    justify-content: center;
-    color: white;
-    font-size: 24px;
-    text-align: center;
   }
 
   .wave-testLandingPage {
@@ -54,7 +45,6 @@
     right: 0;
     margin-left: auto;
     z-index: 999;
-
   }
 
   .polygonSVG {

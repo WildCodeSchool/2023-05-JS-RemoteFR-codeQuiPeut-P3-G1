@@ -16,6 +16,7 @@ export default function PrivateMessages() {
   const [selectedUser, setSelectUser] = useState(null)
   const [searchUser, setSearchUser] = useState("")
   const [isPopupVisible, setPopupVisibility] = useState(false)
+  const [isNewMessageSent, setIsNewMessageSent] = useState(false)
 
   const showPopup = () => {
     setPopupVisibility(true)
@@ -39,10 +40,14 @@ export default function PrivateMessages() {
       .catch((err) => {
         console.info("Erreur récuperation Messages Preview", err)
       })
-  }, [])
+  }, [isNewMessageSent])
 
   const handleSelectedUser = (message) => {
     setSelectUser(message)
+  }
+
+  const handleNewMessageSent = () => {
+    setIsNewMessageSent((prevState) => !prevState) // bascule la valeur
   }
 
   return (
@@ -107,7 +112,12 @@ export default function PrivateMessages() {
         />
       </div>
       <div className="popupConv"></div>
-      {isPopupVisible && <NewConversationPopup onClose={closePopup} />}
+      {isPopupVisible && (
+        <NewConversationPopup
+          onClose={closePopup}
+          onNewMessageSent={handleNewMessageSent}
+        />
+      )}
     </div>
   )
 }
