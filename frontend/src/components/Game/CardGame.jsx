@@ -33,8 +33,6 @@ export default function CardGame({
     setUserData(AllPlayersData)
   }
 
-  console.info(formattedSchedule)
-
   return (
     <div id="globalCardGameContainer">
       <div id="buttonClose">

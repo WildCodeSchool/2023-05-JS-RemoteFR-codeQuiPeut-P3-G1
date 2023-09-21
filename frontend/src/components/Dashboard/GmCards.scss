@@ -21,6 +21,7 @@
     border: 3px solid $third-font-color;
     border-radius: 9px;
     gap: 10px;
+    z-index: 40000;
 
     .GmCards-header {
       display: flex;

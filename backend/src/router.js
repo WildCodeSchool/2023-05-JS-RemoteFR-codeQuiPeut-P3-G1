@@ -81,12 +81,7 @@ router.get(
 
 router.post("/rpgAdder/:userId/:rpgId", UsersControllers.rpgAdder)
 router.delete("/rpgLesser/:userId/:rpgId", UsersControllers.rpgLesser)
-router.put(
-  "/modifyProfil/:userId",
-  verifyPassword,
-  hashPassword,
-  UsersControllers.edit
-)
+router.put("/modifyProfil", UsersControllers.modifyProfilUser)
 
 router.use(verifyToken)
 
@@ -95,6 +90,8 @@ router.put(
   upload.single("myFile"),
   UsersControllers.updateProfilPicture
 )
+
+router.get("/usersHistory/:id", GamesHasUsersControllers.getUsersHistory)
 
 router.get("/users", UsersControllers.browse)
 router.get("/users/:id", UsersControllers.read)
@@ -108,6 +105,7 @@ router.get(
 )
 router.get("/gameswithrpgname", GamesControllers.browsewithrpgname)
 router.get("/nextgamesbygmid/:id", GamesControllers.selectGamesByGameMasterId)
+router.get("/gameswithrpgname/:id", GamesControllers.browsewithrpgnamebyID)
 router.get("/games", GamesControllers.browse)
 router.get("/games/:id", GamesControllers.read)
 router.put("/games/:id", GamesControllers.edit)
@@ -121,6 +119,8 @@ router.get(
   "/playersForThisGame/:id",
   GameRegistrationsControllers.allPlayersForThisGame
 )
+
+router.get("/playersbygame/:id", GamesHasUsersControllers.getPlayersByGameId)
 router.get("/pictureRPG/:id", UsersControllers.display)
 router.get("/gamesRegistrations", GameRegistrationsControllers.browse)
 router.get("/gamesRegistrations/:id", GameRegistrationsControllers.read)

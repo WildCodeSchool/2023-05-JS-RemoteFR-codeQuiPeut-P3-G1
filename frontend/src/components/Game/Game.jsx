@@ -94,6 +94,7 @@ export default function Game({ games, headers }) {
               playersProfil={playersProfil}
               openJoinGuild={openJoinGuild}
               setCardGame={setCardGame}
+              joinGuild={joinGuild}
             />
           </div>
         </div>

@@ -24,6 +24,18 @@ const browsewithrpgname = (req, res) => {
     })
 }
 
+const browsewithrpgnamebyID = (req, res) => {
+  models.games
+    .getGamesWithRpgNameByUserID(req.params.id)
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 const read = (req, res) => {
   models.games
     .find(req.params.id)
@@ -158,4 +170,5 @@ module.exports = {
   historyGameGM,
   selectGamesByGameMasterUsername,
   selectGamesByGameMasterId,
+  browsewithrpgnamebyID,
 }

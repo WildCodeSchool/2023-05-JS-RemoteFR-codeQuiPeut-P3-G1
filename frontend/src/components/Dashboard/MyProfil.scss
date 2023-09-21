@@ -204,11 +204,12 @@
     .bottomProfile {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: center;
       color: #fff;
       // border: 2px solid red;
       width: 80%;
       height: 100%;
+      gap: 10px;
 
       h1 {
         font-family: $content-font;
@@ -219,10 +220,13 @@
       }
       .gamesContainer {
         display: flex;
-        justify-content: space-evenly;
+        flex-wrap: wrap;
+        justify-content: center;
         align-items: center;
         width: 100%;
-        height: 100%;
+        height: 50%;
+        overflow-y: auto;
+        gap: 10px;
         // margin: 2rem;
         // border: 2px solid red;
         .boxRpgPicture {
@@ -240,6 +244,28 @@
             height: 30.73px;
           }
         }
+      }
+
+      .gamesContainer::-webkit-scrollbar {
+        width: 14px;
+        height: 10px;
+        background-color: #180b2393;
+        border-radius: 11px;
+      }
+
+      .gamesContainer::-webkit-scrollbar-thumb {
+        width: 10px;
+        height: 10px;
+        background-color: #667277;
+        border-radius: 11px;
+        -webkit-appearance: none;
+        background-color: #180b23;
+        border: 1px solid #667277;
+        box-shadow: inset 0 0 5px #667277;
+      }
+
+      .gamesContainer ::-webkit-scrollbar-thumb-progress {
+        width: 100%;
       }
     }
   }
