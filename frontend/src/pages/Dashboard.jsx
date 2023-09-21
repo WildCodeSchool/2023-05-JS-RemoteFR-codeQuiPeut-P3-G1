@@ -7,21 +7,164 @@ import questionMark from "../assets/icon-dashboard/questionMark.svg"
 import Notifications from "../assets/icon-dashboard/icon-Notifications.svg"
 import Notepad from "../assets/icon-dashboard/Notepad.svg"
 import CrossWithBG from "../assets/icon-dashboard/crossWithBG.svg"
+import check from "../assets/icon-dashboard/check.svg"
+import crossDash from "../assets/icon-dashboard/crossDash.svg"
 
 import MyProfil from "../components/Dashboard/MyProfil"
 import FuturGames from "../components/Dashboard/FuturGames"
 import FriendRequest from "../components/Dashboard/FriendRequest"
+import CardGame from "../components/Game/CardGame"
 
 const Dashboard = () => {
   const { setUser, setUsers } = useContext(AuthContext)
   const tokenFromCookie = Cookies.get("authToken")
   const idUser = Cookies.get("idUser")
+  const [notificationCount, setNotificationCount] = useState(0)
+  const [playersProfil, setPlayersProfil] = useState([])
 
   const headers = {
     Authorization: `Bearer ${tokenFromCookie}`
   }
 
   const [hasFriendRequest, setHasFriendRequest] = useState(false)
+  const [invitationsData, setInvitationsData] = useState()
+  const [isCardGameModalOpen, setIsCardGameModalOpen] = useState(false)
+  const [selectedGameData, setSelectedGameData] = useState(null)
+  const [showConfirm, setShowConfirm] = useState(false)
+  const [currentRequest, setCurrentRequest] = useState(null)
+
+  const openConfirmation = (invitedId, gameId) => {
+    setShowConfirm(true)
+    setCurrentRequest({ invitedId, gameId })
+  }
+
+  const closeConfirmation = () => {
+    setShowConfirm(false)
+    setCurrentRequest(null)
+  }
+
+  const confirmReject = () => {
+    if (currentRequest) {
+      rejectRequest(currentRequest.invitedId, currentRequest.gameId)
+    }
+    closeConfirmation()
+  }
+
+  const rejectRequest = async (invitedId, gameId) => {
+    try {
+      const response = await axios.put(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/joiningRequestsRejectedNotification/${invitedId}/${gameId}`,
+        { headers }
+      )
+      console.info("Request rejected successfully:", response.data)
+
+      const updatedInvitations = invitationsData.filter(
+        (invitation) =>
+          !(
+            invitation.player_id === invitedId && invitation.games_id === gameId
+          )
+      )
+      setInvitationsData(updatedInvitations)
+      setNotificationCount((prevCount) => prevCount - 1)
+    } catch (error) {
+      console.error("Error rejecting request:", error)
+    }
+  }
+
+  const acceptedRequest = async (invitedId, gameId) => {
+    try {
+      const response = await axios.put(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/joiningRequestsAcceptedNotification/${invitedId}/${gameId}`,
+        { headers }
+      )
+      console.info("Request accepted successfully:", response.data)
+
+      const updatedInvitations = invitationsData.filter(
+        (invitation) =>
+          !(
+            invitation.player_id === invitedId && invitation.games_id === gameId
+          )
+      )
+      setInvitationsData(updatedInvitations)
+      setNotificationCount((prevCount) => prevCount - 1)
+    } catch (error) {
+      console.error("Error accepting request:", error)
+    }
+  }
+
+  const handleOpenCardGameModal = (gameData) => {
+    axios
+      .get(`http://localhost:4242/playersbygame/${gameData.id}`, {
+        headers
+      })
+      .then((response) => {
+        setPlayersProfil(response.data, "test")
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error)
+      })
+    setSelectedGameData(gameData)
+    setIsCardGameModalOpen(true)
+    if (!clickedInvitations.includes(gameData.id)) {
+      setClickedInvitations((prev) => [...prev, gameData.id])
+      setNotificationCount((prevCount) => prevCount - 1)
+    }
+  }
+
+  const handleCloseCardGameModal = () => {
+    setIsCardGameModalOpen(false)
+  }
+
+  const useLocalStorage = (key, defaultValue) => {
+    const [state, setState] = useState(() => {
+      const saved = localStorage.getItem(key)
+      if (saved) {
+        return JSON.parse(saved)
+      }
+      return defaultValue
+    })
+
+    useEffect(() => {
+      localStorage.setItem(key, JSON.stringify(state))
+    }, [key, state])
+
+    return [state, setState]
+  }
+
+  const [clickedInvitations, setClickedInvitations] = useLocalStorage(
+    "clickedInvitations",
+    []
+  )
+
+  useEffect(() => {
+    if (invitationsData && clickedInvitations) {
+      const unclickedInvitations = invitationsData.filter(
+        (invitation) => !clickedInvitations.includes(invitation.id)
+      )
+      setNotificationCount(unclickedInvitations.length)
+    }
+  }, [invitationsData, clickedInvitations])
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:4242/gameregistrationasplayer/${idUser}`, {
+        headers
+      })
+      .then((res) => {
+        const pendingInvitations = res.data.filter(
+          (invitation) => invitation.status === "pending"
+        )
+        setInvitationsData(pendingInvitations)
+        setNotificationCount(pendingInvitations.length)
+      })
+      .catch((err) => {
+        console.error("Problème lors du chargement des invitations", err)
+      })
+  }, [])
 
   useEffect(() => {
     axios
@@ -80,6 +223,10 @@ const Dashboard = () => {
               alt="logo of notepad"
               onClick={togglePopup}
             />
+            {notificationCount > 0 && (
+              <span className="notificationCount">{notificationCount}</span>
+            )}
+
             <img
               id="logoQuestionMark"
               src={questionMark}
@@ -89,33 +236,61 @@ const Dashboard = () => {
           {isPopupOpen && (
             <div className="popupNotification">
               <div className="contentPopUpNotification">
-                <div className="buttonClosePopUpNotification">
-                  <img
-                    src={CrossWithBG}
-                    alt="icon close popup of notification"
-                    onClick={togglePopup}
-                  />
+                <div className="headerNotif">
+                  <div className="logoNotif">
+                    <img src={Notifications} alt="Notifications logo" />
+                  </div>
+                  <div className="buttonClosePopUpNotification">
+                    <img
+                      src={CrossWithBG}
+                      alt="icon close popup of notification"
+                      onClick={togglePopup}
+                    />
+                  </div>
                 </div>
-                {/* <div className="Notifications-content">
-                  <div className="Invitations">
-                    {joiningRequestData.map((request) => (
-                      <div className="rawInvitations" key={request.id}>
+                <div className="Notifications-content">
+                  {invitationsData.map((invitation) => (
+                    <div className="Invitations" key={invitation.id}>
+                      <div
+                        className={`rawInvitations ${
+                          clickedInvitations.includes(invitation.id)
+                            ? "clicked"
+                            : ""
+                        }`}
+                      >
                         <div className="invitProfilPicture">
                           <img
                             src={`${import.meta.env.VITE_BACKEND_URL}/${
-                              request.profil_picture
+                              invitation.profil_picture
                             }`}
                             alt="profil picture"
                           />
                         </div>
                         <div className="invitedName">
-                          <p>{request.username}</p>
+                          <p>{invitation.gm_username}</p>
                         </div>
-                        <div className="wantsToJoin">
-                          <span>has invited to join:</span>
+                        <div className="hasInvitedYou">
+                          <span>HAS INVITED YOU TO JOIN</span>
                         </div>
-                        <div className="requesterGame">
-                          <p>{request.guild_name}</p>
+                        <div className="invitationGame">
+                          <p
+                            onClick={() =>
+                              handleOpenCardGameModal(invitation, invitation.id)
+                            }
+                          >
+                            {invitation.guild_name}
+                          </p>
+                          {isCardGameModalOpen && (
+                            <div className="ModalGameCard">
+                              <div className="innerModalGameCard">
+                                <CardGame
+                                  gameData={selectedGameData}
+                                  playersProfil={playersProfil}
+                                  onClose={handleCloseCardGameModal}
+                                />
+                              </div>
+                            </div>
+                          )}
                         </div>
                         <div className="requesterButton">
                           <img
@@ -124,8 +299,8 @@ const Dashboard = () => {
                             alt="validate"
                             onClick={() =>
                               acceptedRequest(
-                                request.requester_id,
-                                request.games_id
+                                invitation.player_id,
+                                invitation.games_id
                               )
                             }
                           />
@@ -135,15 +310,15 @@ const Dashboard = () => {
                             alt="refuse"
                             onClick={() =>
                               openConfirmation(
-                                request.requester_id,
-                                request.games_id
+                                invitation.player_id,
+                                invitation.games_id
                               )
                             }
                           />
                         </div>
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  ))}
                   {showConfirm && (
                     <div className="custom-confirmRequest">
                       <div className="modalCustomConfirmRequest">
@@ -157,7 +332,7 @@ const Dashboard = () => {
                       </div>
                     </div>
                   )}
-                </div> */}
+                </div>
               </div>
             </div>
           )}
