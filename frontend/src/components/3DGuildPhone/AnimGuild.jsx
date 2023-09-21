@@ -105,7 +105,8 @@ export default function AnimGuild(props) {
               castShadow
               receiveShadow
               geometry={nodes.screen.geometry}
-              material={nodes.screen.material}
+              // material={nodes.screen.material}
+              // material={blackMaterial}
               position={[0, 0, 9.887]}
             />
             <mesh

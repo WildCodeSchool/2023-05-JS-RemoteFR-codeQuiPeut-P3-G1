@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react"
 
 import SignUp from "../SignUp/SignUp"
 
-function ButtonSignUp() {
+function ButtonSignUp({ handleBlurToggle }) {
   const [showSignIn, setShowSignIn] = useState(false)
   const signInRef = useRef(null)
 
@@ -11,6 +11,7 @@ function ButtonSignUp() {
       setShowSignIn(false)
     }
   }
+
   useEffect(() => {
     document.addEventListener("keydown", handleCloseEscape)
     return () => {
@@ -38,6 +39,7 @@ function ButtonSignUp() {
   const handleButtonClick = (event) => {
     event.stopPropagation() // Empêche la propagation du clic au document
     setShowSignIn(true)
+    handleBlurToggle()
   }
 
   return (

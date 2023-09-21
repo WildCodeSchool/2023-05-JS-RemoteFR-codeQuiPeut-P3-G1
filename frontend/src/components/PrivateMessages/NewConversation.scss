@@ -1,0 +1,117 @@
+.newConvBackground {
+  position: absolute;
+  height: 100%;
+  width: calc(100% - 104px);
+  background-color: rgba(0, 0, 0, 0.531);
+  .newConvContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30vw;
+    height: 50vh;
+    transform: translate(-50%, -50%);
+    background: $background-gradient-landing-page;
+    border: 1px solid #ccc;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    border-radius: 6px;
+    #closingButton {
+      width: 100%;
+      height: fit-content;
+      button {
+        height: 30px;
+        width: 30px;
+        color: red;
+      }
+    }
+    h2 {
+      width: 100%;
+      text-align: center;
+      color: white;
+      font-family: $content-font;
+      font-size: 40px;
+      margin-bottom: 10%;
+    }
+    .newConvUser {
+      position: relative;
+      width: 70%;
+      height: fit-content;
+      margin-bottom: 10%;
+      #search {
+        background: rgba(0, 0, 0, 0.224);
+        border: 2px solid rgb(134, 112, 67);
+        border-radius: 4px;
+        width: 100%;
+        height: 100%;
+        padding: 5px;
+        color: white;
+        position: relative;
+        &:focus {
+          transition: 0.2s;
+          border: 2px solid $third-font-color;
+          outline: none;
+        }
+      }
+      .dropdownMenu {
+        border: 1px solid #ccc;
+        max-height: 150px;
+        overflow-y: auto;
+        width: 100%;
+        z-index: 1;
+        background-color: rgba(17, 17, 17, 0.367);
+        position: absolute;
+        border: 2px solid $third-font-color;
+        border-radius: 4px;
+        top: 100%;
+        li {
+          color: rgb(255, 255, 255);
+          margin: 2px;
+          cursor: pointer;
+          &:hover {
+            background: rgba(85, 85, 85, 0.603);
+          }
+        }
+        #endUsersList {
+          color: rgba(146, 146, 146, 0.293);
+        }
+      }
+    }
+    #message {
+      background: rgba(0, 0, 0, 0.224);
+      border: 2px solid rgb(134, 112, 67);
+      border-radius: 4px;
+      width: 70%;
+      height: 20%;
+      color: aliceblue;
+      cursor: text;
+      transition: 0.2s;
+      font-size: 15px;
+      padding: 5px;
+      text-align: left; /* Alignement horizontal */
+      vertical-align: top;
+      resize: none;
+      margin-bottom: 10%;
+
+      &:focus {
+        transition: 0.2s;
+        border: 2px solid $third-font-color;
+        outline: none;
+      }
+    }
+    #buttonNewConv {
+      width: 30%;
+      height: 10%;
+      border-radius: 4px;
+      background-color: $third-font-color;
+      font-size: 20px;
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(27, 27, 27, 0.5);
+        transition: 0.2s;
+      }
+    }
+  }
+}

@@ -1,7 +1,3 @@
-import { useState } from "react"
-
-import "./PlayerCards.scss"
-
 import Arrow from "../../assets/icon-dashboard/arrow.svg"
 import Cross from "../../assets/icon-dashboard/cross.svg"
 import Schedule from "../../assets/icon-dashboard/scheduleIcon.svg"
@@ -9,22 +5,19 @@ import Dungeons from "../../assets/logoGames/d&d.svg"
 import Cthulhu from "../../assets/logoGames/callOfCthulhu.svg"
 import FiveRings from "../../assets/logoGames/fiveRings.svg"
 
-function PlayerCards({ isOpen, onClose, userData, formattedSchedule }) {
-  if (!isOpen) {
-    return null
-  }
-  const [isPlayerOpen, setIsPlayerOpen] = useState(isOpen)
-
+function PlayerCards({
+  setIsPlayerCardsOpen,
+  setIsGmCardsOpen,
+  userData,
+  formattedSchedule
+}) {
   const handleClose = () => {
-    setIsPlayerOpen(false)
-    onClose()
+    setIsPlayerCardsOpen(false)
+    setIsGmCardsOpen(false)
   }
 
-  if (!isPlayerOpen) {
-    return null
-  }
+  console.info(formattedSchedule)
 
-  console.info("userdata", userData)
   return (
     <div className="major_Container_PlayerCards">
       <div className="PlayerCards_Main_Container">
@@ -34,7 +27,7 @@ function PlayerCards({ isOpen, onClose, userData, formattedSchedule }) {
               src={Arrow}
               id="PlayerCards_BackButton_Img"
               alt="button_return"
-              onClick={handleClose}
+              onClick={() => setIsPlayerCardsOpen(false)}
             />
           </button>
           <button className="PlayerCards_CloseButton" type="button">
@@ -42,6 +35,7 @@ function PlayerCards({ isOpen, onClose, userData, formattedSchedule }) {
               src={Cross}
               id="PlayerCards_CloseButton_Img"
               alt="button_close"
+              onClick={handleClose}
             />
           </button>
         </div>
@@ -67,7 +61,10 @@ function PlayerCards({ isOpen, onClose, userData, formattedSchedule }) {
         </div>
         <div className="PlayerCards_Inside_ThirdElement">
           <img src={Schedule} alt="icon of schedule" />
-          <span>Play with her : {formattedSchedule}</span>
+          <span>
+            Play with :{" "}
+            {formattedSchedule !== undefined ? formattedSchedule : "Not yet"}
+          </span>
         </div>
         <div className="PlayerCards_Inside_FourthElement">
           <div className="PlayerCards_Inside_FourthElement_Content">

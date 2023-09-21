@@ -31,101 +31,11 @@
     }
 
     // Styles pour le bouton "Accueil"
-    .homeNavBar {
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      span {
-        margin-top: 5px;
-        transform: translateX(-300%);
-        transition: transform 0.3s ease-in-out;
-        font-size: 0.8rem;
-        font-family: $title-font;
-      }
-      span.slide-in {
-        transform: translateX(0);
-      }
-    }
-    // Styles similaires pour les autres boutons : "Partie", "Profil", "Créer un jeu", "Message" et "Forum"
-    .partyNavBar {
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      span {
-        margin-top: 5px;
-        transform: translateX(-300%);
-        transition: transform 0.3s ease-in-out;
-        font-size: 0.8rem;
-        font-family: $title-font;
-      }
-
-      span.slide-in {
-        transform: translateX(0);
-      }
-    }
-    .profilNavBar {
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      span {
-        margin-top: 5px;
-        transform: translateX(-300%);
-        transition: transform 0.3s ease-in-out;
-        font-size: 0.8rem;
-        font-family: $title-font;
-      }
-
-      span.slide-in {
-        transform: translateX(0);
-      }
-    }
-    .createGameNavBar {
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      span {
-        margin-top: 5px;
-        transform: translateX(-300%);
-        transition: transform 0.3s ease-in-out;
-        font-size: 0.8rem;
-        font-family: $title-font;
-      }
-
-      span.slide-in {
-        transform: translateX(0);
-      }
-    }
-    .messageNavBar {
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      color: #fff;
-      span {
-        margin-top: 5px;
-        transform: translateX(-300%);
-        transition: transform 0.3s ease-in-out;
-        font-size: 0.8rem;
-        font-family: $title-font;
-      }
-
-      span.slide-in {
-        transform: translateX(0);
-      }
-    }
+    .homeNavBar,
+    .partyNavBar,
+    .profilNavBar,
+    .createGameNavBar,
+    .messageNavBar,
     .forumNavBar {
       cursor: pointer;
       display: flex;
@@ -134,13 +44,13 @@
       align-items: center;
       color: #fff;
       span {
-        margin-top: 5px;
+        margin-top: 10px;
         transform: translateX(-300%);
         transition: transform 0.3s ease-in-out;
         font-size: 0.8rem;
         font-family: $title-font;
+        font-weight: bold;
       }
-
       span.slide-in {
         transform: translateX(0);
       }

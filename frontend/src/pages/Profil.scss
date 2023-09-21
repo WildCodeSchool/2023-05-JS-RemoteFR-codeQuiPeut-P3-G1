@@ -93,6 +93,130 @@
       border-radius: 12px;
       border: 2px solid #a4945e;
       gap: 10px;
+      .waitingValidationDiv,
+      .validateDiv,
+      .historyDiv {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        .displayValidate,
+        .displayWaiting,
+        .displayHistory {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+        }
+        .titlewaiting,
+        .titleHistory,
+        .titleValidate {
+          border-bottom: solid 1px #a4945e;
+          width: 60%;
+        }
+        .scheduleDiv {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          .hrBoxMyGames {
+            width: 50px;
+            height: 4px;
+            transform: rotate(90deg);
+            background-color: black;
+          }
+          .dateCalendar {
+            color: black;
+          }
+        }
+        .boxPendingateGame,
+        .boxHistoryGame,
+        .boxValidatedGame {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background-color: #fff;
+          width: 100%;
+          padding: 20px;
+          height: 7vh;
+          border-radius: 4px;
+          .guildNameDiv {
+            color: black;
+            font-size: 22px;
+          }
+          .typeDiv {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #4d194d;
+            width: 9vw;
+            height: 3vh;
+            border-radius: 4px;
+          }
+        }
+      }
+      .topDivMyGames {
+        display: flex;
+        justify-content: end;
+        gap: 5vw;
+        .middleTopDiv {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: #fff;
+          border-radius: 4px;
+          width: 132px;
+          height: 32px;
+          color: black;
+        }
+        .leftTopDiv {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          input[type="checkbox"] {
+            height: 0;
+            width: 0;
+            visibility: hidden;
+          }
+
+          label {
+            cursor: pointer;
+            width: 50px;
+            height: 20px;
+            background: none;
+            display: block;
+            border: 1px solid #a4945e;
+            border-radius: 20px;
+            position: relative;
+          }
+
+          label:after {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 17px;
+            height: 17px;
+            background: #a4945e;
+            border-radius: 20px;
+            transform: translateY(-9%);
+            transition: 0.3s;
+          }
+
+          input:checked + label {
+            background: none;
+          }
+
+          input:checked + label:after {
+            left: auto;
+            right: 2px;
+            transform: translateY(-9%);
+          }
+
+          label:active:after {
+            width: 40px;
+          }
+        }
+      }
       .titleProfil {
         color: #fff;
         display: flex;

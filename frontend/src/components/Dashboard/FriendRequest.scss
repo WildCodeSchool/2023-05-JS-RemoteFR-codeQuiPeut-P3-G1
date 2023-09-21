@@ -61,6 +61,7 @@
       padding: 2%;
       overflow-x: scroll;
       overflow-x: hidden;
+
       -ms-overflow-style: scrollbar; /* Internet Explorer 10+ */
       scrollbar-width: thin; /* Firefox */
       /* Pour Chrome, Safari et Opera */
@@ -81,16 +82,18 @@
         margin: 3%;
         display: flex;
         justify-content: space-around;
+        align-items: center;
+        gap: 3px;
         // border: 2px solid red;
         .requesterProfilPicture {
           width: fit-content;
           display: flex;
           justify-content: center;
-          width: 10%;
+          // width: 10%;
           img {
             // aspect-ratio: 1/1;
             border-radius: 50%;
-            width: 100%;
+            // width: 100%;
             // height: 100%;
             border: 2px solid $third-font-color;
           }
@@ -101,11 +104,12 @@
           align-items: center;
           // height: 100%;
           width: fit-content;
+
           p {
             margin: 0 5px 0 5px;
             color: $secondary-font-color;
             font-family: $content-font;
-            font-size: clamp(16px, 1vw, 32px);
+            font-size: clamp(8px, 1vw, 32px);
           }
         }
         .wantsToJoin {
@@ -114,9 +118,10 @@
           align-items: center;
           // height: 100%;
           // width: 70%;
+          // border: 2px solid red;
           span {
             display: inline;
-            font-size: clamp(16px, 1vw, 32px);
+            font-size: clamp(8px, 1vw, 32px);
             font-style: normal;
             background: linear-gradient(180deg, #e2d07c 0%, #a4945e 100%);
             line-height: normal;
@@ -133,7 +138,7 @@
           p {
             color: $secondary-font-color;
             font-family: $content-font;
-            font-size: clamp(16px, 1vw, 32px);
+            font-size: clamp(8px, 1vw, 32px);
           }
         }
         .requesterButton {
@@ -166,6 +171,55 @@
             &:hover {
               background-color: rgb(149, 18, 18);
             }
+          }
+        }
+      }
+    }
+    .custom-confirmRequest {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      backdrop-filter: blur(3px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      .modalCustomConfirmRequest {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        width: 30%;
+        height: 30%;
+        // border: 2px solid red;
+        border: double 4px transparent;
+        border-radius: 8px;
+        background-image: linear-gradient(#fff, #fff),
+          linear-gradient(180deg, #e2d07c 10%, rgba(164, 147, 94, 1) 100%);
+        background-origin: border-box;
+        background-clip: padding-box, border-box;
+        p {
+          font-family: $content-font;
+          font-size: clamp(16px, 1.5vw, 32px);
+        }
+        .buttonCustomConfirmRequest {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          align-items: center;
+          width: 50%;
+          #buttonNo {
+            background-color: #4d1a4d;
+            color: #fff;
+          }
+          button {
+            border: 1px solid black;
+            width: 70px;
+            height: 40px;
+            font-size: 1.5vw;
+            border-radius: 5px;
           }
         }
       }

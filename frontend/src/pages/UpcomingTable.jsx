@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import Game from "../components/Game/Game"
-import Player from "../components/Player/playerCard"
-import "./UpcomingTable.scss"
+import Player from "../components/Player/UpComingTablePlayerCard"
 import BladeIcon from "../assets/logo/bladeIcon.svg"
 import BookVector from "../assets/logo/bookVector.svg"
 import CalandarIcon from "../assets/logo/calendarIcon.svg"
@@ -88,14 +87,12 @@ function UpcomingTable() {
       .get("http://localhost:4242/users", { headers })
       .then((res) => setUsers(res.data))
     axios
-      .get("http://localhost:4242/games", { headers })
+      .get("http://localhost:4242/gameswithrpgname", { headers })
       .then((res) => setGames(res.data))
     axios
       .get("http://localhost:4242/role-playing-games", { headers })
       .then((res) => setRpg(res.data))
   }, [])
-
-  console.info(users)
 
   return (
     <>
@@ -354,7 +351,13 @@ function UpcomingTable() {
                     )
                 )
                 .map((game) => (
-                  <Game key={game.id} games={game} users={users} rpg={rpg} />
+                  <Game
+                    key={game.id}
+                    games={game}
+                    users={users}
+                    rpg={rpg}
+                    headers={headers}
+                  />
                 ))}
             </div>
           </div>

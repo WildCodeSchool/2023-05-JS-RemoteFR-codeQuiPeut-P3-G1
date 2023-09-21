@@ -13,6 +13,7 @@ export default function Conversation(props) {
   const messageHistoryRef = useRef(null)
   const [messageContent, setMessageContent] = useState("")
   const [messageHistory, setMessageHistory] = useState([])
+  const [animateSend, setAnimateSend] = useState(false)
 
   const idUser = Cookies.get("idUser")
   const tokenFromCookie = Cookies.get("authToken")
@@ -29,6 +30,23 @@ export default function Conversation(props) {
       }
     }
   })
+
+  useEffect(() => {
+    axios
+      .get(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/getMessagesFromUsers/${idUser}/${senderId}`,
+        { headers }
+      )
+      .then((res) => {
+        setMessageHistory(res.data)
+        console.info(res.data)
+      })
+      .catch((err) => {
+        console.info("ca marche pas", err)
+      })
+  }, [senderId])
 
   const sendMessage = () => {
     const messageData = {
@@ -55,10 +73,10 @@ export default function Conversation(props) {
   }
 
   useEffect(() => {
-    // if (messageHistoryRef.current) {
-    //   messageHistoryRef.current.scrollTop =
-    //     messageHistoryRef.current.scrollHeight
-    // }
+    if (messageHistoryRef.current) {
+      messageHistoryRef.current.scrollTop =
+        messageHistoryRef.current.scrollHeight
+    }
 
     const receiveMessageHandler = (data) => {
       setMessageHistory((prevMessages) => [...prevMessages, data])
@@ -72,26 +90,6 @@ export default function Conversation(props) {
     }
   }, [messageHistory, socket])
 
-  useEffect(() => {
-    axios
-      .get(
-        `${
-          import.meta.env.VITE_BACKEND_URL
-        }/getMessagesFromUsers/${idUser}/${senderId}`,
-        {
-          headers
-        }
-      )
-      .then((res) => {
-        setMessageHistory(res.data)
-        console.info(res.data)
-      })
-      .catch((err) => {
-        console.info("ca marche pas", err)
-      })
-  }, [senderId])
-
-  console.info(messageHistory)
   return (
     <div className="divConversation">
       <div className="conversationHeader">
@@ -138,8 +136,13 @@ export default function Conversation(props) {
           src={SendArrow}
           alt="sending arrow"
           id="sendingArrow"
+          className={animateSend ? "animate" : ""}
           tabIndex="enter"
-          onClick={sendMessage}
+          onClick={() => {
+            setAnimateSend(true)
+            sendMessage()
+          }}
+          onAnimationEnd={() => setAnimateSend(false)}
         />
       </div>
     </div>

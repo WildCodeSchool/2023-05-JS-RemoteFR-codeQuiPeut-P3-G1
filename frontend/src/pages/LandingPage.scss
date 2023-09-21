@@ -5,10 +5,24 @@ body {
 .main-landingPage {
   display: flex;
   flex-direction: column;
+  .Scene {
+    position: relative;
+    z-index: 50;
+  }
+  .loader {
+    /* Vos styles de loader ici, par exemple : */
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+  }
 
-  .logoGuild-Header {
-    width: 8%;
-    height: 8%;
+  .wave-testLandingPage {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    z-index: -100;
   }
 
   .canvas {
@@ -19,19 +33,25 @@ body {
     display: flex;
     justify-content: center;
   }
+
+  .imgHeaderLandingPage {
+    position: absolute;
+    img {
+      width: 100%;
+    }
+  }
+
   .button-register-container {
     display: flex;
     justify-content: flex-end;
-    width: 100%;
+    align-items: center;
+    width: 80%;
     height: 100%;
     position: sticky;
+    top: 5%;
+    right: 0;
+    margin-left: auto;
     z-index: 999;
-    top: 55px;
-    .Button-Register-LandingPage {
-      display: flex;
-      margin-right: 28px;
-      gap: 30px;
-    }
   }
 
   .polygonSVG {
@@ -39,7 +59,8 @@ body {
     transform: translate(-32px, -77px);
     z-index: 40;
     display: flex;
-    width: 100%;
+    width: 20%;
+    right: 0;
     justify-content: flex-end;
   }
 }

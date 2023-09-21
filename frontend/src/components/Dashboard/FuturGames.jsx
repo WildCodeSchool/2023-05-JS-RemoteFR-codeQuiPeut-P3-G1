@@ -37,16 +37,19 @@ export default function FutureGames() {
   }
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:4242/usernameGMFutureGames/${idUser}`, { headers })
-      .then((response) => {
-        setGameGMData(response.data)
-      })
-      .catch((error) => {
-        console.error("An error occurred:", error)
-      })
-  }, [])
-  console.info(gameGMData, "test")
+    idUser !== null &&
+      axios
+        .get(`http://localhost:4242/usernameGMFutureGames/${idUser}`, {
+          headers
+        })
+        .then((response) => {
+          setGameGMData(response.data)
+        })
+        .catch((error) => {
+          console.error("An error occurred:", error)
+        })
+  }, [idUser])
+
   return (
     <>
       <div className="myFutureGames_Container">
@@ -121,22 +124,6 @@ export default function FutureGames() {
               })
             ) : (
               <div className="noDataMessage">
-                <div className="logoContentFG">
-                  <Link to="/create-game">
-                    <button type="button" className="sideButton">
-                      <img id="logoAdd" src={Add} alt="logo of a cross" />
-                    </button>
-                  </Link>
-                  <Link to="/upcoming-table">
-                    <button type="button" className="sideButton">
-                      <img
-                        id="logoSearch"
-                        src={Search}
-                        alt="logo of a magnifier"
-                      />
-                    </button>
-                  </Link>
-                </div>
                 <div className="messsageNoData">
                   <p>
                     You are not registered for any games yet. Check the{" "}
@@ -156,7 +143,11 @@ export default function FutureGames() {
           </div>
         </div>
         {isGmCardsOpen && (
-          <GmCards onClose={toggleGmCards} gameData={gameData} />
+          <GmCards
+            onClose={toggleGmCards}
+            gameData={gameData}
+            setIsGmCardsOpen={setIsGmCardsOpen}
+          />
         )}
       </div>
     </>

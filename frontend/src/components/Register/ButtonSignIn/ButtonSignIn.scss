@@ -1,6 +1,8 @@
 .LogIn-Container {
-  width: 100%;
+  // width: 100%;
   height: auto;
+  margin-right: 28px;
+
   .button-LogIn {
     button {
       width: 124px;
@@ -8,6 +10,7 @@
       border-radius: 5px;
       border: 1px solid #f6f6e9;
       background: #e7e7e530;
+
       color: #ffffff;
       text-align: center;
       font-size: 1.05vw;
@@ -37,5 +40,16 @@
       display: flex;
       justify-content: center;
     }
+  }
+  .modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

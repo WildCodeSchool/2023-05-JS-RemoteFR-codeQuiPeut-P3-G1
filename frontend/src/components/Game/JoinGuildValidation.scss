@@ -1,0 +1,23 @@
+#joinGuildGlobalValidation {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  p {
+    color: black;
+    font-family: $content-font;
+    font-size: 20px;
+    text-align: center;
+  }
+  button {
+    border: 1px solid $navbar-color;
+    font-family: $content-font;
+    color: $navbar-color;
+    border-radius: 4px;
+    width: 100px;
+    height: 42px;
+  }
+}
