@@ -47,33 +47,30 @@ const Profil = () => {
     Authorization: `Bearer ${tokenFromCookie}`
   }
 
-  // const openCardGame = (AllGamesData) => {
-  //   setCardGame(true)
-  //   setGameData(AllGamesData)
-  // }
-
-  const [formData, setFormData] = useState({
-    username: user.username || "",
-    country: user.country || "",
-    city: user.location || "",
-    description_as_player: user.description_as_player || "",
-    email: user.email_adress || ""
-  })
-
   const closeCardGame = () => {
     setCardGame(false)
   }
 
   const modifyProfil = () => {
-    formData.idUser = idUser
+    // formData.idUser = idUser
 
     axios
-      .put(`${import.meta.env.VITE_BACKEND_URL}/modifyProfil`, formData, {
-        headers
-      })
+      .put(
+        `${import.meta.env.VITE_BACKEND_URL}/modifyProfil`,
+        {
+          username: user.username,
+          country: user.country,
+          city: user.location,
+          description_as_player: user.description_as_player,
+          email: user.email_adress,
+          idUser
+        },
+        {
+          headers
+        }
+      )
       .then((res) => {
         console.info("data user successfully updated", res.data)
-        // setUser(res.data)
 
         setIsEditing(false)
       })
@@ -143,9 +140,8 @@ const Profil = () => {
         )
       }
     }
-
     fetchData()
-  }, [idUser, headers])
+  }, [idUser, refreshPictures, onAddRpg, isEditing])
 
   useEffect(() => {
     setImageUrl(`${import.meta.env.VITE_BACKEND_URL}/${user.profil_picture}`)
@@ -165,14 +161,6 @@ const Profil = () => {
       .catch((err) => {
         console.error("A problem occurred", err)
       })
-  }
-
-  const handleFormChange = (e) => {
-    const { name, value } = e.target
-    setFormData({
-      ...formData,
-      [name]: value
-    })
   }
 
   const updateProfilPictureOnServer = async (userId, formData) => {
@@ -578,8 +566,10 @@ const Profil = () => {
                   <input
                     type="text"
                     placeholder={user.username}
-                    value={formData.username}
-                    onChange={handleFormChange}
+                    value={user.username}
+                    onChange={(e) =>
+                      setUser({ ...user, [e.target.name]: e.target.value })
+                    }
                     name="username"
                   />
                 </div>
@@ -594,8 +584,10 @@ const Profil = () => {
                   className="inputCountryCity"
                   placeholder={user.country}
                   name="country"
-                  value={formData.country}
-                  onChange={handleFormChange}
+                  value={user.country}
+                  onChange={(e) =>
+                    setUser({ ...user, [e.target.name]: e.target.value })
+                  }
                 />
                 <div className="countryCityNameBox">
                   <img src={pinPointer} />
@@ -605,9 +597,11 @@ const Profil = () => {
                   type="text"
                   className="inputCountryCity"
                   placeholder={user.location}
-                  name="city"
-                  value={formData.location}
-                  onChange={handleFormChange}
+                  name="location"
+                  value={user.location}
+                  onChange={(e) =>
+                    setUser({ ...user, [e.target.name]: e.target.value })
+                  }
                 />
               </div>
             </div>
@@ -617,8 +611,10 @@ const Profil = () => {
                 <textarea
                   placeholder={user.description_as_player}
                   name="description_as_player"
-                  value={formData.description_as_player}
-                  onChange={handleFormChange}
+                  value={user.description_as_player}
+                  onChange={(e) =>
+                    setUser({ ...user, [e.target.name]: e.target.value })
+                  }
                 ></textarea>
               </div>
             </div>
@@ -667,10 +663,12 @@ const Profil = () => {
                   type="email"
                   className="inputBottomProfil"
                   placeholder="Enter Your Email"
-                  name="email"
-                  value={formData.email}
+                  name="email_adress"
+                  value={user.email_adress}
                   // {formData.email === "" ? user.email_adress : formData.email}
-                  onChange={handleFormChange}
+                  onChange={(e) =>
+                    setUser({ ...user, [e.target.name]: e.target.value })
+                  }
                 />
               </div>
               <div className="changePassword">
@@ -701,7 +699,6 @@ const Profil = () => {
           </div>
           <div className="divButtonSwitchValidate">
             <button type="button" onClick={modifyProfil}>
-              {/* onClick={() => setIsEditing(false)} */}
               VALIDATE
             </button>
           </div>
