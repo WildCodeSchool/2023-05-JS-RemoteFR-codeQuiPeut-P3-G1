@@ -5,7 +5,7 @@ import moment from "moment"
 
 export default function PostCards({ isOpen, onClose, postData }) {
   const [allPosts, setAllPosts] = useState([])
-  const [newComment, setNewComment] = useState("") // Etat pour suivre le nouveau commentaire saisi
+  const [newComment, setNewComment] = useState("")
 
   const idUser = Cookies.get("idUser")
   const tokenFromCookie = Cookies.get("authToken")
@@ -14,28 +14,47 @@ export default function PostCards({ isOpen, onClose, postData }) {
     Authorization: `Bearer ${tokenFromCookie}`
   }
 
-  console.info("postData", postData)
-
   const handleCommentChange = (event) => {
     setNewComment(event.target.value)
   }
+
+  const fetchComments = () => {
+    axios
+      .get(
+        `${import.meta.env.VITE_BACKEND_URL}/posts/topics/${postData.topic_id}`,
+        {
+          headers
+        }
+      )
+      .then(
+        (res) => setAllPosts(res.data),
+        console.info("allPosts: ", allPosts)
+      )
+      .catch((error) => {
+        console.error(
+          "Une erreur s'est produite lors de la récupération des sujets.",
+          error
+        )
+        // Gérez l'erreur ici (peut-être un message à l'utilisateur)
+      })
+  }
+
   const handleSubmitComment = () => {
-    // Envoyez le nouveau commentaire au serveur ici en utilisant une requête axios POST
     axios
       .post(
-        `${import.meta.env.VITE_BACKEND_URL}/posts`, // Assurez-vous d'avoir une route appropriée pour la création de commentaires
+        `${import.meta.env.VITE_BACKEND_URL}/posts`,
         {
           content: newComment,
-          topics_id: postData.id,
+          topics_id: postData.topic_id,
           users_id: idUser
         },
         { headers }
       )
-      .then((res) => {
-        // Mettez à jour la liste des commentaires après la création réussie
-        setAllPosts([...allPosts, res.data])
+      .then(() => {
         // Effacez le contenu du champ de commentaire après la création
         setNewComment("")
+        // Appelez la fonction pour récupérer les commentaires mis à jour
+        fetchComments()
       })
       .catch((error) => {
         console.error(
@@ -47,19 +66,11 @@ export default function PostCards({ isOpen, onClose, postData }) {
   }
 
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_BACKEND_URL}/posts/topics/${postData.id}`, {
-        headers
-      })
-      .then((res) => setAllPosts(res.data))
-      .catch((error) => {
-        console.error(
-          "Une erreur s'est produite lors de la récupération des sujets.",
-          error
-        )
-        // Gérez l'erreur ici (peut-être un message à l'utilisateur)
-      })
+    // Appelez la fonction pour récupérer les commentaires au chargement initial du composant
+    fetchComments()
   }, [newComment])
+
+  console.info("postData: ", postData)
 
   return (
     <div className={`post-cards ${isOpen ? "open" : "closed"}`}>
@@ -67,7 +78,7 @@ export default function PostCards({ isOpen, onClose, postData }) {
         <button className="close-button" onClick={onClose}>
           Fermer
         </button>
-
+        <div className="titreDeLaPostCard">{postData.first_content}</div>
         {allPosts.map((post) => (
           <div className="post-card" key={post.id}>
             <div className="post-details">
@@ -89,6 +100,7 @@ export default function PostCards({ isOpen, onClose, postData }) {
             </div>
           </div>
         ))}
+
         {/* Formulaire pour saisir un nouveau commentaire */}
         <div className="new-comment-form">
           <textarea
