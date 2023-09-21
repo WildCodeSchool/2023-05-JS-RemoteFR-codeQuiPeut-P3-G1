@@ -11,7 +11,7 @@ import GamesType from "../../assets/GmCards-assets/gamesType.svg"
 import participantsLogo from "../../assets/GmCards-assets/participantsLogo.svg"
 import PlayerCards from "./PlayerCards"
 
-const GmCards = ({ onClose, gameData }) => {
+const GmCards = ({ onClose, gameData, setIsGmCardsOpen }) => {
   // const [gamesData, setGamesData] = useState([])
   const [playersProfil, setPlayersProfil] = useState([])
   const [isPlayerCardsOpen, setIsPlayerCardsOpen] = useState(false)
@@ -164,8 +164,9 @@ const GmCards = ({ onClose, gameData }) => {
       )}
       {isPlayerCardsOpen && (
         <PlayerCards
-          isOpen={isPlayerCardsOpen}
-          onClose={() => setIsPlayerCardsOpen(false)}
+          isPlayerCardsOpen={isPlayerCardsOpen}
+          setIsPlayerCardsOpen={setIsPlayerCardsOpen}
+          setIsGmCardsOpen={setIsGmCardsOpen}
           userData={userData}
           formattedSchedule={formattedSchedule}
         />

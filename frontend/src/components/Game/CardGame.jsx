@@ -1,23 +1,49 @@
-import React from "react"
+import React, { useState } from "react"
 import Calendar from "moedim"
+
+import PlayerCards from "../Dashboard/PlayerCards"
 
 import Players from "../../assets/icon-create-game/players.svg"
 import Schedule from "../../assets/icon-create-game/schedule.svg"
 import TypeGame from "../../assets/icon-create-game/typeGame.svg"
 import PlaceGame from "../../assets/icon-create-game/placeGame.svg"
 import diceButton from "../../assets/upcomingTable-assets/join-button.svg"
+import CrossWithBG from "../../assets/icon-dashboard/crossWithBG.svg"
 
 export default function CardGame({
   onClose,
   gameData,
   playersProfil,
   openJoinGuild
+  // setCardGame
 }) {
+  const [cardGamePlayerCard, setCardGamePlayerCard] = useState(false)
+  const [userData, setUserData] = useState(null)
+
+  const scheduleDate = new Date(gameData.schedule)
+  const options = {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit"
+  }
+  const formattedSchedule = scheduleDate.toLocaleDateString("en-EN", options)
+
+  const openPlayerCard = (AllPlayersData) => {
+    setCardGamePlayerCard(true)
+    setUserData(AllPlayersData)
+  }
+
+  console.info(formattedSchedule)
+
   return (
     <div id="globalCardGameContainer">
-      <button id="buttonClose" onClick={onClose}>
-        X
-      </button>
+      <div id="buttonClose">
+        <img
+          src={CrossWithBG}
+          alt="icon close popup of notification"
+          onClick={onClose}
+        />
+      </div>
       <div id="resumeContent">
         <div className="contentLeftResumeCreateGame">
           <div className="guildNameResume">
@@ -92,7 +118,7 @@ export default function CardGame({
                     user.profil_picture
                   }`}
                   alt={`${user.id}-profil`}
-                  // onClick={() => handleProfileClick(user)}
+                  onClick={() => openPlayerCard(user)}
                 />
                 <p>{user.username}</p>
               </div>
@@ -100,10 +126,12 @@ export default function CardGame({
           </div>
         </div>
         <div className="contentRightResumeCreateGame">
-          <div id="buttonJoinGuild">
-            <img src={diceButton} />
-            <button onClick={openJoinGuild}>JOIN THE GUILD</button>
-          </div>
+          {openJoinGuild !== undefined && (
+            <div id="buttonJoinGuild">
+              <img src={diceButton} />
+              <button onClick={openJoinGuild}>JOIN THE GUILD</button>
+            </div>
+          )}
           <div className="gameDateResume">
             <div id="gameDate">
               <img src={Schedule} alt="icon of schedule" />
@@ -127,6 +155,18 @@ export default function CardGame({
           </div>
         </div>
       </div>
+      {cardGamePlayerCard && (
+        <div className="gameJoinGuildModal">
+          <div className="gameJoinGuildContent">
+            <PlayerCards
+              userData={userData}
+              playersProfil={playersProfil}
+              setIsPlayerCardsOpen={setCardGamePlayerCard}
+              formattedSchedule={formattedSchedule}
+            />
+          </div>
+        </div>
+      )}
     </div>
   )
 }

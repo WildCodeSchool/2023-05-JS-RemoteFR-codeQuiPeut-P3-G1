@@ -43,6 +43,7 @@ const UsersFiltersManager = require("./UsersFiltersManager")
 const PrivateMessagesManager = require("./PrivateMessagesManager")
 const RolePlayingGamesManager = require("./RolePlayingGamesManager")
 const GamesHasUsersManager = require("./GamesHasUsersManager")
+const GameRegistrationsAsPlayerManager = require("./GameRegistrationsAsPlayerManager")
 
 models.users = new UsersManager()
 models.users.setDatabase(pool)
@@ -85,6 +86,9 @@ models.private_messages.setDatabase(pool)
 
 models.role_playing_games = new RolePlayingGamesManager()
 models.role_playing_games.setDatabase(pool)
+
+models.GameRegistrationsAsPlayer = new GameRegistrationsAsPlayerManager()
+models.GameRegistrationsAsPlayer.setDatabase(pool)
 
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model
