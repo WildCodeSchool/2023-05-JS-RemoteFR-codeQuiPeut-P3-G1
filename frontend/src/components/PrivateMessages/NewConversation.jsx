@@ -2,7 +2,7 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import Cookies from "js-cookie"
 
-export default function NewConversation({ onClose }) {
+export default function NewConversation({ onClose, onNewMessageSent }) {
   const tokenFromCookie = Cookies.get("authToken")
   const idUser = Cookies.get("idUser")
   const headers = {
@@ -32,6 +32,7 @@ export default function NewConversation({ onClose }) {
       )
       .then(() => {
         onClose()
+        onNewMessageSent()
       })
       .catch((err) => {
         console.info("Error while posting new conv", err)
