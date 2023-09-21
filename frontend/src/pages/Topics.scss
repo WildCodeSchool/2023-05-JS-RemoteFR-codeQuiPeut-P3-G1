@@ -1,109 +1,323 @@
+// .containeurTopicsAll {
+//   border: solid 2px blue;
+//   display: flex;
+//   justify-content: center;
+//   flex-direction: column;
+//   align-items: center;
+//   width: 100%;
+//   height: 100%;
+
+//   .titleTopics {
+//     // margin: 20px;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     width: 100%;
+//   border: solid 2px blue;
+//   h1 {
+//     text-align: center;
+//     color: rgb(194, 177, 108);
+//     font-size: 2em;
+//   }
+
+//   }
+
+//     .globalDivTopics {
+//       display: flex;
+//       width: 100%;
+//       height: 100%;
+//       border: solid 2px blue;
+
+//         .divTopicsAndFilter{
+//           display: flex;
+//           justify-content: center;
+//           // width: 100%;
+//           // height: 84vh;
+//           // overflow: hidden;
+//           border: solid 2px green;
+
+//           .divTopics {
+//             // margin-left: 50px;
+//             // min-width: 300px;
+
+//             .titleFilterTopic {
+//               color: rgb(194, 177, 108);
+//               font-size: 2em;
+//               font-family: $content-font;
+//               text-align: center;
+//               margin: 16px;
+//             }
+
+//             .boxFilterTopics {
+//               border: solid 0.5px rgb(194, 177, 108);
+//               // width: 300px;
+//               // height: 30px;
+//               border-radius: 10px;
+//               display: flex;
+//               flex-direction: column;
+//               align-items: center;
+//               height: auto;
+//               // width: 100%;
+
+//               .writingWindow {
+//                 background-color: white;
+//                 border: 0.5px solid rgb(194, 177, 108);
+//                 width: 80%;
+//                 height: 30px;
+//                 margin: 10px;
+//                 border: solid 2px green;
+//               }
+//             }
+
+//             .boxNewTopics {
+//               button {
+//                 background-color: rgb(194, 177, 108);
+//                 color: #fff;
+//                 border: none;
+//                 border-radius: 5px;
+//                 padding: 10px 20px;
+//                 cursor: pointer;
+//                 transition: background-color 0.3s;
+//                 margin: 20px;
+
+//                 &:hover {
+//                   background-color: darken(rgb(194, 177, 108), 15%);
+//                 }
+//               }
+//             }
+//           }
+//         }
+
+//       .BoxTopicsAndNewTopics {
+//         display: flex;
+//         justify-content: center;
+//         overflow-wrap: break-word;
+//         border: solid 2px red;
+
+//         .titleBoxTopics {
+//           margin-bottom: 30px;
+//           text-align: center;
+//           color: rgb(194, 177, 108);
+//           font-size: 2em;
+//         }
+
+//         .globalTopicsBox {
+//           display: flex;
+//           flex-direction: column;
+//           width: 100%;
+//           height: 100vh;
+//           overflow-y: scroll;
+//           border: solid 2px red;
+
+//           .topicbox {
+//             display: flex;
+//             justify-content: center;
+//             flex-direction: column;
+//             background-color: rgba(255, 255, 255, 1);
+//             border: 1px solid rgba(194, 177, 108, 0.5);
+//             border-radius: 5px;
+//             padding: 10px;
+//             margin: 50px;
+//             height: 20vh;
+//             width: 10%;
+//             overflow-y: scroll;
+//           border: solid 2px red;
+
+//             h3 {
+//               margin: 15px;
+//             }
+
+//             .buttonInCard {
+//               display: flex;
+//               justify-content: flex-end;
+
+//               button {
+//                 color: rgb(194, 177, 108);
+//                 height: 40px;
+//                 width: 180px;
+//                 border-radius: 7px;
+//                 background-color: black;
+//               }
+//             }
+
+//             .topicTitleInCard {
+//               margin: 15px;
+//             }
+
+//             .firstContentInCard {
+//               display: flex;
+//               justify-content: flex-start;
+//               margin: 15px;
+//               overflow-wrap: break-word;
+//               width: 30%;
+//               border: 2px solid red;
+//             }
+
+//             .headerCardTopic {
+//               background-color: rgba(24, 11, 35, 1);
+//               color: #fff;
+//               display: flex;
+//               align-items: center;
+//               justify-content: space-between;
+
+//               .photoAndName {
+//                 display: flex;
+//                 align-items: center;
+//                 padding: 10px;
+
+//                 .photoUserTopic {
+//                   width: 50px;
+//                   height: 50px;
+//                   border-radius: 50px;
+//                   margin: 7px;
+//                   border: solid 0.5px rgb(194, 177, 108);
+//                 }
+//               }
+
+//               .dateTopics {
+//                 margin: 7px;
+//               }
+//             }
+//           }
+//         }
+//       }
+
+//       .modal {
+//         position: fixed;
+//         top: 0;
+//         left: 0;
+//         width: 100%;
+//         height: 100%;
+//         background-color: rgba(0, 0, 0, 0.5);
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+
+//         .modal-content {
+//           background-color: #fff;
+//           border-radius: 5px;
+//           padding: 20px;
+//           box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+//         }
+//       }
+//     }
+// }
+
+* {
+  border: 2px solid blue;
+}
+
 .containeurTopicsAll {
-  // display: flex;
-  // flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  border: 4px solid pink;
+
   .titleTopics {
-    margin: 30px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
     color: rgb(194, 177, 108);
-    font-size: 2em;
+    border: 2px solid red;
   }
-  .titreOriginalPourUneDiv {
-    .globalDivTopics {
+
+  .globalDivTopics {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid red;
+    width: 100%;
+    height: 80%;
+
+    .divTopicsAndFilter {
       display: flex;
+      flex-direction: row;
+      align-items: center;
       justify-content: space-around;
+      width: 100%;
+      height: 100%;
 
       .divTopics {
-        //  display: flex;
-
+        border: 2px solid yellow;
+        display: flex;
+        flex-direction: column;
+        // width: 100%;
+        height: 80%;
         .titleFilterTopic {
           color: rgb(194, 177, 108);
           font-size: 2em;
           font-family: $content-font;
           text-align: center;
-          margin: 16px;
         }
-
         .boxFilterTopics {
-          border: solid rgb(194, 177, 108);
-          width: 200px;
-          height: 30px;
+          border: solid 0.5px rgb(194, 177, 108);
+          //  width: 300px;
+          //  height: 30px;
           border-radius: 10px;
-          width: 100%;
           display: flex;
           flex-direction: column;
           align-items: center;
           height: auto;
-
+          width: 100%;
           .writingWindow {
             background-color: white;
             border: 0.5px solid rgb(194, 177, 108);
-            width: 300px;
+            width: 80%;
             height: 30px;
             margin: 10px;
+            border: solid 2px green;
           }
-        }
+          .boxNewTopics {
+            button {
+              background-color: rgb(194, 177, 108);
+              color: #fff;
+              border: none;
+              border-radius: 5px;
+              padding: 10px 20px;
+              cursor: pointer;
+              transition: background-color 0.3s;
+              margin: 20px;
 
-        .boxNewTopics {
-          button {
-            background-color: rgb(194, 177, 108);
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin: 20px;
-
-            &:hover {
-              background-color: darken(rgb(194, 177, 108), 15%);
+              &:hover {
+                background-color: darken(rgb(194, 177, 108), 15%);
+              }
             }
           }
         }
       }
-
       .BoxTopicsAndNewTopics {
-        width: 70%;
-
+        border: 2px solid cyan;
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        height: 80%;
         .titleBoxTopics {
           margin-bottom: 30px;
           text-align: center;
           color: rgb(194, 177, 108);
           font-size: 2em;
         }
-
         .globalTopicsBox {
-          .topicbox {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          height: 87vh;
+          overflow-y: scroll;
+          border: solid 2px red;
+          gap: 45px;
+          .topicboxId {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
             background-color: rgba(255, 255, 255, 1);
             border: 1px solid rgba(194, 177, 108, 0.5);
             border-radius: 5px;
-            padding: 10px;
-            margin: 50px;
-            overflow: hidden;
-
-            h3 {
-              margin: 15px;
-            }
-
-            .buttonInCard {
-              display: flex;
-              justify-content: flex-end;
-
-              button {
-                color: rgb(194, 177, 108);
-                height: 40px;
-                width: 180px;
-                border-radius: 7px;
-                background-color: black;
-              }
-            }
-
-            .topicTitleInCard {
-              margin: 15px;
-            }
-
-            .firstContentInCard {
-              margin: 15px;
-            }
+            border: 2px solid blue;
+            height: 326px;
+            width: 100%;
 
             .headerCardTopic {
               background-color: rgba(24, 11, 35, 1);
@@ -111,47 +325,66 @@
               display: flex;
               align-items: center;
               justify-content: space-between;
+              width: 95%;
 
               .photoAndName {
                 display: flex;
                 align-items: center;
-                padding: 10px;
+                justify-content: flex-start;
+                gap: 10px;
+                width: 30%;
+                border: 2px solid red;
+                // padding: 10px;
 
                 .photoUserTopic {
-                  width: 50px;
-                  height: 50px;
-                  border-radius: 50px;
-                  margin: 7px;
-                  border: solid rgb(194, 177, 108);
+                  display: flex;
+                  width: 10%;
+                  border-radius: 50%;
+                  border: solid 0.5px rgb(194, 177, 108);
+                  img {
+                    width: 100%;
+                  }
                 }
               }
-
               .dateTopics {
                 margin: 7px;
               }
             }
+            .firstContentInCard {
+              // display: flex;
+              // justify-content: flex-start;
+              // align-items: center;
+              // margin: 15px;
+              overflow-wrap: break-word;
+              width: 50%;
+              height: 50vh;
+              overflow-y: scroll;
+              border: 2px solid red;
+            }
           }
         }
       }
-
-      .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        .modal-content {
-          background-color: #fff;
-          border-radius: 5px;
-          padding: 20px;
-          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-        }
-      }
     }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .divTopicsAndFilter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .divTopics {
+      min-width: 300px;
+      margin-left: 0px;
+    }
+  }
+
+  .titleBoxTopics {
+    /* Modifiez les styles ici */
+    margin-top: 30px;
+    text-align: center;
+    color: rgb(194, 177, 108);
+    font-size: 2em;
   }
 }

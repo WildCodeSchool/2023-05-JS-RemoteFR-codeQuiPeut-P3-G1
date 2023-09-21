@@ -10,7 +10,7 @@ export default function Topics() {
   const [isNewTopicOpen, setIsNewTopicOpen] = useState(false)
   const [usernameFilter, setUsernameFilter] = useState("")
   const [sujetFilter, setSujetFilter] = useState("")
-  const [dateFilter, setDateFilter] = useState("all") // Nouveau état pour le filtre de date
+  const [dateFilter, setDateFilter] = useState("all")
   const [postData, setPostData] = useState(null)
   const [isPostCardsOpen, setIsPostCardsOpen] = useState(false)
   const [shouldRefreshTable, setShouldRefreshTable] = useState(false)
@@ -41,7 +41,6 @@ export default function Topics() {
       fetchTopics()
       setShouldRefreshTable(false)
     }
-    console.info(shouldRefreshTable)
   }, [shouldRefreshTable])
 
   const openNewTopicModal = (value) => {
@@ -81,62 +80,58 @@ export default function Topics() {
   }
 
   const handlePostClick = (allPostData) => {
-    // Ouvrez le composant PlayerCards en passant les informations du joueur sélectionné.
     setIsPostCardsOpen(true)
     setPostData(allPostData)
-    setIsBoxTopicsVisible(false) // Masquer la section BoxTopicsAndNewTopics
+    setIsBoxTopicsVisible(false) // Masquer la section principale
   }
 
   const updateShouldRefreshTable = (value) => {
     setShouldRefreshTable(value)
   }
 
-  console.info(topics)
   return (
     <>
       <div className="containeurTopicsAll">
         <div className="titleTopics">
           <h1>Topics</h1>
         </div>
-        <div className="titreOriginalPourUneDiv">
-          <div className="globalDivTopics">
-            <div className="divTopics">
-              <h2 className="titleFilterTopic"> Recherches </h2>
-              <div className="boxFilterTopics">
-                <input
-                  className="writingWindow"
-                  type="text"
-                  placeholder="Filtrer par nom d'utilisateur"
-                  value={usernameFilter}
-                  onChange={handleUsernameFilterChange}
-                />
 
-                <input
-                  className="writingWindow"
-                  type="text"
-                  placeholder="Filtrer par mot clé"
-                  value={sujetFilter}
-                  onChange={handleSujetFilterChange}
-                />
+        <div className="globalDivTopics">
+          {isBoxTopicsVisible && (
+            <div className="divTopicsAndFilter">
+              <div className="divTopics">
+                <h2 className="titleFilterTopic"> Recherches </h2>
+                <div className="boxFilterTopics">
+                  <input
+                    className="writingWindow"
+                    type="text"
+                    placeholder="Filtrer par nom d'utilisateur"
+                    value={usernameFilter}
+                    onChange={handleUsernameFilterChange}
+                  />
+                  <input
+                    className="writingWindow"
+                    type="text"
+                    placeholder="Filtrer par mot clé"
+                    value={sujetFilter}
+                    onChange={handleSujetFilterChange}
+                  />
 
-                {/* Nouveau élément de formulaire pour le filtre de date */}
-                <select
-                  className="writingWindow"
-                  value={dateFilter}
-                  onChange={handleDateFilterChange}
-                >
-                  <option value="all">Toutes les dates</option>
-                  <option value="lastWeek">Il y a moins d'une semaine</option>
-                  <option value="lastMonth">Il y a plus d'un mois</option>
-                  {/* Ajoutez d'autres options de filtrage par date ici */}
-                </select>
+                  <select
+                    className="writingWindow"
+                    value={dateFilter}
+                    onChange={handleDateFilterChange}
+                  >
+                    <option value="all">Toutes les dates</option>
+                    <option value="lastWeek">Il y a moins d'une semaine</option>
+                    <option value="lastMonth">Il y a plus d'un mois</option>
+                  </select>
 
-                <div className="boxNewTopics">
-                  <button onClick={openNewTopicModal}>Nouveau Topic</button>
+                  <div className="boxNewTopics">
+                    <button onClick={openNewTopicModal}>Nouveau Topic</button>
+                  </div>
                 </div>
               </div>
-            </div>
-            {isBoxTopicsVisible && (
               <div className="BoxTopicsAndNewTopics">
                 <div>
                   <h2 className="titleBoxTopics"> Recent post</h2>
@@ -144,12 +139,11 @@ export default function Topics() {
                 {!isPostCardsOpen && (
                   <div className="globalTopicsBox">
                     {topics
-                      .filter((topic) => {
-                        // Utilisez la comparaison pour vérifier si le nom d'utilisateur commence par la chaîne de filtrage
-                        return topic.username
+                      .filter((topic) =>
+                        topic.username
                           .toLowerCase()
                           .startsWith(usernameFilter.toLowerCase())
-                      })
+                      )
                       .filter((topic) =>
                         topic.title
                           .toLowerCase()
@@ -173,12 +167,12 @@ export default function Topics() {
                           )
                           return targetDate > oneMonthAgo
                         } else {
-                          return true // "Toutes les dates" ou aucune sélection
+                          return true
                         }
                       })
                       .map((topic) => (
                         <div key={topic.id}>
-                          <div className="topicbox">
+                          <div className="topicboxId">
                             <div className="headerCardTopic">
                               <div className="photoAndName">
                                 <img
@@ -196,13 +190,12 @@ export default function Topics() {
                             </div>
                             <h3>Sujet :</h3>
                             <div className="topicTitleInCard">
-                              {" "}
                               {topic.title}
                             </div>
                             <div>{topic.categories_id}</div>
                             <h3>Message:</h3>
                             <div className="firstContentInCard">
-                              {topic.first_content}
+                              <p>{topic.first_content}</p>
                             </div>
                             <div className="buttonInCard">
                               <button onClick={() => handlePostClick(topic)}>
@@ -215,30 +208,29 @@ export default function Topics() {
                   </div>
                 )}
               </div>
-            )}
-            {isNewTopicOpen && (
-              <div className="modal">
-                <div className="modal-content">
-                  <NewTopic
-                    onClose={closeNewTopicModal}
-                    updateShouldRefreshTable={updateShouldRefreshTable}
-                  />
-                </div>
+            </div>
+          )}
+          {isNewTopicOpen && (
+            <div className="modal">
+              <div className="modal-content">
+                <NewTopic
+                  onClose={closeNewTopicModal}
+                  updateShouldRefreshTable={updateShouldRefreshTable}
+                />
               </div>
-            )}
-            {isPostCardsOpen && (
-              <PostCards
-                isOpen={isPostCardsOpen}
-                onClose={() => {
-                  setIsPostCardsOpen(false)
-                  setIsBoxTopicsVisible(true)
-                }}
-                postData={postData}
-                headers={headers}
-                // formattedSchedule={formattedSchedule}
-              />
-            )}
-          </div>
+            </div>
+          )}
+          {isPostCardsOpen && (
+            <PostCards
+              isOpen={isPostCardsOpen}
+              onClose={() => {
+                setIsPostCardsOpen(false)
+                setIsBoxTopicsVisible(true)
+              }}
+              postData={postData}
+              headers={headers}
+            />
+          )}
         </div>
       </div>
     </>
