@@ -13,6 +13,7 @@ const TopicsSubscriptionControllers = require("./controllers/TopicsSubscriptionC
 const CategoriesControllers = require("./controllers/CategoriesControllers")
 const GamesControllers = require("./controllers/GamesControllers")
 const GameRegistrationsControllers = require("./controllers/GameRegistrationsControllers")
+const GameRegistrationsAsPlayerControllers = require("./controllers/GameRegistrationsAsPlayerControllers")
 const PostsControllers = require("./controllers/PostsControllers")
 const FiltersControllers = require("./controllers/FiltersControllers")
 const FriendRequestControllers = require("./controllers/FriendRequestControllers")
@@ -29,6 +30,11 @@ router.get("/testimonials/:id", TestimonialsControllers.read)
 router.get(
   "/testimonialsCarrousel",
   TestimonialsControllers.getTestimonialsCarrousel
+)
+
+router.get(
+  "/gameregistrationasplayer/:id",
+  GameRegistrationsAsPlayerControllers.AllInvitationsOfGm
 )
 
 router.get("/joiningRequests/:id", GameRegistrationsControllers.joiningRequests)
@@ -52,6 +58,15 @@ router.put(
 router.put(
   "/joiningRequestsAccepted/:requesterId/:gameId",
   GameRegistrationsControllers.joiningRequestsAccepted
+)
+
+router.put(
+  "/joiningRequestsRejectedNotification/:playerId/:gameId",
+  GameRegistrationsAsPlayerControllers.joiningRequestsRejectedNotification
+)
+router.put(
+  "/joiningRequestsAcceptedNotification/:playerId/:gameId",
+  GameRegistrationsAsPlayerControllers.joiningRequestsAcceptedNotification
 )
 
 router.post(
