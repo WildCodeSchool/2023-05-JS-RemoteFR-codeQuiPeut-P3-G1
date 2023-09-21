@@ -66,13 +66,15 @@ const Profil = () => {
 
   const modifyProfil = () => {
     formData.idUser = idUser
+
     axios
       .put(`${import.meta.env.VITE_BACKEND_URL}/modifyProfil`, formData, {
         headers
       })
       .then((res) => {
         console.info("data user successfully updated", res.data)
-        setUser(res.data)
+        // setUser(res.data)
+
         setIsEditing(false)
       })
       .catch((err) => {
@@ -143,7 +145,7 @@ const Profil = () => {
     }
 
     fetchData()
-  }, [idUser])
+  }, [idUser, headers])
 
   useEffect(() => {
     setImageUrl(`${import.meta.env.VITE_BACKEND_URL}/${user.profil_picture}`)
@@ -229,7 +231,6 @@ const Profil = () => {
     .reverse()
     .join("-")
 
-  // console.info(historyGameGMData)
   return (
     <div className="mainContainerProfil">
       <div className="questionMark">
@@ -668,6 +669,7 @@ const Profil = () => {
                   placeholder="Enter Your Email"
                   name="email"
                   value={formData.email}
+                  // {formData.email === "" ? user.email_adress : formData.email}
                   onChange={handleFormChange}
                 />
               </div>
