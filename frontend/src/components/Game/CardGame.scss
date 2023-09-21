@@ -7,13 +7,13 @@
   height: 100%;
 
   #buttonClose {
-    width: 3%;
-    font-size: 30px;
-    text-align: center;
-    color: $button-gold;
-    background: #4d194d;
-    padding: 2px;
-    border-radius: 6px;
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding-right: 1%;
+    img {
+      cursor: pointer;
+    }
   }
 
   #resumeContent {

@@ -32,6 +32,11 @@ router.get(
   TestimonialsControllers.getTestimonialsCarrousel
 )
 
+router.get(
+  "/gameregistrationasplayer/:id",
+  GameRegistrationsAsPlayerControllers.AllInvitationsOfGm
+)
+
 router.get("/joiningRequests/:id", GameRegistrationsControllers.joiningRequests)
 router.get(
   "/validateRequests/:id",
@@ -53,6 +58,15 @@ router.put(
 router.put(
   "/joiningRequestsAccepted/:requesterId/:gameId",
   GameRegistrationsControllers.joiningRequestsAccepted
+)
+
+router.put(
+  "/joiningRequestsRejectedNotification/:playerId/:gameId",
+  GameRegistrationsAsPlayerControllers.joiningRequestsRejectedNotification
+)
+router.put(
+  "/joiningRequestsAcceptedNotification/:playerId/:gameId",
+  GameRegistrationsAsPlayerControllers.joiningRequestsAcceptedNotification
 )
 
 router.post(
