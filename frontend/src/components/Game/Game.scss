@@ -1,22 +1,3 @@
-@import "../../Variable.scss";
-
-.boxGameCard {
-  gap: 10px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  // text-align: center;
-  font-family: $content-font;
-  font-size: 0.92vw;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  &:hover {
-    color: #180b23;
-  }
-}
-
 // .boxNewTopics {
 //   width: 50%;
 //   height: 100%;
@@ -32,18 +13,18 @@
 //   }
 // }
 
-.globalContainerCard {
+.globalContainerCardGame {
   border: 1px solid #e2d07c;
+  // border: 2px solid red;
   display: flex;
   width: 100%;
+  // gap: 10px;
   color: #d9d9d9;
-  justify-content: center;
   justify-content: space-around;
+  font-size: clamp(16px, 1vw, 32px);
   align-items: center;
-  margin-top: 20px;
-  // margin-bottom: 20px;
-  gap: 30px;
-  // margin: 20px;
+  text-align: center;
+  animation: fadeIn ease 1s;
   &:hover {
     background-color: #fff;
     color: #180b23;
@@ -51,6 +32,26 @@
   img {
     width: 50px;
     border-radius: 50%;
+  }
+  .boxGameCardGame {
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: $content-font;
+    font-size: clamp(16px, 1vw, 32px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    // border: 2px solid blue;
+    &:hover {
+      color: #180b23;
+    }
   }
 }
 
@@ -116,5 +117,13 @@
     border-radius: 5px;
     padding: 20px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

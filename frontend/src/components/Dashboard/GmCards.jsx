@@ -164,6 +164,7 @@ const GmCards = ({ onClose, gameData, setIsGmCardsOpen }) => {
       )}
       {isPlayerCardsOpen && (
         <PlayerCards
+          isPlayerCardsOpen={isPlayerCardsOpen}
           setIsPlayerCardsOpen={setIsPlayerCardsOpen}
           setIsGmCardsOpen={setIsGmCardsOpen}
           userData={userData}

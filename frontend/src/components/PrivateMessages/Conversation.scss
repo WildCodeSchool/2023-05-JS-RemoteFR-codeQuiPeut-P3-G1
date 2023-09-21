@@ -2,6 +2,7 @@
   width: 100%;
   height: 100%;
   padding: 100px;
+  animation: fadeIn ease 1s;
   .conversationHeader {
     border-bottom: 2px solid $third-font-color;
     height: 15%;
@@ -163,6 +164,15 @@
     .animate {
       animation: sendAnimation 1.3s ease-in-out forwards;
     }
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 

@@ -10,6 +10,7 @@ const TopicsSubscriptionControllers = require("./controllers/TopicsSubscriptionC
 const CategoriesControllers = require("./controllers/CategoriesControllers")
 const GamesControllers = require("./controllers/GamesControllers")
 const GameRegistrationsControllers = require("./controllers/GameRegistrationsControllers")
+const GameRegistrationsAsPlayerControllers = require("./controllers/GameRegistrationsAsPlayerControllers")
 const PostsControllers = require("./controllers/PostsControllers")
 const FiltersControllers = require("./controllers/FiltersControllers")
 const FriendRequestControllers = require("./controllers/FriendRequestControllers")
@@ -29,6 +30,11 @@ router.get(
   "/testimonialsCarrousel",
 
   TestimonialsControllers.getTestimonialsCarrousel
+)
+
+router.get(
+  "/gameregistrationasplayer/:id",
+  GameRegistrationsAsPlayerControllers.AllInvitationsOfGm
 )
 
 router.get("/joiningRequests/:id", GameRegistrationsControllers.joiningRequests)
@@ -63,6 +69,15 @@ router.put(
   GameRegistrationsControllers.joiningRequestsAccepted
 )
 
+router.put(
+  "/joiningRequestsRejectedNotification/:playerId/:gameId",
+  GameRegistrationsAsPlayerControllers.joiningRequestsRejectedNotification
+)
+router.put(
+  "/joiningRequestsAcceptedNotification/:playerId/:gameId",
+  GameRegistrationsAsPlayerControllers.joiningRequestsAcceptedNotification
+)
+
 router.post(
   "/dispatchPlayer/:requesterId/:gameId",
 
@@ -78,13 +93,7 @@ router.get(
 router.post("/rpgAdder/:userId/:rpgId", UsersControllers.rpgAdder)
 
 router.delete("/rpgLesser/:userId/:rpgId", UsersControllers.rpgLesser)
-
-router.put(
-  "/modifyProfil/:userId",
-  verifyPassword,
-  hashPassword,
-  UsersControllers.edit
-)
+router.put("/modifyProfil", UsersControllers.modifyProfilUser)
 
 router.use(verifyToken)
 
@@ -93,6 +102,8 @@ router.put(
   upload.single("myFile"),
   UsersControllers.updateProfilPicture
 )
+
+router.get("/usersHistory/:id", GamesHasUsersControllers.getUsersHistory)
 
 router.get("/users", UsersControllers.browse)
 router.get("/users/:id", UsersControllers.read)
@@ -105,6 +116,8 @@ router.get(
 )
 
 router.get("/gameswithrpgname", GamesControllers.browsewithrpgname)
+router.get("/nextgamesbygmid/:id", GamesControllers.selectGamesByGameMasterId)
+router.get("/gameswithrpgname/:id", GamesControllers.browsewithrpgnamebyID)
 router.get("/games", GamesControllers.browse)
 router.get("/games/:id", GamesControllers.read)
 router.put("/games/:id", GamesControllers.edit)
@@ -119,6 +132,7 @@ router.get(
   GameRegistrationsControllers.allPlayersForThisGame
 )
 
+router.get("/playersbygame/:id", GamesHasUsersControllers.getPlayersByGameId)
 router.get("/pictureRPG/:id", UsersControllers.display)
 
 router.get("/gamesRegistrations", GameRegistrationsControllers.browse)
@@ -126,6 +140,15 @@ router.get("/gamesRegistrations/:id", GameRegistrationsControllers.read)
 router.put("/gamesRegistrations/:id", GameRegistrationsControllers.edit)
 router.post("/gamesRegistrations", GameRegistrationsControllers.add)
 router.delete("/gamesRegistrations/:id", GameRegistrationsControllers.destroy)
+
+router.post(
+  "/gamesRegistrationsAsPlayer",
+  GameRegistrationsAsPlayerControllers.add
+)
+router.get(
+  "/gamesRegistrationsAsPlayer",
+  GameRegistrationsAsPlayerControllers.browse
+)
 
 router.put("/testimonials/:id", TestimonialsControllers.edit)
 router.post("/testimonials", TestimonialsControllers.add)

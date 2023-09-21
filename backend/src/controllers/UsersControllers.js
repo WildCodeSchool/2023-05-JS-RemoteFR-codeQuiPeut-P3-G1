@@ -51,6 +51,25 @@ const edit = (req, res) => {
     })
 }
 
+const modifyProfilUser = (req, res) => {
+  const users = req.body
+
+  models.users
+    .updateProfilUser(users)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404)
+      } else {
+        res.sendStatus(200)
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+      console.info(users)
+    })
+}
+
 const add = (req, res) => {
   const users = req.body
 
@@ -203,4 +222,5 @@ module.exports = {
   display,
   rpgAdder,
   rpgLesser,
+  modifyProfilUser,
 }

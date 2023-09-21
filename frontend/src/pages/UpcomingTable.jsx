@@ -16,7 +16,7 @@ function UpcomingTable() {
   const [games, setGames] = useState([])
   // const [switchPlayer, setSwitchPlayer] = useState(false)
   const [users, setUsers] = useState([])
-  const [rpg, setRpg] = useState([])
+  const [rpgs, setRpgs] = useState([])
   const [cityFilter, setCityFilter] = useState("")
   const [gmFilter, setGmFilter] = useState("")
   const [maxPlayersFilter, setMaxPlayersFilter] = useState("") // Filtre pour le nombre maximum de joueurs
@@ -82,6 +82,8 @@ function UpcomingTable() {
   // useContexte qui ne fonctionne pas car il est dans App.
   // const { users } = useContext(AuthContext)
 
+  console.info(games)
+
   useEffect(() => {
     axios
       .get("http://localhost:4242/users", { headers })
@@ -91,12 +93,16 @@ function UpcomingTable() {
       .then((res) => setGames(res.data))
     axios
       .get("http://localhost:4242/role-playing-games", { headers })
-      .then((res) => setRpg(res.data))
+      .then((res) => setRpgs(res.data))
   }, [])
 
   return (
     <>
-      <div className="globalcontainerUT">
+      <div
+        className={`globalcontainerUT ${
+          showPlayerContainer ? "fade-in" : "fade-out"
+        }`}
+      >
         <div
           className="containerFilterAndCardsPlayer"
           style={{ display: showPlayerContainer ? "flex" : "none" }}
@@ -118,7 +124,7 @@ function UpcomingTable() {
                   src={CalandarIcon}
                   alt="icon blade gold"
                 />
-                <div className="containeurTitlePlayer">Availability</div>
+                <div className="containeurTitlePlayer">Member since</div>
               </div>
               <div className="boxTitlePlayer">
                 <img
@@ -156,11 +162,11 @@ function UpcomingTable() {
           </div>
           <div className="filterContainerMajorPlayer">
             <div className="bigBoxFilterPlayer">
-              <h1 className="titleUpcommingTableFilter">Find your Players</h1>
+              <h1 className="titleUpcommingTableFilter2">Find your Players</h1>
               <input
                 className="inputUT"
                 type="text"
-                placeholder="Filter by username"
+                placeholder="FILTER BY USERNAME"
                 value={usernameFilter}
                 onChange={handleUsernameFilterChange}
               />
@@ -168,7 +174,7 @@ function UpcomingTable() {
               <input
                 className="inputUT"
                 type="text"
-                placeholder="Filter by city"
+                placeholder="FILTER BY CITY"
                 value={locationFilter}
                 onChange={handleLocationFilterChange}
               />
@@ -188,26 +194,30 @@ function UpcomingTable() {
               <div className="titleUpcommingTableFilter">
                 <h1>Find your Game</h1>
               </div>
-
+              <div className="selectUT">
+                <select
+                  value={maxPlayersFilter}
+                  onChange={handleMaxPlayersFilterChange}
+                >
+                  <option value="">SELECT MAX PLAYER</option>
+                  {Array.from({ length: 99 }, (_, i) => i + 1).map((num) => (
+                    <option value={num} key={num}>
+                      {num}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="selectUT">
+                <select value={typeFilter} onChange={handleTypeFilterChange}>
+                  <option value="">FILTER BY TYPE OF GAME</option>
+                  <option value="Horror">Horreur</option>
+                  <option value="Adventure">Aventure</option>
+                  <option value="Sci-Fi">Science-fiction</option>
+                </select>
+              </div>
               <input
                 className="inputUT"
-                type="text"
-                placeholder="Filtrer par nombre de joueurs max"
-                value={maxPlayersFilter}
-                onChange={handleMaxPlayersFilterChange}
-              />
-
-              <input
-                className="inputUT"
-                type="text"
-                placeholder="Filtrer par type de partie"
-                value={typeFilter}
-                onChange={handleTypeFilterChange}
-              />
-
-              <input
-                className="inputUT"
-                type="text"
+                type="date"
                 placeholder="Filtrer par date"
                 value={dateFilter}
                 onChange={handleDateFilterChange}
@@ -216,7 +226,7 @@ function UpcomingTable() {
               <input
                 className="inputUT"
                 type="text"
-                placeholder="Filtrer par nom de partie"
+                placeholder="FILTER BY NAME"
                 value={nameFilter}
                 onChange={handleNameFilterChange}
               />
@@ -224,7 +234,7 @@ function UpcomingTable() {
               <input
                 className="inputUT"
                 type="text"
-                placeholder="Filtrer par gm"
+                placeholder="FILTER BY GAMEMASTER"
                 value={gmFilter}
                 onChange={handleGmFilterChange}
               />
@@ -232,29 +242,36 @@ function UpcomingTable() {
               <input
                 className="inputUT"
                 type="text"
-                placeholder="Filtrer par ville"
+                placeholder="FILTER BY CITY"
                 value={cityFilter}
                 onChange={(event) => {
                   setCityFilter(event.target.value)
                 }}
               />
-
-              <input
-                className="inputUT"
-                type="text"
-                placeholder="Filtrer par type de RPG"
-                value={rpgFilter}
-                onChange={handleRpgFilterChange}
-              />
-
+              <div className="selectUT">
+                <select
+                  onChange={handleRpgFilterChange}
+                  defaultValue=""
+                  value={rpgFilter}
+                >
+                  <option value="" disabled>
+                    Select your RPG
+                  </option>
+                  {rpgs.map((rpg) => (
+                    <option key={rpg.id} value={rpg.rpg_name}>
+                      {rpg.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
               <button type="button" onClick={toggleContainer}>
-                Find a Player
+                Or Find a Player
               </button>
             </div>
           </div>
 
           <div className="gamecard">
-            <h1 className="titleUpcommingTable"> Upcoming Table</h1>
+            <h1 className="titleUpcommingTable">Upcoming Table</h1>
             <div className="containerMenuGame">
               <div className="boxTitleGame">
                 <img
@@ -334,28 +351,20 @@ function UpcomingTable() {
                     .toLowerCase()
                     .includes(nameFilter.toLowerCase())
                 )
-                .filter(
-                  (game) =>
-                    gmFilter === "" ||
-                    users.some((user) =>
-                      user.username
-                        .toLowerCase()
-                        .includes(gmFilter.toLowerCase())
-                    )
+                .filter((game) =>
+                  game.gm_username
+                    .toLowerCase()
+                    .includes(gmFilter.toLowerCase())
                 )
-                .filter(
-                  (game) =>
-                    rpgFilter === "" ||
-                    rpg.some((r) =>
-                      r.name.toLowerCase().includes(rpgFilter.toLowerCase())
-                    )
+                .filter((game) =>
+                  game.rpg_name.toLowerCase().includes(rpgFilter.toLowerCase())
                 )
                 .map((game) => (
                   <Game
                     key={game.id}
                     games={game}
                     users={users}
-                    rpg={rpg}
+                    rpg={rpgs}
                     headers={headers}
                   />
                 ))}

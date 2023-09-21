@@ -3,14 +3,15 @@
   height: 100%;
   width: calc(100% - 104px);
   background-color: rgba(0, 0, 0, 0.531);
+  animation: fadeIn ease 1s;
   .newConvContainer {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 30vw;
-    height: 50vh;
+    width: 40vw;
+    height: 60vh;
     transform: translate(-50%, -50%);
-    background: $background-gradient-landing-page;
+    background: #fff;
     border: 1px solid #ccc;
     z-index: 1000;
     display: flex;
@@ -19,8 +20,11 @@
     justify-content: start;
     border-radius: 6px;
     #closingButton {
-      width: 100%;
-      height: fit-content;
+      width: 90%;
+      height: 15%;
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 1%;
       button {
         height: 30px;
         width: 30px;
@@ -30,7 +34,10 @@
     h2 {
       width: 100%;
       text-align: center;
-      color: white;
+      background: linear-gradient(180deg, #e2d07c 0%, #a4945e 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       font-family: $content-font;
       font-size: 40px;
       margin-bottom: 10%;
@@ -47,8 +54,10 @@
         width: 100%;
         height: 100%;
         padding: 5px;
-        color: white;
+        color: black;
         position: relative;
+        text-align: center;
+        font-size: clamp(20px, 1vw, 32px);
         &:focus {
           transition: 0.2s;
           border: 2px solid $third-font-color;
@@ -61,13 +70,15 @@
         overflow-y: auto;
         width: 100%;
         z-index: 1;
-        background-color: rgba(17, 17, 17, 0.367);
+        background-color: #ededed;
         position: absolute;
         border: 2px solid $third-font-color;
         border-radius: 4px;
         top: 100%;
+        text-align: center;
+        font-size: clamp(20px, 1vw, 32px);
         li {
-          color: rgb(255, 255, 255);
+          color: black;
           margin: 2px;
           cursor: pointer;
           &:hover {
@@ -75,7 +86,8 @@
           }
         }
         #endUsersList {
-          color: rgba(146, 146, 146, 0.293);
+          color: black;
+          background: rgba(85, 85, 85, 0.603);
         }
       }
     }
@@ -84,8 +96,8 @@
       border: 2px solid rgb(134, 112, 67);
       border-radius: 4px;
       width: 70%;
-      height: 20%;
-      color: aliceblue;
+      height: 50%;
+      color: black;
       cursor: text;
       transition: 0.2s;
       font-size: 15px;
@@ -94,6 +106,7 @@
       vertical-align: top;
       resize: none;
       margin-bottom: 10%;
+      font-size: clamp(20px, 1vw, 32px);
 
       &:focus {
         transition: 0.2s;
@@ -103,15 +116,25 @@
     }
     #buttonNewConv {
       width: 30%;
-      height: 10%;
+      height: 20%;
       border-radius: 4px;
       background-color: $third-font-color;
-      font-size: 20px;
+      font-size: clamp(20px, 1vw, 32px);
+      margin-bottom: 2%;
+      transition: 0.2s ease-in-out;
       &:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 20px rgba(27, 27, 27, 0.5);
-        transition: 0.2s;
+        transition: 0.2s ease-in-out;
       }
     }
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

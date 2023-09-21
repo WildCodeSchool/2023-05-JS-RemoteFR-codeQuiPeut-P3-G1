@@ -45,14 +45,14 @@ class UsersManager extends AbstractManager {
 
   update(users) {
     return this.database.query(
-      `update ${this.table} set username = ?, email_adress = ?, hashedPassword = ?, other_information = ?, description_as_player = ?, city = ?, profil_picture = ?, description_as_gm = ?, country = ?, where id = ?`,
+      `update ${this.table} set username = ?, email_adress = ?, hashedPassword = ?, other_information = ?, description_as_player = ?, location = ?, profil_picture = ?, description_as_gm = ?, country = ?, where id = ?`,
       [
         users.username,
         users.email_adress,
         users.hashedPassword,
         users.other_information,
         users.descriptions_as_player,
-        users.city,
+        users.location,
         users.profil_picture,
         users.description_as_gm,
         users.country,
@@ -72,6 +72,20 @@ class UsersManager extends AbstractManager {
     return this.database.query(
       `select id, username, hashedPassword from ${this.table} where username = ?`,
       [username]
+    )
+  }
+
+  updateProfilUser(users) {
+    return this.database.query(
+      `UPDATE ${this.table} SET username = ?, location = ?, email_adress = ?, description_as_player = ?, country = ? WHERE id = ?`,
+      [
+        users.username,
+        users.city,
+        users.email,
+        users.description_as_player,
+        users.country,
+        users.idUser,
+      ]
     )
   }
 }

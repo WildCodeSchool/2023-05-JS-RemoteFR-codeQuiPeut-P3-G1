@@ -4,6 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: fadeIn ease 0.5s;
 
   .GmCards-container {
     position: fixed;
@@ -21,6 +22,7 @@
     border: 3px solid $third-font-color;
     border-radius: 9px;
     gap: 10px;
+    z-index: 40000;
 
     .GmCards-header {
       display: flex;
@@ -241,5 +243,13 @@
         padding: 0 0 20px 0;
       }
     }
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
