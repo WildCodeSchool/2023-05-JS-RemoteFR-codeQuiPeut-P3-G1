@@ -21,7 +21,6 @@ function Loader({ loadingComplete, handleLoadingComplete }) {
   const reveal = () => {
     const t1 = gsap.timeline({
       onComplete: () => {
-        console.log("completed")
         handleLoadingComplete()
       }
     })
