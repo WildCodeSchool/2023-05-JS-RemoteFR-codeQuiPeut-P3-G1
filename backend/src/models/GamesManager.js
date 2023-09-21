@@ -85,6 +85,17 @@ class GamesManager extends AbstractManager {
       [id]
     )
   }
+
+  getNextGamesByGamemasterId(id) {
+    return this.database.query(
+      `SELECT games.*
+      FROM ${this.table}
+      JOIN role_playing_games AS rpg ON rpg.id = games.role_playing_game_id
+      JOIN users ON users.id = games.gm_id
+      WHERE games.schedule > NOW() and gm_id = ?`,
+      [id]
+    )
+  }
 }
 
 module.exports = GamesManager

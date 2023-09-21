@@ -17,6 +17,17 @@ class GameRegistrationsAsPlayerManager extends AbstractManager {
     )
   }
 
+  insert(gameRegistrationsAsPlayer) {
+    return this.database.query(
+      `INSERT INTO ${this.table} (player_id, games_id, status) VALUES (?, ?, ?)`,
+      [
+        gameRegistrationsAsPlayer.player_id,
+        gameRegistrationsAsPlayer.games_id,
+        gameRegistrationsAsPlayer.status,
+      ]
+    )
+  }
+
   joiningRequestsRejectedNotification(playerId, GamesId) {
     return this.database.query(
       `UPDATE ${this.table} SET status = "rejected" WHERE player_id = ? AND games_id = ?`,

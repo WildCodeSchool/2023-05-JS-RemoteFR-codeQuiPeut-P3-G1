@@ -1,5 +1,27 @@
 const models = require("../models")
 
+const browse = (req, res) => {
+  models.GameRegistrationsAsPlayer.findAll()
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
+const add = (req, res) => {
+  models.GameRegistrationsAsPlayer.insert(req.body)
+    .then(() => {
+      res.status(201).send("Invitation sent with success !")
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 const AllInvitationsOfGm = (req, res) => {
   models.GameRegistrationsAsPlayer.getAllInvitationsOfGm(req.params.id)
     .then(([rows]) => {
@@ -48,6 +70,8 @@ const joiningRequestsAcceptedNotification = (req, res) => {
 }
 
 module.exports = {
+  browse,
+  add,
   AllInvitationsOfGm,
   joiningRequestsRejectedNotification,
   joiningRequestsAcceptedNotification,

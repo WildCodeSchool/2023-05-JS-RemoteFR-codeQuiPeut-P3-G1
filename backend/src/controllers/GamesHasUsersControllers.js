@@ -11,6 +11,7 @@ const browse = (req, res) => {
       res.sendStatus(500)
     })
 }
+
 const add = (req, res) => {
   models.gamesHasUsersManager
     .insert(req.params.requesterId, req.params.gameId)
@@ -22,6 +23,7 @@ const add = (req, res) => {
       res.sendStatus(500)
     })
 }
+
 module.exports = {
   browse,
   add,
