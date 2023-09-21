@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import axios from "axios"
 import Search from "../../assets/icon-dashboard/Search.svg"
-import Dice from "../../assets/icon-dashboard/Dice.png"
+import Dice from "../../assets/icon-dashboard/Dice.svg"
 import Add from "../../assets/icon-dashboard/Add.svg"
 import eyeBtn from "../../assets/icon-dashboard/eyeBtn.svg"
 import GmCards from "./GmCards"
@@ -124,22 +124,6 @@ export default function FutureGames() {
               })
             ) : (
               <div className="noDataMessage">
-                <div className="logoContentFG">
-                  <Link to="/create-game">
-                    <button type="button" className="sideButton">
-                      <img id="logoAdd" src={Add} alt="logo of a cross" />
-                    </button>
-                  </Link>
-                  <Link to="/upcoming-table">
-                    <button type="button" className="sideButton">
-                      <img
-                        id="logoSearch"
-                        src={Search}
-                        alt="logo of a magnifier"
-                      />
-                    </button>
-                  </Link>
-                </div>
                 <div className="messsageNoData">
                   <p>
                     You are not registered for any games yet. Check the{" "}
@@ -159,7 +143,11 @@ export default function FutureGames() {
           </div>
         </div>
         {isGmCardsOpen && (
-          <GmCards onClose={toggleGmCards} gameData={gameData} />
+          <GmCards
+            onClose={toggleGmCards}
+            gameData={gameData}
+            setIsGmCardsOpen={setIsGmCardsOpen}
+          />
         )}
       </div>
     </>

@@ -159,24 +159,8 @@
       width: 100%;
       height: 100%;
       // border: 2px solid blue;
+      transform: translateX(-4%);
       color: #d9d9d9;
-      .logoContentFG {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        // border: 1px solid yellow;
-        width: 100%;
-        height: 60%;
-        gap: 22px;
-        transform: translateX(-5%);
-        img {
-          width: 10%;
-        }
-        button {
-          background: none;
-          border: none;
-        }
-      }
       .messsageNoData {
         display: flex;
         flex-direction: column;
