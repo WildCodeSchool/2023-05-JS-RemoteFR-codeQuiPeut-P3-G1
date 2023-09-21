@@ -24,6 +24,200 @@
       flex-direction: column;
       gap: 10px;
       padding: 1rem;
+      img {
+        cursor: pointer;
+      }
+      .notificationCount {
+        position: absolute;
+        top: 1%;
+        right: 1%;
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 12px;
+      }
+    }
+
+    .popupNotification {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      backdrop-filter: blur(3px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      .contentPopUpNotification {
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding-top: 10px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        width: 50%;
+        height: 70%;
+
+        .headerNotif {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          // border: 2px solid blue;
+          width: 100%;
+        }
+
+        .logoNotif {
+          display: flex;
+          justify-content: center;
+          // border: 2px solid red;
+          width: 90%;
+          img {
+            margin-left: 10%;
+          }
+        }
+
+        .buttonClosePopUpNotification {
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-end;
+          width: 10%;
+          height: 100%;
+          padding-top: 1%;
+          padding-right: 1%;
+          // border: 2px solid yellow;
+          img {
+            cursor: pointer;
+          }
+        }
+        .Notifications-content {
+          display: flex;
+          // justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          // border: 2px solid blue;
+          width: 100%;
+          height: 40vh;
+          overflow-y: scroll;
+          //  gap: 10px;
+
+          .ModalGameCard {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+
+            .innerModalGameCard {
+              display: flex;
+              justify-content: flex-start;
+              flex-direction: column;
+              align-items: center;
+              // gap: 20px;
+              padding-top: 10px;
+              background-color: #ffffff;
+              border-radius: 10px;
+              width: 80%;
+              height: 80%;
+            }
+          }
+
+          .Invitations {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            height: 30%;
+            // gap: 10px;
+            // border: 2px solid blue;
+
+            .rawInvitations {
+              display: flex;
+              justify-content: space-around;
+              align-items: center;
+              flex-direction: row;
+              background-color: rgba(128, 128, 128, 0.188);
+              // border: 2px solid red;
+              padding-left: 10px;
+              padding-right: 10px;
+              width: 100%;
+              height: 100%;
+              &.clicked {
+                background-color: #fff;
+              }
+              &:hover {
+                
+              }
+            }
+
+            .invitProfilPicture {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              // border: 2px solid red;
+              width: 30%;
+              height: 100%;
+              img {
+                width: 100%;
+                border-radius: 50%;
+                border: 4px solid #a4945e;
+              }
+            }
+
+            .invitedName {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              // border: 2px solid red;
+              width: 100%;
+              height: 100%;
+              font-size: clamp(16px, 1vw, 32px);
+            }
+
+            .hasInvitedYou {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              // border: 2px solid red;
+              width: 100%;
+              height: 100%;
+              font-size: clamp(14px, 1vw, 32px);
+              
+              
+              span {
+                background: linear-gradient(180deg, #e2d07c 0%, #a4945e 100%);
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                
+              }
+            }
+            .invitationGame {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              // border: 2px solid red;
+              width: 100%;
+              height: 100%;
+              font-size: clamp(16px, 1vw, 32px);
+              cursor: pointer;
+              text-decoration: underline;
+            }
+          }
+        }
+      }
     }
     .dashboardTitle {
       display: flex;
@@ -70,5 +264,55 @@
       height: 100%;
       // border: 4px solid blue;
     }
+  }
+  .custom-confirmRequest {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    .modalCustomConfirmRequest {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      width: 30%;
+      height: 30%;
+      // border: 2px solid red;
+      border: double 4px transparent;
+    border-radius: 8px;
+    background-image: linear-gradient(#FFF, #FFF),
+      linear-gradient(180deg, #e2d07c 10%, rgba(164, 147, 94, 1) 100%);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    p {
+      font-family: $content-font;
+      font-size: clamp(16px, 1.5vw, 32px);
+    }
+      .buttonCustomConfirmRequest {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 50%;
+        #buttonNo {
+          background-color: #4d1a4d;
+          color: #fff;
+        }
+        button {
+          border: 1px solid black;
+          width: 70px;
+          height: 40px;
+          font-size: 1.5vw;
+          border-radius: 5px;
+        }
+      }
+    }
+    
   }
 }

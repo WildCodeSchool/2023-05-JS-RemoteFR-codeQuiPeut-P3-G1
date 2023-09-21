@@ -8,6 +8,7 @@ import Schedule from "../../assets/icon-create-game/schedule.svg"
 import TypeGame from "../../assets/icon-create-game/typeGame.svg"
 import PlaceGame from "../../assets/icon-create-game/placeGame.svg"
 import diceButton from "../../assets/upcomingTable-assets/join-button.svg"
+import CrossWithBG from "../../assets/icon-dashboard/crossWithBG.svg"
 
 export default function CardGame({
   onClose,
@@ -34,9 +35,13 @@ export default function CardGame({
 
   return (
     <div id="globalCardGameContainer">
-      <button id="buttonClose" onClick={onClose}>
-        X
-      </button>
+      <div id="buttonClose">
+        <img
+          src={CrossWithBG}
+          alt="icon close popup of notification"
+          onClick={onClose}
+        />
+      </div>
       <div id="resumeContent">
         <div className="contentLeftResumeCreateGame">
           <div className="guildNameResume">
