@@ -6,6 +6,7 @@
   align-items: center;
   color: $third-font-color;
   font-family: $content-font;
+  animation: fadeIn ease 1s;
 
   .leftBoxMain {
     display: flex;
@@ -655,4 +656,8 @@
     background-color: rgba(63, 55, 55, 0.413);
     padding: 20%;
   }
+}
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
 }

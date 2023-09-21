@@ -8,6 +8,7 @@
   // border: 2px solid red;
   width: 80%;
   height: 100%;
+  animation: fadeIn ease 1s;
   .titleMyProfil {
     display: flex;
     align-items: center;
@@ -270,3 +271,8 @@
     }
   }
 }
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+

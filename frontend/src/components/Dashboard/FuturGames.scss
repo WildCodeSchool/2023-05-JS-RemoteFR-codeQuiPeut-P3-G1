@@ -7,6 +7,7 @@
   flex-direction: column;
   width: 80%;
   height: 100%;
+  animation: fadeIn ease 1s;
   // border: 5px solid brown;
 
   #logoFutureGames {
@@ -191,4 +192,8 @@
       }
     }
   }
+}
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
 }

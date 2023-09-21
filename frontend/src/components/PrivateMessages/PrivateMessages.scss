@@ -2,6 +2,7 @@
   height: 100%;
   width: 100%;
   display: flex;
+  animation: fadeIn ease 1s;
   .selectConversation {
     height: 100%;
     width: 500px;
@@ -152,4 +153,8 @@
     height: 100%;
     width: 100%;
   }
+}
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
 }
