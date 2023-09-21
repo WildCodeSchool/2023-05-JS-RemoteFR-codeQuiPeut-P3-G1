@@ -10,13 +10,24 @@ export default function Player({ users }) {
     setPlayerCard(true)
     setPlayerData(AllPlayersData)
   }
+
+  const formattedDate = new Date(users.registration_date).toLocaleString(
+    "en-EN",
+    {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric"
+      // hour: "2-digit",
+      // minute: "2-digit"
+    }
+  )
   return (
     <>
       <div
-        className="globalContainerCard"
+        className="globalContainerCardGame"
         onClick={() => openPlayerCard(users)}
       >
-        <div className="boxGameCard">
+        <div className="boxGameCardGame">
           <img
             className="boxGameCardImage"
             src={`${import.meta.env.VITE_BACKEND_URL}/${users.profil_picture}`}
@@ -24,9 +35,9 @@ export default function Player({ users }) {
           />{" "}
           {users.username}
         </div>
-        <div className="boxGameCard">Mes disponibilités</div>
-        <div className="boxGameCard">{users.location}</div>
-        <div className="boxGameCard">{users.description_as_player}</div>
+        <div className="boxGameCardGame">{formattedDate}</div>
+        <div className="boxGameCardGame">{users.location}</div>
+        <div className="boxGameCardGame">{users.description_as_player}</div>
       </div>
 
       {playerCard && (

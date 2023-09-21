@@ -1,3 +1,6 @@
+// import PrivateMessage from "../components/PrivateMessages/PrivateMessages.jsx"
+import { Link } from "react-router-dom"
+
 import Arrow from "../../assets/icon-dashboard/arrow.svg"
 import Cross from "../../assets/icon-dashboard/cross.svg"
 import Schedule from "../../assets/icon-dashboard/scheduleIcon.svg"
@@ -30,14 +33,16 @@ function PlayerCards({
               onClick={() => setIsPlayerCardsOpen(false)}
             />
           </button>
-          <button className="PlayerCards_CloseButton" type="button">
-            <img
-              src={Cross}
-              id="PlayerCards_CloseButton_Img"
-              alt="button_close"
-              onClick={handleClose}
-            />
-          </button>
+          <Link to="/privatemessages">
+            <button className="PlayerCards_CloseButton" type="button">
+              <img
+                src={Cross}
+                id="PlayerCards_CloseButton_Img"
+                alt="button_close"
+                onClick={handleClose}
+              />
+            </button>
+          </Link>
         </div>
         <div className="PlayerCards_Inside_SecondElement_Container">
           <div className="PlayerCards_Inside_SecondElement_ImgProfil">

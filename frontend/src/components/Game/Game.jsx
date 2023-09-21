@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react"
 import CardGame from "./CardGame"
 import JoinGuild from "./JoinGuild"
 import JoinGuildValidation from "./JoinGuildValidation"
-import "./Game.scss"
 
 export default function Game({ games, headers }) {
   const [cardGame, setCardGame] = useState(false)
@@ -56,9 +55,12 @@ export default function Game({ games, headers }) {
   console.info(games)
   return (
     <>
-      <div className="globalContainerCard" onClick={() => openCardGame(games)}>
-        <div className="boxGameCard">{games.guild_name}</div>
-        <div className="boxGameCard">
+      <div
+        className="globalContainerCardGame"
+        onClick={() => openCardGame(games)}
+      >
+        <div className="boxGameCardGame">{games.guild_name}</div>
+        <div className="boxGameCardGame">
           <img
             src={`${import.meta.env.VITE_BACKEND_URL}/${
               games.gm_profil_picture
@@ -67,13 +69,13 @@ export default function Game({ games, headers }) {
           />
           <p>{games.gm_username}</p>
         </div>
-        <div className="boxGameCard">{formattedDate}</div>
-        <div className="boxGameCard">
+        <div className="boxGameCardGame">{formattedDate}</div>
+        <div className="boxGameCardGame">
           {games.city !== "" ? games.city : "Remote"}
         </div>
-        <div className="boxGameCard">{games.rpg_name}</div>
-        <div className="boxGameCard">{games.type}</div>
-        <div className="boxGameCard">
+        <div className="boxGameCardGame">{games.rpg_name}</div>
+        <div className="boxGameCardGame">{games.type}</div>
+        <div className="boxGameCardGame">
           {playersProfil.length}/{games.max_players_capacity}
         </div>
       </div>

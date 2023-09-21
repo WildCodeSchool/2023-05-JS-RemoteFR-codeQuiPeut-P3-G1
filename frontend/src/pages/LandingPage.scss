@@ -1,10 +1,11 @@
-body {
-  background: $background-gradient-landing-page;
-}
+// body {
+//   background: $background-gradient-landing-page;
+// }
 
 .main-landingPage {
   display: flex;
   flex-direction: column;
+  background: $background-gradient-landing-page;
   .Scene {
     position: relative;
     z-index: 50;
@@ -23,7 +24,7 @@ body {
     position: absolute;
     width: 100%;
     top: 50%;
-    z-index: -100;
+    z-index: 49;
   }
 
   .canvas {
