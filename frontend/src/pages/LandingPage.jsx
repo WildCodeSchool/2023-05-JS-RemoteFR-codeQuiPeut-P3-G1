@@ -7,10 +7,22 @@ import ButtonSignIn from "../components/Register/ButtonSignIn/ButtonSignIn"
 import ButtonSignUp from "../components/Register/ButtonSignUp/ButtonSignUp"
 import TestCarrousel from "../components/TestCarrousel/TestCarrousel"
 import Polygon from "../assets/landing-assets/polygon.svg"
+import Loader from "../components/3DGuildPhone/Loader"
+import React, { useState } from "react"
 
 function LandingPage() {
+  const [loadingComplete, setLoadingComplete] = useState(false)
+
+  const handleLoadingComplete = () => {
+    setLoadingComplete(true)
+  }
+
   return (
     <>
+      <Loader
+        loadingComplete={loadingComplete}
+        handleLoadingComplete={handleLoadingComplete}
+      />
       <div className="main-landingPage">
         <div className="imgHeaderLandingPage">
           <img
