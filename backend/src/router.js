@@ -13,6 +13,7 @@ const TopicsSubscriptionControllers = require("./controllers/TopicsSubscriptionC
 const CategoriesControllers = require("./controllers/CategoriesControllers")
 const GamesControllers = require("./controllers/GamesControllers")
 const GameRegistrationsControllers = require("./controllers/GameRegistrationsControllers")
+const GameRegistrationsAsPlayerControllers = require("./controllers/GameRegistrationsAsPlayerControllers")
 const PostsControllers = require("./controllers/PostsControllers")
 const FiltersControllers = require("./controllers/FiltersControllers")
 const FriendRequestControllers = require("./controllers/FriendRequestControllers")
@@ -92,6 +93,7 @@ router.get(
   GamesControllers.selectGamesByGameMasterUsername
 )
 router.get("/gameswithrpgname", GamesControllers.browsewithrpgname)
+router.get("/nextgamesbygmid/:id", GamesControllers.selectGamesByGameMasterId)
 router.get("/games", GamesControllers.browse)
 router.get("/games/:id", GamesControllers.read)
 router.put("/games/:id", GamesControllers.edit)
@@ -111,6 +113,15 @@ router.get("/gamesRegistrations/:id", GameRegistrationsControllers.read)
 router.put("/gamesRegistrations/:id", GameRegistrationsControllers.edit)
 router.post("/gamesRegistrations", GameRegistrationsControllers.add)
 router.delete("/gamesRegistrations/:id", GameRegistrationsControllers.destroy)
+
+router.post(
+  "/gamesRegistrationsAsPlayer",
+  GameRegistrationsAsPlayerControllers.add
+)
+router.get(
+  "/gamesRegistrationsAsPlayer",
+  GameRegistrationsAsPlayerControllers.browse
+)
 
 router.put("/testimonials/:id", TestimonialsControllers.edit)
 router.post("/testimonials", TestimonialsControllers.add)

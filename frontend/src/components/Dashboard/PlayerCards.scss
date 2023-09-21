@@ -6,14 +6,47 @@
   transform: translate(-50%, -50%);
   .PlayerCards_Main_Container {
     width: 573px;
-    height: 720px;
+    height: calc(100% + 100px);
     border-radius: 9px;
     border: 3px solid #a4945e;
     background: #fff;
+    text-align: center;
 
     .PlayerCards_Inside_FirstElement {
       display: flex;
       justify-content: center;
+      gap: 70%;
+      margin-top: 29px;
+      max-width: 100%;
+
+      .PlayerCards_BackButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background-color: #180b23;
+        border-radius: 50%;
+        padding: 10px;
+        width: 54px;
+        height: 54px;
+      }
+      .PlayerCards_CloseButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background-color: #180b23;
+        border-radius: 50%;
+        padding: 10px;
+        width: 54px;
+        height: 54px;
+      }
+    }
+
+    .PlayerCards_Inside_FirstElement_Without_Arrow {
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 29px;
       gap: 70%;
       margin-top: 29px;
       max-width: 100%;
@@ -175,6 +208,7 @@
       align-items: center;
       gap: 24px;
       margin-top: 31px;
+      padding: 0 0 20px 0;
       .PlayerCards_Inside_SixthElement_ImgContainer {
         display: flex;
         justify-content: center;
@@ -185,6 +219,16 @@
         img {
           width: 80%;
         }
+      }
+    }
+    .PlayerCards_Inside_SeventhElement {
+      padding: 0 0 20px 0;
+      button {
+        background: $background-gradient-home-page;
+        padding: 20px;
+        border-radius: 4px;
+        color: $button-gold;
+        font-family: $content-font;
       }
     }
   }
