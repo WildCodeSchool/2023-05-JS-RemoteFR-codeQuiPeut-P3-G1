@@ -255,7 +255,7 @@ function UpcomingTable() {
                   value={rpgFilter}
                 >
                   <option value="" disabled>
-                    Select your RPG
+                    SELECT YOUR RPG
                   </option>
                   {rpgs.map((rpg) => (
                     <option key={rpg.id} value={rpg.rpg_name}>

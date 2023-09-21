@@ -258,64 +258,70 @@ const Dashboard = () => {
                             : ""
                         }`}
                       >
-                        <div className="invitProfilPicture">
-                          <img
-                            src={`${import.meta.env.VITE_BACKEND_URL}/${
-                              invitation.profil_picture
-                            }`}
-                            alt="profil picture"
-                          />
-                        </div>
-                        <div className="invitedName">
-                          <p>{invitation.gm_username}</p>
-                        </div>
-                        <div className="hasInvitedYou">
-                          <span>HAS INVITED YOU TO JOIN</span>
-                        </div>
-                        <div className="invitationGame">
-                          <p
-                            onClick={() =>
-                              handleOpenCardGameModal(invitation, invitation.id)
-                            }
-                          >
-                            {invitation.guild_name}
-                          </p>
-                          {isCardGameModalOpen && (
-                            <div className="ModalGameCard">
-                              <div className="innerModalGameCard">
-                                <CardGame
-                                  gameData={selectedGameData}
-                                  playersProfil={playersProfil}
-                                  onClose={handleCloseCardGameModal}
-                                />
+                        <div className="rawContent">
+                          <div className="invitProfilPicture">
+                            <img
+                              src={`${import.meta.env.VITE_BACKEND_URL}/${
+                                invitation.profil_picture
+                              }`}
+                              alt="profil picture"
+                            />
+                          </div>
+                          <div className="invitedName">
+                            <p>{invitation.gm_username}</p>
+                          </div>
+                          <div className="hasInvitedYou">
+                            <span>HAS INVITED YOU TO JOIN</span>
+                          </div>
+                          <div className="invitationGame">
+                            <p
+                              onClick={() =>
+                                handleOpenCardGameModal(
+                                  invitation,
+                                  invitation.id
+                                )
+                              }
+                            >
+                              {invitation.guild_name}
+                            </p>
+                            {isCardGameModalOpen && (
+                              <div className="ModalGameCard">
+                                <div className="innerModalGameCard">
+                                  <CardGame
+                                    gameData={selectedGameData}
+                                    playersProfil={playersProfil}
+                                    onClose={handleCloseCardGameModal}
+                                  />
+                                </div>
                               </div>
-                            </div>
-                          )}
+                            )}
+                          </div>
+                          <div className="requesterButton">
+                            <img
+                              id="validateButton"
+                              src={check}
+                              alt="validate"
+                              onClick={() =>
+                                acceptedRequest(
+                                  invitation.player_id,
+                                  invitation.games_id
+                                )
+                              }
+                            />
+                            <img
+                              id="refuseButton"
+                              src={crossDash}
+                              alt="refuse"
+                              onClick={() =>
+                                openConfirmation(
+                                  invitation.player_id,
+                                  invitation.games_id
+                                )
+                              }
+                            />
+                          </div>
                         </div>
-                        <div className="requesterButton">
-                          <img
-                            id="validateButton"
-                            src={check}
-                            alt="validate"
-                            onClick={() =>
-                              acceptedRequest(
-                                invitation.player_id,
-                                invitation.games_id
-                              )
-                            }
-                          />
-                          <img
-                            id="refuseButton"
-                            src={crossDash}
-                            alt="refuse"
-                            onClick={() =>
-                              openConfirmation(
-                                invitation.player_id,
-                                invitation.games_id
-                              )
-                            }
-                          />
-                        </div>
+                        <div className="underLineNotification"></div>
                       </div>
                     </div>
                   ))}
