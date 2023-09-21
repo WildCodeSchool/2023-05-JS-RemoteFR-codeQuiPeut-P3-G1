@@ -104,6 +104,7 @@ router.get(
   GamesControllers.selectGamesByGameMasterUsername
 )
 router.get("/gameswithrpgname", GamesControllers.browsewithrpgname)
+router.get("/nextgamesbygmid/:id", GamesControllers.selectGamesByGameMasterId)
 router.get("/gameswithrpgname/:id", GamesControllers.browsewithrpgnamebyID)
 router.get("/games", GamesControllers.browse)
 router.get("/games/:id", GamesControllers.read)
@@ -126,6 +127,15 @@ router.get("/gamesRegistrations/:id", GameRegistrationsControllers.read)
 router.put("/gamesRegistrations/:id", GameRegistrationsControllers.edit)
 router.post("/gamesRegistrations", GameRegistrationsControllers.add)
 router.delete("/gamesRegistrations/:id", GameRegistrationsControllers.destroy)
+
+router.post(
+  "/gamesRegistrationsAsPlayer",
+  GameRegistrationsAsPlayerControllers.add
+)
+router.get(
+  "/gamesRegistrationsAsPlayer",
+  GameRegistrationsAsPlayerControllers.browse
+)
 
 router.put("/testimonials/:id", TestimonialsControllers.edit)
 router.post("/testimonials", TestimonialsControllers.add)

@@ -9,11 +9,20 @@ function PlayerCards({
   setIsPlayerCardsOpen,
   setIsGmCardsOpen,
   userData,
-  formattedSchedule
+  formattedSchedule,
+  playerCard,
+  setInvitationCard,
+  setPlayerCard,
+  isPlayerCardsOpen
 }) {
   const handleClose = () => {
     setIsPlayerCardsOpen(false)
     setIsGmCardsOpen(false)
+  }
+
+  const handleInvitation = () => {
+    setInvitationCard(true)
+    setPlayerCard(false)
   }
 
   console.info(formattedSchedule)
@@ -21,15 +30,23 @@ function PlayerCards({
   return (
     <div className="major_Container_PlayerCards">
       <div className="PlayerCards_Main_Container">
-        <div className="PlayerCards_Inside_FirstElement">
-          <button className="PlayerCards_BackButton" type="button">
-            <img
-              src={Arrow}
-              id="PlayerCards_BackButton_Img"
-              alt="button_return"
-              onClick={() => setIsPlayerCardsOpen(false)}
-            />
-          </button>
+        <div
+          className={
+            isPlayerCardsOpen
+              ? "PlayerCards_Inside_FirstElement"
+              : "PlayerCards_Inside_FirstElement_Without_Arrow"
+          }
+        >
+          {isPlayerCardsOpen && (
+            <button className="PlayerCards_BackButton" type="button">
+              <img
+                src={Arrow}
+                id="PlayerCards_BackButton_Img"
+                alt="button_return"
+                onClick={() => setIsPlayerCardsOpen(false)}
+              />
+            </button>
+          )}
           <button className="PlayerCards_CloseButton" type="button">
             <img
               src={Cross}
@@ -86,6 +103,13 @@ function PlayerCards({
             <img src={FiveRings} alt="logo of Legends of the five Rings" />
           </div>
         </div>
+        {playerCard && (
+          <div className="PlayerCards_Inside_SeventhElement">
+            <button onClick={handleInvitation}>
+              SEND AN INVITATION TO JOIN A GUILD
+            </button>
+          </div>
+        )}
       </div>
     </div>
   )
