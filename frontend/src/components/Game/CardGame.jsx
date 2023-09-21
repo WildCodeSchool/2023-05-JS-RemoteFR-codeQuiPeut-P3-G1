@@ -32,8 +32,6 @@ export default function CardGame({
     setUserData(AllPlayersData)
   }
 
-  console.info(formattedSchedule)
-
   return (
     <div id="globalCardGameContainer">
       <button id="buttonClose" onClick={onClose}>
@@ -121,10 +119,12 @@ export default function CardGame({
           </div>
         </div>
         <div className="contentRightResumeCreateGame">
-          <div id="buttonJoinGuild">
-            <img src={diceButton} />
-            <button onClick={openJoinGuild}>JOIN THE GUILD</button>
-          </div>
+          {openJoinGuild !== undefined && (
+            <div id="buttonJoinGuild">
+              <img src={diceButton} />
+              <button onClick={openJoinGuild}>JOIN THE GUILD</button>
+            </div>
+          )}
           <div className="gameDateResume">
             <div id="gameDate">
               <img src={Schedule} alt="icon of schedule" />

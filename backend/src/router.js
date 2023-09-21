@@ -89,6 +89,7 @@ router.get(
   GamesControllers.selectGamesByGameMasterUsername
 )
 router.get("/gameswithrpgname", GamesControllers.browsewithrpgname)
+router.get("/gameswithrpgname/:id", GamesControllers.browsewithrpgnamebyID)
 router.get("/games", GamesControllers.browse)
 router.get("/games/:id", GamesControllers.read)
 router.put("/games/:id", GamesControllers.edit)
@@ -102,6 +103,8 @@ router.get(
   "/playersForThisGame/:id",
   GameRegistrationsControllers.allPlayersForThisGame
 )
+
+router.get("/playersbygame/:id", GamesHasUsersControllers.getPlayersByGameId)
 router.get("/pictureRPG/:id", UsersControllers.display)
 router.get("/gamesRegistrations", GameRegistrationsControllers.browse)
 router.get("/gamesRegistrations/:id", GameRegistrationsControllers.read)

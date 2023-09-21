@@ -1,7 +1,7 @@
 const models = require("../models")
 
 const browse = (req, res) => {
-  models.gamesHasUsers
+  models.gamesHasUsersManager
     .findAll()
     .then(([rows]) => {
       res.send(rows)
@@ -11,6 +11,7 @@ const browse = (req, res) => {
       res.sendStatus(500)
     })
 }
+
 const add = (req, res) => {
   models.gamesHasUsersManager
     .insert(req.params.requesterId, req.params.gameId)
@@ -35,8 +36,21 @@ const getUsersHistory = (req, res) => {
     })
 }
 
+const getPlayersByGameId = (req, res) => {
+  models.gamesHasUsersManager
+    .allPlayersByGameId(req.params.id)
+    .then(([rows]) => {
+      res.send(rows)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 module.exports = {
   browse,
   add,
   getUsersHistory,
+  getPlayersByGameId,
 }

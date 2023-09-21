@@ -24,6 +24,17 @@ class GamesHasUsersManager extends AbstractManager {
       [id, id]
     )
   }
+
+  allPlayersByGameId(id) {
+    return this.database.query(
+      `SELECT users.username, users.profil_picture
+      FROM ${this.table}  as ghu
+      JOIN games ON ghu.games_id = games.id
+      JOIN users ON ghu.users_id = users.id
+      where games_id = ?`,
+      [id]
+    )
+  }
 }
 
 module.exports = GamesHasUsersManager

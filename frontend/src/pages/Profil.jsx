@@ -4,6 +4,7 @@ import axios from "axios"
 import AuthContext from "../components/AuthContext/AuthContext"
 import RpgAdding from "../components/profilPage/RpgAdding"
 import RequestGM from "../components/profilPage/RequestGM"
+import CardGame from "../components/Game/CardGame"
 
 import iconProfil from "../assets/Profil/iconProfil.png.png"
 import questionMark from "../assets/Profil/questionMark.png.png"
@@ -31,6 +32,9 @@ const Profil = () => {
   const [historyGameGMData, setHistoryGameGMData] = useState([])
   const [isPlayer, setIsPlayer] = useState(true)
   const [usersHistory, setUsersHistory] = useState([])
+  const [cardGame, setCardGame] = useState(false)
+  const [gameData, setGameData] = useState(null)
+  const [playersProfil, setPlayersProfil] = useState([])
 
   const [buttonStates, setButtonStates] = useState({
     mainDiv: true,
@@ -55,6 +59,26 @@ const Profil = () => {
     description_as_player: user.description_as_player || "",
     email: user.email_adress || ""
   })
+
+  const closeCardGame = () => {
+    setCardGame(false)
+  }
+
+  const modifyProfil = () => {
+    formData.idUser = idUser
+    axios
+      .put(`${import.meta.env.VITE_BACKEND_URL}/modifyProfil`, formData, {
+        headers
+      })
+      .then((res) => {
+        console.info("data user successfully updated", res.data)
+        setUser(res.data)
+        setIsEditing(false)
+      })
+      .catch((err) => {
+        console.error("Problème lors du changement des données du user", err)
+      })
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -119,7 +143,7 @@ const Profil = () => {
     }
 
     fetchData()
-  }, [idUser, headers])
+  }, [idUser])
 
   useEffect(() => {
     setImageUrl(`${import.meta.env.VITE_BACKEND_URL}/${user.profil_picture}`)
@@ -149,22 +173,6 @@ const Profil = () => {
     })
   }
 
-  const modifyProfil = () => {
-    formData.idUser = idUser
-    axios
-      .put(`${import.meta.env.VITE_BACKEND_URL}/modifyProfil`, formData, {
-        headers
-      })
-      .then((res) => {
-        console.info("data user successfully updated", res.data)
-        setUser(res.data)
-        setIsEditing(false)
-      })
-      .catch((err) => {
-        console.error("Problème lors du changement des données du user", err)
-      })
-  }
-
   const updateProfilPictureOnServer = async (userId, formData) => {
     try {
       const response = await axios.put(
@@ -187,6 +195,21 @@ const Profil = () => {
     }
   }
 
+  const handleDisplayGameCard = (dataGame) => {
+    setGameData(dataGame)
+    axios
+      .get(`http://localhost:4242/playersbygame/${dataGame.id}`, {
+        headers
+      })
+      .then((response) => {
+        setPlayersProfil(response.data)
+      })
+      .catch((error) => {
+        console.error("An error occurred:", error)
+      })
+    setCardGame(true)
+  }
+
   const handlePictureChange = (e) => {
     const picture = e.target.files[0]
 
@@ -206,6 +229,7 @@ const Profil = () => {
     .reverse()
     .join("-")
 
+  // console.info(historyGameGMData)
   return (
     <div className="mainContainerProfil">
       <div className="questionMark">
@@ -328,7 +352,11 @@ const Profil = () => {
                       const date = new Date(validated.schedule)
                       const formatedDate = date.toISOString().split("T")[0]
                       return (
-                        <div className="boxValidatedGame" key={index}>
+                        <div
+                          className="boxValidatedGame"
+                          key={index}
+                          onClick={() => handleDisplayGameCard(validated)}
+                        >
                           <div className="scheduleDiv">
                             <div className="pictureCalendar">
                               <img src={calendar} />
@@ -361,7 +389,11 @@ const Profil = () => {
                       const date = new Date(history.schedule)
                       const formatedDate = date.toISOString().split("T")[0]
                       return (
-                        <div className="boxHistoryGame" key={index}>
+                        <div
+                          className="boxHistoryGame"
+                          key={index}
+                          onClick={() => handleDisplayGameCard(history)}
+                        >
                           <div className="scheduleDiv">
                             <div className="pictureCalendar">
                               <img src={calendar} />
@@ -392,11 +424,15 @@ const Profil = () => {
                 <div className="validateDiv">
                   <div className="titleValidate">VALIDATED</div>
                   <div className="displayValidate">
-                    {validateRequestData.map((validated, index) => {
-                      const date = new Date(validated.schedule)
+                    {validateRequestData.map((validatedPlayer, index) => {
+                      const date = new Date(validatedPlayer.schedule)
                       const formatedDate = date.toISOString().split("T")[0]
                       return (
-                        <div className="boxValidatedGame" key={index}>
+                        <div
+                          className="boxValidatedGame"
+                          key={index}
+                          onClick={() => handleDisplayGameCard(validatedPlayer)}
+                        >
                           <div className="scheduleDiv">
                             <div className="pictureCalendar">
                               <img src={calendar} />
@@ -405,11 +441,11 @@ const Profil = () => {
                             <hr className="hrBoxMyGames"></hr>
                           </div>
                           <div className="guildNameDiv">
-                            GUILD : {validated.guild_name}
+                            GUILD : {validatedPlayer.guild_name}
                           </div>
                           <div className="typeDiv">
                             <p>
-                              {validated.is_campaign === 1
+                              {validatedPlayer.is_campaign === 1
                                 ? "Campaign"
                                 : "One Shot"}
                             </p>
@@ -426,7 +462,11 @@ const Profil = () => {
                       const date = new Date(pending.schedule)
                       const formatedDate = date.toISOString().split("T")[0]
                       return (
-                        <div className="boxPendingateGame" key={index}>
+                        <div
+                          className="boxPendingateGame"
+                          key={index}
+                          onClick={() => handleDisplayGameCard(pending)}
+                        >
                           <div className="scheduleDiv">
                             <div className="pictureCalendar">
                               <img src={calendar} />
@@ -452,11 +492,15 @@ const Profil = () => {
                 <div className="historyDiv">
                   <div className="titleHistory">HISTORY</div>
                   <div className="displayHistory">
-                    {gameHistoryPlayerData.map((history, index) => {
-                      const date = new Date(history.schedule)
+                    {gameHistoryPlayerData.map((historyPlayer, index) => {
+                      const date = new Date(historyPlayer.schedule)
                       const formatedDate = date.toISOString().split("T")[0]
                       return (
-                        <div className="boxHistoryGame" key={index}>
+                        <div
+                          className="boxHistoryGame"
+                          key={index}
+                          onClick={() => handleDisplayGameCard(historyPlayer)}
+                        >
                           <div className="scheduleDiv">
                             <div className="pictureCalendar">
                               <img src={calendar} />
@@ -465,11 +509,11 @@ const Profil = () => {
                             <hr className="hrBoxMyGames"></hr>
                           </div>
                           <div className="guildNameDiv">
-                            GUILD : {history.guild_name}
+                            GUILD : {historyPlayer.guild_name}
                           </div>
                           <div className="typeDiv">
                             <p>
-                              {history.is_campaign === 1
+                              {historyPlayer.is_campaign === 1
                                 ? "Campaign"
                                 : "One Shot"}
                             </p>
@@ -778,6 +822,16 @@ const Profil = () => {
               EDIT PROFILE
             </button>
           </div>
+        </div>
+      )}
+      {cardGame === true && (
+        <div className="popupGameProfil">
+          <CardGame
+            gameData={gameData}
+            onClose={closeCardGame}
+            playersProfil={playersProfil}
+            setCard
+          />
         </div>
       )}
     </div>
