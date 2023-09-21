@@ -10,6 +10,7 @@
   width: 100%;
   margin: 0;
   padding: 0;
+  animation: fadeIn ease 1s;
   // border: 3px solid green;
 
   .Icon-Title-Dashboard {
@@ -54,6 +55,7 @@
       justify-content: center;
       align-items: center;
       z-index: 9999;
+      
       .contentPopUpNotification {
         display: flex;
         justify-content: flex-start;
@@ -65,6 +67,7 @@
         border-radius: 10px;
         width: 50%;
         height: 70%;
+        animation: fadeIn ease 0.5s;
 
         .headerNotif {
           display: flex;
@@ -118,6 +121,7 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
+            animation: fadeIn ease 1s;
 
             .innerModalGameCard {
               display: flex;
@@ -130,6 +134,7 @@
               border-radius: 10px;
               width: 80%;
               height: 80%;
+              animation: fadeIn ease 1s;
             }
           }
 
@@ -311,4 +316,8 @@
       }
     }
   }
+}
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
 }

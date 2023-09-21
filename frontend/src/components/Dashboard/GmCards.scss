@@ -4,6 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: fadeIn ease 0.5s;
 
   .GmCards-container {
     position: fixed;
@@ -243,4 +244,8 @@
       }
     }
   }
+}
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
 }

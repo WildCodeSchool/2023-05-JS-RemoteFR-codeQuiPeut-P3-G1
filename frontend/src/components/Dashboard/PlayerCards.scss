@@ -4,6 +4,7 @@
   top: 50%; // Adjust as needed
   left: 50%; // Adjust as needed
   transform: translate(-50%, -50%);
+  animation: fadeIn ease 0.5s;
   .PlayerCards_Main_Container {
     width: 573px;
     height: calc(100% + 100px);
@@ -233,3 +234,8 @@
     }
   }
 }
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+

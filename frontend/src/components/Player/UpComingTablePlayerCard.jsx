@@ -17,16 +17,24 @@ export default function UpComingTablePlayerCard({ users }) {
     setPlayerData(AllPlayersData)
   }
 
-  console.info(users.id, idUser)
-
+  const formattedDate = new Date(users.registration_date).toLocaleString(
+    "en-EN",
+    {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric"
+      // hour: "2-digit",
+      // minute: "2-digit"
+    }
+  )
   return (
     <>
       {users.id !== idUser && (
         <div
-          className="globalContainerCard"
+          className="globalContainerCardGame"
           onClick={() => openPlayerCard(users)}
         >
-          <div className="boxGameCard">
+          <div className="boxGameCardGame">
             <img
               className="boxGameCardImage"
               src={`${import.meta.env.VITE_BACKEND_URL}/${
@@ -36,9 +44,9 @@ export default function UpComingTablePlayerCard({ users }) {
             />{" "}
             {users.username}
           </div>
-          <div className="boxGameCard">Mes disponibilités</div>
-          <div className="boxGameCard">{users.location}</div>
-          <div className="boxGameCard">{users.description_as_player}</div>
+          <div className="boxGameCardGame">{formattedDate}</div>
+          <div className="boxGameCardGame">{users.location}</div>
+          <div className="boxGameCardGame">{users.description_as_player}</div>
         </div>
       )}
 
