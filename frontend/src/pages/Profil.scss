@@ -21,18 +21,17 @@
     .settingsTitle {
       font-size: 15px;
       h1 {
-        background: linear-gradient(180deg, #E2D07C 0%, #A4945E 100%);
+        background: linear-gradient(180deg, #e2d07c 0%, #a4945e 100%);
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-family: $title-font;
         text-align: center;
 
-
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-font-variant: small-caps;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        font-variant: small-caps;
       }
     }
     .settingsTab {
@@ -107,8 +106,8 @@ font-variant: small-caps;
         align-items: center;
         font-size: 3vw;
         #h1ProfilTitle {
-        font-family: $title-font;
-        background: linear-gradient(180deg, #E2D07C 0%, #A4945E 100%);
+          font-family: $title-font;
+          background: linear-gradient(180deg, #e2d07c 0%, #a4945e 100%);
           background-clip: text;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
@@ -119,9 +118,7 @@ font-variant: small-caps;
           line-height: normal;
           font-variant: small-caps;
         }
-
       }
-      
     }
     .bigBoxRight {
       display: flex;
@@ -147,7 +144,6 @@ font-variant: small-caps;
         flex-direction: column;
         overflow-y: auto;
         gap: 20px;
-      
 
         .mapContainerSocial {
           display: flex;
@@ -156,7 +152,7 @@ font-variant: small-caps;
           background: #fff;
           border-radius: 4px;
           width: 100%;
-        
+
           .socialBoxHR {
             display: flex;
             align-self: center;
@@ -278,7 +274,6 @@ font-variant: small-caps;
             color: black;
             font-size: 1.5vw;
             cursor: pointer;
-
           }
           .typeDiv {
             display: flex;
@@ -480,13 +475,12 @@ font-variant: small-caps;
             width: 47vw;
             height: 11.42vh;
             outline: none;
-            
+
             border-radius: 6px;
             resize: none;
             text-align: center;
             line-height: 100px;
-            height: 100px; 
-            
+            height: 100px;
           }
         }
         #userNameDescription {
@@ -607,29 +601,27 @@ font-variant: small-caps;
         display: flex;
         justify-content: center;
         align-items: center;
-        width:70%;
+        width: 70%;
         hr {
           width: 100%;
           border-color: #e2d07c;
         }
       }
     }
-    
-.hrDiv2Container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  .hrDiv2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width:70%;
-    height: 1px;
-    background: #e2d07c;
-  }
-}
-    
-    
+
+    .hrDiv2Container {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      .hrDiv2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 70%;
+        height: 1px;
+        background: #e2d07c;
+      }
+    }
 
     .bottomBoxProfil {
       display: flex;
@@ -730,18 +722,28 @@ font-variant: small-caps;
       background-color: #180b23;
     }
   }
-  .popupGameProfil {
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
+
+  .popupGameProfilContainer {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
     top: 0;
     left: 0;
     z-index: 1;
     backdrop-filter: blur(3px);
-    background-color: rgba(63, 55, 55, 0.413);
-    padding: 20%;
+
+    #popupGameProfil {
+      width: 80%;
+      background-color: white;
+      border-radius: 4px;
+      padding: 20px;
+    }
   }
 }
+
 @keyframes fadeIn {
   0% {
     opacity: 0;

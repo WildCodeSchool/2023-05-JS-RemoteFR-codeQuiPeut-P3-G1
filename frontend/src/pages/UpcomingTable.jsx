@@ -82,7 +82,7 @@ function UpcomingTable() {
   // useContexte qui ne fonctionne pas car il est dans App.
   // const { users } = useContext(AuthContext)
 
-  console.info(games)
+  // console.info(games)
 
   useEffect(() => {
     axios
@@ -254,9 +254,7 @@ function UpcomingTable() {
                   defaultValue=""
                   value={rpgFilter}
                 >
-                  <option value="" disabled>
-                    SELECT YOUR RPG
-                  </option>
+                  <option value="">SELECT YOUR RPG</option>
                   {rpgs.map((rpg) => (
                     <option key={rpg.id} value={rpg.rpg_name}>
                       {rpg.name}
@@ -265,7 +263,7 @@ function UpcomingTable() {
                 </select>
               </div>
               <button type="button" onClick={toggleContainer}>
-                Or Find a Player
+                OR FIND A PLAYER
               </button>
             </div>
           </div>

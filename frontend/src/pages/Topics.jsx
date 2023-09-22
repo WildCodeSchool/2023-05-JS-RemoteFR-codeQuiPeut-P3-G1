@@ -83,7 +83,7 @@ export default function Topics() {
 
     return result
   }
-  console.info("topics", topics)
+  // console.info("topics", topics)
   const handlePostClick = (allPostData) => {
     setIsPostCardsOpen(true)
 

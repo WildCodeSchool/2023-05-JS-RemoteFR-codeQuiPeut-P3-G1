@@ -47,8 +47,8 @@ export default function CreateGame() {
     Authorization: `Bearer ${tokenFromCookie}`
   }
 
-  console.info(gamemasterUsername)
-  console.info("bonjour", gamemasterId)
+  // console.info(gamemasterUsername)
+  // console.info("bonjour", gamemasterId)
 
   useEffect(() => {
     axios
@@ -117,7 +117,7 @@ export default function CreateGame() {
       )
       .then((res) => {
         if (res.status === 201) {
-          console.info("Partie créée avec succès !")
+          // console.info("Partie créée avec succès !")
           setGameRPGID("")
           setGamePlayersCapacity(1)
           setGameDesc("")
@@ -149,20 +149,20 @@ export default function CreateGame() {
     setGameDate(`${formattedDate(gameDateToFormat)}T${gameHourToFormat}:00`)
   }, [gameHourToFormat, gameDateToFormat])
 
-  console.info(
-    "createTest",
-    gameName,
-    gameType,
-    gameRPGID,
-    typeof gameRPGID,
-    gameIsCampaign,
-    gamePlayersCapacity,
-    gameDesc,
-    gameIsRemote,
-    gamePlace,
-    gameDate,
-    gameRPGList
-  )
+  // console.info(
+  //   "createTest",
+  //   gameName,
+  //   gameType,
+  //   gameRPGID,
+  //   typeof gameRPGID,
+  //   gameIsCampaign,
+  //   gamePlayersCapacity,
+  //   gameDesc,
+  //   gameIsRemote,
+  //   gamePlace,
+  //   gameDate,
+  //   gameRPGList
+  // )
 
   return (
     <main id="createGameGlobal">

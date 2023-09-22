@@ -59,18 +59,17 @@ export default function NewTopic({ onClose, updateShouldRefreshTable }) {
     <div className="modalNewTopic">
       {" "}
       <div className="modalContent">
-        <h2 className="titleNewTopic">Nouveau sujet</h2>{" "}
-        <p>Titre de ton sujet :</p>{" "}
+        <h2 className="titleNewTopic">New subject</h2> <p>Title</p>{" "}
         <input
           className="nomTopic"
           type="text"
-          placeholder="Nom du Topic"
+          placeholder="Topic Name"
           onChange={(e) => setNom(e.target.value)}
         />{" "}
         <label className="modalContent" htmlFor="Catégorie-select">
-          Catégorie du Topic:{" "}
+          <p>Topic's category</p>
           <select
-            id="catégorieSelect"
+            id="categorieSelect"
             value={categorie}
             onChange={(e) => setCategorie(e.target.value)}
           >
@@ -82,11 +81,11 @@ export default function NewTopic({ onClose, updateShouldRefreshTable }) {
             ))}{" "}
           </select>{" "}
         </label>
-        Description:{" "}
+        <p>Description</p>
         <input
           className="messageTopic"
           type="text"
-          placeholder="Description du topic"
+          placeholder="Topic description"
           onChange={(e) => setMessage(e.target.value)}
         />{" "}
         <button
@@ -98,9 +97,11 @@ export default function NewTopic({ onClose, updateShouldRefreshTable }) {
             onClose(true) // Ferme la fenêtre modale après la création // updateShouldRefreshTable(true)
           }}
         >
-          Créer mon Topic{" "}
+          Create{" "}
         </button>
-        <button onClick={() => onClose(false)}>Fermer</button>{" "}
+        <button onClick={() => onClose(false)} id="buttonCloseNewTopic">
+          Close
+        </button>{" "}
       </div>{" "}
     </div>
   )

@@ -26,8 +26,8 @@ export default function PostCards({ isOpen, onClose, postData }) {
         }
       )
       .then(
-        (res) => setAllPosts(res.data),
-        console.info("allPosts: ", allPosts)
+        (res) => setAllPosts(res.data)
+        // console.info("allPosts: ", allPosts)
       )
       .catch((error) => {
         console.error(
@@ -69,7 +69,7 @@ export default function PostCards({ isOpen, onClose, postData }) {
     fetchComments()
   }, [newComment])
 
-  console.info("postData: ", postData)
+  // console.info("postData: ", postData)
 
   return (
     <div className={`post-cards ${isOpen ? "open" : "closed"}`}>

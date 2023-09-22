@@ -54,7 +54,7 @@ export default function Game({ games, headers }) {
       })
   }, [])
 
-  console.info(games)
+  // console.info(games)
   return (
     <>
       {games.gm_id !== idUser && (
