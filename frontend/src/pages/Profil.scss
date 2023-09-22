@@ -1,12 +1,13 @@
 .mainContainerProfil {
   display: flex;
   height: 100vh;
-  width: 95%;
+  width: 100%;
   justify-content: space-evenly;
   align-items: center;
   color: $third-font-color;
   font-family: $content-font;
   animation: fadeIn ease 1s;
+  // border: 2px solid red;
 
   .leftBoxMain {
     display: flex;
@@ -16,10 +17,23 @@
     height: 60%;
     width: 15%;
     gap: 15px;
+    // border: 2px solid red;
     .settingsTitle {
       font-size: 15px;
-      color: #e2d07c;
-      font-family: "Petrona", serif;
+      h1 {
+        background: linear-gradient(180deg, #E2D07C 0%, #A4945E 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-family: $title-font;
+        text-align: center;
+
+
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+font-variant: small-caps;
+      }
     }
     .settingsTab {
       display: flex;
@@ -49,6 +63,7 @@
         }
         button:hover {
           background: #4d194d;
+          border-radius: 5px;
         }
       }
       .settingsButton {
@@ -62,38 +77,65 @@
   .questionMark {
     position: absolute;
     top: 10px;
-    right: 0;
+    right: 10px;
   }
 
   .rightBoxMain {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    height: 88%;
-    width: 45%;
+    height: 100%;
+    width: 60%;
+    // border: 2px solid red;
     // gap:10px;
     .mainTitleProfil {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 50%;
-      height: 10%;
+      height: auto;
       gap: 15px;
-      font-size: 28px;
+      font-family: $title-font;
       border-bottom: 1px solid #e2d07c;
-      margin-bottom: 3vh;
+      // border: 2px solid red;
+      padding-bottom: 5px;
+      padding-top: 10px;
+      .h1ProfilTitle {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3vw;
+        #h1ProfilTitle {
+        font-family: $title-font;
+        background: linear-gradient(180deg, #E2D07C 0%, #A4945E 100%);
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-family: $title-font;
+          text-align: center;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          font-variant: small-caps;
+        }
+
+      }
+      
     }
     .bigBoxRight {
       display: flex;
       flex-direction: column;
       padding: 30px;
       width: 100%;
-      height: 100%;
+      height: 90%;
       background: #8b8b8b39;
       border-radius: 12px;
       border: 2px solid #a4945e;
       gap: 10px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      // border: 2px solid blue;
       .topDivSocial {
         display: flex;
         gap: 20px;
@@ -105,6 +147,7 @@
         flex-direction: column;
         overflow-y: auto;
         gap: 20px;
+      
 
         .mapContainerSocial {
           display: flex;
@@ -113,6 +156,7 @@
           background: #fff;
           border-radius: 4px;
           width: 100%;
+        
           .socialBoxHR {
             display: flex;
             align-self: center;
@@ -210,6 +254,10 @@
             background-color: black;
           }
           .dateCalendar {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            font-size: clamp(12px, 1vw, 20px);
             color: black;
           }
         }
@@ -225,8 +273,12 @@
           height: 7vh;
           border-radius: 4px;
           .guildNameDiv {
+            display: flex;
+            width: 60%;
             color: black;
-            font-size: 22px;
+            font-size: 1.5vw;
+            cursor: pointer;
+
           }
           .typeDiv {
             display: flex;
@@ -310,6 +362,7 @@
         margin-bottom: 20px;
         border-bottom: 1px solid white;
         width: fit-content;
+        font-family: $content-font;
       }
       .topBoxProfil {
         display: flex;
@@ -341,7 +394,7 @@
             align-items: center;
             p {
               font-family: $content-font;
-              font-size: 25px;
+              font-size: 1.8vw;
               color: black;
             }
             width: 13vw;
@@ -420,15 +473,20 @@
           color: black;
           width: 90%;
           height: 11.42vh;
-          background-color: #fff;
           border-radius: 8px;
+          background: #fff;
           // margin-bottom: 20px;
           textarea {
             width: 47vw;
             height: 11.42vh;
             outline: none;
+            
             border-radius: 6px;
             resize: none;
+            text-align: center;
+            line-height: 100px;
+            height: 100px; 
+            
           }
         }
         #userNameDescription {
@@ -465,9 +523,9 @@
 
         h2 {
           font-size: 22px;
-          font-family: $title-font;
+          font-family: $content-font;
           color: $secondary-font-color;
-          padding-left: 75px;
+          padding-left: 15%;
         }
         hr {
           margin-left: 55px;
@@ -545,16 +603,33 @@
           width: 100%;
         }
       }
-    }
-
-    .hrDiv {
-      display: flex;
-      justify-content: center;
-      hr {
-        width: 35vw;
-        border-color: #e2d07c;
+      .hrDiv {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width:70%;
+        hr {
+          width: 100%;
+          border-color: #e2d07c;
+        }
       }
     }
+    
+.hrDiv2Container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  .hrDiv2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:70%;
+    height: 1px;
+    background: #e2d07c;
+  }
+}
+    
+    
 
     .bottomBoxProfil {
       display: flex;
@@ -566,13 +641,14 @@
       // padding-right: 60px;
       // padding-left: 60px;
       // gap:40px;
+      width: 100%;
       hr {
         height: 10vh;
         border-color: #e2d07c;
       }
 
       .inputBottomProfil {
-        width: 237px;
+        width: 100%;
         height: 27px;
         border-radius: 4px;
         background-color: #fff;
@@ -581,6 +657,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100%;
         h3 {
           font-size: 20px;
           font-family: $content-font;
@@ -592,23 +669,30 @@
       .mailBox {
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        input {
+          width: 100%;
+        }
       }
     }
     .bottomBoxProfilEdit {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
       align-content: center;
       justify-items: center;
       padding-left: 15px;
-      gap: 20px;
+      gap: 10%;
+      width: 100%;
       hr {
         height: 10vh;
         border-color: #e2d07c;
       }
 
       .inputBottomProfil {
-        width: 237px;
+        width: 100%;
         height: 27px;
         border-radius: 4px;
         background-color: #fff;
@@ -635,7 +719,8 @@
   .divButtonSwitchValidate {
     -webkit-box-shadow: 1px 1px 23px 12px rgba(77, 25, 77, 0.7);
     box-shadow: 1px 1px 23px 12px rgba(77, 25, 77, 0.7);
-    transform: translateY(-50%);
+    transform: translateY(-70%);
+    // border: 2px solid green;
     button {
       font-size: 20px;
       color: #e2d07c;

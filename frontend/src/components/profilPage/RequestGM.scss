@@ -15,12 +15,17 @@
   }
 }
 .wantsToJoin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1vw;
   color: black;
 }
 .boxGuildAndType {
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 1vw;
 }
 .requesterProfilPicture {
   width: fit-content;

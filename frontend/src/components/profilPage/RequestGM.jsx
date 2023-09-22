@@ -93,7 +93,7 @@ const FriendRequest = () => {
             <hr className="hrBoxMyGames"></hr>
             <div className="wantsToJoin">WANT TO JOIN :</div>
             <div className="boxGuildAndType">
-              <div className="guildNameDiv">GUILD :{request.guild_name}</div>
+              <div className="guildNameDiv2">GUILD :{request.guild_name}</div>
               <div className="typeDiv">
                 <p>{request.is_campaign === 1 ? "Campaign" : "One Shot"}</p>
               </div>
