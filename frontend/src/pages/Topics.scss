@@ -1,10 +1,14 @@
+// * {
+//   border: 2px solid blue;
+// }
+
 .containeurTopicsAll {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   width: 100%;
   height: 100%;
-  // border: 2px solid red;
 
   .titleTopics {
     display: flex;
@@ -20,17 +24,17 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 80%;
+    height: 100%;
 
     .divTopicsAndFilter {
       display: flex;
-      flex-direction: row;
       align-items: center;
-      justify-content: space-around;
+      justify-content: center;
       width: 100%;
       height: 100%;
 
       .divTopics {
+        width: 25%;
         display: flex;
         flex-direction: column;
         height: auto;
@@ -44,14 +48,14 @@
 
         .boxFilterTopics {
           border: solid 0.5px rgb(194, 177, 108);
-          padding: 10px;
+          padding: 30px 20px 30px 20px;
           border-radius: 10px;
           display: flex;
           flex-direction: column;
           gap: 15px;
           align-items: center;
           height: auto;
-          width: 100%;
+          width: 80%;
 
           .writingWindow {
             border: solid 2px rgb(194, 177, 108);
@@ -132,22 +136,30 @@
       }
 
       .BoxTopicsAndNewTopics {
-        width: 75%;
+        width: 70%;
 
         .titleBoxTopics {
           margin-top: 30px;
           margin-bottom: 30px;
           text-align: center;
-          color: rgb(194, 177, 108);
-          font-size: 2em;
-          font-family: $content-font;
+          font-size: clamp(32px, 3vw, 64px);
+          font-family: $title-font;
+          text-align: center;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          font-variant: small-caps;
+          background: linear-gradient(180deg, #e2d07c 0%, #a4945e 100%);
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
         }
 
         .globalTopicsBox {
           display: flex;
           flex-direction: column;
           width: 100%;
-          height: 87vh;
+          height: 80vh;
           overflow-y: auto;
           gap: 45px;
 
@@ -158,12 +170,13 @@
             background-color: rgba(255, 255, 255, 1);
             border: 1px solid rgba(194, 177, 108, 0.5);
             border-radius: 5px;
-            height: 335px;
+            height: 100%;
             width: 98%;
             padding: 20px;
 
             p {
               font-family: $content-font;
+              // margin-bottom: 20px;
             }
 
             .topicTitleInCard {
@@ -223,12 +236,15 @@
             .firstContentInCard {
               width: 100%;
               height: 100%;
+              // border: 2px solid blue;
 
               p {
                 display: flex;
                 align-items: center;
-                overflow-wrap: break-word;
+                word-break: break-all;
+                // overflow: hidden;
                 width: 100%;
+                margin-bottom: 15px;
               }
             }
 
@@ -237,7 +253,7 @@
               justify-content: flex-end;
 
               button {
-                background-color: black;
+                background-color: #180b23;
                 color: rgb(194, 177, 108);
                 font-family: $content-font;
                 font-size: 1em;
