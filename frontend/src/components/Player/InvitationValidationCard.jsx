@@ -5,7 +5,7 @@ export default function InvitationValidationCard({ setInvitationValidation }) {
         Your invitation to join this guild has been sent, please wait for player
         validation.
       </p>
-      <div className="loaderInvitation"></div>
+      <div id="loaderInvitation"></div>
       <button onClick={() => setInvitationValidation(false)}>Close</button>
     </div>
   )
