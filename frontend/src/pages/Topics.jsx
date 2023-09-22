@@ -74,11 +74,11 @@ export default function Topics() {
     let result = ""
 
     if (daysDifference === 0) {
-      result = "aujourd'hui"
+      result = "Today"
     } else if (daysDifference === 1) {
-      result = "hier"
+      result = "Yesterday"
     } else {
-      result = `il y a ${daysDifference} jours`
+      result = `${daysDifference} days ago`
     }
 
     return result
@@ -106,39 +106,43 @@ export default function Topics() {
           {isBoxTopicsVisible && (
             <div className="divTopicsAndFilter">
               <div className="divTopics">
-                <h2 className="titleFilterTopic"> Recherches </h2>
                 <div className="boxFilterTopics">
+                  <h2 className="titleFilterTopic">Find a Topic</h2>
                   <input
                     className="writingWindow"
                     type="text"
-                    placeholder="Filtrer par nom d'utilisateur"
+                    placeholder="FILTER BY USERNAME"
                     value={usernameFilter}
                     onChange={handleUsernameFilterChange}
                   />
                   <input
                     className="writingWindow"
                     type="text"
-                    placeholder="Filtrer par mot clé"
+                    placeholder="FILTER BY KEYWORD"
                     value={sujetFilter}
                     onChange={handleSujetFilterChange}
                   />
-                  <select
-                    className="writingWindow"
-                    value={dateFilter}
-                    onChange={handleDateFilterChange}
-                  >
-                    <option value="all">Toutes les dates</option>
-                    <option value="lastWeek">Il y a moins d'une semaine</option>
-                    <option value="lastMonth">Il y a plus d'un mois</option>
-                  </select>
+                  <div className="selectWindow">
+                    <select
+                      value={dateFilter}
+                      onChange={handleDateFilterChange}
+                    >
+                      <option value="all">FILTER BY DATE</option>
+                      <option value="lastWeek">Less than a week ago</option>
+                      <option value="lastMonth">More than a month ago</option>
+                    </select>
+                  </div>
+
                   <div className="boxNewTopics">
-                    <button onClick={openNewTopicModal}>Nouveau Topic</button>
+                    <button onClick={openNewTopicModal}>
+                      OR CREATE A NEW TOPIC
+                    </button>
                   </div>
                 </div>
               </div>
               <div className="BoxTopicsAndNewTopics">
                 <div>
-                  <h2 className="titleBoxTopics"> Recent post</h2>
+                  <h2 className="titleBoxTopics">RECENT POST</h2>
                 </div>
                 {!isPostCardsOpen && (
                   <div className="globalTopicsBox">
@@ -195,21 +199,25 @@ export default function Topics() {
                                 <div>{topic.username}</div>
                               </div>
                               <div className="dateTopics">
-                                {formatDateDistance(topic.date)}
+                                <p>{formatDateDistance(topic.date)}</p>
                               </div>
                             </div>
-                            <h3>Sujet :</h3>
                             <div className="topicTitleInCard">
-                              {topic.title}
+                              <h3>
+                                <u>Subject :</u>
+                              </h3>
+                              <p>{topic.title}</p>
                             </div>
                             <div>{topic.categories_id}</div>
-                            <h3>Message:</h3>
+                            <h3>
+                              <u>Message</u>
+                            </h3>
                             <div className="firstContentInCard">
                               <p>{topic.first_content}</p>
                             </div>
                             <div className="buttonInCard">
                               <button onClick={() => handlePostClick(topic)}>
-                                reply to the guilder
+                                REPLY TO THE GUILDER
                               </button>
                             </div>
                           </div>

@@ -113,6 +113,7 @@
             appearance: none;
             box-shadow: none;
             background-image: none;
+            background-color: white;
             // flex: 1;
             height: 4.73vh;
             width: 100%;
@@ -127,7 +128,7 @@
             display: none;
           }
           &::after {
-            content: url("/Users/mehdyhertereau/Documents/DEV-2023/2023-05-JS-RemoteFR-codeQuiPeut-P3-G1/frontend/src/assets/icon-create-game/arrow-select.svg");
+            content: url("../src/assets/icon-create-game/arrow-select.svg");
             text-align: center;
             display: flex;
             justify-content: center;

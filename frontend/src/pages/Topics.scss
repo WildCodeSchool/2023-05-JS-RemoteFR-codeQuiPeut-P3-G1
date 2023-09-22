@@ -1,8 +1,10 @@
 .containeurTopicsAll {
-  // display: flex;
-  // flex-direction: column;
-  // width: 100%;
-  // height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  // border: 2px solid red;
 
   .titleTopics {
     display: flex;
@@ -15,26 +17,17 @@
 
   .globalDivTopics {
     display: flex;
-
     justify-content: center;
-
     align-items: center;
-
     width: 100%;
-
     height: 80%;
 
     .divTopicsAndFilter {
       display: flex;
-
       flex-direction: row;
-
       align-items: center;
-
       justify-content: space-around;
-
       width: 100%;
-
       height: 100%;
 
       .divTopics {
@@ -51,20 +44,23 @@
 
         .boxFilterTopics {
           border: solid 0.5px rgb(194, 177, 108);
+          padding: 10px;
           border-radius: 10px;
           display: flex;
           flex-direction: column;
+          gap: 15px;
           align-items: center;
           height: auto;
           width: 100%;
 
           .writingWindow {
+            border: solid 2px rgb(194, 177, 108);
+            font-family: $content-font;
+            border-radius: 4px;
             background-color: white;
-            border: 0.5px solid rgb(194, 177, 108);
-            width: 80%;
-            height: 30px;
-            margin: 10px;
-            border: solid 0.5px rgb(194, 177, 108);
+            padding: 5px;
+            width: 100%;
+            height: 40px;
           }
 
           .boxNewTopics {
@@ -72,25 +68,71 @@
               background-color: rgb(194, 177, 108);
               color: #fff;
               border: none;
-              border-radius: 5px;
+              border-radius: 15px;
               padding: 10px 20px;
               cursor: pointer;
               transition: background-color 0.3s;
-              margin: 20px;
 
               &:hover {
                 background-color: darken(rgb(194, 177, 108), 15%);
               }
             }
           }
+
+          .selectWindow {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 3;
+            // background: #5c6664;
+            overflow: hidden;
+            border-radius: 5px;
+            width: 100%;
+
+            select {
+              -webkit-appearance: none;
+              -moz-appearance: none;
+              -ms-appearance: none;
+              appearance: none;
+              box-shadow: none;
+              background-image: none;
+              background-color: white;
+              // flex: 1;
+              height: 4.73vh;
+              width: 100%;
+              padding: 0 0.5em;
+              color: #666;
+              font-family: $content-font;
+              cursor: pointer;
+              border-radius: 6px;
+              border: none;
+            }
+            select::-ms-expand {
+              display: none;
+            }
+            &::after {
+              content: url("../src/assets/icon-create-game/arrow-select.svg");
+              text-align: center;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              position: absolute;
+              top: 0;
+              right: 0;
+              background: $navbar-color;
+              cursor: pointer;
+              pointer-events: none;
+              transition: 0.25s all ease;
+              width: 25%;
+              height: 100%;
+            }
+          }
         }
       }
 
       .BoxTopicsAndNewTopics {
-        // display: flex;
-        // flex-direction: column;
         width: 75%;
-        // height: 80%;
 
         .titleBoxTopics {
           margin-top: 30px;
@@ -98,7 +140,7 @@
           text-align: center;
           color: rgb(194, 177, 108);
           font-size: 2em;
-          font-family: $title-font;
+          font-family: $content-font;
         }
 
         .globalTopicsBox {
@@ -117,16 +159,29 @@
             border: 1px solid rgba(194, 177, 108, 0.5);
             border-radius: 5px;
             height: 335px;
-            width: 100%;
+            width: 98%;
             padding: 20px;
 
-            h3 {
+            p {
+              font-family: $content-font;
+            }
+
+            .topicTitleInCard {
+              display: flex;
+              align-items: center;
+              gap: 10px;
+            }
+
+            h3,
+            u {
               padding-top: 10px;
               padding-bottom: 10px;
+              font-family: $content-font;
+              font-size: 1vw;
             }
 
             .headerCardTopic {
-              background-color: rgba(24, 11, 35, 1);
+              background-color: #180b23;
               color: #fff;
               display: flex;
               align-items: center;
@@ -140,6 +195,8 @@
                 justify-content: flex-start;
                 gap: 15px;
                 width: 100%;
+                font-size: 1vw;
+                font-weight: bold;
 
                 .photoUserTopic {
                   display: flex;
@@ -154,7 +211,12 @@
               }
 
               .dateTopics {
-                margin: 15px;
+                width: 100%;
+                text-align: right;
+                p {
+                  color: rgba(255, 255, 255, 47);
+                  font-family: $content-font;
+                }
               }
             }
 
@@ -167,8 +229,6 @@
                 align-items: center;
                 overflow-wrap: break-word;
                 width: 100%;
-                height: 100%;
-                // overflow-y: scroll;
               }
             }
 
@@ -179,6 +239,7 @@
               button {
                 background-color: black;
                 color: rgb(194, 177, 108);
+                font-family: $content-font;
                 font-size: 1em;
                 width: 20%;
                 height: 40px;
@@ -206,37 +267,26 @@
           box-shadow: inset 0 0 5px #667277;
         }
 
-        .globalTopicsBox ::-webkit-scrollbar-thumb-progress {
+        .globalTopicsBox::-webkit-scrollbar-thumb-progress {
           width: 100%;
         }
       }
 
       .modalTopics {
         position: fixed;
-
         top: 0;
-
         left: 0;
-
         width: 100%;
-
         height: 100%;
-
         background-color: rgba(0, 0, 0, 0.5);
-
         display: flex;
-
         align-items: center;
-
         justify-content: center;
 
         .modal-content {
           background-color: #fff;
-
           border-radius: 5px;
-
           padding: 20px;
-
           box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
         }
       }
@@ -259,14 +309,9 @@
   }
 
   .titleBoxTopics {
-    /* Modifiez les styles ici */
-
     margin-top: 30px;
-
     text-align: center;
-
     color: rgb(194, 177, 108);
-
     font-size: 2em;
   }
 }

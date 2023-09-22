@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react"
 import Cookies from "js-cookie"
 import axios from "axios"
-import moment from "moment"
 
 export default function PostCards({ isOpen, onClose, postData }) {
   const [allPosts, setAllPosts] = useState([])
@@ -76,41 +75,54 @@ export default function PostCards({ isOpen, onClose, postData }) {
     <div className={`post-cards ${isOpen ? "open" : "closed"}`}>
       <div className="topics-container">
         <button className="close-button" onClick={onClose}>
-          Fermer
+          Close
         </button>
-        <div className="titreDeLaPostCard">{postData.first_content}</div>
-        {allPosts.map((post) => (
-          <div className="post-card" key={post.id}>
-            <div className="post-details">
-              <img
-                src={`${import.meta.env.VITE_BACKEND_URL}/${
-                  post.profil_picture
-                }`}
-                alt="photo de profil de l'utilisateur"
-              />
-              <div className="usernamePostCard">
-                <p>{post.username}</p>
+        <div className="titreDeLaPostCard">
+          <u>{postData.title}</u>
+        </div>
+        <div id="allPostContent">
+          {allPosts.map((post) => (
+            <div className="post-card" key={post.id}>
+              <div className="post-details">
+                <img
+                  src={`${import.meta.env.VITE_BACKEND_URL}/${
+                    post.profil_picture
+                  }`}
+                  alt="photo de profil de l'utilisateur"
+                />
+                <div className="usernamePostCard">
+                  <p>{post.username}</p>
+                </div>
+                <div className="postForumDate">
+                  <p>
+                    {new Date(post.date).toLocaleString("en-EN", {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit"
+                    })}
+                  </p>
+                </div>
               </div>
-              <div className="postForumDate">
-                <p>{moment(post.date).format("HH:mm DD/MM/YY")}</p>
+              <div className="contentPostCard">
+                <p>{post.content}</p>
               </div>
             </div>
-            <div className="contentPostCard">
-              <p>{post.content}</p>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
 
         {/* Formulaire pour saisir un nouveau commentaire */}
         <div className="new-comment-form">
+          <div className="underlineTopicsTextArea"></div>
           <textarea
             className="textareaPostCArd"
             rows="4"
-            placeholder="Saisissez votre commentaire"
+            placeholder="Enter your answer"
             value={newComment}
             onChange={handleCommentChange}
           ></textarea>
-          <button onClick={handleSubmitComment}>Poster le commentaire</button>
+          <button onClick={handleSubmitComment}>SEND MY MESSAGE</button>
         </div>
       </div>
     </div>
