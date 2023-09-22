@@ -29,7 +29,7 @@ function Loader({ loadingComplete, handleLoadingComplete }) {
       width: "100%",
       ease: Expo.easeInOut,
       duration: 1.2,
-      delay: 0.7
+      delay: 0.5
     })
       .to(".hide", { opacity: 0, duration: 0.3 })
       .to(".hide", { display: "none", duration: 0.3 })
