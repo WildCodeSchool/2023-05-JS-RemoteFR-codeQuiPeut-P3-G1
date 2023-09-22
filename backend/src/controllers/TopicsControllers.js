@@ -22,6 +22,7 @@ const read = (req, res) => {
         res.send(rows[0])
       }
     })
+
     .catch((err) => {
       console.error(err)
       res.sendStatus(500)
@@ -29,12 +30,8 @@ const read = (req, res) => {
 }
 
 const edit = (req, res) => {
-  const topics = req.body
-
-  // TODO validations (length, format...)
-
+  const topics = req.body // TODO validations (length, format...)
   topics.id = parseInt(req.params.id, 10)
-
   models.topics
     .update(topics)
     .then(([result]) => {
@@ -44,6 +41,7 @@ const edit = (req, res) => {
         res.sendStatus(204)
       }
     })
+
     .catch((err) => {
       console.error(err)
       res.sendStatus(500)
@@ -51,9 +49,7 @@ const edit = (req, res) => {
 }
 
 const add = (req, res) => {
-  const infos = req.body
-
-  // TODO validations (length, format...)
+  const infos = req.body // TODO validations (length, format...)
 
   models.topics
     .insert(infos)
@@ -69,6 +65,7 @@ const add = (req, res) => {
           res.sendStatus(500)
         })
     })
+
     .catch((err) => {
       console.error(err)
       res.sendStatus(500)
@@ -77,6 +74,7 @@ const add = (req, res) => {
 
 const destroy = (req, res) => {
   models.topics
+
     .delete(req.params.id)
     .then(([result]) => {
       if (result.affectedRows === 0) {
@@ -85,6 +83,7 @@ const destroy = (req, res) => {
         res.sendStatus(204)
       }
     })
+
     .catch((err) => {
       console.error(err)
       res.sendStatus(500)
@@ -93,6 +92,7 @@ const destroy = (req, res) => {
 
 const topicsAndUsers = (req, res) => {
   models.topics
+
     .getTopicsAndUsers()
     .then(([rows]) => {
       res.send(rows)

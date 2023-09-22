@@ -5,7 +5,7 @@ export default function JoinGuildValidation({ setJoinGuildValidation }) {
         Your request to join this guild has been sent, please wait for
         GameMaster validation
       </p>
-      <p>. . .</p>
+      <div id="loaderJoin"></div>
       <button onClick={() => setJoinGuildValidation(false)}>Close</button>
     </div>
   )

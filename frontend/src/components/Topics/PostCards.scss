@@ -1,0 +1,135 @@
+.titreDeLaPostCard {
+  font-family: $title-font;
+  color: rgb(194, 177, 108);
+  font-size: 2em;
+}
+.topics-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+  overflow-y: scroll;
+  height: 88vh;
+
+  .topic-title {
+    color: rgb(194, 177, 108);
+    font-family: $title-font;
+    font-size: 4.5vw;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    font-variant: small-caps;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  .post-card {
+    display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+    background-color: white;
+    border: 1px solid #e2d07c;
+    padding: 10px;
+    border-radius: 8px;
+    width: 70%;
+    height: fit-content;
+
+    .post-details {
+      display: flex;
+      background: black;
+      height: 65px;
+      width: 30%;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 6px;
+      padding: 5px;
+      img {
+        width: 50px;
+        height: 50px;
+        border: 2px solid $third-font-color;
+        border-radius: 50%;
+      }
+      .usernamePostCard {
+        p {
+          color: #e2d07c;
+          font-family: $content-font;
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+        }
+      }
+      .postForumDate {
+        p {
+          color: white;
+        }
+      }
+    }
+    .contentPostCard {
+      display: flex;
+      align-items: center;
+      border-radius: 4px;
+      height: 100%;
+      width: 80%;
+      margin: 20px;
+      p {
+        color: rgb(0, 0, 0);
+      }
+    }
+  }
+  .new-comment-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 50%;
+    height: 20%;
+
+    textarea {
+      width: 100%;
+      height: 100%;
+      padding: 15px;
+      display: flex;
+    }
+
+    button {
+      background-color: #ffffff;
+      margin-top: 10px;
+      width: 20%;
+      height: 50%;
+      border-radius: 10px;
+    }
+  }
+}
+
+.close-button {
+  /* Styles du bouton de fermeture */
+  margin: 30px;
+  background-color: #ffffff;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.post-cards.open {
+  /* Styles pour afficher le composant */
+
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.post-cards.closed {
+  width: 100%;
+}
+
+// .textareaPostCArd{
+//     width: 100%;
+//     height: auto;
+// }
