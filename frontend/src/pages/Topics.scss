@@ -288,7 +288,7 @@
         }
       }
 
-      .modalTopics {
+      #modalTopics {
         position: fixed;
         top: 0;
         left: 0;
@@ -299,7 +299,7 @@
         align-items: center;
         justify-content: center;
 
-        .modal-content {
+        #modalTopicsContent {
           background-color: #fff;
           border-radius: 5px;
           padding: 20px;

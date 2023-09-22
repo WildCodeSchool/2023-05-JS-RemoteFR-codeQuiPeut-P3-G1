@@ -229,8 +229,8 @@ export default function Topics() {
             </div>
           )}
           {isNewTopicOpen && (
-            <div className="modal">
-              <div className="modal-content">
+            <div id="modalTopics">
+              <div id="modalTopicsContent">
                 <NewTopic
                   onClose={closeNewTopicModal}
                   updateShouldRefreshTable={updateShouldRefreshTable}
