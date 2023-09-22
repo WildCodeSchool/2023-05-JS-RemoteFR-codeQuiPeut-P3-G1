@@ -6,12 +6,33 @@
   justify-content: center;
   align-items: center;
   gap: 20px;
+
   p {
     color: black;
     font-family: $content-font;
     font-size: 20px;
     text-align: center;
   }
+
+  #loaderJoin {
+    --c1: #180b23;
+    --c2: #4d194d;
+    --c3: #401a44;
+    --c4: #e2d07c;
+
+    width: 80px;
+    aspect-ratio: 8/5;
+    --_g: no-repeat radial-gradient(#000 68%, #0000 71%);
+    -webkit-mask: var(--_g), var(--_g), var(--_g);
+    -webkit-mask-size: 25% 40%;
+    mask: var(--_g), var(--_g), var(--_g);
+    mask-size: 25% 40%;
+    background: conic-gradient(var(--c1) 50%, var(--c2) 0) no-repeat,
+      conic-gradient(var(--c3) 50%, var(--c4) 0) no-repeat;
+    background-size: 200% 50%;
+    animation: back 4s infinite steps(1), load 2s infinite;
+  }
+
   button {
     border: 1px solid $navbar-color;
     font-family: $content-font;

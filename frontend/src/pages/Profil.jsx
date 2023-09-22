@@ -6,14 +6,14 @@ import RpgAdding from "../components/profilPage/RpgAdding"
 import RequestGM from "../components/profilPage/RequestGM"
 import CardGame from "../components/Game/CardGame"
 
-import iconProfil from "../assets/Profil/iconProfil.png.png"
-import questionMark from "../assets/Profil/questionMark.png.png"
+import iconProfil from "../assets/Profil/iconProfil.svg"
+import questionMark from "../assets/Profil/questionMark.svg"
 import Add2 from "../assets/icon-dashboard/Add2.png"
-import iconSettings from "../assets/Profil/iconSettings.png.png"
-import pinPointer from "../assets/Profil/pinPointer.png.png"
+import iconSettings from "../assets/Profil/iconSettings.svg"
+import pinPointer from "../assets/Profil/pinPointer.svg"
 import deleteCross from "../assets/Profil/deleteCross.png"
-import calendar from "../assets/Profil/calendar.png"
-import groupDiscutionIcon from "../assets/Profil/groupDiscutionIcon.png"
+import calendar from "../assets/Profil/calendar.svg"
+import groupDiscutionIcon from "../assets/Profil/groupDiscutionIcon.svg"
 
 const Profil = () => {
   const [isEditing, setIsEditing] = useState(false)
@@ -275,7 +275,9 @@ const Profil = () => {
         <div className="rightBoxMain">
           <div className="mainTitleProfil">
             <img src={iconProfil} />
-            <h1>SOCIAL</h1>
+            <div className="h1ProfilTitle">
+              <span id="h1ProfilTitle">SOCIAL</span>
+            </div>
           </div>
           <div className="bigBoxRight">
             <div className="topDivSocial">
@@ -311,7 +313,9 @@ const Profil = () => {
         <div className="rightBoxMain">
           <div className="mainTitleProfil">
             <img src={iconProfil} />
-            <h1>MY GAMES</h1>
+            <div className="h1ProfilTitle">
+              <span id="h1ProfilTitle">MY GAMES</span>
+            </div>
           </div>
           <div className="bigBoxRight">
             <div className="topDivMyGames">
@@ -522,7 +526,9 @@ const Profil = () => {
         <div className="rightBoxMain">
           <div className="mainTitleProfil">
             <img src={iconProfil} />
-            <h1>PROFILE</h1>
+            <div className="h1ProfilTitle">
+              <span id="h1ProfilTitle">PROFILE</span>
+            </div>
           </div>
           <div className="bigBoxRight">
             <div className="titleProfil">PUBLIC INFORMATIONS</div>
@@ -647,8 +653,8 @@ const Profil = () => {
                 </div>
               </div>
             </div>
-            <div className="hrDiv">
-              <hr />
+            <div className="hrDiv2Container">
+              <div className="hrDiv2"></div>
             </div>
             <div className="bottomBoxProfilEdit">
               <div className="privateInfoBox">
@@ -709,7 +715,9 @@ const Profil = () => {
         <div className="rightBoxMain">
           <div className="mainTitleProfil">
             <img src={iconProfil} />
-            <h1>PROFILE</h1>
+            <div className="h1ProfilTitle">
+              <span id="h1ProfilTitle">PROFILE</span>
+            </div>
           </div>
 
           <div className="bigBoxRight">
@@ -800,8 +808,8 @@ const Profil = () => {
                 </div>
               </div>
             </div>
-            <div className="hrDiv">
-              <hr />
+            <div className="hrDiv2Container">
+              <div className="hrDiv2"></div>
             </div>
             <div className="bottomBoxProfil">
               <div className="privateInfoBox">
@@ -824,13 +832,15 @@ const Profil = () => {
         </div>
       )}
       {cardGame === true && (
-        <div className="popupGameProfil">
-          <CardGame
-            gameData={gameData}
-            onClose={closeCardGame}
-            playersProfil={playersProfil}
-            setCard
-          />
+        <div className="popupGameProfilContainer">
+          <div id="popupGameProfil">
+            <CardGame
+              gameData={gameData}
+              onClose={closeCardGame}
+              playersProfil={playersProfil}
+              setCard
+            />
+          </div>
         </div>
       )}
     </div>

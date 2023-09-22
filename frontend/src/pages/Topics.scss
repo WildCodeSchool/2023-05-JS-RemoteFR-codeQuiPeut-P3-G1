@@ -1,111 +1,274 @@
 .containeurTopicsAll {
-  // display: flex;
-  // flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  // border: 2px solid red;
+
   .titleTopics {
-    margin: 30px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
     color: rgb(194, 177, 108);
-    font-size: 2em;
+    margin-bottom: 35px;
+    margin-top: 35px;
   }
-  .titreOriginalPourUneDiv {
-    .globalDivTopics {
+
+  .globalDivTopics {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80%;
+
+    .divTopicsAndFilter {
       display: flex;
+      flex-direction: row;
+      align-items: center;
       justify-content: space-around;
+      width: 100%;
+      height: 100%;
 
       .divTopics {
-        //  display: flex;
+        display: flex;
+        flex-direction: column;
+        height: auto;
 
         .titleFilterTopic {
           color: rgb(194, 177, 108);
           font-size: 2em;
           font-family: $content-font;
           text-align: center;
-          margin: 16px;
         }
 
         .boxFilterTopics {
-          border: solid rgb(194, 177, 108);
-          width: 200px;
-          height: 30px;
+          border: solid 0.5px rgb(194, 177, 108);
+          padding: 10px;
           border-radius: 10px;
-          width: 100%;
           display: flex;
           flex-direction: column;
+          gap: 15px;
           align-items: center;
           height: auto;
+          width: 100%;
 
           .writingWindow {
+            border: solid 2px rgb(194, 177, 108);
+            font-family: $content-font;
+            border-radius: 4px;
             background-color: white;
-            border: 0.5px solid rgb(194, 177, 108);
-            width: 300px;
-            height: 30px;
-            margin: 10px;
+            padding: 5px;
+            width: 100%;
+            height: 40px;
           }
-        }
 
-        .boxNewTopics {
-          button {
-            background-color: rgb(194, 177, 108);
-            color: #fff;
-            border: none;
+          .boxNewTopics {
+            button {
+              background-color: rgb(194, 177, 108);
+              color: #fff;
+              border: none;
+              border-radius: 15px;
+              padding: 10px 20px;
+              cursor: pointer;
+              transition: background-color 0.3s;
+
+              &:hover {
+                background-color: darken(rgb(194, 177, 108), 15%);
+              }
+            }
+          }
+
+          .selectWindow {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 3;
+            // background: #5c6664;
+            overflow: hidden;
             border-radius: 5px;
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            margin: 20px;
+            width: 100%;
 
-            &:hover {
-              background-color: darken(rgb(194, 177, 108), 15%);
+            select {
+              -webkit-appearance: none;
+              -moz-appearance: none;
+              -ms-appearance: none;
+              appearance: none;
+              box-shadow: none;
+              background-image: none;
+              background-color: white;
+              // flex: 1;
+              height: 4.73vh;
+              width: 100%;
+              padding: 0 0.5em;
+              color: #666;
+              font-family: $content-font;
+              cursor: pointer;
+              border-radius: 6px;
+              border: none;
+            }
+            select::-ms-expand {
+              display: none;
+            }
+            &::after {
+              content: url("../src/assets/icon-create-game/arrow-select.svg");
+              text-align: center;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              position: absolute;
+              top: 0;
+              right: 0;
+              background: $navbar-color;
+              cursor: pointer;
+              pointer-events: none;
+              transition: 0.25s all ease;
+              width: 25%;
+              height: 100%;
             }
           }
         }
       }
 
       .BoxTopicsAndNewTopics {
-        width: 70%;
+        width: 75%;
 
         .titleBoxTopics {
+          margin-top: 30px;
           margin-bottom: 30px;
           text-align: center;
           color: rgb(194, 177, 108);
           font-size: 2em;
+          font-family: $content-font;
         }
 
         .globalTopicsBox {
-          .topicbox {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          height: 87vh;
+          overflow-y: auto;
+          gap: 45px;
+
+          .topicboxId {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
             background-color: rgba(255, 255, 255, 1);
             border: 1px solid rgba(194, 177, 108, 0.5);
             border-radius: 5px;
-            padding: 10px;
-            margin: 10px;
-            // width: 90%;
+            height: 335px;
+            width: 98%;
+            padding: 20px;
+
+            p {
+              font-family: $content-font;
+            }
+
+            .topicTitleInCard {
+              display: flex;
+              align-items: center;
+              gap: 10px;
+            }
+
+            h3,
+            u {
+              padding-top: 10px;
+              padding-bottom: 10px;
+              font-family: $content-font;
+              font-size: 1vw;
+            }
 
             .headerCardTopic {
-              background-color: rgba(24, 11, 35, 1);
+              background-color: #180b23;
               color: #fff;
               display: flex;
               align-items: center;
               justify-content: space-between;
+              padding: 15px;
+              width: 100%;
 
               .photoAndName {
                 display: flex;
                 align-items: center;
-                padding: 10px;
+                justify-content: flex-start;
+                gap: 15px;
+                width: 100%;
+                font-size: 1vw;
+                font-weight: bold;
 
                 .photoUserTopic {
-                  width: 50px;
-                  height: 50px;
-                  border-radius: 50px;
-                  margin: 7px;
-                  border: solid rgba(194, 177, 108, 0.5);
+                  display: flex;
+                  width: 85px;
+                  border-radius: 50%;
+                  border: solid 0.5px rgb(194, 177, 108);
+
+                  img {
+                    width: 100%;
+                  }
                 }
               }
 
               .dateTopics {
-                margin: 7px;
+                width: 100%;
+                text-align: right;
+                p {
+                  color: rgba(255, 255, 255, 47);
+                  font-family: $content-font;
+                }
+              }
+            }
+
+            .firstContentInCard {
+              width: 100%;
+              height: 100%;
+
+              p {
+                display: flex;
+                align-items: center;
+                overflow-wrap: break-word;
+                width: 100%;
+              }
+            }
+
+            .buttonInCard {
+              display: flex;
+              justify-content: flex-end;
+
+              button {
+                background-color: black;
+                color: rgb(194, 177, 108);
+                font-family: $content-font;
+                font-size: 1em;
+                width: 20%;
+                height: 40px;
+                border-radius: 5px;
               }
             }
           }
+        }
+
+        .globalTopicsBox::-webkit-scrollbar {
+          width: 14px;
+          height: 10px;
+          background-color: #180b2393;
+          border-radius: 11px;
+        }
+
+        .globalTopicsBox::-webkit-scrollbar-thumb {
+          width: 10px;
+          height: 10px;
+          background-color: #667277;
+          border-radius: 11px;
+          -webkit-appearance: none;
+          background-color: #180b23;
+          border: 1px solid #667277;
+          box-shadow: inset 0 0 5px #667277;
+        }
+
+        .globalTopicsBox::-webkit-scrollbar-thumb-progress {
+          width: 100%;
         }
       }
 
@@ -128,5 +291,27 @@
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .divTopicsAndFilter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .divTopics {
+      min-width: 300px;
+      width: 20%;
+      height: auto;
+      margin-left: 0px;
+    }
+  }
+
+  .titleBoxTopics {
+    margin-top: 30px;
+    text-align: center;
+    color: rgb(194, 177, 108);
+    font-size: 2em;
   }
 }

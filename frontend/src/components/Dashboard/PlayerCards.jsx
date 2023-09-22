@@ -28,7 +28,7 @@ function PlayerCards({
     setPlayerCard(false)
   }
 
-  console.info(formattedSchedule)
+  // console.info(formattedSchedule)
 
   return (
     <div className="major_Container_PlayerCards">

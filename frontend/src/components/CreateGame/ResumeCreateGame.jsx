@@ -38,17 +38,6 @@ function ResumeCreateGame({
 
   console.info("la liste des jeux", gamesList, "le nom du GM", usernameGm)
 
-  const [gamemasterPicture, setGamemasterPicture] = useState([])
-  useEffect(() => {
-    axios
-      .get(`http://localhost:4242/users/${idUser}`, { headers })
-      .then((res) => setGamemasterPicture(res.data.profil_picture))
-  }, [idUser])
-
-  console.info("username please", username)
-  console.info(gamemasterPicture)
-  console.info("url", `http://localhost:4242/games/${username}`)
-
   const handleReset = () => {
     setCreateOrResume(1)
     setGameRPGID("")
