@@ -42,31 +42,31 @@ function Loader({ loadingComplete, handleLoadingComplete }) {
       .to(".content", {
         width: "100%",
         ease: Expo.easeInOut,
-        duration: 0.7
+        duration: 0.5
       })
       .to(".Content", {
         width: "100%",
         ease: Expo.easeOut,
-        duration: 0.7
+        duration: 0.5
       })
       .to(".Follow", {
         width: "100%",
         ease: Expo.easeInOut,
-        duration: 0.8
+        duration: 0.7
       })
-      .to(".title-lines", { display: "block", duration: 0.2 })
+      .to(".title-lines", { display: "block", duration: 0.1 })
       .to(".title-lines", {
         opacity: 1,
         stagger: 0.15,
         ease: Expo.easeInOut,
-        duration: 0.7
+        duration: 0.5
       })
-      .to(".guildLogoLoader", { display: "block", duration: 0.2 })
+      .to(".guildLogoLoader", { display: "block", duration: 0.1 })
       .to(".guildLogoLoader", {
         opacity: 1,
-        stagger: 0.15,
+        stagger: 0.1,
         ease: Expo.easeInOut,
-        duration: 0.7
+        duration: 0.5
       })
   }
 
