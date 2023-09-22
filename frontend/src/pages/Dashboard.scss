@@ -10,6 +10,7 @@
   width: 100%;
   margin: 0;
   padding: 0;
+  animation: fadeIn ease 1s;
   // border: 3px solid green;
 
   .Icon-Title-Dashboard {
@@ -54,6 +55,7 @@
       justify-content: center;
       align-items: center;
       z-index: 9999;
+
       .contentPopUpNotification {
         display: flex;
         justify-content: flex-start;
@@ -65,6 +67,7 @@
         border-radius: 10px;
         width: 50%;
         height: 70%;
+        animation: fadeIn ease 0.5s;
 
         .headerNotif {
           display: flex;
@@ -118,6 +121,7 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
+            animation: fadeIn ease 1s;
 
             .innerModalGameCard {
               display: flex;
@@ -129,7 +133,8 @@
               background-color: #ffffff;
               border-radius: 10px;
               width: 80%;
-              height: 80%;
+              height: 90%;
+              animation: fadeIn ease 1s;
             }
           }
 
@@ -145,19 +150,30 @@
 
             .rawInvitations {
               display: flex;
-              justify-content: space-around;
+              flex-direction: column;
+              justify-content: center;
               align-items: center;
-              flex-direction: row;
               background-color: rgba(128, 128, 128, 0.188);
-              // border: 2px solid red;
-              padding-left: 10px;
-              padding-right: 10px;
               width: 100%;
-              height: 100%;
+                height: 100%;
               &.clicked {
                 background-color: #fff;
               }
-              &:hover {
+              .rawContent {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                flex-direction: row;
+                // border: 2px solid red;
+                padding-left: 10px;
+                padding-right: 10px;
+                width: 100%;
+                height: 100%;
+              }
+              .underLineNotification {
+                width: 80%;
+                height: 1px;
+                background: #a4945e;
               }
             }
 
@@ -310,5 +326,13 @@
         }
       }
     }
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

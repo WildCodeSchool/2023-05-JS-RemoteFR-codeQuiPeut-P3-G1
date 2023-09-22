@@ -1,3 +1,6 @@
+// import PrivateMessage from "../components/PrivateMessages/PrivateMessages.jsx"
+import { Link } from "react-router-dom"
+
 import Arrow from "../../assets/icon-dashboard/arrow.svg"
 import Cross from "../../assets/icon-dashboard/cross.svg"
 import Schedule from "../../assets/icon-dashboard/scheduleIcon.svg"
@@ -71,7 +74,9 @@ function PlayerCards({
             </div>
             <div className="PlayerCards_Inside_SecondElement_LineSeparator"></div>
             <div className="PlayerCards_Inside_SecondElement_ButtonMessage_StatusPlayer">
-              <button type="button">SEND A MESSAGE</button>
+              <Link to="/privatemessages">
+                <button type="button">SEND A MESSAGE</button>
+              </Link>
               <span>PLAYER</span>
             </div>
           </div>

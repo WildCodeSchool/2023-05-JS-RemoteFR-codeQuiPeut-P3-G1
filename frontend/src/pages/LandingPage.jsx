@@ -76,8 +76,8 @@ function LandingPage() {
         </div>
         <TestCarrousel />
         <FAQ />
+        <Footer />
       </div>
-      <Footer />
     </>
   )
 }
