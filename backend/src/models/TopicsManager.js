@@ -8,11 +8,11 @@ class TopicsManager extends AbstractManager {
   insert(topic) {
     return this.database.query(
       `INSERT INTO ${this.table} (title, categories_id, users_id, creation_date, subscription_count) VALUES (?, ?, ?, NOW(), 0)`,
+
       [
         topic.title,
         topic.categories_id,
-        topic.users_id,
-        // topic.subscription_count,
+        topic.users_id, // topic.subscription_count,
       ]
     )
   }
@@ -20,6 +20,7 @@ class TopicsManager extends AbstractManager {
   update(topic) {
     return this.database.query(
       `UPDATE ${this.table} SET title = ?, categories_id = ?, users_id = ?, creation_date = ?, subscription_count = ? WHERE id = ?`,
+
       [
         topic.title,
         topic.categories_id,
@@ -33,20 +34,33 @@ class TopicsManager extends AbstractManager {
 
   getTopicsAndUsers() {
     return this.database.query(`
+
     SELECT
-      u.profil_picture,
-      u.username,
-      t.title,
-      t.id,
-      DATE_FORMAT(p.date, '%Y-%m-%d %H:%i:%s') AS date,
-      t.id AS topics_id
-    FROM
-      posts p
-    JOIN
-      topics t ON p.topics_id = t.id
-    JOIN
-      users u ON p.users_id = u.id;
-  `)
+    u.profil_picture,
+    u.username,
+    t.title,
+    t.id AS topic_id,
+    DATE_FORMAT(p.date, '%Y-%m-%d %H:%i:%s') AS date,
+    (
+      SELECT posts.content
+      FROM posts
+      WHERE posts.topics_id = t.id
+      ORDER BY posts.date ASC
+      LIMIT 1
+    ) AS first_content
+  FROM topics t
+  JOIN (
+    SELECT
+      topics_id,
+      MAX(date) AS max_date
+    FROM posts
+    GROUP BY topics_id
+  ) latest_posts ON t.id = latest_posts.topics_id
+  JOIN posts p ON latest_posts.topics_id = p.topics_id AND latest_posts.max_date = p.date
+  JOIN users u ON p.users_id = u.id
+  ORDER BY latest_posts.max_date DESC;
+  
+`)
   }
 }
 

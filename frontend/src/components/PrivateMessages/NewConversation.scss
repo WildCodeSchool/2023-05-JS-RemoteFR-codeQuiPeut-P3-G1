@@ -34,7 +34,7 @@
     h2 {
       width: 100%;
       text-align: center;
-      background: linear-gradient(180deg, #E2D07C 0%, #A4945E 100%);
+      background: linear-gradient(180deg, #e2d07c 0%, #a4945e 100%);
       background-clip: text;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -70,7 +70,7 @@
         overflow-y: auto;
         width: 100%;
         z-index: 1;
-        background-color: #EDEDED;
+        background-color: #ededed;
         position: absolute;
         border: 2px solid $third-font-color;
         border-radius: 4px;
@@ -131,6 +131,10 @@
   }
 }
 @keyframes fadeIn {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
