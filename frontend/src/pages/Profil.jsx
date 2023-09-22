@@ -832,13 +832,15 @@ const Profil = () => {
         </div>
       )}
       {cardGame === true && (
-        <div className="popupGameProfil">
-          <CardGame
-            gameData={gameData}
-            onClose={closeCardGame}
-            playersProfil={playersProfil}
-            setCard
-          />
+        <div className="popupGameProfilContainer">
+          <div id="popupGameProfil">
+            <CardGame
+              gameData={gameData}
+              onClose={closeCardGame}
+              playersProfil={playersProfil}
+              setCard
+            />
+          </div>
         </div>
       )}
     </div>

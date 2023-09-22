@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios"
 import Cookies from "js-cookie"
+import { Link } from "react-router-dom"
 
 // import gmProfilePic from "../../assets/GmCards-assets/GMProfilePic.png"
 import closeModal from "../../assets/icon-dashboard/crossWithBg.svg"
@@ -91,7 +92,9 @@ const GmCards = ({ onClose, gameData, setIsGmCardsOpen }) => {
               <span>{gameData.gm_username} - AS GM</span>
               <div id="underline-GMUsername"></div>
               <div className="Btn-send">
-                <button>SEND A MESSAGE</button>
+                <Link to="/privatemessages">
+                  <button>SEND A MESSAGE</button>
+                </Link>
               </div>
             </div>
             <div className="close-container">

@@ -104,4 +104,26 @@
       }
     }
   }
+
+  #invitationListGlobal::-webkit-scrollbar {
+    width: 14px;
+    height: 10px;
+    background-color: #180b2393;
+    border-radius: 11px;
+  }
+
+  #invitationListGlobal::-webkit-scrollbar-thumb {
+    width: 10px;
+    height: 10px;
+    background-color: #667277;
+    border-radius: 11px;
+    -webkit-appearance: none;
+    background-color: #180b23;
+    border: 1px solid #667277;
+    box-shadow: inset 0 0 5px #667277;
+  }
+
+  #invitationListGlobal::-webkit-scrollbar-thumb-progress {
+    width: 100%;
+  }
 }

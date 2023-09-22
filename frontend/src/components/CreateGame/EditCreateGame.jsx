@@ -117,20 +117,20 @@ function EditCreateGame({
       })
   }
 
-  console.info(
-    "editTest",
-    gameName,
-    gameType,
-    gameRPGID,
-    typeof gameRPGID,
-    gameIsCampaign,
-    gamePlayersCapacity,
-    gameDesc,
-    gameIsRemote,
-    gamePlace,
-    gameDate,
-    gameRPGList
-  )
+  // console.info(
+  //   "editTest",
+  //   gameName,
+  //   gameType,
+  //   gameRPGID,
+  //   typeof gameRPGID,
+  //   gameIsCampaign,
+  //   gamePlayersCapacity,
+  //   gameDesc,
+  //   gameIsRemote,
+  //   gamePlace,
+  //   gameDate,
+  //   gameRPGList
+  // )
 
   return (
     <>

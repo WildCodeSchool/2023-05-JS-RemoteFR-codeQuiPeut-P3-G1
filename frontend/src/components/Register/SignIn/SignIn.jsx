@@ -30,7 +30,7 @@ function SignIn({
   //   }
   // }
   const handleKeyDown = (e) => {
-    console.info("Key down event triggered")
+    // console.info("Key down event triggered")
     if (e.code === "Enter" || (e.key === "Enter" && signInPassword !== "")) {
       handleLogin(e)
     }

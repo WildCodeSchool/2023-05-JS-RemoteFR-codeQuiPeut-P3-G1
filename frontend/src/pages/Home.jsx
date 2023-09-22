@@ -22,7 +22,7 @@ export default function Home() {
         console.error("Erreur lors de la création de l'utilisateur :", error)
         // Gérer l'erreur et donner un retour à l'utilisateur si nécessaire
       })
-    console.info(usernameDb + passwordDb)
+    // console.info(usernameDb + passwordDb)
   }
 
   const handleUser = (e) => {
