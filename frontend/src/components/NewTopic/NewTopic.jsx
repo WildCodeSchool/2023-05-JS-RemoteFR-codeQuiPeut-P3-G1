@@ -14,8 +14,8 @@ export default function NewTopic({ onClose, updateShouldRefreshTable }) {
   }
 
   const [message, setMessage] = useState("")
-  const [nom, setNom] = useState("")
-  const [categorie, setCategorie] = useState("")
+  const [name, setName] = useState("")
+  const [category, setCategory] = useState("")
 
   const choices = [
     { id: 1, name: "Fantasy" },
@@ -32,8 +32,8 @@ export default function NewTopic({ onClose, updateShouldRefreshTable }) {
         `${import.meta.env.VITE_BACKEND_URL}/topics`,
 
         {
-          title: nom,
-          categories_id: categorie,
+          title: name,
+          categories_id: category,
           content: message,
           users_id: idUser
         },
@@ -42,7 +42,7 @@ export default function NewTopic({ onClose, updateShouldRefreshTable }) {
       )
 
       .then((res) => {
-        console.info("NewTopic créée avec succès !", res.status)
+        console.info("Topic créé avec succès !", res.status)
 
         if (res.status === 200 || res.status === 201) {
           onClose(true) // Ferme la fenêtre modale après la création
@@ -57,52 +57,69 @@ export default function NewTopic({ onClose, updateShouldRefreshTable }) {
 
   return (
     <div className="modalNewTopic">
-      {" "}
       <div className="modalContent">
-        <h2 className="titleNewTopic">New subject</h2> <p>Title</p>{" "}
-        <input
-          className="nomTopic"
-          type="text"
-          placeholder="Topic Name"
-          onChange={(e) => setNom(e.target.value)}
-        />{" "}
-        <label className="modalContent" htmlFor="Catégorie-select">
-          <p>Topic's category</p>
-          <select
-            id="categorieSelect"
-            value={categorie}
-            onChange={(e) => setCategorie(e.target.value)}
-          >
-            <option value="">---</option>{" "}
-            {choices.map((choice) => (
-              <option key={choice.id} value={choice.id}>
-                {choice.name}{" "}
-              </option>
-            ))}{" "}
-          </select>{" "}
-        </label>
-        <p>Description</p>
-        <input
-          className="messageTopic"
-          type="text"
-          placeholder="Topic description"
-          onChange={(e) => setMessage(e.target.value)}
-        />{" "}
-        <button
-          className="buttonCreateTopic"
-          type="reset"
-          onClick={() => {
-            handleCreateTopic()
+        <div className="inputNewTopic">
+          <h2 id="titleNewTopic">NEW SUBJECT</h2>
+          <label htmlFor="newTopicTitle">
+            <p>Title</p>
+            <input
+              className="newTopicInput"
+              name="newTopicTitle"
+              type="text"
+              placeholder="Topic Name"
+              onChange={(e) => setName(e.target.value)}
+            />
+          </label>
+          <label htmlFor="newTopicCategory">
+            <p>Topic's category</p>
+            <div className="newTopicCategory">
+              <select
+                className="newTopicInput"
+                name="newTopicCategory"
+                id="categorieSelect"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              >
+                <option value="">Select your category</option>
+                {choices.map((choice) => (
+                  <option key={choice.id} value={choice.id}>
+                    {choice.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </label>
+          <label htmlFor="newTopicFirstMessage">
+            <p>First message</p>
+            <textarea
+              className="newTopicInput"
+              id="newTopicFirstMessage"
+              type="text"
+              placeholder="Enter the first message of your topic here"
+              onChange={(e) => setMessage(e.target.value)}
+            />
+          </label>
+        </div>
 
-            onClose(true) // Ferme la fenêtre modale après la création // updateShouldRefreshTable(true)
-          }}
-        >
-          Create{" "}
-        </button>
-        <button onClick={() => onClose(false)} id="buttonCloseNewTopic">
-          Close
-        </button>{" "}
-      </div>{" "}
+        <div className="buttonNewTopic">
+          <button
+            id="buttonCreateTopic"
+            type="reset"
+            onClick={() => {
+              if (category !== "" && message !== "" && name !== "") {
+                handleCreateTopic()
+                onClose(true)
+              }
+            }}
+          >
+            CREATE
+          </button>
+
+          <button onClick={() => onClose(false)} id="buttonCloseNewTopic">
+            CLOSE
+          </button>
+        </div>
+      </div>
     </div>
   )
 }
