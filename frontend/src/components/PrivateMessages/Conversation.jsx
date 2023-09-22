@@ -89,7 +89,6 @@ export default function Conversation(props) {
       socket.off("receive_message", receiveMessageHandler)
     }
   }, [messageHistory, socket])
-
   return (
     <div className="divConversation">
       <div className="conversationHeader">
@@ -110,11 +109,11 @@ export default function Conversation(props) {
         {messageHistory.map((message) => (
           <div
             className={
-              message.users_id_recipient !== idUser
+              Number(message.users_id_recipient) !== Number(idUser)
                 ? "wrapMessageRight"
                 : "wrapMessageLeft"
             }
-            key={message.date}
+            key={message.id}
           >
             <div className="msgBackground">
               <p>{message.content}</p>

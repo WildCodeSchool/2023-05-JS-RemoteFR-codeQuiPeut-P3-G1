@@ -81,27 +81,33 @@ class GameRegistrationsManager extends AbstractManager {
 
   gameValidateRequests(id) {
     return this.database.query(
-      `SELECT g.schedule, g.guild_name, g.is_campaign, gr.games_id, gr.requester_id, gr.status FROM ${this.table} AS gr
+      `SELECT g.*, gr.games_id, gr.requester_id, gr.status, u.profil_picture AS gm_profil_picture, rpg.rpg_icon FROM guilden.game_registrations AS gr
       JOIN games g ON gr.games_id = g.id
-      WHERE gr.requester_id = ? AND gr.status = "accepted" AND g.schedule > NOW();`,
+      JOIN users u ON g.gm_id = u.id
+      JOIN role_playing_games rpg ON rpg.id = g.role_playing_game_id
+      WHERE gr.requester_id = ? AND gr.status = "accepted" AND schedule > NOW()`,
       [id]
     )
   }
 
   gamePendingRequests(id) {
     return this.database.query(
-      `SELECT g.schedule, g.guild_name, g.is_campaign, gr.games_id, gr.requester_id, gr.status FROM ${this.table} AS gr
+      `SELECT g.*, gr.games_id, gr.requester_id, gr.status, u.profil_picture AS gm_profil_picture, rpg.rpg_icon FROM guilden.game_registrations AS gr
       JOIN games g ON gr.games_id = g.id
-      WHERE gr.requester_id = ? AND gr.status = "pending";`,
+      JOIN users u ON g.gm_id = u.id
+      JOIN role_playing_games rpg ON rpg.id = g.role_playing_game_id
+      WHERE gr.requester_id = ? AND gr.status = "pending" AND schedule > NOW()`,
       [id]
     )
   }
 
   gameHistoryPlayer(id) {
     return this.database.query(
-      `SELECT g.schedule, g.guild_name, g.is_campaign, gr.games_id, gr.requester_id, gr.status FROM ${this.table} AS gr
+      ` SELECT g.*, gr.games_id, gr.requester_id, gr.status, u.profil_picture AS gm_profil_picture, rpg.rpg_icon FROM guilden.game_registrations AS gr
       JOIN games g ON gr.games_id = g.id
-      WHERE gr.requester_id = ? AND g.schedule < NOW();`,
+      JOIN users u ON g.gm_id = u.id
+      JOIN role_playing_games rpg ON rpg.id = g.role_playing_game_id
+      WHERE gr.requester_id = ?  AND schedule < NOW()`,
       [id]
     )
   }

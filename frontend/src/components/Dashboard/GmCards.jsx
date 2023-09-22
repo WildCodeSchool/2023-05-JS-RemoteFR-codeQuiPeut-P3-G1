@@ -3,7 +3,7 @@ import axios from "axios"
 import Cookies from "js-cookie"
 
 // import gmProfilePic from "../../assets/GmCards-assets/GMProfilePic.png"
-import closeModal from "../../assets/GmCards-assets/closeModal.png"
+import closeModal from "../../assets/icon-dashboard/crossWithBg.svg"
 import gameLogo from "../../assets/GmCards-assets/gameLogo.png"
 import Schedule from "../../assets/GmCards-assets/scheduleGMProfil.svg"
 import Location from "../../assets/GmCards-assets/locationGames.svg"
@@ -164,6 +164,7 @@ const GmCards = ({ onClose, gameData, setIsGmCardsOpen }) => {
       )}
       {isPlayerCardsOpen && (
         <PlayerCards
+          isPlayerCardsOpen={isPlayerCardsOpen}
           setIsPlayerCardsOpen={setIsPlayerCardsOpen}
           setIsGmCardsOpen={setIsGmCardsOpen}
           userData={userData}

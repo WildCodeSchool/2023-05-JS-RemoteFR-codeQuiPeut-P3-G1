@@ -6,6 +6,7 @@
   align-items: center;
   color: $third-font-color;
   font-family: $content-font;
+  animation: fadeIn ease 1s;
 
   .leftBoxMain {
     display: flex;
@@ -93,6 +94,91 @@
       border-radius: 12px;
       border: 2px solid #a4945e;
       gap: 10px;
+      .topDivSocial {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        border-bottom: 1px solid #e2d07c;
+      }
+      .mainContainerMapItems {
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        gap: 20px;
+
+        .mapContainerSocial {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          background: #fff;
+          border-radius: 4px;
+          width: 100%;
+          .socialBoxHR {
+            display: flex;
+            align-self: center;
+            height: 80%;
+          }
+          .boxPictureAndName {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 20%;
+            img {
+              width: 40px;
+              height: 40px;
+              border-radius: 50%;
+              border: 2px solid $third-font-color;
+            }
+            p {
+              font-size: 20px;
+              color: black;
+            }
+          }
+          .boxLocation {
+            display: flex;
+            color: black;
+            justify-content: center;
+            align-items: center;
+            width: 40%;
+            p {
+              font-size: 20px;
+            }
+          }
+          .boxGameName {
+            display: flex;
+            color: black;
+            justify-content: center;
+            align-items: center;
+            width: 40%;
+            p {
+              font-size: 20px;
+            }
+          }
+        }
+      }
+
+      .mainContainerMapItems::-webkit-scrollbar {
+        width: 14px;
+        height: 10px;
+        background-color: #180b2393;
+        border-radius: 11px;
+      }
+
+      .mainContainerMapItems::-webkit-scrollbar-thumb {
+        width: 10px;
+        height: 10px;
+        background-color: #667277;
+        border-radius: 11px;
+        -webkit-appearance: none;
+        background-color: #180b23;
+        border: 1px solid #667277;
+        box-shadow: inset 0 0 5px #667277;
+      }
+
+      .mainContainerMapItems ::-webkit-scrollbar-thumb-progress {
+        width: 100%;
+      }
+
       .waitingValidationDiv,
       .validateDiv,
       .historyDiv {
@@ -372,9 +458,11 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+
       .gameBoxProfilTitle {
         width: 100%;
         align-self: baseline;
+
         h2 {
           font-size: 22px;
           font-family: $title-font;
@@ -403,6 +491,8 @@
           width: 100%;
           height: 100%;
           gap: 20px;
+          overflow-y: auto;
+          padding: 20px;
 
           .boxRpgPicture {
             display: flex;
@@ -431,6 +521,28 @@
               height: 30.73px;
             }
           }
+        }
+
+        .gameBoxGamesList::-webkit-scrollbar {
+          width: 14px;
+          height: 10px;
+          background-color: #180b2393;
+          border-radius: 11px;
+        }
+
+        .gameBoxGamesList::-webkit-scrollbar-thumb {
+          width: 10px;
+          height: 10px;
+          background-color: #667277;
+          border-radius: 11px;
+          -webkit-appearance: none;
+          background-color: #180b23;
+          border: 1px solid #667277;
+          box-shadow: inset 0 0 5px #667277;
+        }
+
+        .gameBoxGamesList ::-webkit-scrollbar-thumb-progress {
+          width: 100%;
         }
       }
     }
@@ -532,5 +644,24 @@
       border-radius: 4px;
       background-color: #180b23;
     }
+  }
+  .popupGameProfil {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    backdrop-filter: blur(3px);
+    background-color: rgba(63, 55, 55, 0.413);
+    padding: 20%;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

@@ -1,3 +1,6 @@
+// import PrivateMessage from "../components/PrivateMessages/PrivateMessages.jsx"
+import { Link } from "react-router-dom"
+
 import Arrow from "../../assets/icon-dashboard/arrow.svg"
 import Cross from "../../assets/icon-dashboard/cross.svg"
 import Schedule from "../../assets/icon-dashboard/scheduleIcon.svg"
@@ -9,11 +12,20 @@ function PlayerCards({
   setIsPlayerCardsOpen,
   setIsGmCardsOpen,
   userData,
-  formattedSchedule
+  formattedSchedule,
+  playerCard,
+  setInvitationCard,
+  setPlayerCard,
+  isPlayerCardsOpen
 }) {
   const handleClose = () => {
     setIsPlayerCardsOpen(false)
     setIsGmCardsOpen(false)
+  }
+
+  const handleInvitation = () => {
+    setInvitationCard(true)
+    setPlayerCard(false)
   }
 
   console.info(formattedSchedule)
@@ -21,15 +33,23 @@ function PlayerCards({
   return (
     <div className="major_Container_PlayerCards">
       <div className="PlayerCards_Main_Container">
-        <div className="PlayerCards_Inside_FirstElement">
-          <button className="PlayerCards_BackButton" type="button">
-            <img
-              src={Arrow}
-              id="PlayerCards_BackButton_Img"
-              alt="button_return"
-              onClick={() => setIsPlayerCardsOpen(false)}
-            />
-          </button>
+        <div
+          className={
+            isPlayerCardsOpen
+              ? "PlayerCards_Inside_FirstElement"
+              : "PlayerCards_Inside_FirstElement_Without_Arrow"
+          }
+        >
+          {isPlayerCardsOpen && (
+            <button className="PlayerCards_BackButton" type="button">
+              <img
+                src={Arrow}
+                id="PlayerCards_BackButton_Img"
+                alt="button_return"
+                onClick={() => setIsPlayerCardsOpen(false)}
+              />
+            </button>
+          )}
           <button className="PlayerCards_CloseButton" type="button">
             <img
               src={Cross}
@@ -54,7 +74,9 @@ function PlayerCards({
             </div>
             <div className="PlayerCards_Inside_SecondElement_LineSeparator"></div>
             <div className="PlayerCards_Inside_SecondElement_ButtonMessage_StatusPlayer">
-              <button type="button">SEND A MESSAGE</button>
+              <Link to="/privatemessages">
+                <button type="button">SEND A MESSAGE</button>
+              </Link>
               <span>PLAYER</span>
             </div>
           </div>
@@ -86,6 +108,13 @@ function PlayerCards({
             <img src={FiveRings} alt="logo of Legends of the five Rings" />
           </div>
         </div>
+        {playerCard && (
+          <div className="PlayerCards_Inside_SeventhElement">
+            <button onClick={handleInvitation}>
+              SEND AN INVITATION TO JOIN A GUILD
+            </button>
+          </div>
+        )}
       </div>
     </div>
   )

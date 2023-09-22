@@ -4,6 +4,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(3px);
+  animation: fadeIn ease 0.5s;
+  width: 100%;
+  height: 100%;
 
   .GmCards-container {
     position: fixed;
@@ -21,6 +28,7 @@
     border: 3px solid $third-font-color;
     border-radius: 9px;
     gap: 10px;
+    z-index: 40000;
 
     .GmCards-header {
       display: flex;
@@ -80,6 +88,7 @@
       .close-container {
         display: flex;
         margin-bottom: 100px;
+        cursor: pointer;
       }
     }
     .GmCards-Middle {
@@ -225,6 +234,7 @@
         width: 10%;
         border-radius: 50%;
         border: 2px solid #a4945e;
+        cursor: pointer;
       }
     }
 
@@ -241,5 +251,13 @@
         padding: 0 0 20px 0;
       }
     }
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

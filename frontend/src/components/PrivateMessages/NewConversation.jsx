@@ -2,7 +2,9 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import Cookies from "js-cookie"
 
-export default function NewConversation({ onClose }) {
+import Cross from "../../assets/icon-dashboard/crossWithBg.svg"
+
+export default function NewConversation({ onClose, onNewMessageSent }) {
   const tokenFromCookie = Cookies.get("authToken")
   const idUser = Cookies.get("idUser")
   const headers = {
@@ -32,6 +34,7 @@ export default function NewConversation({ onClose }) {
       )
       .then(() => {
         onClose()
+        onNewMessageSent()
       })
       .catch((err) => {
         console.info("Error while posting new conv", err)
@@ -66,7 +69,7 @@ export default function NewConversation({ onClose }) {
       <div className="newConvContainer">
         <div id="closingButton">
           <button id="closeNewConv" onClick={onClose}>
-            X
+            <img src={Cross} alt="" />
           </button>
         </div>
         <h2>Start a new conversation</h2>

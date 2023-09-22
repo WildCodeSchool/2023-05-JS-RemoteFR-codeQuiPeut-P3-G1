@@ -1,7 +1,3 @@
-@import "../Variable.scss";
-// * {
-//   border: 1px solid blue;
-// }
 .globalcontainerUT {
   display: flex;
   justify-content: center;
@@ -11,22 +7,32 @@
   height: 100%;
 
   .titleUpcommingTable {
-    color: rgb(194 177 108);
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 15%;
+    padding-top: 3%;
     text-align: center;
     font-family: $title-font;
-    font-size: 4.5vw;
+    font-size: clamp(32px, 4.5vw, 64px);
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     font-variant: small-caps;
+    // border: 3px solid red;
+    background: linear-gradient(180deg, #e2d07c 0%, #a4945e 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 
   .containerFilterAndCardsGames {
     display: flex;
     width: 100%;
     height: 100%;
-    justify-content: space-between; /* Espace équivalent entre les éléments */
+    justify-content: space-between;
+    // border: 3px solid red;
     // display: none;
 
     // &.filterGameLeft {
@@ -58,34 +64,95 @@
         border: 1px solid #e2d07c;
         border-radius: 8px;
         height: auto;
-
-        // margin-right: 25px;
-        padding: 20px;
-        gap: 10px;
+        padding: 10px;
+        gap: 20px;
         // margin-top: 10%;
-        font-size: 1vw;
+        font-size: clamp(8px, 1vw, 32px);
         text-align: center;
         font-family: $content-font;
         font-style: normal;
         font-weight: 700;
         line-height: normal;
-        text-transform: uppercase;
-        color: #e2d07c;
+        // text-transform: uppercase;
+        // color: #e2d07c;
+
+        .titleUpcommingTableFilter {
+          background: linear-gradient(180deg, #e2d07c 0%, #a4945e 100%);
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          h1 {
+            font-family: $content-font;
+          }
+        }
 
         .inputUT {
           height: 50px;
           width: 100%;
           padding: 10px;
           border: solid rgb(194 177 108);
+          border-radius: 5px;
+          color: #666;
+          background-color: #fff;
+          font-family: $content-font;
+        }
+        .selectUT {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          line-height: 3;
+          // background: #5c6664;
+          overflow: hidden;
+          border-radius: 5px;
+          width: 100%;
+          select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -ms-appearance: none;
+            appearance: none;
+            box-shadow: none;
+            background-image: none;
+            // flex: 1;
+            height: 4.73vh;
+            width: 100%;
+            padding: 0 0.5em;
+            color: #666;
+            font-family: $content-font;
+            cursor: pointer;
+            border-radius: 6px;
+            border: none;
+          }
+          select::-ms-expand {
+            display: none;
+          }
+          &::after {
+            content: url("/Users/mehdyhertereau/Documents/DEV-2023/2023-05-JS-RemoteFR-codeQuiPeut-P3-G1/frontend/src/assets/icon-create-game/arrow-select.svg");
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: $navbar-color;
+            cursor: pointer;
+            pointer-events: none;
+            transition: 0.25s all ease;
+            width: 25%;
+            height: 100%;
+          }
         }
 
         button {
           display: inline-block;
           padding: 0.75rem 1.25rem;
-          border-radius: 10rem;
+          border-radius: 15px;
+          width: 100%;
+          height: 100%;
           color: #fff;
           text-transform: uppercase;
-          font-size: 1rem;
+          font-size: clamp(16px, 1vw, 32px);
           letter-spacing: 0.15rem;
           transition: all 0.3s;
           position: relative;
@@ -99,7 +166,7 @@
             width: 100%;
             height: 100%;
             background-color: rgb(194 177 108);
-            border-radius: 10rem;
+            // border-radius: 10px;
             z-index: -2;
           }
           &:before {
@@ -111,7 +178,7 @@
             height: 100%;
             background-color: darken(rgb(194 177 108), 15%);
             transition: all 0.3s;
-            border-radius: 10rem;
+            // border-radius: 10px;
             z-index: -1;
           }
           &:hover {
@@ -125,16 +192,29 @@
     }
 
     .gamecard {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
       // border: solid rgb(3, 125, 44);
       color: white;
       width: 100%;
-      height: auto;
+      // height: auto;
       margin: 20px;
+      // display: flex;
+      // border: 2px solid red;
+      // gap: 10px;
+      // justify-content: center;
+      flex-direction: column;
       // overflow: scroll;
       // border: 2px solid yellow;
 
       #upComingGamesCards {
+        display: flex;
+        flex-direction: column;
         overflow-y: auto;
+        width: 100%;
+        height: 60%;
+        gap: 15px;
       }
 
       .containerMenuGame {
@@ -199,6 +279,7 @@
       // border: 2px solid red;
       margin-left: 25px;
       margin-right: 25px;
+
       .bigBoxFilterPlayer {
         display: flex;
         flex-direction: column;
@@ -209,40 +290,48 @@
         border: 1px solid #e2d07c;
         border-radius: 8px;
         height: auto;
-        margin-top: 10%;
-        // margin-left: 25px;
-        // margin-right: 25px;
+        // margin-top: 10%;
         padding: 20px;
         gap: 10px;
-        margin-top: 56px;
-        font-size: 1vw;
+        // margin-top: 56px;
+        font-size: clamp(8px, 1vw, 32px);
         text-align: center;
         font-family: $content-font;
-        font-style: normal;
-        font-weight: 700;
-        line-height: normal;
-        text-transform: uppercase;
-        color: #e2d07c;
+        // border: 2px solid red;
+
+        .titleUpcommingTableFilter2 {
+          background: linear-gradient(180deg, #e2d07c 0%, #a4945e 100%);
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          font-family: $content-font;
+        }
 
         .inputUT {
           height: 50px;
           width: 100%;
           padding: 10px;
           border: solid rgb(194 177 108);
+          border-radius: 5px;
+          color: #666;
+          background-color: #fff;
+          font-family: $content-font;
         }
 
         button {
           display: inline-block;
           padding: 0.75rem 1.25rem;
-          border-radius: 10rem;
+          border-radius: 15px;
+          width: 100%;
+          height: 100%;
           color: #fff;
           text-transform: uppercase;
-          font-size: 1rem;
+          font-size: clamp(16px, 1vw, 32px);
           letter-spacing: 0.15rem;
           transition: all 0.3s;
           position: relative;
           overflow: hidden;
-          z-index: 0;
+          z-index: 1;
           &:after {
             content: "";
             position: absolute;
@@ -251,7 +340,7 @@
             width: 100%;
             height: 100%;
             background-color: rgb(194 177 108);
-            border-radius: 10rem;
+            // border-radius: 10px;
             z-index: -2;
           }
           &:before {
@@ -263,7 +352,7 @@
             height: 100%;
             background-color: darken(rgb(194 177 108), 15%);
             transition: all 0.3s;
-            border-radius: 10rem;
+            // border-radius: 10px;
             z-index: -1;
           }
           &:hover {
@@ -277,6 +366,9 @@
     }
 
     .bigBoxPlayer {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
       color: white;
       width: 100%;
       margin: 20px;
@@ -321,7 +413,12 @@
       }
 
       #upComingTablePlayersCards {
+        display: flex;
+        flex-direction: column;
         overflow-y: auto;
+        width: 100%;
+        height: 60%;
+        gap: 15px;
       }
     }
   }
@@ -348,6 +445,32 @@
   100% {
     -webkit-transform: rotateX(0);
     transform: rotateX(0);
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn ease 1s;
+}
+
+.fade-out {
+  animation: fadeOut ease 1s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 0;
+  }
+  100% {
     opacity: 1;
   }
 }
