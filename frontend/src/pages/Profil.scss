@@ -15,19 +15,18 @@
     align-items: center;
     border-radius: 10px;
     height: 60%;
-    width: 15%;
+    width: 20%;
     gap: 15px;
     // border: 2px solid red;
     .settingsTitle {
-      font-size: 15px;
+      font-size: 1vw;
       h1 {
         background: linear-gradient(180deg, #e2d07c 0%, #a4945e 100%);
         background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        font-family: $title-font;
+        font-family: $content-font;
         text-align: center;
-
         font-style: normal;
         font-weight: 400;
         line-height: normal;
@@ -47,8 +46,8 @@
       .settingsButton,
       .Cliked {
         border-radius: 5px;
-        height: 3rem;
-        width: 10rem;
+        height: 10%;
+        width: 50%;
         button {
           width: 100%;
           height: 100%;
@@ -57,12 +56,11 @@
           display: flex;
           background: none;
           cursor: pointer;
-          color: $third-font-color;
+          background: linear-gradient(180deg, #a4945e 0%, #e2d07c 100%);
+          background-clip: text;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
           font-family: $content-font;
-        }
-        button:hover {
-          background: #4d194d;
-          border-radius: 5px;
         }
       }
       .settingsButton {
@@ -368,85 +366,132 @@
           display: flex;
           flex-direction: column;
           align-items: center;
-          img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 5px solid $third-font-color;
+          justify-content: center;
+          height: 100%;
+          gap: 5px;
+
+          .boxPhoto {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+
+            label {
+              display: flex;
+              justify-content: center;
+              img {
+                width: 80%;
+                border: double 4px transparent;
+                border-radius: 50%;
+                background-image: linear-gradient(#563e5b, #563e5b),
+                  linear-gradient(180deg, rgb(164, 147, 94) 10%, #4d1a4d 100%);
+                background-origin: border-box;
+                background-clip: padding-box, border-box;
+              }
+            }
           }
           span {
+            color: #e2d07c;
             font-size: 10px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: normal;
           }
         }
         .boxName {
           display: flex;
           flex-direction: column;
+          justify-content: center;
+          gap: 10px;
+          height: 100%;
+          width: 40%;
           span {
-            font-size: 12px;
+            color: #e2d07c;
+            font-family: $content-font;
+            font-size: 1vw;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
           }
           .displayUsername {
             display: flex;
             align-items: center;
+            width: 100%;
+            height: 4vh;
+            background-color: #fff;
+            border-radius: 4px;
+            padding-left: 20px;
             p {
               font-family: $content-font;
-              font-size: 1.8vw;
-              color: black;
+              color: #180b23;
+              text-align: center;
+              font-size: 1.5vw;
+              font-style: normal;
+              font-weight: 400;
+              line-height: normal;
             }
-            width: 13vw;
-            height: 4vh;
-
-            background-color: #fff;
-            border-radius: 4px;
           }
           input {
-            width: 13vw;
+            width: 100%;
             height: 4vh;
             font-family: $content-font;
-            font-size: 25px;
+            font-size: 1.5vw;
             background-color: #fff;
             border-radius: 4px;
+            padding-left: 20px;
           }
         }
         .userNameDiv {
           display: flex;
           flex-direction: column;
         }
-        .countryCityNameBox {
-          display: flex;
-          transform: translateX(-10%);
-          gap: 5px;
-          margin-top: 10px;
-          img {
-            width: 17px;
-            height: 22px;
-          }
-        }
+
         .countryCityP {
           display: flex;
           align-items: center;
-          width: 10vw;
           height: 3vh;
           background-color: #fff;
           border-radius: 5px;
+          padding-left: 20px;
           p {
-            font-family: $content-font;
-            font-size: 20px;
-            color: black;
+            color: #180b23;
+            font-family: Koh Santepheap;
+            font-size: 1.2vw;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
           }
         }
         .inputCountryCity {
-          width: 10vw;
+          font-family: "Petrona", serif;
+          // font-size: 1vw;
           height: 3vh;
-          font-family: $content-font;
-          font-size: 20px;
           background-color: #fff;
           border-radius: 4px;
+          padding-left: 20px;
         }
 
         .localisationBox {
           display: flex;
           flex-direction: column;
-          gap: 5px;
+          gap: 10px;
+          width: 20%;
+          height: 100%;
+          // border: 2px solid blue;
+          .countryCityNameBox {
+            display: flex;
+            align-items: flex-end;
+            transform: translateX(-10%);
+            gap: 5px;
+            span {
+              color: #e2d07c;
+              font-family: Koh Santepheap;
+              font-size: 1vw;
+              font-style: normal;
+              font-weight: 700;
+              line-height: normal;
+            }
+          }
         }
       }
       .bioBoxProfil {
@@ -459,7 +504,12 @@
           display: flex;
           width: 90%;
           align-self: center;
-          // margin-bottom: 10px;
+          color: #e2d07c;
+          font-family: Koh Santepheap;
+          font-size: 1vw;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
         }
         .bioBoxProfilText {
           display: flex;
@@ -470,17 +520,18 @@
           height: 11.42vh;
           border-radius: 8px;
           background: #fff;
+          text-align: center;
+          padding: 10px;
           // margin-bottom: 20px;
           textarea {
-            width: 47vw;
+            width: 100%;
             height: 11.42vh;
             outline: none;
-
             border-radius: 6px;
             resize: none;
-            text-align: center;
-            line-height: 100px;
-            height: 100px;
+            border: none;
+            font-size: 1vw;
+            // line-height: 100px;
           }
         }
         #userNameDescription {
@@ -510,21 +561,33 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      // border: 2px solid red;
+      width: 100%;
 
       .gameBoxProfilTitle {
-        width: 100%;
-        align-self: baseline;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        width: 90%;
+        // align-self: baseline;
+        // border: 2px solid red;
 
         h2 {
+          color: #fff;
+          font-family: Koh Santepheap;
           font-size: 22px;
-          font-family: $content-font;
-          color: $secondary-font-color;
-          padding-left: 15%;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          text-transform: uppercase;
+          margin-left: 5%;
         }
-        hr {
-          margin-left: 55px;
-          width: 45vw;
-          border-color: #e2d07c;
+        .hrDiv {
+          // margin-left: 55px;
+          width: 80%;
+          height: 1px;
+          background-color: #e2d07c;
         }
       }
       .compoAndMap {
@@ -651,10 +714,15 @@
         align-items: center;
         width: 100%;
         h3 {
+          color: #fff;
+          text-align: center;
+          font-family: Koh Santepheap;
           font-size: 20px;
-          font-family: $content-font;
-          color: $secondary-font-color;
-          border-bottom: solid 1px #fff;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+          text-decoration-line: underline;
+          text-transform: uppercase;
         }
       }
 
@@ -664,9 +732,13 @@
         justify-content: center;
         align-items: center;
         width: 100%;
-        input {
-          width: 100%;
-        }
+        color: #e2d07c;
+        font-size: 1vw;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        font-family: Koh Santepheap;
+        gap: 7px;
       }
     }
     .bottomBoxProfilEdit {
@@ -701,25 +773,89 @@
         }
       }
 
-      .mailBox {
+      .mailBox2 {
         display: flex;
         flex-direction: column;
+        gap: 7px;
+        width: 50%;
+        color: #e2d07c;
+        font-family: Koh Santepheap;
+        font-size: 1vw;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        input {
+          color: #180b23;
+          text-align: center;
+          font-family: Koh Santepheap;
+          font-size: 13px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+      }
+      .changePassword {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: 7px;
+
+        .oldPassword {
+          display: flex;
+          flex-direction: column;
+          gap: 7px;
+          color: #e2d07c;
+          font-family: Koh Santepheap;
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+          input {
+            padding-left: 10px;
+          }
+        }
+        .newPassword {
+          display: flex;
+          flex-direction: column;
+          gap: 7px;
+          color: #e2d07c;
+          font-family: Koh Santepheap;
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+          input {
+            padding-left: 10px;
+          }
+        }
       }
     }
   }
   .divButtonSwitchEdit,
   .divButtonSwitchValidate {
-    -webkit-box-shadow: 1px 1px 23px 12px rgba(77, 25, 77, 0.7);
-    box-shadow: 1px 1px 23px 12px rgba(77, 25, 77, 0.7);
-    transform: translateY(-70%);
+    // -webkit-box-shadow: 1px 1px 23px 12px rgba(77, 25, 77, 0.7);
+    // box-shadow: 1px 1px 23px 12px rgba(77, 25, 77, 0.7);
+    transform: translateY(-80%);
     // border: 2px solid green;
+    background-color: #180b23;
+    border-radius: 4px;
     button {
       font-size: 20px;
-      color: #e2d07c;
+      // color: #e2d07c;
+      text-align: center;
+      font-family: Petrona;
+      font-size: 23px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      text-transform: uppercase;
       width: 191px;
       height: 54px;
-      border-radius: 4px;
-      background-color: #180b23;
+
+      background: linear-gradient(180deg, #e2d07c 0%, #a4945e 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
   }
 

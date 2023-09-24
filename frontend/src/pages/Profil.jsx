@@ -566,7 +566,7 @@ const Profil = () => {
               </div>
               <div className="boxName">
                 <div>
-                  <span>Username</span>
+                  <span>UserName</span>
                 </div>
                 <div>
                   <input
@@ -612,7 +612,7 @@ const Profil = () => {
               </div>
             </div>
             <div className="bioBoxProfil">
-              <div className="bioBoxProfilTitle">Bio on Profil</div>
+              <div className="bioBoxProfilTitle">Bio on profil</div>
               <div className="bioBoxProfilText">
                 <textarea
                   placeholder={user.description_as_player}
@@ -627,9 +627,7 @@ const Profil = () => {
             <div className="gameBoxProfil">
               <div className="gameBoxProfilTitle">
                 <h2>SEARCH TO PLAY ON</h2>
-              </div>
-              <div className="hrDiv">
-                <hr />
+                <div className="hrDiv"></div>
               </div>
               <div className="compoAndMap">
                 <RpgAdding onAddRpg={() => setOnAddRpg(!onAddRpg)} />
@@ -663,7 +661,7 @@ const Profil = () => {
               </div>
 
               <hr />
-              <div className="mailBox">
+              <div className="mailBox2">
                 Email address
                 <input
                   type="email"
@@ -756,7 +754,7 @@ const Profil = () => {
               </div>
               <div className="boxName">
                 <div>
-                  <span>Username</span>
+                  <span>UserName</span>
                 </div>
                 <div className="displayUsername">
                   <p>{user.username}</p>
@@ -781,7 +779,7 @@ const Profil = () => {
               </div>
             </div>
             <div className="bioBoxProfil">
-              <div className="bioBoxProfilTitle">Bio on Profil</div>
+              <div className="bioBoxProfilTitle">Bio on profil</div>
               <div className="bioBoxProfilText">
                 {user.description_as_player}
               </div>
@@ -789,10 +787,9 @@ const Profil = () => {
             <div className="gameBoxProfil">
               <div className="gameBoxProfilTitle">
                 <h2>SEARCH TO PLAY ON</h2>
+                <div className="hrDiv"></div>
               </div>
-              <div className="hrDiv">
-                <hr />
-              </div>
+
               <div className="compoAndMap">
                 <div className="gameBoxGamesList">
                   {rpgPictures.map((rpgPicture, index) => (
