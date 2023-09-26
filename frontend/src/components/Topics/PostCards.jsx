@@ -72,58 +72,58 @@ export default function PostCards({ isOpen, onClose, postData }) {
   // console.info("postData: ", postData)
 
   return (
-    <div className={`post-cards ${isOpen ? "open" : "closed"}`}>
-      <div className="topics-container">
-        <button className="close-button" onClick={onClose}>
-          Close
-        </button>
-        <div className="titreDeLaPostCard">
-          <u>{postData.title}</u>
-        </div>
-        <div id="allPostContent">
-          {allPosts.map((post) => (
-            <div className="post-card" key={post.id}>
-              <div className="post-details">
-                <img
-                  src={`${import.meta.env.VITE_BACKEND_URL}/${
-                    post.profil_picture
-                  }`}
-                  alt="photo de profil de l'utilisateur"
-                />
-                <div className="usernamePostCard">
-                  <p>{post.username}</p>
-                </div>
-                <div className="postForumDate">
-                  <p>
-                    {new Date(post.date).toLocaleString("en-EN", {
-                      day: "2-digit",
-                      month: "2-digit",
-                      year: "numeric",
-                      hour: "2-digit",
-                      minute: "2-digit"
-                    })}
-                  </p>
-                </div>
+    <div id="postCardsContainer">
+      <button id="postCardsButtonClose" onClick={onClose}>
+        Close
+      </button>
+      <div id="postCardsTitle">
+        <u>{postData.title}</u>
+      </div>
+      <div id="allPostContent">
+        {allPosts.map((post) => (
+          <div id="postCardsOneCard" key={post.id}>
+            <div id="postCardsDetails">
+              <img
+                src={`${import.meta.env.VITE_BACKEND_URL}/${
+                  post.profil_picture
+                }`}
+                alt="User profil picture"
+              />
+              <div id="postCardUsername">
+                <p>{post.username}</p>
               </div>
-              <div className="contentPostCard">
-                <p>{post.content}</p>
+              <div id="postCardsDate">
+                <p>
+                  {new Date(post.date).toLocaleString("en-EN", {
+                    day: "2-digit",
+                    month: "2-digit",
+                    year: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit"
+                  })}
+                </p>
               </div>
             </div>
-          ))}
-        </div>
+            <div id="contentPostCard">
+              <p>{post.content}</p>
+            </div>
+          </div>
+        ))}
+      </div>
 
-        {/* Formulaire pour saisir un nouveau commentaire */}
-        <div className="new-comment-form">
-          <div className="underlineTopicsTextArea"></div>
-          <textarea
-            className="textareaPostCArd"
-            rows="4"
-            placeholder="Enter your answer"
-            value={newComment}
-            onChange={handleCommentChange}
-          ></textarea>
-          <button onClick={handleSubmitComment}>SEND MY MESSAGE</button>
-        </div>
+      {/* Formulaire pour saisir un nouveau commentaire */}
+      <div id="postCardsNewAnswerGlobal">
+        <div id="postCardsUnderlineTextarea"></div>
+        <textarea
+          id="postCardsTextarea"
+          rows="4"
+          placeholder="Enter your answer"
+          value={newComment}
+          onChange={handleCommentChange}
+        ></textarea>
+        <button id="postCardsButtonSend" onClick={handleSubmitComment}>
+          SEND MY MESSAGE
+        </button>
       </div>
     </div>
   )
