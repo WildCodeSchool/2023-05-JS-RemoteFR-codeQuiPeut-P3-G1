@@ -8,13 +8,9 @@ const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } = process.env
 
 const pool = mysql.createPool({
   host: DB_HOST,
-
   port: DB_PORT,
-
   user: DB_USER,
-
   password: DB_PASSWORD,
-
   database: DB_NAME,
 })
 
@@ -35,33 +31,19 @@ pool.getConnection().catch(() => {
 // declare and fill models: that's where you should register your own managers
 
 const models = {}
-
 const UsersManager = require("./UsersManager")
-
 const TestimonialsManager = require("./TestimonialsManager")
-
 const GamesManager = require("./GamesManager")
-
 const GameRegistrationsManager = require("./GameRegistrationsManager")
-
 const PostsManager = require("./PostsManager")
-
 const TopicsManager = require("./TopicsManager")
-
 const TopicsSubscriptionManager = require("./TopicsSubscriptionManager")
-
 const CategoriesManager = require("./CategoriesManager")
-
 const FriendRequestManager = require("./FriendRequestManager")
-
 const FiltersManager = require("./FiltersManager")
-
 const UsersFiltersManager = require("./UsersFiltersManager")
-
 const PrivateMessagesManager = require("./PrivateMessagesManager")
-
 const RolePlayingGamesManager = require("./RolePlayingGamesManager")
-
 const GamesHasUsersManager = require("./GamesHasUsersManager")
 const GameRegistrationsAsPlayerManager = require("./GameRegistrationsAsPlayerManager")
 

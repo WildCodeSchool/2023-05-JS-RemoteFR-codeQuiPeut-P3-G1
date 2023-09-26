@@ -36,39 +36,26 @@ router.get(
   "/gameregistrationasplayer/:id",
   GameRegistrationsAsPlayerControllers.AllInvitationsOfGm
 )
-
 router.get("/joiningRequests/:id", GameRegistrationsControllers.joiningRequests)
-
 router.get(
   "/validateRequests/:id",
-
   GameRegistrationsControllers.validateRequests
 )
-
 router.get("/pendingRequests/:id", GameRegistrationsControllers.pendingRequests)
-
 router.get(
   "/gameHistoryPlayer/:id",
-
   GameRegistrationsControllers.gameHistoryPlayer
 )
-
 router.get("/upcommingGameGM/:id", GamesControllers.upcommingGameGM)
-
 router.get("/historyGameGM/:id", GamesControllers.historyGameGM)
-
 router.put(
   "/joiningRequestsRejected/:requesterId/:gameId",
-
   GameRegistrationsControllers.joiningRequestsRejected
 )
-
 router.put(
   "/joiningRequestsAccepted/:requesterId/:gameId",
-
   GameRegistrationsControllers.joiningRequestsAccepted
 )
-
 router.put(
   "/joiningRequestsRejectedNotification/:playerId/:gameId",
   GameRegistrationsAsPlayerControllers.joiningRequestsRejectedNotification
@@ -77,16 +64,12 @@ router.put(
   "/joiningRequestsAcceptedNotification/:playerId/:gameId",
   GameRegistrationsAsPlayerControllers.joiningRequestsAcceptedNotification
 )
-
 router.post(
   "/dispatchPlayer/:requesterId/:gameId",
-
   GamesHasUsersControllers.add
 )
-
 router.get(
   "/messagePreview/:idReceiver",
-
   PrivateMessagesControllers.messagesPreview
 )
 
