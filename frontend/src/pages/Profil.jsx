@@ -37,7 +37,7 @@ const Profil = () => {
   const [playersProfil, setPlayersProfil] = useState([])
 
   const [buttonStates, setButtonStates] = useState({
-    mainDiv: true,
+    mainDiv: false,
     myGames: false,
     social: false
   })
@@ -235,7 +235,7 @@ const Profil = () => {
             onClick={() =>
               setButtonStates({
                 ...buttonStates,
-                mainDiv: !buttonStates.mainDiv,
+                mainDiv: true,
                 myGames: false,
                 social: false
               })
@@ -248,7 +248,7 @@ const Profil = () => {
             onClick={() =>
               setButtonStates({
                 ...buttonStates,
-                myGames: !buttonStates.myGames,
+                myGames: true,
                 mainDiv: false,
                 social: false
               })
@@ -261,7 +261,7 @@ const Profil = () => {
             onClick={() =>
               setButtonStates({
                 ...buttonStates,
-                social: !buttonStates.social,
+                social: true,
                 myGames: false,
                 mainDiv: false
               })
@@ -327,6 +327,7 @@ const Profil = () => {
                 <input
                   type="checkbox"
                   id="switch"
+                  checked={isPlayer === false}
                   onClick={() => setIsPlayer(!isPlayer)}
                 />
                 <label htmlFor="switch">
@@ -338,8 +339,8 @@ const Profil = () => {
 
             {isPlayer === false && (
               <>
+                <div className="titleValidate">UPCOMMING GAMES</div>
                 <div className="validateDiv">
-                  <div className="titleValidate">UPCOMMING GAMES</div>
                   <div className="displayValidate">
                     {upcommingGameGMData.map((validated, index) => {
                       const date = new Date(validated.schedule)
@@ -375,8 +376,8 @@ const Profil = () => {
                 <div className="waitingValidationDiv">
                   <RequestGM />
                 </div>
+                <div className="titleHistory">HISTORY</div>
                 <div className="historyDiv">
-                  <div className="titleHistory">HISTORY</div>
                   <div className="displayHistory">
                     {historyGameGMData.map((history, index) => {
                       const date = new Date(history.schedule)
@@ -566,7 +567,7 @@ const Profil = () => {
               </div>
               <div className="boxName">
                 <div>
-                  <span>Username</span>
+                  <span>UserName</span>
                 </div>
                 <div>
                   <input
@@ -612,7 +613,7 @@ const Profil = () => {
               </div>
             </div>
             <div className="bioBoxProfil">
-              <div className="bioBoxProfilTitle">Bio on Profil</div>
+              <div className="bioBoxProfilTitle">Bio on profil</div>
               <div className="bioBoxProfilText">
                 <textarea
                   placeholder={user.description_as_player}
@@ -627,9 +628,7 @@ const Profil = () => {
             <div className="gameBoxProfil">
               <div className="gameBoxProfilTitle">
                 <h2>SEARCH TO PLAY ON</h2>
-              </div>
-              <div className="hrDiv">
-                <hr />
+                <div className="hrDiv"></div>
               </div>
               <div className="compoAndMap">
                 <RpgAdding onAddRpg={() => setOnAddRpg(!onAddRpg)} />
@@ -663,7 +662,7 @@ const Profil = () => {
               </div>
 
               <hr />
-              <div className="mailBox">
+              <div className="mailBox2">
                 Email address
                 <input
                   type="email"
@@ -756,7 +755,7 @@ const Profil = () => {
               </div>
               <div className="boxName">
                 <div>
-                  <span>Username</span>
+                  <span>UserName</span>
                 </div>
                 <div className="displayUsername">
                   <p>{user.username}</p>
@@ -781,7 +780,7 @@ const Profil = () => {
               </div>
             </div>
             <div className="bioBoxProfil">
-              <div className="bioBoxProfilTitle">Bio on Profil</div>
+              <div className="bioBoxProfilTitle">Bio on profil</div>
               <div className="bioBoxProfilText">
                 {user.description_as_player}
               </div>
@@ -789,10 +788,9 @@ const Profil = () => {
             <div className="gameBoxProfil">
               <div className="gameBoxProfilTitle">
                 <h2>SEARCH TO PLAY ON</h2>
+                <div className="hrDiv"></div>
               </div>
-              <div className="hrDiv">
-                <hr />
-              </div>
+
               <div className="compoAndMap">
                 <div className="gameBoxGamesList">
                   {rpgPictures.map((rpgPicture, index) => (
