@@ -113,6 +113,16 @@ class GamesManager extends AbstractManager {
       [id]
     )
   }
+
+  getGmProfilPictureByGameId(id) {
+    return this.database.query(
+      `SELECT users.profil_picture
+      FROM ${this.table}
+      JOIN users ON users.id = games.gm_id
+      WHERE games.id = ?`,
+      [id]
+    )
+  }
 }
 
 module.exports = GamesManager

@@ -113,7 +113,7 @@ CREATE TABLE `game_registrations` (
   KEY `fk_party_registrations_users1_idx` (`requester_id`),
   CONSTRAINT `fk_party_registrations_users1` FOREIGN KEY (`requester_id`) REFERENCES `users` (`id`),
   CONSTRAINT `party_registrations_ibfk_1` FOREIGN KEY (`games_id`) REFERENCES `games` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,7 +122,7 @@ CREATE TABLE `game_registrations` (
 
 LOCK TABLES `game_registrations` WRITE;
 /*!40000 ALTER TABLE `game_registrations` DISABLE KEYS */;
-INSERT INTO `game_registrations` VALUES (1,1,'rejected',2),(2,5,'accepted',2),(3,2,'accepted',3),(4,3,'accepted',4),(5,4,'pending',5),(6,1,'accepted',3),(7,4,'pending',1),(8,4,'pending',3),(9,2,'pending',5),(10,1,'pending',5);
+INSERT INTO `game_registrations` VALUES (1,1,'accepted',2),(2,5,'accepted',3),(3,2,'accepted',3),(4,3,'accepted',4),(5,4,'accepted',5),(6,1,'accepted',3),(7,4,'accepted',1),(8,4,'pending',3),(9,2,'accepted',5),(10,1,'pending',5),(11,1,'pending',5),(12,4,'pending',2);
 /*!40000 ALTER TABLE `game_registrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,7 +143,7 @@ CREATE TABLE `game_registrations_as_player` (
   KEY `fk_game_registrations_has_player_games1_idx` (`games_id`),
   CONSTRAINT `fk_game_registrations_has_player_games1` FOREIGN KEY (`games_id`) REFERENCES `games` (`id`),
   CONSTRAINT `fk_game_registrations_has_player_users1` FOREIGN KEY (`player_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152,7 +152,7 @@ CREATE TABLE `game_registrations_as_player` (
 
 LOCK TABLES `game_registrations_as_player` WRITE;
 /*!40000 ALTER TABLE `game_registrations_as_player` DISABLE KEYS */;
-INSERT INTO `game_registrations_as_player` VALUES (1,1,1,'pending'),(2,2,2,'pending'),(3,3,3,'pending'),(4,4,4,'pending'),(5,2,5,'pending'),(6,5,4,'pending');
+INSERT INTO `game_registrations_as_player` VALUES (1,1,1,'pending'),(2,2,2,'pending'),(3,3,3,'pending'),(4,4,4,'pending'),(5,2,5,'pending'),(6,5,4,'pending'),(7,1,5,'pending');
 /*!40000 ALTER TABLE `game_registrations_as_player` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -179,7 +179,7 @@ CREATE TABLE `games` (
   PRIMARY KEY (`id`),
   KEY `ID_role_playing_game` (`role_playing_game_id`),
   CONSTRAINT `parties_ibfk_1` FOREIGN KEY (`role_playing_game_id`) REFERENCES `role_playing_games` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -188,7 +188,7 @@ CREATE TABLE `games` (
 
 LOCK TABLES `games` WRITE;
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
-INSERT INTO `games` VALUES (1,1,'2023-10-15 19:00:00',5,'Join us for an epic fantasy adventure!','Adventure','Rise of Heroes','Avalon',0,1,'Raxion','1'),(2,2,'2023-10-20 18:30:00',4,'Explore the galaxy in this Star Wars RPG.','Adventure','Galactic Explorations','Coruscant',1,0,'Elgon','2'),(3,3,'2023-10-18 20:00:00',6,'Uncover the secrets of the ancient city.','Horror','Cthulhu Chronicles','Arkham',0,0,'Blake','3'),(4,4,'2023-10-16 15:00:00',3,'Solve puzzles and mysteries in Victorian London.','Sci-Fi','Sherlock Adventures','London',0,1,'Nestadar','4'),(5,5,'2023-10-19 14:00:00',5,'Embark on a journey in a high-fantasy world.','Horror','Epic Odyssey','Narnia',1,1,'Moix','5');
+INSERT INTO `games` VALUES (1,1,'2023-10-15 19:00:00',5,'Join us for an epic fantasy adventure!','Adventure','Rise of Heroes','Avalon',0,1,'Raxion','1'),(2,2,'2023-10-20 18:30:00',4,'Explore the galaxy in this Star Wars RPG.','Adventure','Galactic Explorations','Coruscant',1,0,'Elgon','2'),(3,3,'2023-10-18 20:00:00',6,'Uncover the secrets of the ancient city.','Horror','Cthulhu Chronicles','Arkham',0,0,'Blake','3'),(4,4,'2023-10-16 15:00:00',3,'Solve puzzles and mysteries in Victorian London.','Sci-Fi','Sherlock Adventures','London',0,1,'Nestadar','4'),(5,5,'2023-10-19 14:00:00',5,'Embark on a journey in a high-fantasy world.','Horror','Epic Odyssey','Narnia',1,1,'Moix','5'),(65,6,'2023-09-14 00:00:00',4,'rtdhdrthhthfsfgesvsevgvg','Adventure','htdhdtht','Alba-la-Romaine',0,0,'Moix','5'),(66,3,'2023-09-30 02:00:00',4,'rggrdgrgrg','Horror','qrzgrdgrg','',1,0,'Nestadar','4');
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -216,7 +216,7 @@ CREATE TABLE `games_has_users` (
 
 LOCK TABLES `games_has_users` WRITE;
 /*!40000 ALTER TABLE `games_has_users` DISABLE KEYS */;
-INSERT INTO `games_has_users` VALUES (1,1),(2,2),(5,2),(3,3),(4,4),(5,5);
+INSERT INTO `games_has_users` VALUES (4,1),(1,2),(5,3),(3,4),(2,5),(4,5);
 /*!40000 ALTER TABLE `games_has_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -297,7 +297,7 @@ CREATE TABLE `posts` (
   KEY `fk_forum_topics_posts_users1_idx` (`users_id`),
   CONSTRAINT `fk_forum_topics_posts_forum_topics1` FOREIGN KEY (`topics_id`) REFERENCES `topics` (`id`),
   CONSTRAINT `fk_forum_topics_posts_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -306,7 +306,7 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-INSERT INTO `posts` VALUES (1,1,1,'I love discussing fantasy worlds! What are your favorites?','2023-08-31 14:32:14'),(2,2,2,'Sci-fi RPGs have always been my passion. Any recommendations?','2023-08-31 14:32:14'),(3,3,3,'Horror stories give me a thrill. Share your scariest moments!','2023-08-31 14:32:14'),(4,4,4,'Solving mysteries in RPGs is such a unique experience. Thoughts?','2023-08-31 14:32:14'),(5,5,5,'Epic adventures create unforgettable memories. Let\'s talk about them!','2023-08-31 14:32:14');
+INSERT INTO `posts` VALUES (1,1,1,'I love discussing fantasy worlds! What are your favorites?','2023-08-31 14:32:14'),(2,2,2,'Sci-fi RPGs have always been my passion. Any recommendations?','2023-08-31 14:32:14'),(3,3,3,'Horror stories give me a thrill. Share your scariest moments!','2023-08-31 14:32:14'),(4,4,4,'Solving mysteries in RPGs is such a unique experience. Thoughts?','2023-08-31 14:32:14'),(5,5,5,'Epic adventures create unforgettable memories. Let\'s talk about them!','2023-08-31 14:32:14'),(13,1,5,'jnrofgnsoifgnsreiogv','2023-09-25 18:33:13'),(14,8,5,'sEUOFHUFIHEZLF89E','2023-09-25 18:33:38');
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -329,7 +329,7 @@ CREATE TABLE `private_messages` (
   KEY `ID_recipient` (`users_id_recipient`),
   CONSTRAINT `private_messages_ibfk_1` FOREIGN KEY (`users_id_sender`) REFERENCES `users` (`id`),
   CONSTRAINT `private_messages_ibfk_2` FOREIGN KEY (`users_id_recipient`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -338,7 +338,7 @@ CREATE TABLE `private_messages` (
 
 LOCK TABLES `private_messages` WRITE;
 /*!40000 ALTER TABLE `private_messages` DISABLE KEYS */;
-INSERT INTO `private_messages` VALUES (4,1,2,'Hey, are you joining the fantasy campaign this weekend?','2023-08-31 16:32:47',1),(5,2,3,'I have some sci-fi RPG suggestions for you. Let\'s chat!','2023-08-31 16:32:47',0),(6,3,4,'Do you enjoy horror RPGs? Let\'s discuss some recommendations.','2023-08-31 16:32:47',1),(7,4,5,'Solving mysteries in RPGs is my favorite. Want to share stories?','2023-08-31 16:32:47',0),(8,5,1,'Epic adventures await! Let\'s plan our next campaign.','2023-08-31 16:32:47',1);
+INSERT INTO `private_messages` VALUES (4,1,2,'Hey, are you joining the fantasy campaign this weekend?','2023-08-31 16:32:47',1),(5,2,3,'I have some sci-fi RPG suggestions for you. Let\'s chat!','2023-08-31 16:32:47',0),(6,3,4,'Do you enjoy horror RPGs? Let\'s discuss some recommendations.','2023-08-31 16:32:47',1),(7,4,5,'Solving mysteries in RPGs is my favorite. Want to share stories?','2023-08-31 16:32:47',0),(8,5,1,'Epic adventures await! Let\'s plan our next campaign.','2023-08-31 16:32:47',1),(10,5,4,'ehfuehfe','2023-09-25 20:32:53',0);
 /*!40000 ALTER TABLE `private_messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -416,7 +416,7 @@ CREATE TABLE `topics` (
   KEY `fk_forum_topics_users1_idx` (`users_id`),
   CONSTRAINT `fk_forum_topics_forums1` FOREIGN KEY (`categories_id`) REFERENCES `categories` (`id`),
   CONSTRAINT `fk_forum_topics_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -425,7 +425,7 @@ CREATE TABLE `topics` (
 
 LOCK TABLES `topics` WRITE;
 /*!40000 ALTER TABLE `topics` DISABLE KEYS */;
-INSERT INTO `topics` VALUES (1,'Favorite Fantasy Worlds',1,1,'2023-08-31 14:29:31',10),(2,'Best Sci-Fi RPGs',2,2,'2023-08-31 14:29:31',5),(3,'Horror Stories to Share',3,3,'2023-08-31 14:29:31',3),(4,'Solving Mysteries in RPGs',4,4,'2023-08-31 14:29:31',7),(5,'Epic Adventure Moments',5,5,'2023-08-31 14:29:31',12);
+INSERT INTO `topics` VALUES (1,'Favorite Fantasy Worlds',1,1,'2023-08-31 14:29:31',10),(2,'Best Sci-Fi RPGs',2,2,'2023-08-31 14:29:31',5),(3,'Horror Stories to Share',3,3,'2023-08-31 14:29:31',3),(4,'Solving Mysteries in RPGs',4,4,'2023-08-31 14:29:31',7),(5,'Epic Adventure Moments',5,5,'2023-08-31 14:29:31',12),(8,'coucou les copains',3,5,'2023-09-25 18:33:38',0);
 /*!40000 ALTER TABLE `topics` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -545,7 +545,7 @@ CREATE TABLE `users_has_role_playing_games` (
 
 LOCK TABLES `users_has_role_playing_games` WRITE;
 /*!40000 ALTER TABLE `users_has_role_playing_games` DISABLE KEYS */;
-INSERT INTO `users_has_role_playing_games` VALUES (1,1),(5,1),(2,2),(4,2),(1,3),(3,3),(4,3),(4,4),(5,5),(5,6),(5,8);
+INSERT INTO `users_has_role_playing_games` VALUES (1,1),(5,1),(2,2),(4,2),(1,3),(3,3),(4,3),(4,4),(5,5),(5,6),(5,7),(5,8);
 /*!40000 ALTER TABLE `users_has_role_playing_games` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -558,4 +558,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-22 16:50:33
+-- Dump completed on 2023-09-29 14:43:38
