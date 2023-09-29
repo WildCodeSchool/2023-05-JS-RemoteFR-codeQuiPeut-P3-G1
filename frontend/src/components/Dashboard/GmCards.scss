@@ -28,7 +28,7 @@
     border: 3px solid $third-font-color;
     border-radius: 9px;
     gap: 10px;
-    z-index: 40000;
+    z-index: 4000;
 
     .GmCards-header {
       display: flex;
@@ -254,6 +254,10 @@
   }
 }
 @keyframes fadeIn {
-  0% {opacity: 0;}
-  100% {opacity: 1;}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

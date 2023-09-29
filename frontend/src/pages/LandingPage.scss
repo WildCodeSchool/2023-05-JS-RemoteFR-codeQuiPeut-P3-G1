@@ -10,6 +10,14 @@
     position: relative;
     z-index: 50;
   }
+  .loader {
+    /* Vos styles de loader ici, par exemple : */
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+  }
 
   .wave-testLandingPage {
     position: absolute;

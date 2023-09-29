@@ -10,29 +10,43 @@ export default function Topics() {
   const [isNewTopicOpen, setIsNewTopicOpen] = useState(false)
   const [usernameFilter, setUsernameFilter] = useState("")
   const [sujetFilter, setSujetFilter] = useState("")
-  const [dateFilter, setDateFilter] = useState("all") // Nouveau état pour le filtre de date
+  const [dateFilter, setDateFilter] = useState("all")
   const [postData, setPostData] = useState(null)
   const [isPostCardsOpen, setIsPostCardsOpen] = useState(false)
+  const [shouldRefreshTable, setShouldRefreshTable] = useState(false)
+  const [isBoxTopicsVisible, setIsBoxTopicsVisible] = useState(true)
 
   const headers = {
     Authorization: `Bearer ${tokenFromCookie}`
   }
 
-  useEffect(() => {
+  const fetchTopics = () => {
     axios
       .get(`${import.meta.env.VITE_BACKEND_URL}/topicsAndUsers`, { headers })
       .then((res) => setTopics(res.data))
       .catch((error) => {
         console.error(
           "Une erreur s'est produite lors de la récupération des sujets.",
+
           error
         )
-        // Gérez l'erreur ici (peut-être un message à l'utilisateur)
       })
+  }
+
+  useEffect(() => {
+    fetchTopics()
   }, [])
 
-  const openNewTopicModal = () => {
-    setIsNewTopicOpen(true)
+  useEffect(() => {
+    if (shouldRefreshTable) {
+      fetchTopics()
+
+      setShouldRefreshTable(false)
+    }
+  }, [shouldRefreshTable])
+
+  const openNewTopicModal = (value) => {
+    setIsNewTopicOpen(value)
   }
 
   const closeNewTopicModal = () => {
@@ -56,155 +70,186 @@ export default function Topics() {
     const targetDate = new Date(dateString)
     const difference = currentDate - targetDate
     const daysDifference = Math.floor(difference / (1000 * 60 * 60 * 24))
+
     let result = ""
+
     if (daysDifference === 0) {
-      result = "aujourd'hui"
+      result = "Today"
     } else if (daysDifference === 1) {
-      result = "hier"
+      result = "Yesterday"
     } else {
-      result = `il y a ${daysDifference} jours`
+      result = `${daysDifference} days ago`
     }
+
     return result
   }
-
+  // console.info("topics", topics)
   const handlePostClick = (allPostData) => {
-    // Ouvrez le composant PlayerCards en passant les informations du joueur sélectionné.
     setIsPostCardsOpen(true)
+
     setPostData(allPostData)
+
+    setIsBoxTopicsVisible(false) // Masquer la section principale
   }
 
-  console.info(topics)
+  const updateShouldRefreshTable = (value) => {
+    setShouldRefreshTable(value)
+  }
+
   return (
     <>
       <div className="containeurTopicsAll">
-        <div className="titleTopics">
+        {/* <div className="titleTopics">
           <h1>Topics</h1>
-        </div>
-        <div className="titreOriginalPourUneDiv">
-          <div className="globalDivTopics">
-            <div className="divTopics">
-              <h2 className="titleFilterTopic"> Recherches </h2>
-              <div className="boxFilterTopics">
-                <input
-                  className="writingWindow"
-                  type="text"
-                  placeholder="Filtrer par nom d'utilisateur"
-                  value={usernameFilter}
-                  onChange={handleUsernameFilterChange}
-                />
+        </div> */}
+        <div className="globalDivTopics">
+          {isBoxTopicsVisible && (
+            <div className="divTopicsAndFilter">
+              <div className="divTopics">
+                <div className="boxFilterTopics">
+                  <h2 className="titleFilterTopic">Find a Topic</h2>
+                  <input
+                    className="writingWindow"
+                    type="text"
+                    placeholder="FILTER BY USERNAME"
+                    value={usernameFilter}
+                    onChange={handleUsernameFilterChange}
+                  />
+                  <input
+                    className="writingWindow"
+                    type="text"
+                    placeholder="FILTER BY KEYWORD"
+                    value={sujetFilter}
+                    onChange={handleSujetFilterChange}
+                  />
+                  <div className="selectWindow">
+                    <select
+                      value={dateFilter}
+                      onChange={handleDateFilterChange}
+                    >
+                      <option value="all">FILTER BY DATE</option>
+                      <option value="lastWeek">Less than a week ago</option>
+                      <option value="lastMonth">More than a month ago</option>
+                    </select>
+                  </div>
 
-                <input
-                  className="writingWindow"
-                  type="text"
-                  placeholder="Filtrer par mot clé"
-                  value={sujetFilter}
-                  onChange={handleSujetFilterChange}
-                />
-
-                {/* Nouveau élément de formulaire pour le filtre de date */}
-                <select
-                  className="writingWindow"
-                  value={dateFilter}
-                  onChange={handleDateFilterChange}
-                >
-                  <option value="all">Toutes les dates</option>
-                  <option value="lastWeek">Il y a moins d'une semaine</option>
-                  <option value="lastMonth">Il y a plus d'un mois</option>
-                  {/* Ajoutez d'autres options de filtrage par date ici */}
-                </select>
-
-                <div className="boxNewTopics">
-                  <button onClick={openNewTopicModal}>Nouveau Topic</button>
+                  <div className="boxNewTopics">
+                    <button onClick={openNewTopicModal}>
+                      OR CREATE A NEW TOPIC
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
+              <div className="BoxTopicsAndNewTopics">
+                <div>
+                  <h2 className="titleBoxTopics">RECENT POST</h2>
+                </div>
+                {!isPostCardsOpen && (
+                  <div className="globalTopicsBox">
+                    {topics
 
-            <div className="BoxTopicsAndNewTopics">
-              <div>
-                <h2 className="titleBoxTopics"> Recent post</h2>
-              </div>
-              {!isPostCardsOpen && (
-                <div className="globalTopicsBox">
-                  {topics
-                    .filter((topic) => {
-                      // Utilisez la comparaison pour vérifier si le nom d'utilisateur commence par la chaîne de filtrage
-                      return topic.username
-                        .toLowerCase()
-                        .startsWith(usernameFilter.toLowerCase())
-                    })
-                    .filter((topic) =>
-                      topic.title
-                        .toLowerCase()
-                        .includes(sujetFilter.toLowerCase())
-                    )
-                    .filter((topic) => {
-                      if (dateFilter === "lastWeek") {
-                        const targetDate = new Date(topic.date)
-                        const currentDate = new Date()
-                        const oneWeekAgo = new Date(
-                          currentDate.getTime() - 7 * 24 * 60 * 60 * 1000
-                        )
-                        return targetDate > oneWeekAgo
-                      } else if (dateFilter === "lastMonth") {
-                        const targetDate = new Date(topic.date)
-                        const currentDate = new Date()
-                        const oneMonthAgo = new Date(
-                          currentDate.getFullYear(),
-                          currentDate.getMonth() - 1,
-                          currentDate.getDate()
-                        )
-                        return targetDate > oneMonthAgo
-                      } else {
-                        return true // "Toutes les dates" ou aucune sélection
-                      }
-                    })
-                    .map((topic) => (
-                      <div
-                        key={topic.id}
-                        onClick={() => handlePostClick(topic)}
-                      >
-                        <div className="topicbox">
-                          <div className="headerCardTopic">
-                            <div className="photoAndName">
-                              <img
-                                src={`${import.meta.env.VITE_BACKEND_URL}/${
-                                  topic.profil_picture
-                                }`}
-                                alt="photo de profil de l'utilisateur"
-                                className="photoUserTopic"
-                              />
-                              <div>{topic.username}</div>
+                      .filter((topic) =>
+                        topic.username
+                          .toLowerCase()
+                          .includes(usernameFilter.toLowerCase())
+                      )
+
+                      .filter((topic) =>
+                        topic.title
+                          .toLowerCase()
+                          .includes(sujetFilter.toLowerCase())
+                      )
+
+                      .filter((topic) => {
+                        if (dateFilter === "lastWeek") {
+                          const targetDate = new Date(topic.date)
+                          const currentDate = new Date()
+                          const oneWeekAgo = new Date(
+                            currentDate.getTime() - 7 * 24 * 60 * 60 * 1000
+                          )
+
+                          return targetDate > oneWeekAgo
+                        } else if (dateFilter === "lastMonth") {
+                          const targetDate = new Date(topic.date)
+                          const currentDate = new Date()
+                          const oneMonthAgo = new Date(
+                            currentDate.getFullYear(),
+                            currentDate.getMonth() - 1,
+                            currentDate.getDate()
+                          )
+
+                          return targetDate > oneMonthAgo
+                        } else {
+                          return true
+                        }
+                      })
+
+                      .map((topic) => (
+                        <div key={topic.id}>
+                          <div className="topicboxId">
+                            <div className="headerCardTopic">
+                              <div className="photoAndName">
+                                <img
+                                  src={`${import.meta.env.VITE_BACKEND_URL}/${
+                                    topic.profil_picture
+                                  }`}
+                                  alt="photo de profil de l'utilisateur"
+                                  className="photoUserTopic"
+                                />
+                                <div>{topic.username}</div>
+                              </div>
+                              <div className="dateTopics">
+                                <p>{formatDateDistance(topic.date)}</p>
+                              </div>
                             </div>
-                            <div className="dateTopics">
-                              {formatDateDistance(topic.date)}
+                            <div className="topicTitleInCard">
+                              <h3>
+                                <u>Subject :</u>
+                              </h3>
+                              <p>{topic.title}</p>
+                            </div>
+                            <div>{topic.categories_id}</div>
+                            <h3>
+                              <u>Message</u>
+                            </h3>
+                            <div className="firstContentInCard">
+                              <p>{topic.first_content}</p>
+                            </div>
+                            <div className="buttonInCard">
+                              <button onClick={() => handlePostClick(topic)}>
+                                REPLY TO THE GUILDER
+                              </button>
                             </div>
                           </div>
-                          <div> Sujet : {topic.title}</div>
-                          <div>{topic.categories_id}</div>
                         </div>
-                      </div>
-                    ))}
-                </div>
-              )}
-            </div>
-
-            {isNewTopicOpen && (
-              <div className="modalTopics">
-                <div className="modal-content">
-                  <NewTopic onClose={closeNewTopicModal} />
-                </div>
+                      ))}
+                  </div>
+                )}
               </div>
-            )}
-            {isPostCardsOpen && (
-              <PostCards
-                isOpen={isPostCardsOpen}
-                onClose={() => setIsPostCardsOpen(false)}
-                postData={postData}
-                headers={headers}
-                // formattedSchedule={formattedSchedule}
-              />
-            )}
-          </div>
+            </div>
+          )}
+          {isNewTopicOpen && (
+            <div id="modalTopics">
+              <div id="modalTopicsContent">
+                <NewTopic
+                  onClose={closeNewTopicModal}
+                  updateShouldRefreshTable={updateShouldRefreshTable}
+                />
+              </div>
+            </div>
+          )}
+          {isPostCardsOpen && (
+            <PostCards
+              isOpen={isPostCardsOpen}
+              onClose={() => {
+                setIsPostCardsOpen(false)
+
+                setIsBoxTopicsVisible(true)
+              }}
+              postData={postData}
+              headers={headers}
+            />
+          )}
         </div>
       </div>
     </>

@@ -113,7 +113,7 @@ CREATE TABLE `game_registrations` (
   KEY `fk_party_registrations_users1_idx` (`requester_id`),
   CONSTRAINT `fk_party_registrations_users1` FOREIGN KEY (`requester_id`) REFERENCES `users` (`id`),
   CONSTRAINT `party_registrations_ibfk_1` FOREIGN KEY (`games_id`) REFERENCES `games` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,7 +122,7 @@ CREATE TABLE `game_registrations` (
 
 LOCK TABLES `game_registrations` WRITE;
 /*!40000 ALTER TABLE `game_registrations` DISABLE KEYS */;
-INSERT INTO `game_registrations` VALUES (1,1,'rejected',2),(2,5,'pending',2),(3,2,'accepted',3),(4,3,'accepted',4),(5,4,'pending',5),(6,1,'accepted',3),(7,4,'pending',1),(8,4,'pending',3);
+INSERT INTO `game_registrations` VALUES (1,1,'rejected',2),(2,5,'accepted',2),(3,2,'accepted',3),(4,3,'accepted',4),(5,4,'pending',5),(6,1,'accepted',3),(7,4,'pending',1),(8,4,'pending',3),(9,2,'pending',5),(10,1,'pending',5);
 /*!40000 ALTER TABLE `game_registrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,7 +143,7 @@ CREATE TABLE `game_registrations_as_player` (
   KEY `fk_game_registrations_has_player_games1_idx` (`games_id`),
   CONSTRAINT `fk_game_registrations_has_player_games1` FOREIGN KEY (`games_id`) REFERENCES `games` (`id`),
   CONSTRAINT `fk_game_registrations_has_player_users1` FOREIGN KEY (`player_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152,7 +152,7 @@ CREATE TABLE `game_registrations_as_player` (
 
 LOCK TABLES `game_registrations_as_player` WRITE;
 /*!40000 ALTER TABLE `game_registrations_as_player` DISABLE KEYS */;
-INSERT INTO `game_registrations_as_player` VALUES (1,1,1,'pending'),(2,2,2,'pending'),(3,3,3,'pending'),(4,4,4,'pending');
+INSERT INTO `game_registrations_as_player` VALUES (1,1,1,'pending'),(2,2,2,'pending'),(3,3,3,'pending'),(4,4,4,'pending'),(5,2,5,'pending'),(6,5,4,'pending');
 /*!40000 ALTER TABLE `game_registrations_as_player` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -179,7 +179,7 @@ CREATE TABLE `games` (
   PRIMARY KEY (`id`),
   KEY `ID_role_playing_game` (`role_playing_game_id`),
   CONSTRAINT `parties_ibfk_1` FOREIGN KEY (`role_playing_game_id`) REFERENCES `role_playing_games` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -188,7 +188,7 @@ CREATE TABLE `games` (
 
 LOCK TABLES `games` WRITE;
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
-INSERT INTO `games` VALUES (1,1,'2023-10-15 19:00:00',5,'Join us for an epic fantasy adventure!','Adventure','Rise of Heroes','Avalon',0,1,'user1','1'),(2,2,'2023-10-20 18:30:00',4,'Explore the galaxy in this Star Wars RPG.','Adventure','Galactic Explorations','Coruscant',1,0,'user2','2'),(3,3,'2023-10-18 20:00:00',6,'Uncover the secrets of the ancient city.','Horror','Cthulhu Chronicles','Arkham',0,0,'user3','3'),(4,4,'2023-10-16 15:00:00',3,'Solve puzzles and mysteries in Victorian London.','Sci-Fi','Sherlock Adventures','London',0,1,'user4','4'),(5,5,'2023-10-19 14:00:00',5,'Embark on a journey in a high-fantasy world.','Horror','Epic Odyssey','Narnia',1,1,'user5','5');
+INSERT INTO `games` VALUES (1,1,'2023-10-15 19:00:00',5,'Join us for an epic fantasy adventure!','Adventure','Rise of Heroes','Avalon',0,1,'Raxion','1'),(2,2,'2023-10-20 18:30:00',4,'Explore the galaxy in this Star Wars RPG.','Adventure','Galactic Explorations','Coruscant',1,0,'Elgon','2'),(3,3,'2023-10-18 20:00:00',6,'Uncover the secrets of the ancient city.','Horror','Cthulhu Chronicles','Arkham',0,0,'Blake','3'),(4,4,'2023-10-16 15:00:00',3,'Solve puzzles and mysteries in Victorian London.','Sci-Fi','Sherlock Adventures','London',0,1,'Nestadar','4'),(5,5,'2023-10-19 14:00:00',5,'Embark on a journey in a high-fantasy world.','Horror','Epic Odyssey','Narnia',1,1,'Moix','5');
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -216,7 +216,7 @@ CREATE TABLE `games_has_users` (
 
 LOCK TABLES `games_has_users` WRITE;
 /*!40000 ALTER TABLE `games_has_users` DISABLE KEYS */;
-INSERT INTO `games_has_users` VALUES (1,1),(2,2),(3,3),(4,4),(5,5);
+INSERT INTO `games_has_users` VALUES (1,1),(2,2),(5,2),(3,3),(4,4),(5,5);
 /*!40000 ALTER TABLE `games_has_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -297,7 +297,7 @@ CREATE TABLE `posts` (
   KEY `fk_forum_topics_posts_users1_idx` (`users_id`),
   CONSTRAINT `fk_forum_topics_posts_forum_topics1` FOREIGN KEY (`topics_id`) REFERENCES `topics` (`id`),
   CONSTRAINT `fk_forum_topics_posts_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -329,7 +329,7 @@ CREATE TABLE `private_messages` (
   KEY `ID_recipient` (`users_id_recipient`),
   CONSTRAINT `private_messages_ibfk_1` FOREIGN KEY (`users_id_sender`) REFERENCES `users` (`id`),
   CONSTRAINT `private_messages_ibfk_2` FOREIGN KEY (`users_id_recipient`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -355,7 +355,7 @@ CREATE TABLE `role_playing_games` (
   `description` text,
   `rpg_icon` varchar(255) NOT NULL DEFAULT 'url_icon',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -364,7 +364,7 @@ CREATE TABLE `role_playing_games` (
 
 LOCK TABLES `role_playing_games` WRITE;
 /*!40000 ALTER TABLE `role_playing_games` DISABLE KEYS */;
-INSERT INTO `role_playing_games` VALUES (1,'Dungeons & Dragons','Fantasy role-playing game','assets/images/rpgPictures/dndIcon.png'),(2,'Star Wars RPG','Science fiction role-playing game','assets/images/rpgPictures/chill.png'),(3,'Call of Cthulhu','Horror role-playing game','assets/images/rpgPictures/callOfCthulhu.png'),(4,'Mysteries of Sherlock Holmes','Mystery role-playing game','assets/images/rpgPictures/cyberpunk.png'),(5,'Pathfinder','Fantasy role-playing game','assets/images/rpgPictures/kuff.png'),(6,'Dungeons & Dragons','Fantasy role-playing game','assets/images/rpgPictures/dndIcon.png'),(7,'Dungeons & Dragons','Fantasy role-playing game','assets/images/rpgPictures/dndIcon.png'),(8,'Dungeons & Dragons','Fantasy role-playing game','assets/images/rpgPictures/dndIcon.png'),(9,'Dungeons & Dragons','Fantasy role-playing game','assets/images/rpgPictures/dndIcon.png');
+INSERT INTO `role_playing_games` VALUES (1,'Lord of The Rings','Fantasy role-playing game','assets/images/rpgPictures/lotr.png'),(2,'Chill','Science fiction role-playing game','assets/images/rpgPictures/chill.png'),(3,'Call of Cthulhu','Horror role-playing game','assets/images/rpgPictures/callOfCthulhu.png'),(4,'Legend Fire Ring','Mystery role-playing game','assets/images/rpgPictures/legendFireRing.png'),(5,'Kult','Fantasy role-playing game','assets/images/rpgPictures/kult.png'),(6,'Cyberpunk','Fantasy role-playing game','assets/images/rpgPictures/cyberpunk.png'),(7,'Shadow Run','Fantasy role-playing game','assets/images/rpgPictures/shadowrun.png'),(8,'Dungeons & Dragons','Fantasy role-playing game','assets/images/rpgPictures/dndIcon.png'),(9,'Symbaroug','One of the best','assets/images/rpgPictures/symbaroug.png'),(10,'Vampire','Keep quiet, they are here !','assets/images/rpgPictures/vampire.png');
 /*!40000 ALTER TABLE `role_playing_games` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -476,6 +476,7 @@ CREATE TABLE `users` (
   `location` varchar(255) DEFAULT NULL,
   `profil_picture` varchar(255) DEFAULT 'assets/images/profilPictures/defaultUserPicture.png',
   `description_as_gm` varchar(255) DEFAULT NULL,
+  `country` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -486,7 +487,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'user1','user1@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','OK','Bla bla bla','2023-08-31 14:24:53','Paris','assets/images/profilPictures/ADider_Bourdon.jpeg','Gm at 90%'),(2,'user2','user2@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','Ok2','Moi aussi bla bla bla','2023-08-31 14:24:53','Lyon','assets/images/profilPictures/AJackyMichel.jpeg','Gm at 0%'),(3,'user3','user3@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','ok3',':) # ?‍♂️','2023-08-31 14:24:53','Marseille','assets/images/profilPictures/AJacqueline_Dupond.jpeg','What\'s a GM ? '),(4,'user4','user4@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','ok4','?','2023-08-31 14:24:53','Tours','assets/images/profilPictures/ASandrine_Rousseau.jpeg','Only Dnd'),(5,'user5','user5@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','ok5','?','2023-08-31 14:24:53','Bordeaux','assets/images/profilPictures/defaultUserPicture.png','Only Fan');
+INSERT INTO `users` VALUES (1,'Raxion','user1@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','OK','A skilled player of every imaginable universe. From the Dungeon to the Galactica, I\'ve explored it all ! 7 years\' experience, boundless creativity and an extraordinary sense of adventure. Ready to reach for the stars and experience some wild adventures! #RollTheDice','2023-08-31 14:24:53','Paris','assets/images/profilPictures/ADider_Bourdon.jpeg','Gm at 90%','France'),(2,'Elgon','user2@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','Ok2','A skilled player of every imaginable universe. From the Dungeon to the Galactica, I\'ve explored it all ! 7 years\' experience, boundless creativity and an extraordinary sense of adventure. Ready to reach for the stars and experience some wild adventures! #RollTheDice','2023-08-31 14:24:53','Lyon','assets/images/profilPictures/AJackyMichel.jpeg','Gm at 0%','Algérie'),(3,'Blake','user3@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','ok3','A skilled player of every imaginable universe. From the Dungeon to the Galactica, I\'ve explored it all ! 7 years\' experience, boundless creativity and an extraordinary sense of adventure. Ready to reach for the stars and experience some wild adventures! #RollTheDice','2023-08-31 14:24:53','Marseille','assets/images/profilPictures/AJacqueline_Dupond.jpeg','What\'s a GM ? ','Tunisie'),(4,'Nestadar','user4@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','ok4','A skilled player of every imaginable universe. From the Dungeon to the Galactica, I\'ve explored it all ! 7 years\' experience, boundless creativity and an extraordinary sense of adventure. Ready to reach for the stars and experience some wild adventures! #RollTheDice','2023-08-31 14:24:53','Tours','assets/images/profilPictures/ASandrine_Rousseau.jpeg','Only Dnd','Allemagne'),(5,'Moix','user5@example.com','$argon2id$v=19$m=65536,t=5,p=1$1cy6eNa1lqGuy6TimPNASw$EhUwJpP6dnQn6yKlEkv2hyVNhGq9SsIVZidjri8rnUM','ok5','A skilled player of every imaginable universe. From the Dungeon to the Galactica, I\'ve explored it all ! 7 years\' experience, boundless creativity and an extraordinary sense of adventure. Ready to reach for the stars and experience some wild adventures! #RollTheDice','2023-08-31 14:24:53','Bordeaux','assets/images/profilPictures/defaultUserPicture.png','Only Fan','Israël');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -544,7 +545,7 @@ CREATE TABLE `users_has_role_playing_games` (
 
 LOCK TABLES `users_has_role_playing_games` WRITE;
 /*!40000 ALTER TABLE `users_has_role_playing_games` DISABLE KEYS */;
-INSERT INTO `users_has_role_playing_games` VALUES (1,1),(2,2),(1,3),(3,3),(4,4),(5,5);
+INSERT INTO `users_has_role_playing_games` VALUES (1,1),(5,1),(2,2),(4,2),(1,3),(3,3),(4,3),(4,4),(5,5),(5,6),(5,8);
 /*!40000 ALTER TABLE `users_has_role_playing_games` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -557,4 +558,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-20  9:53:35
+-- Dump completed on 2023-09-22 16:50:33

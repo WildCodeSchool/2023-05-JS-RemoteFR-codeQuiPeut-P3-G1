@@ -6,7 +6,7 @@ import Twitter from "../../../assets/logo/twitter.svg"
 import Facebook from "../../../assets/logo/facebook.svg"
 
 function SignUp({ setShowModal }) {
-  console.info("SignUp component is rendered")
+  // console.info("SignUp component is rendered")
 
   const [signUpUsername, setSignUpUsername] = useState()
   const [signUpEmail, setSignUpEmail] = useState()
