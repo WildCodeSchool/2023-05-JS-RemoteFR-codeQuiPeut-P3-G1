@@ -11,7 +11,7 @@
       color: #000000;
       border: none;
       text-align: center;
-      font-size: 1.05vw;
+      font-size: clamp(15px, 1vw, 30px);
       font-style: normal;
       font-weight: 700;
       line-height: normal;

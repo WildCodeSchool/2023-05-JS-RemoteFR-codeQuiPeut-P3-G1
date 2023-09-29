@@ -24,7 +24,7 @@ const GuildPhone = () => {
         <div className="GuildPhone">
           <Canvas
             className="canvas"
-            style={{ width: "100%", height: "100vh" }}
+            // style={{ width: "100%", height: "100vh" }}
             width={window.innerWidth}
             height={window.innerHeight}
             gl={{ antialias: true }}
