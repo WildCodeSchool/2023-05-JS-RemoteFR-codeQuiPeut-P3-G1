@@ -327,6 +327,7 @@ const Profil = () => {
                 <input
                   type="checkbox"
                   id="switch"
+                  checked={isPlayer === false}
                   onClick={() => setIsPlayer(!isPlayer)}
                 />
                 <label htmlFor="switch">
