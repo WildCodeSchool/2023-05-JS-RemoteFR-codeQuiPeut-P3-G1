@@ -111,6 +111,16 @@ class GameRegistrationsManager extends AbstractManager {
       [id]
     )
   }
+
+  deleteGameRegistrationsByGameId(id) {
+    return this.database.query(
+      `DELETE gr.* 
+      FROM ${this.table} as gr
+      JOIN games ON games.id = gr.games_id
+      WHERE gr.games_id = ?`,
+      [id]
+    )
+  }
 }
 
 module.exports = GameRegistrationsManager

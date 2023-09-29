@@ -35,6 +35,15 @@ class GamesHasUsersManager extends AbstractManager {
       [id]
     )
   }
+
+  deleteGamesHasUsersByGameId(id) {
+    return this.database.query(
+      `DELETE ghu.* FROM ${this.table} as ghu
+      JOIN games ON games.id = ghu.games_id
+      WHERE ghu.games_id = ?`,
+      [id]
+    )
+  }
 }
 
 module.exports = GamesHasUsersManager

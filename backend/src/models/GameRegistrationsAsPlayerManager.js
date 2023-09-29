@@ -41,6 +41,15 @@ class GameRegistrationsAsPlayerManager extends AbstractManager {
       [playerId, GamesId]
     )
   }
+
+  deleteGameRegistrationByGameId(id) {
+    return this.database.query(
+      `DELETE gras.* FROM ${this.table} as gras
+      JOIN games ON games.id = gras.games_id
+      WHERE gras.games_id = 4`,
+      [id]
+    )
+  }
 }
 
 module.exports = GameRegistrationsAsPlayerManager
