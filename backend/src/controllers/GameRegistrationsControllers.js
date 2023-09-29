@@ -136,6 +136,22 @@ const destroy = (req, res) => {
     })
 }
 
+const deleteAllGameRegistrationsByGameId = (req, res) => {
+  models.gameRegistrationsManager
+    .deleteGameRegistrationsByGameId(req.params.id)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404)
+      } else {
+        res.sendStatus(204)
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 const joiningRequests = (req, res) => {
   models.gameRegistrationsManager
     .gameJoiningRequests(req.params.id)
@@ -205,6 +221,7 @@ module.exports = {
   edit,
   add,
   destroy,
+  deleteAllGameRegistrationsByGameId,
   futureGamesGMUsername,
   allPlayersForThisGame,
   joiningRequests,
