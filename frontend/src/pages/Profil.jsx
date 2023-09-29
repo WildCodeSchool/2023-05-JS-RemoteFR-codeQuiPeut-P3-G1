@@ -37,7 +37,7 @@ const Profil = () => {
   const [playersProfil, setPlayersProfil] = useState([])
 
   const [buttonStates, setButtonStates] = useState({
-    mainDiv: true,
+    mainDiv: false,
     myGames: false,
     social: false
   })
@@ -235,7 +235,7 @@ const Profil = () => {
             onClick={() =>
               setButtonStates({
                 ...buttonStates,
-                mainDiv: !buttonStates.mainDiv,
+                mainDiv: true,
                 myGames: false,
                 social: false
               })
@@ -248,7 +248,7 @@ const Profil = () => {
             onClick={() =>
               setButtonStates({
                 ...buttonStates,
-                myGames: !buttonStates.myGames,
+                myGames: true,
                 mainDiv: false,
                 social: false
               })
@@ -261,7 +261,7 @@ const Profil = () => {
             onClick={() =>
               setButtonStates({
                 ...buttonStates,
-                social: !buttonStates.social,
+                social: true,
                 myGames: false,
                 mainDiv: false
               })
@@ -327,6 +327,7 @@ const Profil = () => {
                 <input
                   type="checkbox"
                   id="switch"
+                  checked={isPlayer === false}
                   onClick={() => setIsPlayer(!isPlayer)}
                 />
                 <label htmlFor="switch">
@@ -338,8 +339,8 @@ const Profil = () => {
 
             {isPlayer === false && (
               <>
+                <div className="titleValidate">UPCOMMING GAMES</div>
                 <div className="validateDiv">
-                  <div className="titleValidate">UPCOMMING GAMES</div>
                   <div className="displayValidate">
                     {upcommingGameGMData.map((validated, index) => {
                       const date = new Date(validated.schedule)
@@ -375,8 +376,8 @@ const Profil = () => {
                 <div className="waitingValidationDiv">
                   <RequestGM />
                 </div>
+                <div className="titleHistory">HISTORY</div>
                 <div className="historyDiv">
-                  <div className="titleHistory">HISTORY</div>
                   <div className="displayHistory">
                     {historyGameGMData.map((history, index) => {
                       const date = new Date(history.schedule)

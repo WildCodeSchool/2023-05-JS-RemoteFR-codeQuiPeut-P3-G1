@@ -2,6 +2,7 @@ import Cookies from "js-cookie"
 import axios from "axios"
 import hour from "../../assets/icon-create-game/horaire.png"
 import { TimePicker } from "react-ios-time-picker"
+import { toast } from "react-toastify"
 import Calendar from "moedim"
 import { useEffect, useState } from "react"
 
@@ -109,11 +110,17 @@ function EditCreateGame({
           setGameIsCampaign(0)
           setCreateOrResume(0)
           document.getElementById("createGameForm").reset()
+          toast.success("Game modified with success !", {
+            position: toast.POSITION.TOP_RIGHT
+          })
         }
         // document.getElementById("createGameSelecter").selectedIndex = 0
       })
       .catch((error) => {
         console.error("Erreur lors de la création de la partie :", error)
+        toast.error("Erreur when modifying the game", {
+          position: toast.POSITION.TOP_RIGHT
+        })
       })
   }
 

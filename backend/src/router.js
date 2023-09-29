@@ -101,6 +101,10 @@ router.get(
 router.get("/gameswithrpgname", GamesControllers.browsewithrpgname)
 router.get("/nextgamesbygmid/:id", GamesControllers.selectGamesByGameMasterId)
 router.get("/gameswithrpgname/:id", GamesControllers.browsewithrpgnamebyID)
+router.get(
+  "/gmpicturebygames/:id",
+  GamesControllers.selectGmProfilPictureByGameId
+)
 router.get("/games", GamesControllers.browse)
 router.get("/games/:id", GamesControllers.read)
 router.put("/games/:id", GamesControllers.edit)

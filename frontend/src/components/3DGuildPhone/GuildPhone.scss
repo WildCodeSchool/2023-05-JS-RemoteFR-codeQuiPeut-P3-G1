@@ -54,4 +54,28 @@
     // height: 100vh;
     width: 60%;
   }
+
+  .canvas {
+    width: 20%;
+    height: 50vh;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .Global-GuildPhone {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 100px;
+
+    .CreateGuildText {
+      width: 100%;
+    }
+
+    .GuildPhone {
+      width: 100%;
+      height: 100%;
+      border: 5px solid red;
+    }
+  }
 }
