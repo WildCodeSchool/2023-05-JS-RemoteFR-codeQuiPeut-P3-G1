@@ -3,6 +3,7 @@ import React, { useState } from "react"
 import axios from "axios"
 
 import Cookies from "js-cookie"
+import { toast } from "react-toastify"
 
 export default function NewTopic({ onClose, updateShouldRefreshTable }) {
   const tokenFromCookie = Cookies.get("authToken")
@@ -47,11 +48,17 @@ export default function NewTopic({ onClose, updateShouldRefreshTable }) {
         if (res.status === 200 || res.status === 201) {
           onClose(true) // Ferme la fenêtre modale après la création
           updateShouldRefreshTable(true) // Indique que la table doit être rafraîchie
+          toast.success("Topic create with success !", {
+            position: toast.POSITION.TOP_RIGHT
+          })
         }
       })
 
       .catch((error) => {
         console.error("Erreur lors de la création du Topic :", error)
+        toast.error("Erreur when creating the topic", {
+          position: toast.POSITION.TOP_RIGHT
+        })
       })
   }
 

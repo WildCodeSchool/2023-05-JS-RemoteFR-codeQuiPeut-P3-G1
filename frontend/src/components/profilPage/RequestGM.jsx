@@ -74,53 +74,55 @@ const FriendRequest = () => {
   }, [acceptedRequest, rejectRequest])
 
   return (
-    <div className="waitingValidationDiv">
+    <>
       <div className="titlewaiting">WAITING FOR VALIDATION</div>
-      <div className="displayWaiting">
-        {joiningRequestData.map((request) => (
-          <div className="boxPendingateGame" key={request.id}>
-            <div className="firstBoxGM">
-              <div className="requesterProfilPicture">
+      <div className="waitingValidationDiv">
+        <div className="displayWaiting">
+          {joiningRequestData.map((request) => (
+            <div className="boxPendingateGame" key={request.id}>
+              <div className="firstBoxGM">
+                <div className="requesterProfilPicture">
+                  <img
+                    src={`${import.meta.env.VITE_BACKEND_URL}/${
+                      request.profil_picture
+                    }`}
+                    alt="profil picture"
+                  />
+                </div>
+                <div className="requesterName">{request.username}</div>
+              </div>
+              <hr className="hrBoxMyGames"></hr>
+              <div className="wantsToJoin">WANT TO JOIN :</div>
+              <div className="boxGuildAndType">
+                <div className="guildNameDiv2">GUILD :{request.guild_name}</div>
+                <div className="typeDiv">
+                  <p>{request.is_campaign === 1 ? "Campaign" : "One Shot"}</p>
+                </div>
+              </div>
+              <hr className="hrBoxMyGames"></hr>
+              <div className="requesterButton">
                 <img
-                  src={`${import.meta.env.VITE_BACKEND_URL}/${
-                    request.profil_picture
-                  }`}
-                  alt="profil picture"
+                  id="validateButton"
+                  src={check}
+                  alt="validate"
+                  onClick={() =>
+                    acceptedRequest(request.requester_id, request.games_id)
+                  }
+                />
+                <img
+                  id="refuseButton"
+                  src={crossDash}
+                  alt="refuse"
+                  onClick={() =>
+                    rejectRequest(request.requester_id, request.games_id)
+                  }
                 />
               </div>
-              <div className="requesterName">{request.username}</div>
             </div>
-            <hr className="hrBoxMyGames"></hr>
-            <div className="wantsToJoin">WANT TO JOIN :</div>
-            <div className="boxGuildAndType">
-              <div className="guildNameDiv2">GUILD :{request.guild_name}</div>
-              <div className="typeDiv">
-                <p>{request.is_campaign === 1 ? "Campaign" : "One Shot"}</p>
-              </div>
-            </div>
-            <hr className="hrBoxMyGames"></hr>
-            <div className="requesterButton">
-              <img
-                id="validateButton"
-                src={check}
-                alt="validate"
-                onClick={() =>
-                  acceptedRequest(request.requester_id, request.games_id)
-                }
-              />
-              <img
-                id="refuseButton"
-                src={crossDash}
-                alt="refuse"
-                onClick={() =>
-                  rejectRequest(request.requester_id, request.games_id)
-                }
-              />
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
