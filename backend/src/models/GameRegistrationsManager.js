@@ -45,13 +45,13 @@ class GameRegistrationsManager extends AbstractManager {
   getGameRegistrationsWithDetails(id) {
     return this.database.query(
       `
-      select *
+      SELECT *
       from games
-      join games_has_users as ghu
-      on ghu.games_id = games.id
-      join users
-      on ghu.users_id = users.id
-      where users.id = ?;
+      JOIN games_has_users AS ghu
+      ON ghu.games_id = games.id
+      JOIN users
+      ON games.gm_id = users.id
+      WHERE ghu.users_id = ?;
     `,
       [id]
     )
