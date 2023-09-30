@@ -10,14 +10,6 @@
     position: relative;
     z-index: 50;
   }
-  .loader {
-    /* Vos styles de loader ici, par exemple : */
-    display: flex;
-    justify-content: center;
-    color: white;
-    font-size: 24px;
-    text-align: center;
-  }
 
   .wave-testLandingPage {
     position: absolute;
@@ -63,5 +55,43 @@
     width: 20%;
     right: 0;
     justify-content: flex-end;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .main-landingPage {
+    display: flex;
+
+    .Scene {
+      position: relative;
+      z-index: 50;
+    }
+
+    .wave-testLandingPage {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      z-index: 49;
+    }
+
+    .canvas {
+      display: flex;
+      width: 50%;
+    }
+    .guildScene {
+      display: flex;
+      justify-content: center;
+    }
+
+    .logoGuild-Header {
+      width: 10vw;
+      height: 10vh;
+    }
+    .polygonSVG {
+      width: 12vw;
+      height: 12vh;
+      transform: translate(-50px, -50px) !important;
+      z-index: 40;
+    }
   }
 }

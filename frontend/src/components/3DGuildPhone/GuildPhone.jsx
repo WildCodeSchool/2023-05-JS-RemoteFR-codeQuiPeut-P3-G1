@@ -23,8 +23,8 @@ const GuildPhone = () => {
         </div>
         <div className="GuildPhone">
           <Canvas
+            camera={{ fov: 75 }}
             className="canvas"
-            // style={{ width: "100%", height: "100vh" }}
             width={window.innerWidth}
             height={window.innerHeight}
             gl={{ antialias: true }}
@@ -48,9 +48,8 @@ const GuildPhone = () => {
               <ambientLight intensity={0.5} />
 
               <AnimGuild />
-              {/* <Scene /> */}
+
               <Dragon />
-              {/* <AnimSpline /> */}
             </Suspense>
           </Canvas>
         </div>

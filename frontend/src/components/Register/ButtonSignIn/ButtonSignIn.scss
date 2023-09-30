@@ -53,3 +53,19 @@
     align-items: center;
   }
 }
+
+@media screen and (max-width: 1000px) {
+  .LogIn-Container {
+    // width: 100%;
+    height: auto;
+    margin-right: 28px;
+    .button-LogIn {
+      button {
+        width: 62px;
+        height: 19px;
+        border-radius: 2.5px;
+        font-size: clamp(7.5px, 0.5vw, 15px);
+      }
+    }
+  }
+}
