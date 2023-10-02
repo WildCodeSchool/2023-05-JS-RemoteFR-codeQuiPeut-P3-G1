@@ -117,11 +117,12 @@
 }
 
 @media screen and (max-width: 1000px) {
-  .card-FAQ {
-    height: 70px !important;
-  }
-  svg {
-    transform: rotate(0deg);
-    transition: transform 0.3s ease;
+  .card-content {
+    padding: 0 10px;
+
+    p {
+      padding-left: 50px !important;
+      padding-right: 50px !important;
+    }
   }
 }

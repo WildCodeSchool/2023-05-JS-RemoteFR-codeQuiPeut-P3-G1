@@ -5,6 +5,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"
 
 function TestCarousel() {
   const [testimonials, setTemoignages] = useState([])
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
 
   useEffect(() => {
     axios
@@ -15,6 +16,14 @@ function TestCarousel() {
       .catch((error) => {
         console.error("Erreur lors de la récupération des témoignages:", error)
       })
+  }, [])
+
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth)
+    window.addEventListener("resize", handleResize)
+    return () => {
+      window.removeEventListener("resize", handleResize)
+    }
   }, [])
 
   return (
@@ -51,7 +60,7 @@ function TestCarousel() {
           infiniteLoop={true} // Boucle infinie du carousel
           showStatus={false} // Masque le statut
           centerMode={true} // Activer le mode centre pour afficher le nombre d'éléments souhaité
-          centerSlidePercentage={33.33} // Définir la largeur des éléments centraux
+          centerSlidePercentage={windowWidth <= 768 ? 100 : 33.33}
           className="my-carousel"
         >
           {testimonials.map((test) => (
