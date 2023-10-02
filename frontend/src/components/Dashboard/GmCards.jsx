@@ -3,7 +3,6 @@ import axios from "axios"
 import Cookies from "js-cookie"
 import { Link } from "react-router-dom"
 
-// import gmProfilePic from "../../assets/GmCards-assets/GMProfilePic.png"
 import closeModal from "../../assets/icon-dashboard/crossWithBg.svg"
 import gameLogo from "../../assets/GmCards-assets/gameLogo.png"
 import Schedule from "../../assets/GmCards-assets/scheduleGMProfil.svg"
@@ -13,11 +12,11 @@ import participantsLogo from "../../assets/GmCards-assets/participantsLogo.svg"
 import PlayerCards from "./PlayerCards"
 
 const GmCards = ({ onClose, gameData, setIsGmCardsOpen }) => {
-  // const [gamesData, setGamesData] = useState([])
   const [playersProfil, setPlayersProfil] = useState([])
   const [isPlayerCardsOpen, setIsPlayerCardsOpen] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [userData, setUserData] = useState(null)
+  const [profilPictureGM, setProfilPictureGM] = useState([])
   const scheduleDate = new Date(gameData.schedule)
   const options = {
     year: "numeric",
@@ -32,9 +31,6 @@ const GmCards = ({ onClose, gameData, setIsGmCardsOpen }) => {
   const headers = {
     Authorization: `Bearer ${tokenFromCookie}`
   }
-
-  // console.info(gameData, "OUIUO")
-  // console.info(playersProfil, "OU")
 
   useEffect(() => {
     axios
@@ -51,6 +47,20 @@ const GmCards = ({ onClose, gameData, setIsGmCardsOpen }) => {
   useEffect(() => {
     isLoading &&
       axios
+        .get(`http://localhost:4242/gmpicturebygames/${gameData.id}`, {
+          headers
+        })
+        .then((response) => {
+          setProfilPictureGM(response.data)
+        })
+        .catch((error) => {
+          console.error("An error occurred:", error)
+        })
+  }, [isLoading])
+
+  useEffect(() => {
+    isLoading &&
+      axios
         .get(`http://localhost:4242/playersForThisGame/${gameData.id}`, {
           headers
         })
@@ -62,18 +72,14 @@ const GmCards = ({ onClose, gameData, setIsGmCardsOpen }) => {
         })
   }, [isLoading])
 
-  // const handleTogglePlayerCards = () => {
-  //   setIsPlayerCardsOpen(!isPlayerCardsOpen)
-  // }
-
-  //   const totalUsers = playersProfil.length
-  //   console.info("Nombre total d'utilisateurs :", totalUsers)
-
   const handleProfileClick = (playerData) => {
     // Ouvrez le composant PlayerCards en passant les informations du joueur sélectionné.
     setIsPlayerCardsOpen(true)
     setUserData(playerData)
   }
+
+  console.info(profilPictureGM, "gamedataid")
+  console.info(gameData.profil_picture, "hola")
 
   return (
     <div className="global-GmCards">
@@ -81,12 +87,26 @@ const GmCards = ({ onClose, gameData, setIsGmCardsOpen }) => {
         <div className="GmCards-container">
           <div className="GmCards-header">
             <div className="profile-picture">
-              <img
-                src={`${import.meta.env.VITE_BACKEND_URL}/${
-                  gameData.profil_picture
-                }`}
-                alt="image player profil"
-              />
+              {profilPictureGM !== null &&
+                profilPictureGM.map((ppgm, index) => (
+                  // <img
+                  //   key={index}
+                  //   src={`${import.meta.env.VITE_BACKEND_URL}/${
+                  //     ppgm.profil_picture.profil_picture
+                  //   }`}
+                  //   alt="gm profil picture"
+                  //   />
+
+                  <img
+                    key={index}
+                    src={`${import.meta.env.VITE_BACKEND_URL}/${
+                      gameData.profil_picture !== undefined
+                        ? gameData.profil_picture
+                        : profilPictureGM[0].profil_picture
+                    }`}
+                    alt="image player profil"
+                  />
+                ))}
             </div>
             <div className="GM-Name">
               <span>{gameData.gm_username} - AS GM</span>
@@ -126,8 +146,14 @@ const GmCards = ({ onClose, gameData, setIsGmCardsOpen }) => {
                 <span id="date">{formattedSchedule}</span>
               </div>
               <div className="location-city-container">
-                <h3 className="location-city">IN</h3>
-                <span className="city">{gameData.city}</span>
+                {gameData.city !== "" ? (
+                  <>
+                    <h3 className="location-city">IN</h3>
+                    <span className="city">{gameData.city}</span>
+                  </>
+                ) : (
+                  <span className="city">Remote</span>
+                )}
               </div>
               <div className="Particpants-nb">
                 <h3 className="Participants-nb">

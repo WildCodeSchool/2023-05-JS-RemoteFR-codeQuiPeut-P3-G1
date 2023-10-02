@@ -1,6 +1,9 @@
 import React, { useState } from "react"
 // import React, { useState, useEffect } from "react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
+
 // import Cookies from "js-cookie"
 // import axios from "axios"
 
@@ -39,6 +42,7 @@ function App() {
 
   return (
     <>
+      <ToastContainer />
       <div className="App">
         <AuthContext.Provider
           value={{

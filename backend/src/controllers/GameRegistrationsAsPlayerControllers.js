@@ -11,6 +11,21 @@ const browse = (req, res) => {
     })
 }
 
+const deleteAllGamesRegistrationByGameId = (req, res) => {
+  models.GameRegistrationsAsPlayer.deleteGameRegistrationByGameId(req.params.id)
+    .then(([result]) => {
+      if (result.affectedRows === 0) {
+        res.sendStatus(404)
+      } else {
+        res.sendStatus(204)
+      }
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 const add = (req, res) => {
   models.GameRegistrationsAsPlayer.insert(req.body)
     .then(() => {
@@ -75,4 +90,5 @@ module.exports = {
   AllInvitationsOfGm,
   joiningRequestsRejectedNotification,
   joiningRequestsAcceptedNotification,
+  deleteAllGamesRegistrationByGameId,
 }

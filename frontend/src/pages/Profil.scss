@@ -61,6 +61,7 @@
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           font-family: $content-font;
+          font-size: clamp(16px, 1vw, 32px);
         }
       }
       .settingsButton {
@@ -135,6 +136,7 @@
         display: flex;
         gap: 20px;
         align-items: center;
+        padding-bottom: 5px;
         border-bottom: 1px solid #e2d07c;
       }
       .mainContainerMapItems {
@@ -217,11 +219,19 @@
         width: 100%;
       }
 
+      .titlewaiting,
+      .titleHistory,
+      .titleValidate {
+        border-bottom: solid 1px #a4945e;
+        width: 60%;
+      }
+
       .waitingValidationDiv,
       .validateDiv,
       .historyDiv {
         display: flex;
         flex-direction: column;
+        overflow-y: auto;
         gap: 20px;
         .displayValidate,
         .displayWaiting,
@@ -230,12 +240,7 @@
           flex-direction: column;
           gap: 20px;
         }
-        .titlewaiting,
-        .titleHistory,
-        .titleValidate {
-          border-bottom: solid 1px #a4945e;
-          width: 60%;
-        }
+
         .scheduleDiv {
           display: flex;
           justify-content: center;
@@ -243,9 +248,10 @@
           gap: 10px;
           .hrBoxMyGames {
             width: 50px;
-            height: 4px;
+            height: 2px;
             transform: rotate(90deg);
             background-color: black;
+            border: none;
           }
           .dateCalendar {
             display: flex;
@@ -266,12 +272,14 @@
           padding: 20px;
           height: 7vh;
           border-radius: 4px;
+
           .guildNameDiv {
             display: flex;
             width: 60%;
             color: black;
-            font-size: 1.5vw;
+            font-size: clamp(18px, 1.2vw, 30px);
             cursor: pointer;
+            font-family: $content-font;
           }
           .typeDiv {
             display: flex;
@@ -379,8 +387,9 @@
             label {
               display: flex;
               justify-content: center;
+              cursor: pointer;
               img {
-                width: 80%;
+                width: 100px;
                 border: double 4px transparent;
                 border-radius: 50%;
                 background-image: linear-gradient(#563e5b, #563e5b),

@@ -1,5 +1,6 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
+import { toast } from "react-toastify"
 import FormCreateGame from "../components/CreateGame/FormCreateGame"
 import ResumeCreateGame from "../components/CreateGame/ResumeCreateGame"
 import EditCreateGame from "../components/CreateGame/EditCreateGame"
@@ -130,11 +131,17 @@ export default function CreateGame() {
           setGameIsCampaign(0)
           setCreateOrResume(0)
           document.getElementById("createGameForm").reset()
+          toast.success("Game create with success !", {
+            position: toast.POSITION.TOP_RIGHT
+          })
         }
         // document.getElementById("createGameSelecter").selectedIndex = 0
       })
       .catch((error) => {
         console.error("Erreur lors de la création de la partie :", error)
+        toast.error("Erreur lors de la création de la partie", {
+          position: toast.POSITION.TOP_RIGHT
+        })
       })
   }
 

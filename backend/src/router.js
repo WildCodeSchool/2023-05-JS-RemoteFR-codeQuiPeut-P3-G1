@@ -118,6 +118,10 @@ router.get(
 router.get("/gameswithrpgname", GamesControllers.browsewithrpgname)
 router.get("/nextgamesbygmid/:id", GamesControllers.selectGamesByGameMasterId)
 router.get("/gameswithrpgname/:id", GamesControllers.browsewithrpgnamebyID)
+router.get(
+  "/gmpicturebygames/:id",
+  GamesControllers.selectGmProfilPictureByGameId
+)
 router.get("/games", GamesControllers.browse)
 router.get("/games/:id", GamesControllers.read)
 router.put("/games/:id", GamesControllers.edit)
@@ -210,6 +214,22 @@ router.delete("/topics/:id", TopicsControllers.destroy)
 router.delete("/games/:id", GamesControllers.destroy)
 router.delete("/filters/:id", FiltersControllers.destroy)
 router.delete("/gamesRegistrations/:id", GameRegistrationsControllers.destroy)
+
+router.delete(
+  "/deleteGameRegistrationAsPlayersByGameId/:id",
+  GameRegistrationsAsPlayerControllers.deleteAllGamesRegistrationByGameId
+)
+
+router.delete(
+  "/deleteGamesHasUsersByGameId/:id",
+  GamesHasUsersControllers.deleteAllGamesHasUsersByGameId
+)
+
+router.delete(
+  "/deleteGameRegistrationsByGameId/:id",
+  GameRegistrationsControllers.deleteAllGameRegistrationsByGameId
+)
+
 router.delete("/posts/:id", PostsControllers.destroy)
 router.delete("/FriendRequestControllers/:id", FriendRequestControllers.destroy)
 router.delete("/UsersFiltersControllers/:id", UsersFiltersControllers.destroy)

@@ -45,13 +45,13 @@ class GameRegistrationsManager extends AbstractManager {
   getGameRegistrationsWithDetails(id) {
     return this.database.query(
       `
-      select *
+      SELECT *
       from games
-      join games_has_users as ghu
-      on ghu.games_id = games.id
-      join users
-      on ghu.users_id = users.id
-      where users.id = ?;
+      JOIN games_has_users AS ghu
+      ON ghu.games_id = games.id
+      JOIN users
+      ON games.gm_id = users.id
+      WHERE ghu.users_id = ?;
     `,
       [id]
     )
@@ -108,6 +108,16 @@ class GameRegistrationsManager extends AbstractManager {
       JOIN users u ON g.gm_id = u.id
       JOIN role_playing_games rpg ON rpg.id = g.role_playing_game_id
       WHERE gr.requester_id = ?  AND schedule < NOW()`,
+      [id]
+    )
+  }
+
+  deleteGameRegistrationsByGameId(id) {
+    return this.database.query(
+      `DELETE gr.* 
+      FROM ${this.table} as gr
+      JOIN games ON games.id = gr.games_id
+      WHERE gr.games_id = ?`,
       [id]
     )
   }

@@ -91,28 +91,34 @@ export default function InvitationCards({
             key={oneGame.id}
             onClick={() => toggleGameSelection(oneGame.id)}
           >
-            <img
-              src={
-                selectedGames.includes(oneGame.id)
-                  ? calendarGold
-                  : calendarViolet
-              }
-            />
-            <p id="dateAndHour">
-              {new Date(oneGame.schedule).toLocaleString("en-EN", {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric",
-                hour: "2-digit",
-                minute: "2-digit"
-              })}
-            </p>
-            <p id="invitationGuildName">
-              GUILD : <span>{oneGame.guild_name}</span>
-            </p>
-            <p id="invitationIconRemoteCampaign">
-              {oneGame.is_remote === 1 ? "CAMPAIGN" : "ONE SHOT"}
-            </p>
+            <div id="imgCalendarInvitation">
+              <img
+                src={
+                  selectedGames.includes(oneGame.id)
+                    ? calendarGold
+                    : calendarViolet
+                }
+              />
+            </div>
+            <div id="dateAndHour">
+              <p>
+                {new Date(oneGame.schedule).toLocaleString("en-EN", {
+                  day: "2-digit",
+                  month: "2-digit",
+                  year: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit"
+                })}
+              </p>
+            </div>
+            <div id="invitationGuildName">
+              <p>
+                GUILD : <span>{oneGame.guild_name}</span>
+              </p>
+            </div>
+            <div id="invitationIconRemoteCampaign">
+              <p>{oneGame.is_remote === 1 ? "CAMPAIGN" : "ONE SHOT"}</p>
+            </div>
           </div>
         ))}
       </div>

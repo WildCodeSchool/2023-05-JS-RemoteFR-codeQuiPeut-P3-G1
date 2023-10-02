@@ -5,18 +5,40 @@ import Search from "../../assets/icon-dashboard/Search.svg"
 import Dice from "../../assets/icon-dashboard/Dice.svg"
 import Add from "../../assets/icon-dashboard/Add.svg"
 import eyeBtn from "../../assets/icon-dashboard/eyeBtn.svg"
+import crossDash from "../../assets/icon-dashboard/crossDash.svg"
 import GmCards from "./GmCards"
 import Cookies from "js-cookie"
 
 export default function FutureGames() {
   const [isGmCardsOpen, setIsGmCardsOpen] = useState(false)
-  const [gameGMData, setGameGMData] = useState([])
+  const [gameAsUser, setGameAsUser] = useState([])
+  const [gameAsGM, setGameAsGM] = useState([])
   const [gameData, setGameData] = useState(null)
+  const [showConfirm, setShowConfirm] = useState(false)
+  const [currentRequest, setCurrentRequest] = useState(null)
+  const [deleteCount, setDeleteCount] = useState(1)
   // const [gameChildrenData, setGameChildrenData] = useState([])
-  const isEmpty = (obj) => Array.isArray(obj) && obj.length === 0
+  // const isEmpty = (obj) => Array.isArray(obj) && obj.length === 0
 
   const tokenFromCookie = Cookies.get("authToken")
   const idUser = Cookies.get("idUser")
+
+  const openConfirmation = (gameId) => {
+    setShowConfirm(true)
+    setCurrentRequest({ gameId })
+  }
+
+  const closeConfirmation = () => {
+    setShowConfirm(false)
+    setCurrentRequest(null)
+  }
+
+  const confirmReject = () => {
+    if (currentRequest) {
+      rejectRequest(currentRequest.gameId)
+    }
+    closeConfirmation()
+  }
 
   const handleGameClick = (gameData) => {
     setGameData(gameData)
@@ -36,6 +58,76 @@ export default function FutureGames() {
     day: "2-digit"
   }
 
+  const rejectRequest = (gameId) => {
+    axios
+      .delete(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/deleteGameRegistrationAsPlayersByGameId/${gameId}`,
+        {
+          headers
+        }
+      )
+      .then(() => {
+        // console.info("1ère étape")
+        return axios.delete(
+          `${
+            import.meta.env.VITE_BACKEND_URL
+          }/deleteGamesHasUsersByGameId/${gameId}`,
+          {
+            headers
+          }
+        )
+      })
+      .catch((error) => {
+        // Traitement spécifique pour le statut "Not Found"
+        if (error.response && error.response.status === 404) {
+          console.warn("There isn't any entry")
+          return Promise.resolve() // Résoudre la promesse pour passer à l'étape suivante
+        }
+        // Gestion normale des autres erreurs
+        console.error("Error during 1st step:", error)
+        throw error // Propager l'erreur pour le traitement ultérieur
+      })
+      .then(() => {
+        // console.info("2ème étape")
+        return axios.delete(
+          `${
+            import.meta.env.VITE_BACKEND_URL
+          }/deleteGameRegistrationsByGameId/${gameId}`,
+          {
+            headers
+          }
+        )
+      })
+      .catch((error) => {
+        // Traitement spécifique pour le statut "Not Found"
+        if (error.response && error.response.status === 404) {
+          console.warn("There isn't any entry")
+          return Promise.resolve() // Résoudre la promesse pour passer à l'étape suivante
+        }
+        // Gestion normale des autres erreurs
+        console.error("Error during 2nd step:", error)
+        throw error // Propager l'erreur pour le traitement ultérieur
+      })
+      .then(() => {
+        // console.info("3ème étape")
+        return axios.delete(
+          `${import.meta.env.VITE_BACKEND_URL}/games/${gameId}`,
+          {
+            headers
+          }
+        )
+      })
+      .then(() => {
+        // console.info("4ème étape")
+        setDeleteCount((prevCount) => prevCount + 1)
+      })
+      .catch((error) => {
+        console.error("Error accepting request:", error)
+      })
+  }
+
   useEffect(() => {
     idUser !== null &&
       axios
@@ -43,12 +135,26 @@ export default function FutureGames() {
           headers
         })
         .then((response) => {
-          setGameGMData(response.data)
+          setGameAsUser(response.data)
         })
         .catch((error) => {
           console.error("An error occurred:", error)
         })
   }, [idUser])
+
+  useEffect(() => {
+    idUser !== null &&
+      axios
+        .get(`http://localhost:4242/gameswithrpgname/${idUser}`, {
+          headers
+        })
+        .then((response) => {
+          setGameAsGM(response.data)
+        })
+        .catch((error) => {
+          console.error("An error occurred:", error)
+        })
+  }, [idUser, deleteCount])
 
   return (
     <>
@@ -73,73 +179,144 @@ export default function FutureGames() {
               </button>
             </Link>
           </div>
-          <div>
-            {!isEmpty(gameGMData) ? (
-              gameGMData.map((game, index) => {
-                const scheduleDate = new Date(game.schedule)
-                const formattedSchedule = scheduleDate.toLocaleDateString(
-                  "en-Us",
-                  options
-                )
-                return (
-                  <div className="display_myfutureGames" key={index}>
-                    <div className="infoGames_FG_Container">
-                      <div className="infoGames_FG">
-                        <div className="infoGames_FG_Text">
-                          <div className="infoGames_FG_TextContent">
-                            <span id="goldenText_FG">GM</span>
-                            <span id="future-GM">{game.gm_username}</span>
+          <div id="futurGamesListGlobal">
+            <div id="gamesAsPlayer">
+              {gameAsUser.length !== 0 ? (
+                gameAsUser.map((game, index) => {
+                  const scheduleDate = new Date(game.schedule)
+                  const formattedSchedule = scheduleDate.toLocaleDateString(
+                    "en-Us",
+                    options
+                  )
+                  return (
+                    <div className="display_myfutureGames" key={index}>
+                      <div className="infoGames_FG_Container">
+                        <div className="infoGames_FG">
+                          <div className="infoGames_FG_Text">
+                            <div className="infoGames_FG_TextContent">
+                              <span id="goldenText_FG">GM</span>
+                              <span id="future-GM">{game.gm_username}</span>
+                              {/* <img
+                                src={`${import.meta.env.VITE_BACKEND_URL}/${
+                                  game.profil_picture
+                                }`}
+                              /> */}
+                            </div>
+                            <span id="lineSeparator_FG"></span>
+                            <div className="infoGames_FG_TextContent">
+                              <span id="goldenText_FG">ON </span>
+                              {game.guild_name}
+                            </div>
+                            <span id="lineSeparator_FG"></span>
+                            <div className="infoGames_FG_TextContent">
+                              <span id="goldenText_FG">ON </span>
+                              {formattedSchedule}
+                            </div>
                           </div>
-                          <span id="lineSeparator_FG"></span>
-                          <div className="infoGames_FG_TextContent">
-                            <span id="goldenText_FG">ON </span>
-                            {game.guild_name}
-                          </div>
-                          <span id="lineSeparator_FG"></span>
-                          <div className="infoGames_FG_TextContent">
-                            <span id="goldenText_FG">ON </span>
-                            {formattedSchedule}
+                          <div id="underlineInfo_FG">
+                            <span></span>
                           </div>
                         </div>
-                        <div id="underlineInfo_FG">
-                          <span></span>
+                        <div
+                          className="eyeBtnContainer"
+                          onClick={() => {
+                            toggleGmCards()
+                            handleGameClick(game)
+                          }}
+                        >
+                          <img
+                            className="eyeBtn"
+                            src={eyeBtn}
+                            alt="Icône de l'œil"
+                          />
                         </div>
-                      </div>
-                      <div
-                        className="eyeBtnContainer"
-                        onClick={() => {
-                          toggleGmCards()
-                          handleGameClick(game)
-                        }}
-                      >
-                        <img
-                          className="eyeBtn"
-                          src={eyeBtn}
-                          alt="Icône de l'œil"
-                        />
                       </div>
                     </div>
+                  )
+                })
+              ) : (
+                <div className="noDataMessage">
+                  <div className="messsageNoData">
+                    <p>You are not registered for any games yet</p>
+                    <Link to="/upcoming-table">
+                      <button id="partyFinder" type="button">
+                        FIND YOUR PARTY
+                      </button>
+                    </Link>
                   </div>
-                )
-              })
-            ) : (
-              <div className="noDataMessage">
-                <div className="messsageNoData">
-                  <p>
-                    You are not registered for any games yet. Check the{" "}
-                    <span id="goldenTextFuturGames">
-                      list of upcoming games or click on the button to find your
-                      party
-                    </span>
-                  </p>
-                  <Link to="/upcoming-table">
-                    <button id="partyFinder" type="button">
-                      FIND YOUR PARTY
-                    </button>
-                  </Link>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
+            <div id="gamesAsGM">
+              {gameAsGM.length !== 0 ? (
+                gameAsGM.map((game, index) => {
+                  const scheduleDate = new Date(game.schedule)
+                  const formattedSchedule = scheduleDate.toLocaleDateString(
+                    "en-Us",
+                    options
+                  )
+                  return (
+                    <div className="display_myfutureGames" key={index}>
+                      <div className="infoGames_FG_Container">
+                        <div className="infoGames_FG">
+                          <div className="infoGames_FG_Text">
+                            <div className="infoGames_FG_TextContent">
+                              <span id="goldenText_FG">GM</span>
+                              <span id="future-GM">{game.gm_username}</span>
+                            </div>
+                            <span id="lineSeparator_FG"></span>
+                            <div className="infoGames_FG_TextContent">
+                              <span id="goldenText_FG">ON </span>
+                              {game.guild_name}
+                            </div>
+                            <span id="lineSeparator_FG"></span>
+                            <div className="infoGames_FG_TextContent">
+                              <span id="goldenText_FG">ON </span>
+                              {formattedSchedule}
+                            </div>
+                          </div>
+                          <div id="underlineInfo_FG">
+                            <span></span>
+                          </div>
+                        </div>
+                        <div
+                          className="eyeBtnContainer"
+                          onClick={() => {
+                            toggleGmCards()
+                            handleGameClick(game)
+                          }}
+                        >
+                          <img
+                            className="eyeBtn"
+                            src={eyeBtn}
+                            alt="Icône de l'œil"
+                          />
+                        </div>
+                        <div className="deleteBtnContainer">
+                          <img
+                            id="refuseButton"
+                            src={crossDash}
+                            alt="refuse"
+                            onClick={() => openConfirmation(game.id)}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })
+              ) : (
+                <div className="noDataMessage">
+                  <div className="messsageNoData">
+                    <p>You don't have any game created as GM</p>
+                    <Link to="/create-game">
+                      <button id="partyFinder" type="button">
+                        CREATE MY GAME
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
         {isGmCardsOpen && (
@@ -148,6 +325,19 @@ export default function FutureGames() {
             gameData={gameData}
             setIsGmCardsOpen={setIsGmCardsOpen}
           />
+        )}
+        {showConfirm && (
+          <div className="custom-confirmRequest">
+            <div className="modalCustomConfirmRequest">
+              <p>Are you sure you want to reject this request ?</p>
+              <div className="buttonCustomConfirmRequest">
+                <button id="buttonNo" onClick={closeConfirmation}>
+                  NO
+                </button>
+                <button onClick={confirmReject}>YES</button>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </>
