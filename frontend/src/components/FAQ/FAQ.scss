@@ -25,6 +25,7 @@
     margin-top: 50px;
     width: 80%;
     height: 100%;
+
     .card-FAQ {
       display: flex;
       justify-content: center;
@@ -36,6 +37,7 @@
       background: rgba(217, 217, 217, 0.1);
       margin-bottom: 10px;
       overflow: hidden;
+      padding: 3%;
 
       // transition: max-height 0.5s ease-in-out;
       // max-height: 60px;
@@ -99,6 +101,7 @@
       svg {
         transform: rotate(0deg);
         transition: transform 0.3s ease;
+        width: 10vw;
       }
     }
   }
@@ -111,4 +114,15 @@
   //   transform: rotate(180deg);
   //   transition: transform 0.3s ease;
   // }
+}
+
+@media screen and (max-width: 1000px) {
+  .card-content {
+    padding: 0 10px;
+
+    p {
+      padding-left: 50px !important;
+      padding-right: 50px !important;
+    }
+  }
 }

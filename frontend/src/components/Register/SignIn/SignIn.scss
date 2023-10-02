@@ -154,3 +154,12 @@
     }
   }
 }
+
+@media screen and (max-width: 1000px) {
+  .cardLogIn-container {
+    width: 400px !important;
+    height: auto;
+    padding: 20% 2em;
+    font-size: 14px;
+  }
+}

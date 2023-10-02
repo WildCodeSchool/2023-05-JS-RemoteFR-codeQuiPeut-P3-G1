@@ -14,7 +14,7 @@
     flex-shrink: 0;
     width: 100%;
     height: 80%;
-    // border: 3px solid red;
+    // border: 3px solid blue;
 
     .instruction3D {
       width: 60%;
@@ -69,5 +69,32 @@
     border-bottom: 1px solid #e2d07c;
     margin: 5rem 3rem 0 3rem;
     padding: 2.5rem 0;
+    z-index: 51;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .Instruction-Scene-Text {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    // border: 3px solid red;
+
+    .instruction3D {
+      display: flex !important;
+      justify-content: center !important;
+      width: 100% !important;
+      height: 100% !important;
+      // border: 3px solid salmon;
+      z-index: 50 !important;
+    }
+
+    .InstructionText {
+      // border: 3px solid green;
+      margin: 0;
+      .Companions-Title {
+        margin-top: 1rem !important;
+      }
+    }
   }
 }

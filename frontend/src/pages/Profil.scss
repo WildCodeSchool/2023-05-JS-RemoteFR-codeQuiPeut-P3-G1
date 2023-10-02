@@ -220,11 +220,11 @@
       }
 
       .titlewaiting,
-        .titleHistory,
-        .titleValidate {
-          border-bottom: solid 1px #a4945e;
-          width: 60%;
-        }
+      .titleHistory,
+      .titleValidate {
+        border-bottom: solid 1px #a4945e;
+        width: 60%;
+      }
 
       .waitingValidationDiv,
       .validateDiv,
@@ -240,7 +240,7 @@
           flex-direction: column;
           gap: 20px;
         }
-        
+
         .scheduleDiv {
           display: flex;
           justify-content: center;
@@ -272,7 +272,7 @@
           padding: 20px;
           height: 7vh;
           border-radius: 4px;
-          
+
           .guildNameDiv {
             display: flex;
             width: 60%;
