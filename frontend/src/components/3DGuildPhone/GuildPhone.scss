@@ -2,6 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+  margin-top: 100px;
 
   .CreateGuildText {
     display: flex;
@@ -10,7 +12,6 @@
     align-items: center;
     width: 40%;
     height: 40%;
-
     padding: 2%;
 
     .letscreate {
@@ -20,6 +21,7 @@
       align-items: center;
       font-family: $title-font;
       color: $third-font-color;
+      margin: 2rem;
 
       h2 {
         text-align: center;
@@ -50,14 +52,13 @@
     }
   }
   .GuildPhone {
-    // width: 70%;
-    // height: 100vh;
-    width: 60%;
+    width: 100%;
+    height: 100vh;
   }
 
   .canvas {
-    width: 20%;
-    height: 50vh;
+    width: 100%;
+    height: 100%;
   }
 }
 
@@ -65,17 +66,28 @@
   .Global-GuildPhone {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    margin-top: 100px;
-
-    .CreateGuildText {
-      width: 100%;
-    }
 
     .GuildPhone {
       width: 100%;
+      height: 50vh;
+    }
+
+    .canvas {
+      width: 100%;
       height: 100%;
-      border: 5px solid red;
+    }
+
+    .CreateGuildText {
+      width: 80vw;
+      padding: 0;
+      .letscreate {
+        display: flex;
+        flex-direction: column;
+
+        hr {
+          margin: 0;
+        }
+      }
     }
   }
 }

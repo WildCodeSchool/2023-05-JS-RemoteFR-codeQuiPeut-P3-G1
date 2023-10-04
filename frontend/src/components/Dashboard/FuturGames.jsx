@@ -16,6 +16,7 @@ export default function FutureGames() {
   const [gameData, setGameData] = useState(null)
   const [showConfirm, setShowConfirm] = useState(false)
   const [currentRequest, setCurrentRequest] = useState(null)
+  const [deleteCount, setDeleteCount] = useState(1)
   // const [gameChildrenData, setGameChildrenData] = useState([])
   // const isEmpty = (obj) => Array.isArray(obj) && obj.length === 0
 
@@ -57,6 +58,76 @@ export default function FutureGames() {
     day: "2-digit"
   }
 
+  const rejectRequest = (gameId) => {
+    axios
+      .delete(
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/deleteGameRegistrationAsPlayersByGameId/${gameId}`,
+        {
+          headers
+        }
+      )
+      .then(() => {
+        // console.info("1ère étape")
+        return axios.delete(
+          `${
+            import.meta.env.VITE_BACKEND_URL
+          }/deleteGamesHasUsersByGameId/${gameId}`,
+          {
+            headers
+          }
+        )
+      })
+      .catch((error) => {
+        // Traitement spécifique pour le statut "Not Found"
+        if (error.response && error.response.status === 404) {
+          console.warn("There isn't any entry")
+          return Promise.resolve() // Résoudre la promesse pour passer à l'étape suivante
+        }
+        // Gestion normale des autres erreurs
+        console.error("Error during 1st step:", error)
+        throw error // Propager l'erreur pour le traitement ultérieur
+      })
+      .then(() => {
+        // console.info("2ème étape")
+        return axios.delete(
+          `${
+            import.meta.env.VITE_BACKEND_URL
+          }/deleteGameRegistrationsByGameId/${gameId}`,
+          {
+            headers
+          }
+        )
+      })
+      .catch((error) => {
+        // Traitement spécifique pour le statut "Not Found"
+        if (error.response && error.response.status === 404) {
+          console.warn("There isn't any entry")
+          return Promise.resolve() // Résoudre la promesse pour passer à l'étape suivante
+        }
+        // Gestion normale des autres erreurs
+        console.error("Error during 2nd step:", error)
+        throw error // Propager l'erreur pour le traitement ultérieur
+      })
+      .then(() => {
+        // console.info("3ème étape")
+        return axios.delete(
+          `${import.meta.env.VITE_BACKEND_URL}/games/${gameId}`,
+          {
+            headers
+          }
+        )
+      })
+      .then(() => {
+        // console.info("4ème étape")
+        setDeleteCount((prevCount) => prevCount + 1)
+      })
+      .catch((error) => {
+        console.error("Error accepting request:", error)
+      })
+  }
+
   useEffect(() => {
     idUser !== null &&
       axios
@@ -83,24 +154,7 @@ export default function FutureGames() {
         .catch((error) => {
           console.error("An error occurred:", error)
         })
-  }, [idUser])
-
-  const rejectRequest = (gameId) => {
-    axios
-      .delete(`${import.meta.env.VITE_BACKEND_URL}/games/${gameId}`, {
-        headers
-      })
-      .then((response) => {
-        console.info("Game successfuly deleted", response.data)
-      })
-      .catch((error) => {
-        console.error("Error accepting request:", error)
-      })
-  }
-
-  console.info(gameAsGM, "premier")
-  console.info(gameAsUser, "deuxieme")
-  console.info(gameData, "troisieme")
+  }, [idUser, deleteCount])
 
   return (
     <>

@@ -188,7 +188,7 @@ CREATE TABLE `games` (
 
 LOCK TABLES `games` WRITE;
 /*!40000 ALTER TABLE `games` DISABLE KEYS */;
-INSERT INTO `games` VALUES (1,1,'2023-10-15 19:00:00',5,'Join us for an epic fantasy adventure!','Adventure','Rise of Heroes','Avalon',0,1,'Raxion','1'),(2,2,'2023-10-20 18:30:00',4,'Explore the galaxy in this Star Wars RPG.','Adventure','Galactic Explorations','Coruscant',1,0,'Elgon','2'),(3,3,'2023-10-18 20:00:00',6,'Uncover the secrets of the ancient city.','Horror','Cthulhu Chronicles','Arkham',0,0,'Blake','3'),(4,4,'2023-10-16 15:00:00',3,'Solve puzzles and mysteries in Victorian London.','Sci-Fi','Sherlock Adventures','London',0,1,'Nestadar','4'),(5,5,'2023-10-19 14:00:00',5,'Embark on a journey in a high-fantasy world.','Horror','Epic Odyssey','Narnia',1,1,'Moix','5'),(65,6,'2023-09-14 00:00:00',4,'rtdhdrthhthfsfgesvsevgvg','Adventure','htdhdtht','Alba-la-Romaine',0,0,'Moix','5'),(66,3,'2023-09-30 02:00:00',4,'rggrdgrgrg','Horror','qrzgrdgrg','',1,0,'Nestadar','4');
+INSERT INTO `games` VALUES (1,1,'2023-10-15 19:00:00',5,'Join us for an epic fantasy adventure!','Adventure','Rise of Heroes','Avalon',0,1,'Raxion','1'),(2,2,'2023-10-20 18:30:00',4,'Explore the galaxy in this Star Wars RPG.','Adventure','Galactic Explorations','Coruscant',1,0,'Elgon','2'),(3,3,'2023-10-18 20:00:00',6,'Uncover the secrets of the ancient city.','Horror','Cthulhu Chronicles','Arkham',0,0,'Blake','3'),(4,4,'2023-10-16 15:00:00',3,'Solve puzzles and mysteries in Victorian London.','Sci-Fi','Sherlock Adventures','London',0,1,'Nestadar','4'),(5,5,'2023-10-19 14:00:00',5,'Embark on a journey in a high-fantasy world.','Horror','Epic Odyssey','Narnia',1,1,'Moix','5');
 /*!40000 ALTER TABLE `games` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -306,7 +306,7 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
-INSERT INTO `posts` VALUES (1,1,1,'I love discussing fantasy worlds! What are your favorites?','2023-08-31 14:32:14'),(2,2,2,'Sci-fi RPGs have always been my passion. Any recommendations?','2023-08-31 14:32:14'),(3,3,3,'Horror stories give me a thrill. Share your scariest moments!','2023-08-31 14:32:14'),(4,4,4,'Solving mysteries in RPGs is such a unique experience. Thoughts?','2023-08-31 14:32:14'),(5,5,5,'Epic adventures create unforgettable memories. Let\'s talk about them!','2023-08-31 14:32:14'),(13,1,5,'jnrofgnsoifgnsreiogv','2023-09-25 18:33:13'),(14,8,5,'sEUOFHUFIHEZLF89E','2023-09-25 18:33:38');
+INSERT INTO `posts` VALUES (1,1,1,'I love discussing fantasy worlds! What are your favorites?','2023-08-31 14:32:14'),(2,2,2,'Sci-fi RPGs have always been my passion. Any recommendations?','2023-08-31 14:32:14'),(3,3,3,'Horror stories give me a thrill. Share your scariest moments!','2023-08-31 14:32:14'),(4,4,4,'Solving mysteries in RPGs is such a unique experience. Thoughts?','2023-08-31 14:32:14'),(5,5,5,'Epic adventures create unforgettable memories. Let\'s talk about them!','2023-08-31 14:32:14');
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -338,7 +338,7 @@ CREATE TABLE `private_messages` (
 
 LOCK TABLES `private_messages` WRITE;
 /*!40000 ALTER TABLE `private_messages` DISABLE KEYS */;
-INSERT INTO `private_messages` VALUES (4,1,2,'Hey, are you joining the fantasy campaign this weekend?','2023-08-31 16:32:47',1),(5,2,3,'I have some sci-fi RPG suggestions for you. Let\'s chat!','2023-08-31 16:32:47',0),(6,3,4,'Do you enjoy horror RPGs? Let\'s discuss some recommendations.','2023-08-31 16:32:47',1),(7,4,5,'Solving mysteries in RPGs is my favorite. Want to share stories?','2023-08-31 16:32:47',0),(8,5,1,'Epic adventures await! Let\'s plan our next campaign.','2023-08-31 16:32:47',1),(10,5,4,'ehfuehfe','2023-09-25 20:32:53',0);
+INSERT INTO `private_messages` VALUES (4,1,2,'Hey, are you joining the fantasy campaign this weekend?','2023-08-31 16:32:47',1),(5,2,3,'I have some sci-fi RPG suggestions for you. Let\'s chat!','2023-08-31 16:32:47',0),(6,3,4,'Do you enjoy horror RPGs? Let\'s discuss some recommendations.','2023-08-31 16:32:47',1),(7,4,5,'Solving mysteries in RPGs is my favorite. Want to share stories?','2023-08-31 16:32:47',0),(8,5,1,'Epic adventures await! Let\'s plan our next campaign.','2023-08-31 16:32:47',1);
 /*!40000 ALTER TABLE `private_messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -425,7 +425,7 @@ CREATE TABLE `topics` (
 
 LOCK TABLES `topics` WRITE;
 /*!40000 ALTER TABLE `topics` DISABLE KEYS */;
-INSERT INTO `topics` VALUES (1,'Favorite Fantasy Worlds',1,1,'2023-08-31 14:29:31',10),(2,'Best Sci-Fi RPGs',2,2,'2023-08-31 14:29:31',5),(3,'Horror Stories to Share',3,3,'2023-08-31 14:29:31',3),(4,'Solving Mysteries in RPGs',4,4,'2023-08-31 14:29:31',7),(5,'Epic Adventure Moments',5,5,'2023-08-31 14:29:31',12),(8,'coucou les copains',3,5,'2023-09-25 18:33:38',0);
+INSERT INTO `topics` VALUES (1,'Favorite Fantasy Worlds',1,1,'2023-08-31 14:29:31',10),(2,'Best Sci-Fi RPGs',2,2,'2023-08-31 14:29:31',5),(3,'Horror Stories to Share',3,3,'2023-08-31 14:29:31',3),(4,'Solving Mysteries in RPGs',4,4,'2023-08-31 14:29:31',7),(5,'Epic Adventure Moments',5,5,'2023-08-31 14:29:31',12);
 /*!40000 ALTER TABLE `topics` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -558,4 +558,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-29 14:43:38
+-- Dump completed on 2023-09-29 17:59:18

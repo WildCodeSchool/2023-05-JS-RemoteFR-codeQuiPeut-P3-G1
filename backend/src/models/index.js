@@ -63,62 +63,49 @@ const PrivateMessagesManager = require("./PrivateMessagesManager")
 const RolePlayingGamesManager = require("./RolePlayingGamesManager")
 
 const GamesHasUsersManager = require("./GamesHasUsersManager")
+
 const GameRegistrationsAsPlayerManager = require("./GameRegistrationsAsPlayerManager")
 
 models.users = new UsersManager()
-
 models.users.setDatabase(pool)
 
 models.testimonials = new TestimonialsManager()
-
 models.testimonials.setDatabase(pool)
 
 models.games = new GamesManager()
-
 models.games.setDatabase(pool)
 
 models.gameRegistrationsManager = new GameRegistrationsManager()
-
 models.gameRegistrationsManager.setDatabase(pool)
 
 models.posts = new PostsManager()
-
 models.posts.setDatabase(pool)
 
 models.gamesHasUsersManager = new GamesHasUsersManager()
-
 models.gamesHasUsersManager.setDatabase(pool)
 
 models.FriendRequest = new FriendRequestManager()
-
 models.FriendRequest.setDatabase(pool)
 
 models.topics = new TopicsManager()
-
 models.topics.setDatabase(pool)
 
 models.topics_subscription = new TopicsSubscriptionManager()
-
 models.topics_subscription.setDatabase(pool)
 
 models.categories = new CategoriesManager()
-
 models.categories.setDatabase(pool)
 
 models.filter = new FiltersManager()
-
 models.filter.setDatabase(pool)
 
 models.usersFilters = new UsersFiltersManager()
-
 models.usersFilters.setDatabase(pool)
 
 models.private_messages = new PrivateMessagesManager()
-
 models.private_messages.setDatabase(pool)
 
 models.role_playing_games = new RolePlayingGamesManager()
-
 models.role_playing_games.setDatabase(pool)
 
 models.GameRegistrationsAsPlayer = new GameRegistrationsAsPlayerManager()
