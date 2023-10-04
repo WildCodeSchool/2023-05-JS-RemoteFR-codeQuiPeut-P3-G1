@@ -55,15 +55,17 @@
     .logoContentFG {
       display: flex;
       flex-direction: column;
+      justify-content: center;
+      align-items: center ;
       gap: 22px;
       transform: translateX(-50%);
-      width: auto;
+      // width: 100%;
       // border: 2px solid red;
 
       .sideButton {
         background: none;
         border: none;
-        width: 100%;
+        // width: 100%;
         img {
           width: 100%;
         }
@@ -72,6 +74,9 @@
 
     #futurGamesListGlobal {
       width: 100%;
+      height: 20vh;
+      overflow-y: auto;
+      // border: 2px solid red;
       #gamesAsPlayer,
       #gamesAsGM {
         width: 100%;
@@ -81,11 +86,11 @@
           justify-content: space-between;
           align-items: center;
           // flex-direction: column;
-          width: 100%;
+          width: 98%;
           height: 100%;
           color: #d9d9d9;
           // border: 2px solid yellow;
-          padding: 10px 30px 10px 10px;
+          padding: 10px 10px 10px 0px;
 
           .infoGames_FG_Container {
             display: flex;
@@ -95,6 +100,26 @@
             width: 100%;
             gap: 7px;
             // margin-right: 44px;
+            .deleteBtnContainerFG {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              // width: 100%;
+              // height: 100%;
+              // border: 2px solid red;
+              img {
+                border: 1px solid $secondary-font-color;
+                aspect-ratio: 1/1;
+                object-fit: cover;
+                width: 30px;
+                background: none;
+                border-radius: 50%;
+                cursor: pointer;
+                &:hover {
+                  background-color: rgb(149, 18, 18);
+                }
+              }
+            }
             .infoGames_FG {
               display: flex;
               flex-direction: column;
@@ -103,25 +128,31 @@
               align-items: center;
               text-align: center;
               gap: 5px;
+              // border: 2px solid blue;
 
               .infoGames_FG_Text {
                 display: flex;
-                justify-content: space-around;
+                justify-content: flex-start;
                 flex-direction: row;
                 align-items: center;
                 width: 100%;
+                height: 100%;
                 gap: 10px;
                 font-size: clamp(16px, 1vw, 32px);
                 text-align: center;
                 font-family: $content-font;
+                // border: 2px solid red;
 
                 .infoGames_FG_TextContent {
                   display: flex;
                   justify-content: center;
                   align-items: center;
-                  // flex-direction: column;
+                  flex-direction: row;
                   gap: 5px;
                   font-family: $content-font;
+                  // border: 2px solid green;
+                  // min-width: 100%;
+                  // min-height: 100%;
                   #goldenText_FG {
                     font-size: clamp(16px, 1vw, 32px);
                     font-style: normal;
@@ -162,18 +193,6 @@
             }
             .eyeBtnContainer {
               cursor: pointer;
-            }
-
-            #refuseButton {
-              border: 1px solid $secondary-font-color;
-              aspect-ratio: 1/1;
-              object-fit: cover;
-              background: none;
-              border-radius: 50%;
-              cursor: pointer;
-              &:hover {
-                background-color: rgb(149, 18, 18);
-              }
             }
           }
         }

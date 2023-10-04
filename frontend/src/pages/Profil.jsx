@@ -339,7 +339,7 @@ const Profil = () => {
 
             {isPlayer === false && (
               <>
-                <div className="titleValidate">UPCOMMING GAMES</div>
+                <div className="titleValidate">UPCOMING GAMES</div>
                 <div className="validateDiv">
                   <div className="displayValidate">
                     {upcommingGameGMData.map((validated, index) => {
