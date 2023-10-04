@@ -196,11 +196,6 @@ export default function FutureGames() {
                             <div className="infoGames_FG_TextContent">
                               <span id="goldenText_FG">GM</span>
                               <span id="future-GM">{game.gm_username}</span>
-                              {/* <img
-                                src={`${import.meta.env.VITE_BACKEND_URL}/${
-                                  game.profil_picture
-                                }`}
-                              /> */}
                             </div>
                             <span id="lineSeparator_FG"></span>
                             <div className="infoGames_FG_TextContent">
@@ -292,9 +287,9 @@ export default function FutureGames() {
                             alt="Icône de l'œil"
                           />
                         </div>
-                        <div className="deleteBtnContainer">
+                        <div className="deleteBtnContainerFG">
                           <img
-                            id="refuseButton"
+                            id="refuseButtonFG"
                             src={crossDash}
                             alt="refuse"
                             onClick={() => openConfirmation(game.id)}
