@@ -6,11 +6,6 @@ class GamesManager extends AbstractManager {
   }
 
   async insert(games) {
-    // const scheduleDate = new Date(games.schedule)
-    // const formattedScheduleDate = scheduleDate
-    //   .toISOString()
-    //   .slice(0, 19)
-    //   .replace("T", " ")
     return this.database.query(
       `INSERT INTO ${this.table} (role_playing_game_id, gm_username, schedule, max_players_capacity, description, type, guild_name, city, is_remote, is_campaign, gm_id) VALUES (?, ?, DATE_FORMAT(?, '%Y-%m-%d %H:%i'), ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
@@ -31,7 +26,8 @@ class GamesManager extends AbstractManager {
 
   update(games) {
     return this.database.query(
-      `UPDATE ${this.table} SET guild_name = ?, type = ?, role_playing_game_id = ?, is_campaign = ?, max_players_capacity = ?, description = ?, is_remote = ?, city = ?, schedule = DATE_FORMAT(?, '%Y-%m-%d %H:%i') WHERE id = ?`,
+      `UPDATE ${this.table} SET guild_name = ?, type = ?, role_playing_game_id = ?, is_campaign = ?, max_players_capacity = ?, description = ?, is_remote = ?, city = ?, 
+      schedule = DATE_FORMAT(?, '%Y-%m-%d %H:%i') WHERE id = ?`,
       [
         games.guild_name,
         games.type,
@@ -48,8 +44,10 @@ class GamesManager extends AbstractManager {
   }
 
   getGamesByGameMasterUsername(username) {
+    // Example of a select query to display games by gamemaster username
     return this.database.query(
-      `SELECT g.id, g.guild_name, u.profil_picture, g.type, g.is_campaign, g.is_remote, g.max_players_capacity, g.description, g.city, g.schedule, g.gm_username, rpg.name as rpg_name, rpg.id as rpg_id, rpg.rpg_icon as rpg_icon
+      `SELECT g.id, g.guild_name, u.profil_picture, g.type, g.is_campaign, g.is_remote, 
+      g.max_players_capacity, g.description, g.city, g.schedule, g.gm_username, rpg.name as rpg_name, rpg.id as rpg_id, rpg.rpg_icon as rpg_icon
     FROM ${this.table} as g
     inner join users as u
     on u.username = g.gm_username

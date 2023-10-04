@@ -122,10 +122,13 @@ router.get(
   "/gmpicturebygames/:id",
   GamesControllers.selectGmProfilPictureByGameId
 )
+
 router.get("/games", GamesControllers.browse)
 router.get("/games/:id", GamesControllers.read)
-router.put("/games/:id", GamesControllers.edit)
 router.post("/games", GamesControllers.add)
+router.put("/games/:id", GamesControllers.edit)
+router.delete("/games/:id", GamesControllers.destroy)
+
 router.get(
   "/usernameGMFutureGames/:id",
 
@@ -211,7 +214,6 @@ router.get(
 router.delete("/categories/:id", CategoriesControllers.destroy)
 router.delete("/topics_subscription/:id", TopicsSubscriptionControllers.destroy)
 router.delete("/topics/:id", TopicsControllers.destroy)
-router.delete("/games/:id", GamesControllers.destroy)
 router.delete("/filters/:id", FiltersControllers.destroy)
 router.delete("/gamesRegistrations/:id", GameRegistrationsControllers.destroy)
 

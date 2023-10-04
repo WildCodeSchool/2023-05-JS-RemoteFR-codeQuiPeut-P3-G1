@@ -26,12 +26,14 @@ class GamesHasUsersManager extends AbstractManager {
   }
 
   allPlayersByGameId(id) {
+    // Executes a SQL query to select usernames and profile pictures of players
+    // who are associated with the specified game ID.
     return this.database.query(
       `SELECT users.username, users.profil_picture
-      FROM ${this.table}  as ghu
-      JOIN games ON ghu.games_id = games.id
-      JOIN users ON ghu.users_id = users.id
-      where games_id = ?`,
+       FROM ${this.table} AS ghu
+       JOIN games ON ghu.games_id = games.id
+       JOIN users ON ghu.users_id = users.id
+       WHERE games_id = ?`,
       [id]
     )
   }

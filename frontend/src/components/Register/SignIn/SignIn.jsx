@@ -39,37 +39,41 @@ function SignIn({
   const navigate = useNavigate()
 
   const handleLogin = (e) => {
+    // Prevents page reloading on form submission
     e.preventDefault()
+    // Sends a POST request to server localhost:4242 for connection
     axios
       .post("http://localhost:4242/login", {
         username: signInUsername,
         password: signInPassword
       })
       .then((res) => {
-        if (res.status === 200) {
-          console.info("Connexion établie !")
-          document.getElementById("cardLogIn-Input").reset()
-          const token = res.data.token
-          Cookies.set("authToken", token, { expires: 0.5, sameSite: "strict" })
-          Cookies.set("usernameGm", res.data.user.username, {
-            sameSite: "strict"
-          })
-          Cookies.set("loggedInUser", JSON.stringify(res.data.user), {
-            sameSite: "strict"
-          })
-          Cookies.set("idUser", JSON.stringify(res.data.user.id), {
-            sameSite: "strict"
-          })
-          setSignInUsername()
-          setSignInPassword()
-          navigate("/home")
-        }
+        // If the connection is successful (status 200 OK), performs the following actions
+        console.info("Connection established !")
+        // Resets the registration form
+        document.getElementById("cardLogIn-Input").reset()
+        // Retrieves authentication token from response
+        const token = res.data.token
+        // Set and store authentication cookies
+        Cookies.set("authToken", token, { expires: 0.5, sameSite: "strict" })
+        Cookies.set("usernameGm", res.data.user.username, {
+          sameSite: "strict"
+        })
+        Cookies.set("loggedInUser", JSON.stringify(res.data.user), {
+          sameSite: "strict"
+        })
+        Cookies.set("idUser", JSON.stringify(res.data.user.id), {
+          sameSite: "strict"
+        })
+        // Reset login fields in state (if necessary)
+        setSignInUsername()
+        setSignInPassword()
+        navigate("/home")
       })
       .catch((error) => {
         console.error("Erreur lors de la connexion :", error)
       })
-
-    // Close sign-up modal if open
+    // Closes the registration modal if it's open
     setShowModal(false)
   }
 
