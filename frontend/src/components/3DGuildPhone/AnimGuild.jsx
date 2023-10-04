@@ -79,9 +79,9 @@ export default function AnimGuild(props) {
         ref={groupRef}
         position={[0, 0, -5]}
         rotation={[0, 0, 0]}
-        scale={0.011}
+        scale={0.015}
       >
-        <group position={[0.5, 0.238, 0]} rotation={[-0.2, 0, 0]} scale={0.7}>
+        <group position={[0.5, 0.238, 0]} rotation={[-0.2, 0, 0]} scale={0.5}>
           <group
             position={[-27.066, -152.603, -26.853]}
             scale={[0.994, 0.941, 0.744]}

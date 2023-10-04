@@ -119,3 +119,47 @@
     }
   }
 }
+
+@media screen and (max-width: 1000px) {
+  .cardLogIn-container2-Major {
+    position: fixed;
+
+    .cardLogIn-container2 {
+      width: 95vw;
+      height: 90vh;
+
+      span {
+        font-size: 25px;
+      }
+
+      #cardLogIn-Input2 {
+        width: 100%;
+
+        span {
+          font-size: 20px;
+        }
+        input {
+          width: 261px;
+          height: 38px;
+        }
+      }
+      .button-SignIn-Container2 {
+        display: flex;
+        .button-SignIn2 {
+          width: 125px;
+          height: 40px;
+
+          button {
+            width: 161px;
+            height: 49px;
+            align-self: center;
+            font-size: 18px;
+          }
+        }
+      }
+      #social-account-logIn2 {
+        font-size: 15px;
+      }
+    }
+  }
+}
