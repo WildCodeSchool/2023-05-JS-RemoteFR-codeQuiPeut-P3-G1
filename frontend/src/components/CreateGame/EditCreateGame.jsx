@@ -71,10 +71,7 @@ function EditCreateGame({
         console.info("je suis dans le axios", res.data[0].id, gameRPGID)
       })
       .catch((error) => {
-        console.error(
-          "Une erreur s'est produite lors de la récupération des jeux :",
-          error
-        )
+        console.error("An error occurred while retrieving :", error)
       })
   }, [username])
 

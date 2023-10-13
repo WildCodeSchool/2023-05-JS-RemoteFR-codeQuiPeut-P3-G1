@@ -36,8 +36,6 @@ function ResumeCreateGame({
       .then((res) => setGamesList(res.data))
   }, [usernameGm])
 
-  console.info("la liste des jeux", gamesList, "le nom du GM", usernameGm)
-
   const handleReset = () => {
     setCreateOrResume(1)
     setGameRPGID("")
