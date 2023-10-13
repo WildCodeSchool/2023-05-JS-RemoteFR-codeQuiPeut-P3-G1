@@ -118,7 +118,6 @@ export default function CreateGame() {
       )
       .then((res) => {
         if (res.status === 201) {
-          // console.info("Partie créée avec succès !")
           setGameRPGID("")
           setGamePlayersCapacity(1)
           setGameDesc("")
@@ -138,8 +137,8 @@ export default function CreateGame() {
         // document.getElementById("createGameSelecter").selectedIndex = 0
       })
       .catch((error) => {
-        console.error("Erreur lors de la création de la partie :", error)
-        toast.error("Erreur lors de la création de la partie", {
+        console.error("Erreur during game creation :", error)
+        toast.error("Erreur during game creation", {
           position: toast.POSITION.TOP_RIGHT
         })
       })
