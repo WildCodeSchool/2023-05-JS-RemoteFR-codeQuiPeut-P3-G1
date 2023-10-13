@@ -73,8 +73,6 @@ const modifyProfilUser = (req, res) => {
 const add = (req, res) => {
   const users = req.body
 
-  // TODO validations (length, format...)
-
   models.users
     .insert(users)
     .then(([result]) => {
