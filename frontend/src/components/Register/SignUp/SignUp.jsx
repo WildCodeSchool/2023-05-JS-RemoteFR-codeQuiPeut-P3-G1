@@ -25,7 +25,7 @@ function SignUp({ setShowModal }) {
       })
       .then((res) => {
         if (res.status === 201) {
-          console.info("Utilisateur créé avec succès !")
+          console.info("User successfully created !")
           document.getElementById("cardLogIn-Input2").reset()
           setSignUpUsername()
           setSignUpEmail()
@@ -35,10 +35,7 @@ function SignUp({ setShowModal }) {
         }
       })
       .catch((error) => {
-        console.error(
-          "Erreur lors de la création de la création de l'utilisateur :",
-          error
-        )
+        console.error("Error creating user :", error)
       })
   }
 
