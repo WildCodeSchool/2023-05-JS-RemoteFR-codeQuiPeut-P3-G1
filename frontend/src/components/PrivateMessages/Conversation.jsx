@@ -14,6 +14,7 @@ export default function Conversation(props) {
   const [messageContent, setMessageContent] = useState("")
   const [messageHistory, setMessageHistory] = useState([])
   const [animateSend, setAnimateSend] = useState(false)
+  const [socket, setSocket] = useState(null)
 
   const idUser = Cookies.get("idUser")
   const tokenFromCookie = Cookies.get("authToken")
@@ -21,15 +22,21 @@ export default function Conversation(props) {
     Authorization: `Bearer ${tokenFromCookie}`
   }
 
-  const socket = io.connect("http://localhost:4242", {
-    transportOptions: {
-      polling: {
-        extraHeaders: {
-          Authorization: `Bearer ${tokenFromCookie}`
-        }
+  useEffect(() => {
+    const newSocket = io.connect(`${import.meta.env.VITE_BACKEND_URL}`, {
+      auth: {
+        token: tokenFromCookie
       }
-    }
-  })
+    })
+
+    newSocket.on("connect_error", (error) => {
+      console.error("Connection error:", error)
+    })
+
+    setSocket(newSocket)
+
+    return () => newSocket.disconnect()
+  }, [])
 
   useEffect(() => {
     axios
@@ -44,7 +51,7 @@ export default function Conversation(props) {
         console.info(res.data)
       })
       .catch((err) => {
-        console.info("ca marche pas", err)
+        console.info("Error while retreiving the messages data", err)
       })
   }, [senderId])
 
@@ -56,39 +63,39 @@ export default function Conversation(props) {
       time: getCurrentTime()
     }
 
-    socket.emit("send_message", messageData)
+    socket.emit("send_message", messageData, (response) => {
+      if (response.error) {
+        console.error("Error saving message:", response.error)
+      } else {
+        setMessageHistory((prevMessages) => [...prevMessages, messageData])
+      }
+    })
 
-    setMessageHistory((prevMessages) => [...prevMessages, messageData])
-    setMessageContent("") // Réinitialise le contenu de l'input
-
-    axios
-      .post(
-        `${import.meta.env.VITE_BACKEND_URL}/PrivateMessages`,
-        messageData,
-        { headers }
-      )
-      .catch((err) => {
-        console.info("Erreur Post dans Private Messages", err)
-      })
+    setMessageContent("")
   }
+
+  // useEffect(() => {
+  //   if (socket) {
+  //     const receiveMessageHandler = (data) => {
+  //       setMessageHistory((prevMessages) => [...prevMessages, data])
+  //       console.log("ca recoit")
+  //     }
+
+  //     socket.on("receive_message", receiveMessageHandler)
+
+  //     return () => {
+  //       socket.off("receive_message", receiveMessageHandler)
+  //     }
+  //   }
+  // }, [socket])
 
   useEffect(() => {
     if (messageHistoryRef.current) {
       messageHistoryRef.current.scrollTop =
         messageHistoryRef.current.scrollHeight
     }
+  }, [messageHistory])
 
-    const receiveMessageHandler = (data) => {
-      setMessageHistory((prevMessages) => [...prevMessages, data])
-    }
-
-    socket.on("receive_message", receiveMessageHandler)
-
-    // Nettoyez l'écouteur lorsque le composant est démonté
-    return () => {
-      socket.off("receive_message", receiveMessageHandler)
-    }
-  }, [messageHistory, socket])
   return (
     <div className="divConversation">
       <div className="conversationHeader">
@@ -106,14 +113,14 @@ export default function Conversation(props) {
         </div>
       </div>
       <div className="convContents" ref={messageHistoryRef}>
-        {messageHistory.map((message) => (
+        {messageHistory.map((message, id) => (
           <div
             className={
               Number(message.users_id_recipient) !== Number(idUser)
                 ? "wrapMessageRight"
                 : "wrapMessageLeft"
             }
-            key={message.id}
+            key={id}
           >
             <div className="msgBackground">
               <p>{message.content}</p>

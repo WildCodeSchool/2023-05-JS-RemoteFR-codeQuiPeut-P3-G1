@@ -2,6 +2,9 @@
 
 const fs = require("node:fs")
 const path = require("node:path")
+const messageController = require("./controllers/PrivateMessagesControllers")
+
+const jwt = require("jsonwebtoken")
 
 // create express app
 
@@ -37,18 +40,39 @@ const io = new Server(server, {
 // use some application-level middlewares
 
 io.on("connection", (socket) => {
-  console.info("Client connected")
+  console.log("client connected")
+  try {
+    const token = socket.handshake.auth.token
 
-  socket.on("send_message", (data) => {
-    const recipientId = data.to
-    socket.join(recipientId)
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET)
 
-    io.to(recipientId).emit("receive_message", data)
-  })
+    socket.user = decodedToken
+
+    console.log("Client connected with valid token from App")
+    socket.on("send_message", (messageData, callback) => {
+      messageController
+        .insertPrivateMessage(messageData)
+        .then((savedMessageId) => {
+          const savedMessage = {
+            ...messageData,
+            id: savedMessageId,
+          }
+          console.log("Message in database", messageData)
+
+          io.to(messageData.to).emit("message saved", savedMessage)
+          callback({ savedMessage })
+        })
+        .catch((err) => {
+          console.log("error saving message", err)
+          callback({ error: err.message })
+        })
+    })
+  } catch (err) {
+    console.log("Auth error", err)
+    callback({ error: err.message })
+    socket.disconnect()
+  }
 })
-
-// server.listen(4221, () => console.log("je suis un poulet");)
-// import and mount the API routes
 
 const router = require("./router")
 

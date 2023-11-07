@@ -66,10 +66,10 @@ export default function PrivateMessages() {
           </div>
         </div>
         <div className="displayMessages">
-          {messagePreview.map((message) => (
+          {messagePreview.map((message, id) => (
             <div
               className="messageContent"
-              key={message.date}
+              key={id}
               onClick={() => handleSelectedUser(message)}
             >
               <div className="msgProfilPicture">

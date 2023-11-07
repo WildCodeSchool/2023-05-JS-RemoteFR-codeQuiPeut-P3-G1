@@ -64,6 +64,19 @@ const add = (req, res) => {
     })
 }
 
+const insertPrivateMessage = (messageData) => {
+  return new Promise((resolve, reject) => {
+    models.private_messages
+      .insert(messageData)
+      .then(([result]) => {
+        resolve(result.insertId)
+      })
+      .catch((err) => {
+        reject(err)
+      })
+  })
+}
+
 const destroy = (req, res) => {
   models.private_messages
     .delete(req.params.id)
@@ -113,4 +126,5 @@ module.exports = {
   destroy,
   messagesPreview,
   getMessagesFromUsers,
+  insertPrivateMessage,
 }

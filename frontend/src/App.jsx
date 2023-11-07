@@ -23,23 +23,6 @@ function App() {
   const [users, setUsers] = useState([])
   const [user, setUser] = useState([])
 
-  // const tokenFromCookie = Cookies.get("authToken")
-
-  // const headers = {
-  //   Authorization: `Bearer ${tokenFromCookie}`,
-  // }
-
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:4242/users`, { headers })
-  //     .then((res) => {
-  //       setUsers(res.data)
-  //     })
-  //     .catch((err) => {
-  //       console.error("Problème lors du chargement des users", err)
-  //     })
-  // }, [])
-
   return (
     <>
       <ToastContainer />
