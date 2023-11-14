@@ -38,7 +38,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: 80%;
+    width: 100%;
     height: 100%;
     position: sticky;
     top: 5%;
@@ -60,27 +60,8 @@
 
 @media screen and (max-width: 1000px) {
   .main-landingPage {
-    display: flex;
-
-    .Scene {
-      position: relative;
-      z-index: 50;
-    }
-
-    .wave-testLandingPage {
-      position: absolute;
-      width: 100%;
-      top: 50%;
-      z-index: 49;
-    }
-
-    .canvas {
-      display: flex;
-      width: 50%;
-    }
-    .guildScene {
-      display: flex;
-      justify-content: center;
+    .button-register-container {
+      top: 3%;
     }
 
     .logoGuild-Header {

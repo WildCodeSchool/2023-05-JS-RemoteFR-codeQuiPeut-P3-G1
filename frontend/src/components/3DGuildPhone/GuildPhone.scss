@@ -80,13 +80,21 @@
     .CreateGuildText {
       width: 80vw;
       padding: 0;
+
       .letscreate {
         display: flex;
         flex-direction: column;
 
+        h2 {
+          font-size: 30px;
+        }
+
         hr {
           margin: 0;
         }
+      }
+      .createParagraph {
+        font-size: 15px;
       }
     }
   }

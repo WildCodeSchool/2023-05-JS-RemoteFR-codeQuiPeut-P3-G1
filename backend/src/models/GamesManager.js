@@ -7,7 +7,9 @@ class GamesManager extends AbstractManager {
 
   async insert(games) {
     return this.database.query(
-      `INSERT INTO ${this.table} (role_playing_game_id, gm_username, schedule, max_players_capacity, description, type, guild_name, city, is_remote, is_campaign, gm_id) VALUES (?, ?, DATE_FORMAT(?, '%Y-%m-%d %H:%i'), ?, ?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO ${this.table} (role_playing_game_id, gm_username, schedule, 
+        max_players_capacity, description, type, guild_name, city, is_remote, 
+        is_campaign, gm_id) VALUES (?, ?, DATE_FORMAT(?, '%Y-%m-%d %H:%i'), ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         games.role_playing_game_id,
         games.gm_username,

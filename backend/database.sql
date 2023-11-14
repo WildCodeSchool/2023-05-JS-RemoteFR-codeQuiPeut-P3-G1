@@ -160,9 +160,7 @@ UNLOCK TABLES;
 -- Table structure for table `games`
 --
 
-DROP TABLE IF EXISTS `games`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+
 CREATE TABLE `games` (
   `id` int NOT NULL AUTO_INCREMENT,
   `role_playing_game_id` int NOT NULL,
@@ -179,8 +177,7 @@ CREATE TABLE `games` (
   PRIMARY KEY (`id`),
   KEY `ID_role_playing_game` (`role_playing_game_id`),
   CONSTRAINT `parties_ibfk_1` FOREIGN KEY (`role_playing_game_id`) REFERENCES `role_playing_games` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+)
 
 --
 -- Dumping data for table `games`

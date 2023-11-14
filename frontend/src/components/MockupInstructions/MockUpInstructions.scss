@@ -74,27 +74,40 @@
 }
 
 @media screen and (max-width: 1000px) {
-  .Instruction-Scene-Text {
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: center;
-    // border: 3px solid red;
+  .globalInstructions {
+    .Instruction-Scene-Text {
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: center;
+      // border: 3px solid red;
 
-    .instruction3D {
-      display: flex !important;
-      justify-content: center !important;
-      width: 100% !important;
-      height: 100% !important;
-      // border: 3px solid salmon;
-      z-index: 50 !important;
+      .instruction3D {
+        display: flex !important;
+        justify-content: center !important;
+        width: 100% !important;
+        height: 100% !important;
+        // border: 3px solid salmon;
+        z-index: 50 !important;
+      }
+
+      .InstructionText {
+        // border: 3px solid green;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        .Companions-Title {
+          margin-top: 1rem !important;
+          font-size: 20px;
+        }
+        .Companions-Text {
+          width: 80%;
+          font-size: 15px;
+        }
+      }
     }
 
-    .InstructionText {
-      // border: 3px solid green;
-      margin: 0;
-      .Companions-Title {
-        margin-top: 1rem !important;
-      }
+    .Instructions-Title {
+      font-size: 20px;
     }
   }
 }

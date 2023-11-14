@@ -28,23 +28,18 @@ export default function NewTopic({ onClose, updateShouldRefreshTable }) {
 
   const handleCreateTopic = () => {
     axios
-
       .post(
         `${import.meta.env.VITE_BACKEND_URL}/topics`,
-
         {
           title: name,
           categories_id: category,
           content: message,
           users_id: idUser
         },
-
         { headers }
       )
-
       .then((res) => {
         console.info("Topic créé avec succès !", res.status)
-
         if (res.status === 200 || res.status === 201) {
           onClose(true) // Ferme la fenêtre modale après la création
           updateShouldRefreshTable(true) // Indique que la table doit être rafraîchie
@@ -53,7 +48,6 @@ export default function NewTopic({ onClose, updateShouldRefreshTable }) {
           })
         }
       })
-
       .catch((error) => {
         console.error("Erreur lors de la création du Topic :", error)
         toast.error("Erreur when creating the topic", {
