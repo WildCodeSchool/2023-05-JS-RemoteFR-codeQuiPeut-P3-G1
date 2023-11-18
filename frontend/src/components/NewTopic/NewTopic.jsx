@@ -5,7 +5,10 @@ import axios from "axios"
 import Cookies from "js-cookie"
 import { toast } from "react-toastify"
 
-export default function NewTopic({ onClose, updateShouldRefreshTable }) {
+export default function NewTopic({
+  setIsNewTopicOpen,
+  updateShouldRefreshTable
+}) {
   const tokenFromCookie = Cookies.get("authToken")
 
   const idUser = Cookies.get("idUser")
@@ -41,7 +44,7 @@ export default function NewTopic({ onClose, updateShouldRefreshTable }) {
       .then((res) => {
         console.info("Topic créé avec succès !", res.status)
         if (res.status === 200 || res.status === 201) {
-          onClose(false) // Ferme la fenêtre modale après la création
+          setIsNewTopicOpen(false) // Ferme la fenêtre modale après la création
           updateShouldRefreshTable(true) // Indique que la table doit être rafraîchie
           toast.success("Topic create with success !", {
             position: toast.POSITION.TOP_RIGHT
@@ -115,7 +118,10 @@ export default function NewTopic({ onClose, updateShouldRefreshTable }) {
             CREATE
           </button>
 
-          <button onClick={() => onClose(false)} id="buttonCloseNewTopic">
+          <button
+            onClick={() => setIsNewTopicOpen(false)}
+            id="buttonCloseNewTopic"
+          >
             CLOSE
           </button>
         </div>

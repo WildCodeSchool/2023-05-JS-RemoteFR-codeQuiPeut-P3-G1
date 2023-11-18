@@ -45,10 +45,6 @@ export default function Topics() {
     }
   }, [shouldRefreshTable])
 
-  const openNewTopicModal = () => {
-    setIsNewTopicOpen(true)
-  }
-
   const handleUsernameFilterChange = (event) => {
     setUsernameFilter(event.target.value)
   }
@@ -130,7 +126,7 @@ export default function Topics() {
                   </div>
 
                   <div className="boxNewTopics">
-                    <button onClick={openNewTopicModal}>
+                    <button onClick={() => setIsNewTopicOpen(true)}>
                       OR CREATE A NEW TOPIC
                     </button>
                   </div>
@@ -228,7 +224,7 @@ export default function Topics() {
             <div id="modalTopics">
               <div id="modalTopicsContent">
                 <NewTopic
-                  onClose={openNewTopicModal}
+                  setIsNewTopicOpen={setIsNewTopicOpen}
                   updateShouldRefreshTable={updateShouldRefreshTable}
                 />
               </div>
