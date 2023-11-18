@@ -109,7 +109,6 @@ export default function NewTopic({ onClose, updateShouldRefreshTable }) {
             onClick={() => {
               if (category !== "" && message !== "" && name !== "") {
                 handleCreateTopic()
-                // onClose(false)
               }
             }}
           >

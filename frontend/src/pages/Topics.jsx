@@ -45,12 +45,8 @@ export default function Topics() {
     }
   }, [shouldRefreshTable])
 
-  const openNewTopicModal = (value) => {
-    setIsNewTopicOpen(value)
-  }
-
-  const closeNewTopicModal = () => {
-    setIsNewTopicOpen(false)
+  const openNewTopicModal = () => {
+    setIsNewTopicOpen(true)
   }
 
   const handleUsernameFilterChange = (event) => {
@@ -232,7 +228,7 @@ export default function Topics() {
             <div id="modalTopics">
               <div id="modalTopicsContent">
                 <NewTopic
-                  onClose={closeNewTopicModal}
+                  onClose={openNewTopicModal}
                   updateShouldRefreshTable={updateShouldRefreshTable}
                 />
               </div>
