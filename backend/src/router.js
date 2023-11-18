@@ -96,6 +96,8 @@ router.delete("/rpgLesser/:userId/:rpgId", UsersControllers.rpgLesser)
 
 router.use(verifyToken)
 
+router.put("/modifyProfil", UsersControllers.modifyProfilUser)
+
 router.put(
   "/users/:id/upload",
   upload.single("myFile"),
