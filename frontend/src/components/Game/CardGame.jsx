@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import Calendar from "moedim"
+// import Calendar from "moedim"
 
 import PlayerCards from "../Dashboard/PlayerCards"
 
@@ -136,19 +136,14 @@ export default function CardGame({
               <span>Game Date</span>
             </div>
             <div className="underlineGameDateResume"></div>
-            <div className="calendarResume">
-              <Calendar
-                // value={gameData.schedule}
-                id="createGameCalendar"
-                required
-              />
-            </div>
             <div className="hourSchedule">
-              Game Time :{" "}
-              {new Date(gameData.schedule).toLocaleString("fr-FR", {
-                hour: "2-digit",
-                minute: "2-digit"
-              })}
+              <p>{formattedSchedule}</p>
+              <p>
+                {new Date(gameData.schedule).toLocaleString("fr-FR", {
+                  hour: "2-digit",
+                  minute: "2-digit"
+                })}
+              </p>
             </div>
           </div>
         </div>

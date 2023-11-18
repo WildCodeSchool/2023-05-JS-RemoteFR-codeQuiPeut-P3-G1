@@ -375,6 +375,9 @@
           }
         }
         .hourSchedule {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
           width: 100%;
           color: #a4945e;
           font-size: 0.85vw;
