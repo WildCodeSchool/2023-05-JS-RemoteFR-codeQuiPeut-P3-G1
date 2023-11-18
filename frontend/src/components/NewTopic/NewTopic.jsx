@@ -41,7 +41,7 @@ export default function NewTopic({ onClose, updateShouldRefreshTable }) {
       .then((res) => {
         console.info("Topic créé avec succès !", res.status)
         if (res.status === 200 || res.status === 201) {
-          onClose(true) // Ferme la fenêtre modale après la création
+          onClose(false) // Ferme la fenêtre modale après la création
           updateShouldRefreshTable(true) // Indique que la table doit être rafraîchie
           toast.success("Topic create with success !", {
             position: toast.POSITION.TOP_RIGHT
@@ -109,7 +109,7 @@ export default function NewTopic({ onClose, updateShouldRefreshTable }) {
             onClick={() => {
               if (category !== "" && message !== "" && name !== "") {
                 handleCreateTopic()
-                onClose(false)
+                // onClose(false)
               }
             }}
           >
