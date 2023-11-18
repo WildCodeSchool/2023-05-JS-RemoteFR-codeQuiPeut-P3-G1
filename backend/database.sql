@@ -152,7 +152,7 @@ CREATE TABLE `game_registrations_as_player` (
 
 LOCK TABLES `game_registrations_as_player` WRITE;
 /*!40000 ALTER TABLE `game_registrations_as_player` DISABLE KEYS */;
-INSERT INTO `game_registrations_as_player` VALUES (1,1,1,'pending'),(2,2,2,'pending'),(3,3,3,'pending'),(4,4,4,'pending'),(5,2,5,'pending'),(6,5,4,'pending'),(7,1,5,'pending');
+INSERT INTO `game_registrations_as_player` VALUES (1,1,2,'pending'),(2,2,1,'pending'),(3,5,4,'pending'),(4,1,5,'pending'),(5,4,3,'pending'),(6,1,4,'pending'),(7,3,2,'pending');
 /*!40000 ALTER TABLE `game_registrations_as_player` ENABLE KEYS */;
 UNLOCK TABLES;
 
