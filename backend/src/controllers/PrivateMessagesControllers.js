@@ -118,6 +118,21 @@ const getMessagesFromUsers = (req, res) => {
     })
 }
 
+const deleteConversation = (req, res) => {
+  const userId = req.body.idUser
+  const receiverId = req.body.receiver
+
+  models.private_messages
+    .deleteConversation(userId, receiverId)
+    .then(() => {
+      res.sendStatus(200)
+    })
+    .catch((err) => {
+      console.error(err)
+      res.sendStatus(500)
+    })
+}
+
 module.exports = {
   browse,
   read,
@@ -127,4 +142,5 @@ module.exports = {
   messagesPreview,
   getMessagesFromUsers,
   insertPrivateMessage,
+  deleteConversation,
 }

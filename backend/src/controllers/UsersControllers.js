@@ -119,21 +119,30 @@ const destroy = (req, res) => {
 //     })
 // }
 
-const verifyUser = (req, res, next) => {
-  models.users
-    .getUserByUsernameWithPassword(req.body.username)
-    .then(([users]) => {
-      if (users[0] != null) {
-        req.user = users[0]
-        next()
-      } else {
-        res.sendStatus(401)
-      }
-    })
-    .catch((err) => {
-      console.error(err)
-      res.status(500).send("Error retrieving data from the database")
-    })
+const verifyUser = async (req, res, next) => {
+  const username = req.body.username
+
+  if (
+    typeof username !== "string" ||
+    username.trim() === "" ||
+    username.length > 30
+  ) {
+    return res.status(400).send("Invalid username")
+  }
+
+  try {
+    const [user] = await models.users.getUserByUsernameWithPassword(username)
+
+    if (user[0] != null) {
+      req.user = user[0]
+      next()
+    } else {
+      res.sendStatus(401)
+    }
+  } catch (err) {
+    console.error(err)
+    res.status(500).send("Error retreiving data from database")
+  }
 }
 
 const display = (req, res) => {

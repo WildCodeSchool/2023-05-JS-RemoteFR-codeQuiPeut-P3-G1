@@ -7,8 +7,13 @@ class PrivateMessagesManager extends AbstractManager {
 
   insert(privateMessages) {
     return this.database.query(
-      `INSERT INTO ${this.table} (users_id_sender, users_id_recipient, content, date, seen) VALUES (?, ?, ?, NOW(), 0)`,
-      [privateMessages.from, privateMessages.to, privateMessages.content]
+      `INSERT INTO ${this.table} (users_id_sender, users_id_recipient, content, date, seen) VALUES (?, ?, ?, ?, 0)`,
+      [
+        privateMessages.from,
+        privateMessages.to,
+        privateMessages.content,
+        privateMessages.time,
+      ]
     )
   }
 
@@ -46,6 +51,15 @@ class PrivateMessagesManager extends AbstractManager {
       WHERE users_id_recipient = ? AND users_id_sender = ? OR users_id_sender = ? AND users_id_recipient = ?
       ORDER BY date ASC`,
       [userConnectedId, senderId, userConnectedId, senderId]
+    )
+  }
+
+  deleteConversation(userId, receiverId) {
+    return this.database.query(
+      `DELETE FROM ${this.table}
+      WHERE (users_id_sender = ? AND users_id_recipient = ?)
+      OR (users_id_sender = ? AND users_id_recipient = ?)`,
+      [userId, receiverId, receiverId, userId]
     )
   }
 }

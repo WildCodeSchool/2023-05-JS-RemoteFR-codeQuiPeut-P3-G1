@@ -34,10 +34,13 @@
   "dependencies": {
     "@splinetool/react-spline": "^2.2.6",
     "esbuild": "^0.16.17",
+    "joi": "^17.11.0",
+    "moedim": "^0.5.0",
     "moment": "^2.29.4",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.5.2",
     "nodemon": "^3.0.1",
+    "react-datepicker": "^4.23.0",
     "react-ios-time-picker": "^0.2.2",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.15.0",

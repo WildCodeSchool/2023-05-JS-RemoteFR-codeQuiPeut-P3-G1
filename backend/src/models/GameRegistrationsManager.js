@@ -70,11 +70,11 @@ class GameRegistrationsManager extends AbstractManager {
 
   gameJoiningRequests(id) {
     return this.database.query(
-      `SELECT gr.id, u.profil_picture, u.username, ga.guild_name, ga.schedule, ga.is_campaign, gr.status, ga.gm_id, gr.games_id, gr.requester_id 
+      `SELECT u.profil_picture, u.username, ga.guild_name, ga.schedule, ga.is_campaign, gr.status, ga.gm_id, gr.games_id, gr.requester_id 
       FROM ${this.table} AS gr
       JOIN users AS u ON gr.requester_id = u.id
       JOIN games AS ga ON gr.games_id = ga.id 
-      WHERE gm_id = ? AND status = "pending"`,
+      WHERE ga.gm_id = ? AND gr.status = "pending"`,
       [id]
     )
   }

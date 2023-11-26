@@ -24,13 +24,7 @@ function SignIn({
     setShowSignIn(false)
   }
 
-  // const closeOnOutsideClick = (e) => {
-  //   if (e.target.className === "modal") {
-  //     setShowModal(false)
-  //   }
-  // }
   const handleKeyDown = (e) => {
-    // console.info("Key down event triggered")
     if (e.code === "Enter" || (e.key === "Enter" && signInPassword !== "")) {
       handleLogin(e)
     }
@@ -38,39 +32,66 @@ function SignIn({
 
   const navigate = useNavigate()
 
+  const validateCredentials = (username, password) => {
+    const isString = (str) => typeof str === "string" && str.trim().length > 0
+    const isValidLength = (str, min, max) =>
+      str.length >= min && str.length <= max
+
+    return (
+      isString(username) &&
+      isValidLength(username, 3, 50) &&
+      isString(password) &&
+      isValidLength(password, 6, 50)
+    )
+  }
+
   const handleLogin = (e) => {
     e.preventDefault()
+
+    if (!validateCredentials(signInUsername, signInPassword)) {
+      console.error("Wrong credentials format")
+      return
+    }
+
     axios
-      .post("http://localhost:4242/login", {
+      .post(`${import.meta.env.VITE_BACKEND_URL}/login`, {
         username: signInUsername,
         password: signInPassword
       })
       .then((res) => {
         if (res.status === 200) {
-          console.info("Connexion établie !")
-          document.getElementById("cardLogIn-Input").reset()
           const token = res.data.token
-          Cookies.set("authToken", token, { expires: 0.5, sameSite: "strict" })
-          Cookies.set("usernameGm", res.data.user.username, {
-            sameSite: "strict"
-          })
-          Cookies.set("loggedInUser", JSON.stringify(res.data.user), {
-            sameSite: "strict"
-          })
-          Cookies.set("idUser", JSON.stringify(res.data.user.id), {
-            sameSite: "strict"
-          })
+
+          const cookiesOptions = { expires: 0.5, sameSite: "strict" }
+          //*  Utiliser l'option "secure" si HTTPS
+
+          Cookies.set("authToken", token, cookiesOptions)
+          Cookies.set("usernameGm", res.data.user.username, cookiesOptions)
+          Cookies.set(
+            "idUser",
+            JSON.stringify(res.data.user.id),
+            cookiesOptions
+          )
+
+          document.getElementById("cardLogIn-Input").reset()
           setSignInUsername()
           setSignInPassword()
           navigate("/home")
         }
       })
       .catch((error) => {
-        console.error("Erreur lors de la connexion :", error)
+        if (error.response && error.response.status === 401) {
+          alert("Wrong username or password")
+          console.error("Authentication error :", error)
+        } else if (error.response && error.response.status === 400) {
+          console.error(
+            "Validation error :" +
+              error.response.data.errorMessages.map((e) => e.message).join(",")
+          )
+        } else {
+          console.error("Error :", error)
+        }
       })
-
-    // Close sign-up modal if open
-    setShowModal(false)
   }
 
   return (
@@ -122,11 +143,6 @@ function SignIn({
           </button>
         </div>
       </div>
-      {/* {showModal && (
-        <div className="modal" onClick={closeOnOutsideClick}>
-          <SignUp onClick={() => setShowModal(true)} />
-        </div>
-      )} */}
     </div>
   )
 }

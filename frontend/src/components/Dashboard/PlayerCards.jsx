@@ -28,8 +28,6 @@ function PlayerCards({
     setPlayerCard(false)
   }
 
-  // console.info(formattedSchedule)
-
   return (
     <div className="major_Container_PlayerCards">
       <div className="PlayerCards_Main_Container">

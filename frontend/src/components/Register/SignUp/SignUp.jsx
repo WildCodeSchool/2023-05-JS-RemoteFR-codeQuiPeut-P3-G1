@@ -21,7 +21,8 @@ function SignUp({ setShowModal }) {
         username: signUpUsername,
         email_adress: signUpEmail,
         password: signUpPassword,
-        location: signUpCity
+        location: signUpCity,
+        verifyPassword: signUpVerifyPassword
       })
       .then((res) => {
         if (res.status === 201) {

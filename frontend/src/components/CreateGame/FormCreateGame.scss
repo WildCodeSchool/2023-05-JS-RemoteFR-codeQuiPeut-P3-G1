@@ -411,6 +411,7 @@
       border: none;
       border-radius: 4px;
       padding: 11px 12px 11px 12px;
+      margin-bottom: 10px;
       span {
         font-family: $content-font;
         color: $button-gold;
@@ -517,4 +518,8 @@
     overflow: hidden;
     padding: 20px 0;
   }
+}
+
+.error {
+  border: 2px solid red;
 }

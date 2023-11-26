@@ -3,6 +3,7 @@
 const fs = require("node:fs")
 const path = require("node:path")
 const messageController = require("./controllers/PrivateMessagesControllers")
+const { isValidMessageData } = require("./validators")
 
 const jwt = require("jsonwebtoken")
 
@@ -40,7 +41,6 @@ const io = new Server(server, {
 // use some application-level middlewares
 
 io.on("connection", (socket) => {
-  console.log("client connected")
   try {
     const token = socket.handshake.auth.token
 
@@ -48,8 +48,13 @@ io.on("connection", (socket) => {
 
     socket.user = decodedToken
 
-    console.log("Client connected with valid token from App")
+    console.info("Client connected with valid token from App")
     socket.on("send_message", (messageData, callback) => {
+      if (!isValidMessageData(messageData)) {
+        callback({ status: "Error", error: "Invalid message data" })
+        return
+      }
+
       messageController
         .insertPrivateMessage(messageData)
         .then((savedMessageId) => {
@@ -57,19 +62,18 @@ io.on("connection", (socket) => {
             ...messageData,
             id: savedMessageId,
           }
-          console.log("Message in database", messageData)
 
-          io.to(messageData.to).emit("message saved", savedMessage)
-          callback({ savedMessage })
+          io.to(messageData.to).emit("message_saved", savedMessage)
+          callback({ status: "Success", savedMessage })
         })
         .catch((err) => {
-          console.log("error saving message", err)
-          callback({ error: err.message })
+          console.info("Error saving message", err)
+          callback({ status: "Error", error: err.message })
         })
     })
   } catch (err) {
-    console.log("Auth error", err)
-    callback({ error: err.message })
+    console.info("Auth error", err)
+    callback({ status: "Error", error: err.message })
     socket.disconnect()
   }
 })

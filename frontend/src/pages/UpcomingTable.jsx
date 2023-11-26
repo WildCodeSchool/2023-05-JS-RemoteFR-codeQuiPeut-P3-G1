@@ -9,8 +9,9 @@ import GroupDiscussionIcon from "../assets/logo/groupDiscussionIcon.svg"
 import PlaceIconVector from "../assets/logo/placeIconVector.svg"
 import ProfilIcon from "../assets/logo/profilIcon.svg"
 import HexagonDiceIcon from "../assets/logo/hexagonDiceIcon.svg"
-// import AuthContext from "../components/AuthContext/AuthContext"
 import Cookies from "js-cookie"
+import moment from "moment"
+import CardGame from "../components/Game/CardGame"
 
 function UpcomingTable() {
   const [games, setGames] = useState([])
@@ -27,6 +28,9 @@ function UpcomingTable() {
   const [usernameFilter, setUsernameFilter] = useState("")
   const [locationFilter, setLocationFilter] = useState("")
   const [showPlayerContainer, setShowPlayerContainer] = useState(false)
+  const [modaleGameData, setModaleGameData] = useState(null)
+  const [gameModale, setGameModale] = useState(false)
+  const [playersList, setPlayersList] = useState([])
 
   const toggleContainer = () => {
     setShowPlayerContainer(!showPlayerContainer)
@@ -85,16 +89,39 @@ function UpcomingTable() {
   // console.info(games)
 
   useEffect(() => {
-    axios
-      .get("http://localhost:4242/users", { headers })
-      .then((res) => setUsers(res.data))
+    axios.get("http://localhost:4242/users", { headers }).then((res) => {
+      setUsers(res.data)
+    })
     axios
       .get("http://localhost:4242/gameswithrpgname", { headers })
-      .then((res) => setGames(res.data))
+      .then((res) => {
+        console.log("Games:", res.data) // Pour le débogage
+        setGames(res.data)
+      })
     axios
       .get("http://localhost:4242/role-playing-games", { headers })
-      .then((res) => setRpgs(res.data))
+      .then((res) => {
+        setRpgs(res.data)
+      })
   }, [])
+
+  const openGameModale = (game) => {
+    axios
+      .get(`${import.meta.env.VITE_BACKEND_URL}/playersbygame/${game.id}`, {
+        headers
+      })
+      .then((res) => {
+        setPlayersList(res.data)
+      })
+      .catch((err) => {
+        console.error(err)
+      })
+
+    setModaleGameData(game)
+    setGameModale(true)
+  }
+
+  console.log(playersList)
 
   return (
     <>
@@ -277,7 +304,7 @@ function UpcomingTable() {
                   src={BladeIcon}
                   alt="icon blade gold"
                 />
-                <div className="containerTitleUP">Game Title</div>
+                <div className="containerTitleUP">Guild</div>
               </div>
               <div className="boxTitleGame">
                 <img
@@ -285,7 +312,7 @@ function UpcomingTable() {
                   src={ProfilIcon}
                   alt="icon profil gold"
                 />
-                <div className="containerTitleUP">Game Master</div>
+                <div className="containerTitleUP">Gamemaster</div>
               </div>
               <div className="boxTitleGame">
                 <img
@@ -293,7 +320,7 @@ function UpcomingTable() {
                   src={CalandarIcon}
                   alt="icon calandar gold"
                 />
-                <div className="containerTitleUP">Game Date</div>
+                <div className="containerTitleUP">Date</div>
               </div>
               <div className="boxTitleGame">
                 <img
@@ -325,50 +352,109 @@ function UpcomingTable() {
                   src={GroupDiscussionIcon}
                   alt="icon Group Discussion gold"
                 />
-                <div className="containerTitleUP">Player</div>
+                <div className="containerTitleUP">Players number</div>
               </div>
             </div>
             <div id="upComingGamesCards">
               {games
-                .filter((game) =>
-                  game.city.toLowerCase().includes(cityFilter.toLowerCase())
+                .filter(
+                  (game) =>
+                    cityFilter === "" ||
+                    game.city.toLowerCase().includes(cityFilter.toLowerCase())
                 )
-                .filter((game) =>
-                  game.max_players_capacity
-                    .toString()
-                    .includes(maxPlayersFilter)
+                .filter(
+                  (game) =>
+                    maxPlayersFilter === "" ||
+                    game.max_players_capacity
+                      .toString()
+                      .includes(maxPlayersFilter)
                 )
-                .filter((game) =>
-                  game.type.toLowerCase().includes(typeFilter.toLowerCase())
+                .filter(
+                  (game) =>
+                    typeFilter === "" ||
+                    game.type.toLowerCase().includes(typeFilter.toLowerCase())
                 )
-                .filter((game) =>
-                  game.schedule.toLowerCase().includes(dateFilter.toLowerCase())
+                .filter(
+                  (game) =>
+                    dateFilter === "" ||
+                    game.schedule
+                      .toLowerCase()
+                      .includes(dateFilter.toLowerCase())
                 )
-                .filter((game) =>
-                  game.guild_name
-                    .toLowerCase()
-                    .includes(nameFilter.toLowerCase())
+                .filter(
+                  (game) =>
+                    nameFilter === "" ||
+                    game.guild_name
+                      .toLowerCase()
+                      .includes(nameFilter.toLowerCase())
                 )
-                .filter((game) =>
-                  game.gm_username
-                    .toLowerCase()
-                    .includes(gmFilter.toLowerCase())
+                .filter(
+                  (game) =>
+                    gmFilter === "" ||
+                    game.gm_username
+                      .toLowerCase()
+                      .includes(gmFilter.toLowerCase())
                 )
-                .filter((game) =>
-                  game.rpg_name.toLowerCase().includes(rpgFilter.toLowerCase())
+                .filter(
+                  (game) =>
+                    rpgFilter === "" ||
+                    game.rpg_name
+                      .toLowerCase()
+                      .includes(rpgFilter.toLowerCase())
                 )
                 .map((game) => (
-                  <Game
-                    key={game.id}
-                    games={game}
-                    users={users}
-                    rpg={rpgs}
-                    headers={headers}
-                  />
+                  <div
+                    className="UTgameCard"
+                    onClick={() => openGameModale(game)}
+                  >
+                    <div className="UTgameTitle">
+                      <h3>{game.guild_name}</h3>
+                    </div>
+                    <div>
+                      <img
+                        src={`${import.meta.env.VITE_BACKEND_URL}/${
+                          game.gm_profil_picture
+                        }`}
+                        alt=""
+                      />
+                      <p className="UTgamemaster">{game.gm_username}</p>
+                    </div>
+                    <div className="UTdate">
+                      <p className="textTable">
+                        {moment(game.schedule).format("DD/MM/YYYY")}
+                      </p>
+                    </div>
+                    <div className="UTplace">
+                      <p className="textTable">
+                        {game.is_remote ? "Remote" : game.city}
+                      </p>
+                    </div>
+                    <div className="UTrpg">
+                      <p className="textTable">{game.rpg_name}</p>
+                    </div>
+                    <div className="UTtype">
+                      <p className="textTable">{game.type}</p>
+                    </div>
+                    <div className="UTplayers">
+                      <p className="textTable">{game.max_players_capacity}</p>
+                    </div>
+                  </div>
                 ))}
             </div>
           </div>
         </div>
+        {gameModale && (
+          <div className="modaleBackgroundUT">
+            <div className="modaleUT">
+              <CardGame
+                gameData={modaleGameData}
+                playersProfil={playersList}
+                onClose={() => setGameModale(false)}
+                openJoinGuild={true}
+              />
+            </div>
+          </div>
+        )}
       </div>
     </>
   )

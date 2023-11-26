@@ -4,9 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
-// import Cookies from "js-cookie"
-// import axios from "axios"
-
 import AuthContext from "./components/AuthContext/AuthContext"
 import Home from "./pages/Home"
 import CreateGame from "./pages/CreateGame"
@@ -44,7 +41,6 @@ function App() {
                 location.pathname === "/" ? "pageContainer1" : "pageContainer2"
               }
             >
-              {/* <div className="pageContainer1"> */}
               <Routes>
                 <Route path="/" element={<LandingPage />} />
                 <Route path="/create-game" element={<CreateGame />} />

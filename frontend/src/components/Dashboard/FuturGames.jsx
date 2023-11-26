@@ -287,14 +287,6 @@ export default function FutureGames() {
                             alt="Icône de l'œil"
                           />
                         </div>
-                        <div className="deleteBtnContainerFG">
-                          <img
-                            id="refuseButtonFG"
-                            src={crossDash}
-                            alt="refuse"
-                            onClick={() => openConfirmation(game.id)}
-                          />
-                        </div>
                       </div>
                     </div>
                   )
@@ -320,19 +312,6 @@ export default function FutureGames() {
             gameData={gameData}
             setIsGmCardsOpen={setIsGmCardsOpen}
           />
-        )}
-        {showConfirm && (
-          <div className="custom-confirmRequest">
-            <div className="modalCustomConfirmRequest">
-              <p>Are you sure you want to reject this request ?</p>
-              <div className="buttonCustomConfirmRequest">
-                <button id="buttonNo" onClick={closeConfirmation}>
-                  NO
-                </button>
-                <button onClick={confirmReject}>YES</button>
-              </div>
-            </div>
-          </div>
         )}
       </div>
     </>

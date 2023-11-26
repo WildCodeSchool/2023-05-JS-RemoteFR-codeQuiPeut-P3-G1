@@ -19,13 +19,13 @@ const Dashboard = () => {
   const { setUser, setUsers } = useContext(AuthContext)
   const tokenFromCookie = Cookies.get("authToken")
   const idUser = Cookies.get("idUser")
-  const [notificationCount, setNotificationCount] = useState(0)
-  const [playersProfil, setPlayersProfil] = useState([])
 
   const headers = {
     Authorization: `Bearer ${tokenFromCookie}`
   }
 
+  const [playersProfil, setPlayersProfil] = useState([])
+  const [notificationCount, setNotificationCount] = useState(0)
   const [hasFriendRequest, setHasFriendRequest] = useState(false)
   const [invitationsData, setInvitationsData] = useState()
   const [isCardGameModalOpen, setIsCardGameModalOpen] = useState(false)
@@ -346,7 +346,7 @@ const Dashboard = () => {
         <div className="dashboardAllComponents">
           <div className="friends-games-container">
             <FuturGames />
-            {hasFriendRequest && <FriendRequest />}
+            <FriendRequest />
           </div>
           <div className="dashboardComponents">
             <MyProfil idUser={idUser} />

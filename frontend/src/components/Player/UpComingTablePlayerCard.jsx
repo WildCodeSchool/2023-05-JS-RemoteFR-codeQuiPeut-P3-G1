@@ -31,10 +31,10 @@ export default function UpComingTablePlayerCard({ users }) {
     <>
       {users.id !== idUser && (
         <div
-          className="globalContainerCardGame"
+          className="globalContainerCardGameUT"
           onClick={() => openPlayerCard(users)}
         >
-          <div className="boxGameCardGame">
+          <div className="boxGameCardGameUT">
             <img
               className="boxGameCardImage"
               src={`${import.meta.env.VITE_BACKEND_URL}/${
@@ -42,11 +42,15 @@ export default function UpComingTablePlayerCard({ users }) {
               }`}
               alt="profil photo"
             />{" "}
-            {users.username}
+            <p>{users.username}</p>
           </div>
-          <div className="boxGameCardGame">{formattedDate}</div>
-          <div className="boxGameCardGame">{users.location}</div>
-          <div className="boxGameCardGame">{users.description_as_player}</div>
+          <div className="boxGameCardGameUT">{formattedDate}</div>
+          <div className="boxGameCardGameUT">{users.location}</div>
+          <div className="boxGameCardGameDesc">
+            {users.description_as_player?.length > 50
+              ? `${users.description_as_player.substring(0, 50)}...`
+              : users.description_as_player}
+          </div>
         </div>
       )}
 

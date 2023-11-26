@@ -2,16 +2,18 @@
   position: absolute;
   height: 100%;
   width: calc(100% - 104px);
-  background-color: rgba(0, 0, 0, 0.531);
+  background-color: #00000069;
+  backdrop-filter: blur(10px);
   animation: fadeIn ease 1s;
   .newConvContainer {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 40vw;
+    width: 50%;
     height: 60vh;
+    max-width: 550px;
     transform: translate(-50%, -50%);
-    background: #fff;
+    background: #4d194d;
     border: 1px solid #ccc;
     z-index: 1000;
     display: flex;
@@ -40,13 +42,13 @@
       -webkit-text-fill-color: transparent;
       font-family: $content-font;
       font-size: 40px;
-      margin-bottom: 10%;
+      margin-bottom: 40px;
     }
     .newConvUser {
       position: relative;
       width: 70%;
       height: fit-content;
-      margin-bottom: 10%;
+      margin-bottom: 40px;
       #search {
         background: rgba(0, 0, 0, 0.224);
         border: 2px solid rgb(134, 112, 67);
@@ -54,7 +56,7 @@
         width: 100%;
         height: 100%;
         padding: 5px;
-        color: black;
+        color: rgb(255, 255, 255);
         position: relative;
         text-align: center;
         font-size: clamp(20px, 1vw, 32px);
@@ -70,7 +72,7 @@
         overflow-y: auto;
         width: 100%;
         z-index: 1;
-        background-color: #ededed;
+        background-color: #fffbfb;
         position: absolute;
         border: 2px solid $third-font-color;
         border-radius: 4px;
@@ -97,7 +99,7 @@
       border-radius: 4px;
       width: 70%;
       height: 50%;
-      color: black;
+      color: rgb(225, 222, 222);
       cursor: text;
       transition: 0.2s;
       font-size: 15px;
@@ -105,7 +107,7 @@
       text-align: left; /* Alignement horizontal */
       vertical-align: top;
       resize: none;
-      margin-bottom: 10%;
+      margin-bottom: 20px;
       font-size: clamp(20px, 1vw, 32px);
 
       &:focus {
@@ -115,12 +117,12 @@
       }
     }
     #buttonNewConv {
-      width: 30%;
-      height: 20%;
+      width: 150px;
+      height: 80px;
       border-radius: 4px;
       background-color: $third-font-color;
       font-size: clamp(20px, 1vw, 32px);
-      margin-bottom: 2%;
+      margin-bottom: 30px;
       transition: 0.2s ease-in-out;
       &:hover {
         transform: translateY(-5px);

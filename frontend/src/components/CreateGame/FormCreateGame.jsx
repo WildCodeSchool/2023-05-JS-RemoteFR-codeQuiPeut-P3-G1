@@ -1,6 +1,8 @@
 import hour from "../../assets/icon-create-game/horaire.png"
 import { TimePicker } from "react-ios-time-picker"
-import Calendar from "moedim"
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker-cssmodules.css"
+import "react-datepicker/dist/react-datepicker.css"
 
 function FormCreateGame({
   isTimeRequired,
@@ -8,40 +10,32 @@ function FormCreateGame({
   handleDecrement,
   handleIncrement,
   gameRPGList,
-  //   setGameRPGList,
   departmentList,
-  //   setDepartementList,
   departmentId,
   setDepartementId,
   cityList,
-  //   setCityList,
-  //   gameRPGID,
   setGameRPGID,
-  //   gamemasterUsername,
-  //   setGamemasterUsername,
+
   gameDateToFormat,
   setGameDateToFormat,
   gameHourToFormat,
   setGameHourToFormat,
-  //   gameDate,
-  //   setGameDate,
-  //   gamePlace,
+
   setGamePlace,
   gamePlayersCapacity,
   setGamePlayersCapacity,
-  //   gameDesc,
   setGameDesc,
   gameType,
   setGameType,
   gameName,
   setGameName,
-  //   gameIsCampaign,
-  //   setGameIsCampaign,
+
   gameIsRemote,
   setGameIsRemote,
   handleChange,
-  handleCreateGame
-  // headers,
+  handleCreateGame,
+  errors,
+  validate
 }) {
   return (
     <>
@@ -141,7 +135,7 @@ function FormCreateGame({
             </div>
             <div id="createGameSecondGroup">
               <label htmlFor="description">
-                <p>Quick description of the game</p>
+                <p>Description of the game</p>
                 <textarea
                   type="textarea"
                   name="description"
@@ -167,7 +161,7 @@ function FormCreateGame({
                   checked={gameIsRemote === 0}
                   onChange={() => setGameIsRemote(0)}
                 />
-                <label htmlFor="radio-OnPlace">On Place</label>
+                <label htmlFor="radio-OnPlace">IRL</label>
               </div>
             </div>
             <div id="createGameThirdGroup">
@@ -218,16 +212,18 @@ function FormCreateGame({
                 ""
               )}
               <label htmlFor="date">
-                <p>Date</p>
-                <Calendar
-                  value={gameDateToFormat}
-                  onChange={(e) => setGameDateToFormat(e)}
+                <p>Start Date</p>
+                <DatePicker
+                  selected={gameDateToFormat}
+                  onChange={(date) => setGameDateToFormat(date)}
                   id="createGameCalendar"
                   required
+                  dateFormat="dd/MM/yyyy"
+                  minDate={new Date()}
                 />
               </label>
               <label htmlFor="hour">
-                <p>Hour</p>
+                <p>Start Hour</p>
                 <div className="timePicker-CreateGame">
                   <TimePicker
                     onChange={(timeValue) => {

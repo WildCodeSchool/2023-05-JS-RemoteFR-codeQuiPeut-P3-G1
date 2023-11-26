@@ -38,24 +38,6 @@
       {
         "assert": "either"
       }
-    ],
-    "react/no-unknown-property": [
-      "error",
-      {
-        "ignore": [
-          "intensity",
-          "decay",
-          "rotation",
-          "position",
-          "object",
-          "castShadow",
-          "shadow-normalBias",
-          "dispose",
-          "receiveShadow",
-          "geometry",
-          "material"
-        ]
-      }
     ]
   }
 }

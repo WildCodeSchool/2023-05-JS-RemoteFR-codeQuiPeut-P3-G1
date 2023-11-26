@@ -40,6 +40,7 @@ export default function CreateGame() {
   const [gameIsCampaign, setGameIsCampaign] = useState(0)
   const [gameIsRemote, setGameIsRemote] = useState(0)
   const [createOrResume, setCreateOrResume] = useState(1)
+  const [errors, setErrors] = useState({})
 
   const tokenFromCookie = Cookies.get("authToken")
   const idUser = Cookies.get("idUser")
@@ -48,8 +49,21 @@ export default function CreateGame() {
     Authorization: `Bearer ${tokenFromCookie}`
   }
 
-  // console.info(gamemasterUsername)
-  // console.info("bonjour", gamemasterId)
+  const validateForm = () => {
+    let errors = []
+    if (!gameName) errors.push("Guild's Name is required")
+    if (!gameType) errors.push("Game Type is required")
+    if (!gameRPGID) errors.push("Based on RPG is required")
+    if (!gameDesc) errors.push("Description is required")
+    if (gameIsRemote !== 1 && (!departmentId || !cityList)) {
+      errors.push("Department and City are required for IRL games")
+    }
+
+    if (!gameDateToFormat) errors.push("Start Date is required")
+    if (!gameHourToFormat) errors.push("Start Hour is required")
+
+    return errors
+  }
 
   useEffect(() => {
     axios
@@ -98,6 +112,14 @@ export default function CreateGame() {
 
   const handleCreateGame = (e) => {
     e.preventDefault()
+
+    const formErrors = validateForm()
+
+    if (formErrors.length > 0) {
+      console.log("Ca marche pas")
+      return
+    }
+
     axios
       .post(
         "http://localhost:4242/games",
@@ -118,7 +140,6 @@ export default function CreateGame() {
       )
       .then((res) => {
         if (res.status === 201) {
-          // console.info("Partie créée avec succès !")
           setGameRPGID("")
           setGamePlayersCapacity(1)
           setGameDesc("")
@@ -155,21 +176,6 @@ export default function CreateGame() {
   useEffect(() => {
     setGameDate(`${formattedDate(gameDateToFormat)}T${gameHourToFormat}:00`)
   }, [gameHourToFormat, gameDateToFormat])
-
-  // console.info(
-  //   "createTest",
-  //   gameName,
-  //   gameType,
-  //   gameRPGID,
-  //   typeof gameRPGID,
-  //   gameIsCampaign,
-  //   gamePlayersCapacity,
-  //   gameDesc,
-  //   gameIsRemote,
-  //   gamePlace,
-  //   gameDate,
-  //   gameRPGList
-  // )
 
   return (
     <main id="createGameGlobal">
@@ -230,6 +236,7 @@ export default function CreateGame() {
             handleChange={handleChange}
             handleCreateGame={handleCreateGame}
             setCreateOrResume={setCreateOrResume}
+            errors={errors}
           />
         </div>
       ) : createOrResume === 0 ? (

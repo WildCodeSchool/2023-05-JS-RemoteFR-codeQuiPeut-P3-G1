@@ -41,7 +41,6 @@ function NavBar() {
 
   const handleLogout = () => {
     Cookies.remove("authToken")
-    Cookies.remove("loggedInUser")
     Cookies.remove("idUser")
 
     navigate("/")

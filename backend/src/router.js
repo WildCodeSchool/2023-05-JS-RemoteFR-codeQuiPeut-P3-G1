@@ -3,6 +3,7 @@ const { hashPassword, verifyPassword, verifyToken } = require("./auth.js")
 const multer = require("multer")
 const upload = multer({ dest: "public/assets/tmp" })
 const router = express.Router()
+const validators = require("./validators.js")
 const UsersControllers = require("./controllers/UsersControllers")
 const TestimonialsControllers = require("./controllers/TestimonialsControllers")
 const TopicsControllers = require("./controllers/TopicsControllers")
@@ -21,8 +22,18 @@ const GamesHasUsersControllers = require("./controllers/GamesHasUsersControllers
 
 // const { default: PrivateMessages } = require("../../frontend/src/components/PrivateMessages/PrivateMessages.jsx")
 
-router.post("/login", UsersControllers.verifyUser, verifyPassword)
-router.post("/users", hashPassword, UsersControllers.add)
+router.post(
+  "/login",
+  validators.validateUser,
+  UsersControllers.verifyUser,
+  verifyPassword
+)
+router.post(
+  "/users",
+  validators.validateSignUpForm,
+  hashPassword,
+  UsersControllers.add
+)
 
 router.get("/testimonials", TestimonialsControllers.browse)
 router.get("/testimonials/:id", TestimonialsControllers.read)
@@ -235,5 +246,6 @@ router.delete("/FriendRequestControllers/:id", FriendRequestControllers.destroy)
 router.delete("/UsersFiltersControllers/:id", UsersFiltersControllers.destroy)
 router.delete("/role-playing-games/:id", RolePlayingGamesControllers.destroy)
 router.delete("/PrivateMessages/:id", PrivateMessagesControllers.destroy)
+router.delete("/deleteConv", PrivateMessagesControllers.deleteConversation)
 
 module.exports = router

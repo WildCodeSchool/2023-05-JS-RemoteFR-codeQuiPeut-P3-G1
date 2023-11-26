@@ -3,7 +3,6 @@ import ParametersLogo from "../../assets/privateMessages/boutonsParametres.svg"
 import { io } from "socket.io-client"
 import Cookies from "js-cookie"
 import SendArrow from "../../../src/assets/privateMessages/send-4008.svg"
-import { getCurrentTime } from "./utils"
 import axios from "axios"
 import moment from "moment"
 
@@ -16,7 +15,7 @@ export default function Conversation(props) {
   const [animateSend, setAnimateSend] = useState(false)
   const [socket, setSocket] = useState(null)
 
-  const idUser = Cookies.get("idUser")
+  const idUser = parseInt(Cookies.get("idUser"), 10)
   const tokenFromCookie = Cookies.get("authToken")
   const headers = {
     Authorization: `Bearer ${tokenFromCookie}`
@@ -48,19 +47,30 @@ export default function Conversation(props) {
       )
       .then((res) => {
         setMessageHistory(res.data)
-        console.info(res.data)
       })
       .catch((err) => {
         console.info("Error while retreiving the messages data", err)
       })
   }, [senderId])
 
+  const validateMessageContent = (data) => {
+    const isString = (str) => typeof str === "string" && str.trim().length > 0
+    const isNumber = (num) => typeof num === "number"
+
+    return isString(data.content) && isNumber(data.from) && isNumber(data.to)
+  }
+
   const sendMessage = () => {
     const messageData = {
       from: idUser,
       to: senderId,
       content: messageContent,
-      time: getCurrentTime()
+      time: moment().format("YYYY-MM-DD HH:mm:ss")
+    }
+
+    if (!validateMessageContent(messageData)) {
+      console.error("Wrong message format")
+      return
     }
 
     socket.emit("send_message", messageData, (response) => {
@@ -74,20 +84,17 @@ export default function Conversation(props) {
     setMessageContent("")
   }
 
-  // useEffect(() => {
-  //   if (socket) {
-  //     const receiveMessageHandler = (data) => {
-  //       setMessageHistory((prevMessages) => [...prevMessages, data])
-  //       console.log("ca recoit")
-  //     }
+  useEffect(() => {
+    if (socket) {
+      socket.on("message_saved", (newMessage) => {
+        setMessageHistory((prevMessages) => [...prevMessages, newMessage])
+      })
 
-  //     socket.on("receive_message", receiveMessageHandler)
-
-  //     return () => {
-  //       socket.off("receive_message", receiveMessageHandler)
-  //     }
-  //   }
-  // }, [socket])
+      return () => {
+        socket.off("message_saved")
+      }
+    }
+  }, [socket])
 
   useEffect(() => {
     if (messageHistoryRef.current) {
@@ -145,7 +152,6 @@ export default function Conversation(props) {
           className={animateSend ? "animate" : ""}
           tabIndex="enter"
           onClick={() => {
-            setAnimateSend(true)
             sendMessage()
           }}
           onAnimationEnd={() => setAnimateSend(false)}

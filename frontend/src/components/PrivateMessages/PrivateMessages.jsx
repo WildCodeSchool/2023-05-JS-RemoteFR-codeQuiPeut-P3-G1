@@ -17,6 +17,7 @@ export default function PrivateMessages() {
   const [searchUser, setSearchUser] = useState("")
   const [isPopupVisible, setPopupVisibility] = useState(false)
   const [isNewMessageSent, setIsNewMessageSent] = useState(false)
+  const [updateAfterDelete, setUpdateAfterDelete] = useState(false)
 
   const showPopup = () => {
     setPopupVisibility(true)
@@ -33,14 +34,14 @@ export default function PrivateMessages() {
       })
       .then((res) => {
         setMessagePreview(res.data)
-        if (res.data.length > 0) {
+        if (res.data.length > 0 && !selectedUser) {
           setSelectUser(res.data[0])
         }
       })
       .catch((err) => {
         console.info("Erreur récuperation Messages Preview", err)
       })
-  }, [isNewMessageSent])
+  }, [isNewMessageSent, updateAfterDelete])
 
   const handleSelectedUser = (message) => {
     setSelectUser(message)
@@ -48,6 +49,28 @@ export default function PrivateMessages() {
 
   const handleNewMessageSent = () => {
     setIsNewMessageSent((prevState) => !prevState) // bascule la valeur
+  }
+
+  const filteredMsgPreview = messagePreview.filter((user) =>
+    user.username.includes(searchUser)
+  )
+
+  const handleDeleteConv = (receiverId) => {
+    axios
+      .delete(`${import.meta.env.VITE_BACKEND_URL}/deleteConv`, {
+        data: {
+          idUser: idUser,
+          receiver: receiverId
+        },
+        headers: headers
+      })
+      .then((res) => {
+        console.log("Conversation removed", res)
+        setUpdateAfterDelete((prev) => !prev)
+      })
+      .catch((err) => {
+        console.log("Error when deleting a conversation", err)
+      })
   }
 
   return (
@@ -66,13 +89,12 @@ export default function PrivateMessages() {
           </div>
         </div>
         <div className="displayMessages">
-          {messagePreview.map((message, id) => (
-            <div
-              className="messageContent"
-              key={id}
-              onClick={() => handleSelectedUser(message)}
-            >
-              <div className="msgProfilPicture">
+          {filteredMsgPreview.map((message, id) => (
+            <div className="messageContent" key={id}>
+              <div
+                className="msgProfilPicture"
+                onClick={() => handleSelectedUser(message)}
+              >
                 <img
                   src={`${import.meta.env.VITE_BACKEND_URL}/${
                     message.profil_picture
@@ -82,6 +104,12 @@ export default function PrivateMessages() {
               </div>
               <div className="msgName">
                 <p>{message.username}</p>
+              </div>
+              <div
+                className="deleteButton"
+                onClick={() => handleDeleteConv(message.user_id)}
+              >
+                <p>Delete</p>
               </div>
             </div>
           ))}
@@ -116,6 +144,7 @@ export default function PrivateMessages() {
         <NewConversationPopup
           onClose={closePopup}
           onNewMessageSent={handleNewMessageSent}
+          usersWithConv={messagePreview}
         />
       )}
     </div>

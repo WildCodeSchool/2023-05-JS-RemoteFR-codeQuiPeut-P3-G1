@@ -161,6 +161,7 @@ const joiningRequests = (req, res) => {
       } else {
         res.send(rows)
       }
+      console.log(rows)
     })
     .catch((err) => {
       console.error(err)

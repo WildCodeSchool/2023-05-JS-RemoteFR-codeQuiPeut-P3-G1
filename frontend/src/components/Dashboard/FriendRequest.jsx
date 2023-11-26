@@ -4,12 +4,22 @@ import sword from "../../assets/icon-dashboard/sword.svg"
 import check from "../../assets/icon-dashboard/check.svg"
 import crossDash from "../../assets/icon-dashboard/crossDash.svg"
 import axios from "axios"
+import PlayerCards from "../Dashboard/PlayerCards"
 
 const FriendRequest = () => {
   const [joiningRequestData, setJoiningRequestData] = useState([])
 
   const [showConfirm, setShowConfirm] = useState(false)
   const [currentRequest, setCurrentRequest] = useState(null)
+  const [openModale, setOpenModale] = useState(false)
+  const [cardUserData, setCardUserData] = useState(null)
+
+  const tokenFromCookie = Cookies.get("authToken")
+  const idUser = Cookies.get("idUser")
+
+  const headers = {
+    Authorization: `Bearer ${tokenFromCookie}`
+  }
 
   const openConfirmation = (requesterId, gameId) => {
     setShowConfirm(true)
@@ -26,13 +36,6 @@ const FriendRequest = () => {
       rejectRequest(currentRequest.requesterId, currentRequest.gameId)
     }
     closeConfirmation()
-  }
-
-  const tokenFromCookie = Cookies.get("authToken")
-  const idUser = Cookies.get("idUser")
-
-  const headers = {
-    Authorization: `Bearer ${tokenFromCookie}`
   }
 
   const rejectRequest = (requesterId, gameId) => {
@@ -88,11 +91,12 @@ const FriendRequest = () => {
       })
       .then((response) => {
         setJoiningRequestData(response.data)
+        console.log(joiningRequestData)
       })
       .catch((error) => {
         console.error("An error occurred:", error)
       })
-  }, [acceptedRequest, rejectRequest])
+  }, [])
 
   return (
     <div className="Friends-container">
@@ -110,6 +114,9 @@ const FriendRequest = () => {
                     request.profil_picture
                   }`}
                   alt="profil picture"
+                  onClick={() => {
+                    setOpenModale(true), setCardUserData(request)
+                  }}
                 />
               </div>
               <div className="requesterName">
@@ -156,6 +163,12 @@ const FriendRequest = () => {
           </div>
         )}
       </div>
+      {openModale && (
+        <PlayerCards
+          userData={cardUserData}
+          setIsPlayerCardsOpen={setOpenModale}
+        />
+      )}
     </div>
   )
 }

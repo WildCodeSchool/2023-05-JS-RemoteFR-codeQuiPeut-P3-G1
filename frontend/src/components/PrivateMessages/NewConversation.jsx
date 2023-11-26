@@ -1,10 +1,15 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import Cookies from "js-cookie"
+import moment from "moment"
 
 import Cross from "../../assets/icon-dashboard/crossWithBg.svg"
 
-export default function NewConversation({ onClose, onNewMessageSent }) {
+export default function NewConversation({
+  onClose,
+  onNewMessageSent,
+  usersWithConv
+}) {
   const tokenFromCookie = Cookies.get("authToken")
   const idUser = Cookies.get("idUser")
   const headers = {
@@ -22,13 +27,19 @@ export default function NewConversation({ onClose, onNewMessageSent }) {
     if (inputUser === idUser) {
       return
     }
+
+    if (typeof newMsgContent != "string" && content.trim().length === 0) {
+      return
+    }
+
     axios
       .post(
         `${import.meta.env.VITE_BACKEND_URL}/PrivateMessages`,
         {
           from: idUser,
           to: inputUserId,
-          content: newMsgContent
+          content: newMsgContent,
+          time: moment().format("YYYY-MM-DD HH:mm:ss")
         },
         { headers }
       )
@@ -60,8 +71,10 @@ export default function NewConversation({ onClose, onNewMessageSent }) {
     }
   }, [inputUser])
 
-  const filteredUsers = existingUsers.filter((user) =>
-    user.username.includes(inputUser)
+  const filteredUsers = existingUsers.filter(
+    (user) =>
+      user.username.includes(inputUser) &&
+      !usersWithConv.some((conv) => conv.username === user.username)
   )
 
   return (
@@ -72,13 +85,15 @@ export default function NewConversation({ onClose, onNewMessageSent }) {
             <img src={Cross} alt="" />
           </button>
         </div>
-        <h2>Start a new conversation</h2>
+        <h2>
+          Are you searching <br></br>for someone ?
+        </h2>
         <div className="newConvUser">
           <input
             type="text"
             value={inputUser}
             id="search"
-            placeholder="Search for player"
+            placeholder="Search for a player"
             autoComplete="off"
             autoCorrect="off"
             autoCapitalize="none"
@@ -107,7 +122,7 @@ export default function NewConversation({ onClose, onNewMessageSent }) {
           type="text"
           id="message"
           value={newMsgContent}
-          placeholder="Message content"
+          placeholder="Your message"
           onChange={(e) => setNewMesgContent(e.target.value)}
         />
         <button onClick={submitNewConv} id="buttonNewConv">

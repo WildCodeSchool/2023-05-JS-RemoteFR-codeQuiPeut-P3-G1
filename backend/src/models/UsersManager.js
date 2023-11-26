@@ -69,10 +69,15 @@ class UsersManager extends AbstractManager {
   }
 
   getUserByUsernameWithPassword(username) {
-    return this.database.query(
-      `select id, username, hashedPassword from ${this.table} where username = ?`,
-      [username]
-    )
+    return this.database
+      .query(
+        `SELECT id, username, hashedPassword FROM ${this.table} WHERE username = ? LIMIT 1`,
+        [username]
+      )
+      .catch((err) => {
+        console.error("Error executing query in database", err)
+        throw new Error("Database error")
+      })
   }
 
   updateProfilUser(users) {
